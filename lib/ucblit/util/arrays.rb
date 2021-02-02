@@ -82,7 +82,8 @@ module UCBLIT
       #
       # @param arr [Array<Integer>, nil] the array to invert.
       # @return [Array<Integer, nil>, nil] the inverted array, or nil if the input array is nil
-      # @raise ArgumentError if `arr` is not an array of integers, or if it contains duplicate values
+      # @raise TypeError if `arr` is not an array of integers
+      # @raise ArgumentError if `arr` contains duplicate values
       def invert(arr)
         return unless arr
 
@@ -121,18 +122,6 @@ module UCBLIT
       def sort_by_first(a1, a2)
         do_flip = (order = a1.first.respond_to?(:<=>) && a1.first <=> a2.first) && order > 0
         (do_flip ? [a2, a1] : [a1, a2])
-      end
-
-      # For each value in `source`, finds the index of the first equal value
-      # in `target` after the previously matched value.
-      # @param source [Array] the list of values to look in
-      # @param target [Array] the values to look for
-      # @return [Array<Integer, nil>] the indices in `target` of each value in `source`, or `nil` for those that could not be found
-      def find_any_indices(source, target)
-        source.each_with_object([]) do |src, target_indices|
-          target_offset = (target_indices.last&.+ 1) || 0
-          target_indices << find_index(src, in_array: target, start_index: target_offset)
-        end
       end
 
       def find_all_indices(source, target)

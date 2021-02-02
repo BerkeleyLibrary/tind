@@ -297,5 +297,20 @@ module UCBLIT::Util
       end
 
     end
+
+    describe :invert do
+      it 'inverts an array of ints' do
+        expect(Arrays.invert([0, 2, 3])).to eq([0, nil, 1, 2])
+      end
+
+      it 'fails if values are not ints' do
+        # noinspection RubyYardParamTypeMatch
+        expect { Arrays.invert(%i[a b c]) }.to raise_error(TypeError)
+      end
+
+      it 'fails if given duplicate values' do
+        expect { Arrays.invert([1, 2, 3, 2]) }.to raise_error(ArgumentError)
+      end
+    end
   end
 end

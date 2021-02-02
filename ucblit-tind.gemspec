@@ -23,7 +23,6 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ruby_version
 
   spec.add_dependency 'http', '~> 4.4'
-  spec.add_dependency 'ice_nine', '~> 0.11'
   spec.add_dependency 'marc', '~> 1.0'
   spec.add_dependency 'rchardet', '~> 1.8'
   spec.add_dependency 'roo', '~> 2.8'

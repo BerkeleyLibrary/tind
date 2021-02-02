@@ -91,7 +91,7 @@ module UCBLIT
             expect(values).not_to be_nil, "No values found for row #{row}"
 
             # uncomment this to debug:
-            # 
+            #
             # puts "#{row}) #{record['245']['a']}: #{record['500']['a']}"
             # headers.each_with_index { |h, i| puts "\t#{h}\t#{values[i]}" }
             # puts "\n" if row + 1 < records.size

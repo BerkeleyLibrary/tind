@@ -39,13 +39,6 @@ module UCBLIT
         column_groups.map(&:columns).flatten
       end
 
-      # The number of columns (distinct subfields)
-      #
-      # @return [Integer] the number of columns
-      def col_count
-        columns.size
-      end
-
       # The number of rows (records)
       #
       # @return [Integer] the number of rows

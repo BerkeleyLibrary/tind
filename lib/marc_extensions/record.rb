@@ -72,6 +72,7 @@ module MARCExtensions
       leader.freeze
       fields.each(&:freeze)
       fields.freeze
+      self
     end
 
     # @return [Boolean] true if the fields and leader are frozen

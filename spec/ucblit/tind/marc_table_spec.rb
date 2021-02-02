@@ -9,7 +9,7 @@ module UCBLIT
       describe :<< do
         let(:record) { records.first }
 
-        it 'adds a record' do
+        it 'adds rows record' do
           table << record
           expect(table.marc_records).to contain_exactly(record)
         end
@@ -70,7 +70,6 @@ module UCBLIT
           records = MARC::XMLReader.read_frozen('spec/data/disjoint-records.xml').to_a
           records.each { |r| table << r }
           vv_actual = (0...records.size).map { |row| table.values_for(row) }
-          expect(vv_actual.size).to eq(9) # just to be sure
 
           vv_expected = records.map { |r| r.data_fields.map(&:subfields).flatten.map(&:value) }
           vv_expected.each_with_index do |expected, index|
@@ -91,8 +90,8 @@ module UCBLIT
             expect(values).not_to be_nil, "No values found for row #{row}"
 
             # uncomment this to debug:
-            #
-            # puts "#{row}) #{record['245']['a']}: #{record['500']['a']}"
+
+            # puts "#{row}) #{record['245']['rows']}: #{record['500']['rows']}"
             # headers.each_with_index { |h, i| puts "\t#{h}\t#{values[i]}" }
             # puts "\n" if row + 1 < records.size
 
@@ -128,6 +127,86 @@ module UCBLIT
               end
             end
           end
+        end
+      end
+
+      describe :freeze do
+        it 'prevents adding new records' do
+          records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
+          table = records[0...3].each_with_object(MARCTable.new) { |r, t| t << r }
+          table.freeze
+          expect(table.row_count).to eq(3) # just to be sure
+          original_headers = table.headers.dup
+
+          # noinspection RubyModifiedFrozenObject
+          expect { table << records.last }.to raise_error(FrozenError)
+          expect(table.row_count).to eq(3)
+          expect(table.headers).to eq(original_headers)
+        end
+
+        it 'freezes the MARC records array' do
+          records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
+          table = records.each_with_object(MARCTable.new) { |r, t| t << r }
+          table.freeze
+          expect { table.marc_records << records.last }.to raise_error(FrozenError)
+        end
+
+        it 'freezes the columns' do
+          records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
+          table = records.each_with_object(MARCTable.new) { |r, t| t << r }
+          table.freeze
+
+          expect { table.columns << Object.new }.to raise_error(FrozenError)
+        end
+
+        it 'returns self' do
+          records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
+          table = records.each_with_object(MARCTable.new) { |r, t| t << r }
+          expect(table.freeze).to be(table)
+        end
+      end
+
+      describe :from_records do
+        let(:records) { MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a }
+        it 'reads the records' do
+          table = MARCTable.from_records(records)
+          expect(table.row_count).to eq(records.size)
+        end
+
+        it 'optionally freezes the table' do
+          table = MARCTable.from_records(records, freeze: true)
+          expect(table.frozen?).to eq(true)
+        end
+      end
+
+      describe :rows do
+        let(:records) { MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a }
+        let(:table) { MARCTable.from_records(records) }
+
+        it 'returns the rows' do
+          rows = table.rows
+          expect(rows.size).to eq(records.size)
+          expect(rows.all? { |r| r.is_a?(MARCTable::Row) }).to eq(true)
+        end
+      end
+
+      describe :each_row do
+        let(:records) { MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a }
+        let(:table) { MARCTable.from_records(records) }
+
+        it 'yields each row' do
+          rows = []
+          table.each_row { |r| rows << r }
+          expect(rows.size).to eq(records.size)
+          expect(rows.all? { |r| r.is_a?(MARCTable::Row) }).to eq(true)
+        end
+
+        it 'returns an enumerator' do
+          enum = table.each_row
+          expect(enum).to be_an(Enumerator)
+          rows = enum.each_with_object([]) { |r, a| a << r }
+          expect(rows.size).to eq(records.size)
+          expect(rows.all? { |r| r.is_a?(MARCTable::Row) }).to eq(true)
         end
       end
     end

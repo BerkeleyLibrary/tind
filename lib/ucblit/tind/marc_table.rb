@@ -12,8 +12,10 @@ module UCBLIT
       include UCBLIT::Util::Arrays
 
       class << self
-        def from_records(records)
-          records.each_with_object(MARCTable.new) { |r, t| t << r }
+        def from_records(records, freeze: false)
+          records.each_with_object(MARCTable.new) { |r, t| t << r }.tap do |table|
+            table.freeze if freeze
+          end
         end
       end
 
@@ -35,8 +37,9 @@ module UCBLIT
       #
       # @return [Array<Column>] the columns.
       def columns
-        # TODO: cache if frozen
-        column_groups.map(&:columns).flatten
+        return @columns if @columns
+
+        all_column_groups.map(&:columns).flatten
       end
 
       # The number of rows (records)
@@ -50,6 +53,8 @@ module UCBLIT
       #
       # @param marc_record [MARC::Record] the record to add
       def <<(marc_record)
+        raise FrozenError, "can't modify frozen MARCTable" if frozen?
+
         warn 'MARC record is not frozen' unless marc_record.frozen?
 
         add_data_fields(marc_record, marc_records.size)
@@ -63,24 +68,39 @@ module UCBLIT
       end
 
       def rows
-        # TODO: lazy etc.
-        (0...row_count).map { |row| Row.new(columns, row) }
+        each_row.to_a
+      end
+
+      # @yieldparam row [Row] each row
+      def each_row
+        return to_enum(:each_row) unless block_given?
+
+        (0...row_count).each { |row| yield Row.new(columns, row) }
+      end
+
+      def frozen?
+        [marc_records, column_groups_by_tag].all?(&:frozen?) &&
+          !@columns.nil? && @columns.frozen?
+      end
+
+      def freeze
+        [marc_records, column_groups_by_tag].each(&:freeze)
+        @columns ||= columns.freeze
+        self
       end
 
       private
 
-      def column_groups
-        all_tags.each_with_object([]) do |tag, groups|
-          groups.append(*column_groups_by_tag[tag])
-        end
-      end
-
-      def all_tags
-        column_groups_by_tag.keys.sort
-      end
-
       def column_groups_by_tag
         @column_groups_by_tag ||= {}
+      end
+
+      def all_column_groups
+        all_tags = column_groups_by_tag.keys.sort
+        all_tags.each_with_object([]) do |tag, groups|
+          tag_column_groups = column_groups_by_tag[tag]
+          groups.concat(tag_column_groups)
+        end
       end
 
       def add_data_fields(marc_record, row)

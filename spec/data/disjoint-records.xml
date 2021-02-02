@@ -148,8 +148,36 @@
       <subfield code="a">Multiple 970a in same field</subfield>
     </datafield>
     <datafield tag="970" ind1=" " ind2=" ">
-      <subfield code="a">8: first value for 970__a-1</subfield>
-      <subfield code="a">8: second value for 970__a-1</subfield>
+      <subfield code="a">9: first value for 970__a-1</subfield>
+      <subfield code="a">9: second value for 970__a-1</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 10</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">970s with different indicators</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="a">10: value for 970__a-1</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="a">10: value for 970__a-2</subfield>
+      <subfield code="c">10: value for 970__c-2</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="e">10: value for 970__e-3</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2="1">
+      <subfield code="a">10: value for 970_1a-5</subfield>
+    </datafield>
+    <datafield tag="970" ind1="1" ind2=" ">
+      <subfield code="a">10: value for 9701_a-6</subfield>
     </datafield>
     <datafield tag="980" ind1=" " ind2=" ">
       <subfield code="a">Test Collection 012621</subfield>

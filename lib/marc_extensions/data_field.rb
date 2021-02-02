@@ -16,6 +16,7 @@ module MARCExtensions
       [tag, indicator1, indicator2].each(&:freeze)
       subfields.each(&:freeze)
       subfields.freeze
+      self
     end
   end
 end

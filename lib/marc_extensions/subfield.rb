@@ -8,6 +8,7 @@ module MARCExtensions
 
     def freeze
       [code, value].each(&:freeze)
+      self
     end
   end
 end

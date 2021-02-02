@@ -22,7 +22,7 @@ module UCBLIT
         # TODO: support writing to IO or file
         CSV.generate do |csv|
           csv << table.headers
-          table.rows.each { |row| csv << row.values }
+          table.each_row { |row| csv << row.values }
         end
       end
     end

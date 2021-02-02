@@ -11,6 +11,7 @@ module UCBLIT
         end
 
         def header
+          # NOTE: that TIND "-#" suffixes must be unique by tag, not tag + ind1 + ind2
           @header ||= "#{column_group.prefix}#{subfield_code}-#{1 + column_group.index_in_tag}"
         end
 

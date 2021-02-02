@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ruby_version
 
   spec.add_dependency 'http', '~> 4.4'
+  spec.add_dependency 'ice_nine', '~> 0.11'
+  spec.add_dependency 'marc', '~> 1.0'
   spec.add_dependency 'rchardet', '~> 1.8'
   spec.add_dependency 'roo', '~> 2.8'
   spec.add_dependency 'roo-xls', '~> 1.2'
@@ -36,7 +38,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'listen', '>= 3.0.5', '< 3.2'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.9'
-  spec.add_development_dependency 'rubocop', '~> 0.91.0'
+  spec.add_development_dependency 'rubocop', '~> 1.9'
+  spec.add_development_dependency 'rubocop-rake', '~> 0.5'
+  spec.add_development_dependency 'rubocop-rspec', '~> 2.1'
   spec.add_development_dependency 'simplecov', '~> 0.16.1'
   spec.add_development_dependency 'simplecov-rcov', '~> 0.2'
   spec.add_development_dependency 'webmock', '~> 3.8'

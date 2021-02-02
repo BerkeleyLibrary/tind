@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+require 'csv'
+
 module UCBLIT
   module TIND
     describe MARCTable do
@@ -20,65 +22,6 @@ module UCBLIT
         end
       end
 
-      describe :values_for do
-        it 'returns the values for the specified row' do
-          record = records[0]
-          expected_values = record.data_fields.map(&:subfields).flatten.map(&:value)
-
-          table << record
-          values = table.values_for(0)
-          expect(values).to eq(expected_values)
-        end
-
-        it 'handles adding records with extra fields' do
-          records = %w[184453 184458].map { |n| MARC::XMLReader.read_frozen("spec/data/record-#{n}.xml").first }
-
-          records.each { |r| table << r }
-          vv_actual = (0..1).map { |row| table.values_for(row) }
-
-          vv_expected = records.map { |r| r.data_fields.map(&:subfields).flatten.map(&:value) }
-          vv_expected.each_with_index do |expected, index|
-            expect(vv_actual[index].compact).to eq(expected)
-          end
-
-          # 184458 has 260 & 269, 184453 doesn't
-          vv_184453 = vv_actual[0]
-          vv_184458 = vv_actual[1]
-          expect(vv_184453.size).to eq(vv_184458.size)
-          expect(vv_184453[3..4]).to contain_exactly(nil, nil)
-        end
-
-        it 'handles adding records with missing fields' do
-          records = %w[184458 184453].map { |n| MARC::XMLReader.read_frozen("spec/data/record-#{n}.xml").first }
-
-          records.each { |r| table << r }
-          vv_actual = (0..1).map { |row| table.values_for(row) }
-
-          vv_expected = records.map { |r| r.data_fields.map(&:subfields).flatten.map(&:value) }
-          vv_expected.each_with_index do |expected, index|
-            expect(vv_actual[index].compact).to eq(expected)
-          end
-
-          # 184458 has 260 & 269, 184453 doesn't
-          vv_184458 = vv_actual[0]
-          vv_184453 = vv_actual[1]
-          expect(vv_184453.size).to eq(vv_184458.size)
-          expect(vv_184453[3..4]).to contain_exactly(nil, nil)
-        end
-
-        it 'handles adding records with disjoint fields' do
-          records = MARC::XMLReader.read_frozen('spec/data/disjoint-records.xml').to_a
-          records.each { |r| table << r }
-          vv_actual = (0...records.size).map { |row| table.values_for(row) }
-
-          vv_expected = records.map { |r| r.data_fields.map(&:subfields).flatten.map(&:value) }
-          vv_expected.each_with_index do |expected, index|
-            expect(vv_actual[index]).not_to be_nil
-            expect(vv_actual[index].compact).to eq(expected)
-          end
-        end
-      end
-
       describe :headers do
         it 'aligns with the correct values' do
           records = MARC::XMLReader.read_frozen('spec/data/disjoint-records.xml').to_a
@@ -86,7 +29,7 @@ module UCBLIT
 
           headers = table.headers
           records.each_with_index do |record, row|
-            values = table.values_for(row)
+            values = table.rows[row].values
             expect(values).not_to be_nil, "No values found for row #{row}"
 
             # uncomment this to debug:
@@ -159,6 +102,14 @@ module UCBLIT
           expect { table.columns << Object.new }.to raise_error(FrozenError)
         end
 
+        it 'freezes the rows' do
+          records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
+          table = records.each_with_object(MARCTable.new) { |r, t| t << r }
+          table.freeze
+
+          expect { table.rows << Object.new }.to raise_error(FrozenError)
+        end
+
         it 'returns self' do
           records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
           table = records.each_with_object(MARCTable.new) { |r, t| t << r }
@@ -180,14 +131,106 @@ module UCBLIT
       end
 
       describe :rows do
-        let(:records) { MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a }
-        let(:table) { MARCTable.from_records(records) }
 
         it 'returns the rows' do
+          records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
+          table = MARCTable.from_records(records)
           rows = table.rows
           expect(rows.size).to eq(records.size)
           expect(rows.all? { |r| r.is_a?(MARCTable::Row) }).to eq(true)
         end
+
+        it 'is not cached when table is not frozen' do
+          records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
+          some_records = records[0...3]
+          table = MARCTable.from_records(some_records)
+          rows1 = table.rows
+          expect(rows1.size).to eq(some_records.size)
+          expect(rows1.all? { |r| r.is_a?(MARCTable::Row) }).to eq(true)
+
+          table << records.last
+          rows2 = table.rows
+          expect(rows2).not_to be(rows1)
+          expect(rows1.size).to eq(some_records.size) # just to be sure
+          expect(rows2.size).to eq(rows1.size + 1)
+        end
+
+        it 'is cached when table is frozen' do
+          records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
+          some_records = records[0...3]
+          table = MARCTable.from_records(some_records, freeze: true)
+          rows = table.rows
+          expect(rows.size).to eq(some_records.size)
+          expect(table.rows).to be(rows)
+        end
+
+        describe MARCTable::Row do
+          describe :values do
+
+            it 'returns the values for the specified row' do
+              records = MARC::XMLReader.read_frozen('spec/data/records-search.xml').to_a
+              table = MARCTable.from_records(records)
+
+              record = records[0]
+              expected_values = record.data_fields.map(&:subfields).flatten.map(&:value)
+
+              table << record
+              values = table.rows[0].values
+              expect(values).to eq(expected_values)
+            end
+
+            it 'handles adding records with extra fields' do
+              records = %w[184453 184458].map { |n| MARC::XMLReader.read_frozen("spec/data/record-#{n}.xml").first }
+              table = MARCTable.from_records(records, freeze: true)
+
+              vv_actual = (0..1).map { |row| table.rows[row].values }
+
+              vv_expected = records.map { |r| r.data_fields.map(&:subfields).flatten.map(&:value) }
+              vv_expected.each_with_index do |expected, index|
+                expect(vv_actual[index].compact).to eq(expected)
+              end
+
+              # 184458 has 260 & 269, 184453 doesn't
+              vv_184453 = vv_actual[0]
+              vv_184458 = vv_actual[1]
+              expect(vv_184453.size).to eq(vv_184458.size)
+              expect(vv_184453[3..4]).to contain_exactly(nil, nil)
+            end
+
+            it 'handles records with missing fields' do
+              records = %w[184458 184453].map { |n| MARC::XMLReader.read_frozen("spec/data/record-#{n}.xml").first }
+              table = MARCTable.from_records(records, freeze: true)
+
+              vv_actual = (0..1).map { |row| table.rows[row].values }
+
+              vv_expected = records.map { |r| r.data_fields.map(&:subfields).flatten.map(&:value) }
+              vv_expected.each_with_index do |expected, index|
+                expect(vv_actual[index].compact).to eq(expected)
+              end
+
+              # 184458 has 260 & 269, 184453 doesn't
+              vv_184458 = vv_actual[0]
+              vv_184453 = vv_actual[1]
+              expect(vv_184453.size).to eq(vv_184458.size)
+              expect(vv_184453[3..4]).to contain_exactly(nil, nil)
+            end
+
+            it 'handles records with disjoint fields' do
+              records = MARC::XMLReader.read_frozen('spec/data/disjoint-records.xml').to_a
+              table = MARCTable.from_records(records, freeze: true)
+
+              vv_actual = (0...records.size).map { |row| table.rows[row].values }
+
+              vv_expected = records.map { |r| r.data_fields.map(&:subfields).flatten.map(&:value) }
+              vv_expected.each_with_index do |expected, index|
+                expect(vv_actual[index]).not_to be_nil
+                expect(vv_actual[index].compact).to eq(expected)
+              end
+            end
+
+          end
+        end
+
       end
 
       describe :each_row do
@@ -207,6 +250,22 @@ module UCBLIT
           rows = enum.each_with_object([]) { |r, a| a << r }
           expect(rows.size).to eq(records.size)
           expect(rows.all? { |r| r.is_a?(MARCTable::Row) }).to eq(true)
+        end
+      end
+
+      describe :to_csv do
+        let(:records) { MARC::XMLReader.read_frozen('spec/data/records-search.xml') }
+        let(:table) { MARCTable.from_records(records, freeze: true) }
+
+        it 'outputs CSV' do
+          csv_str = table.to_csv
+          expect(csv_str).to be_a(String)
+
+          CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
+            expect(csv_row.headers).to eq(table.headers)
+            expect(csv_row.fields).to eq(table.rows[row].values)
+          end
+
         end
       end
     end

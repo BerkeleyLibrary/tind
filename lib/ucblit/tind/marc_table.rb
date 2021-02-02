@@ -11,6 +11,9 @@ module UCBLIT
     class MARCTable
       include UCBLIT::Util::Arrays
 
+      # ------------------------------------------------------------
+      # Factory method
+
       class << self
         def from_records(records, freeze: false)
           records.each_with_object(MARCTable.new) { |r, t| t << r }.tap do |table|
@@ -19,12 +22,8 @@ module UCBLIT
         end
       end
 
-      # The MARC records
-      #
-      # @return [Array<MARC::Record>] the records
-      def marc_records
-        @marc_records ||= []
-      end
+      # ------------------------------------------------------------
+      # Column accessors
 
       # The column headers
       #
@@ -37,9 +36,23 @@ module UCBLIT
       #
       # @return [Array<Column>] the columns.
       def columns
-        return @columns if @columns
+        # NOTE: this isn't ||= because we only cache on #freeze
+        @columns || all_column_groups.map(&:columns).flatten
+      end
 
-        all_column_groups.map(&:columns).flatten
+      # ------------------------------------------------------------
+      # Row / MARC::Record accessors
+
+      def rows
+        # NOTE: this isn't ||= because we only cache on #freeze
+        @rows || each_row.to_a
+      end
+
+      # @yieldparam row [Row] each row
+      def each_row
+        return to_enum(:each_row) unless block_given?
+
+        (0...row_count).each { |row| yield Row.new(columns, row) }
       end
 
       # The number of rows (records)
@@ -48,6 +61,16 @@ module UCBLIT
       def row_count
         marc_records.size
       end
+
+      # The MARC records
+      #
+      # @return [Array<MARC::Record>] the records
+      def marc_records
+        @marc_records ||= []
+      end
+
+      # ------------------------------------------------------------
+      # Modifiers
 
       # Adds the specified record
       #
@@ -63,31 +86,35 @@ module UCBLIT
         self
       end
 
-      def values_for(row)
-        columns.map { |c| c.value_at(row) }
-      end
-
-      def rows
-        each_row.to_a
-      end
-
-      # @yieldparam row [Row] each row
-      def each_row
-        return to_enum(:each_row) unless block_given?
-
-        (0...row_count).each { |row| yield Row.new(columns, row) }
-      end
+      # ------------------------------------------------------------
+      # Object overrides
 
       def frozen?
         [marc_records, column_groups_by_tag].all?(&:frozen?) &&
-          !@columns.nil? && @columns.frozen?
+          [@rows, @columns].all? { |d| !d.nil? && d.frozen? }
       end
 
       def freeze
         [marc_records, column_groups_by_tag].each(&:freeze)
         @columns ||= columns.freeze
+        @rows ||= rows.freeze
         self
       end
+
+      # ------------------------------------------------------------
+      # Misc. instance methods
+
+      def to_csv
+        # TODO: use roo instead of ::CSV
+        # TODO: support writing to IO or file
+        CSV.generate do |csv|
+          csv << headers
+          each_row { |row| csv << row.values }
+        end
+      end
+
+      # ------------------------------------------------------------
+      # Private methods
 
       private
 

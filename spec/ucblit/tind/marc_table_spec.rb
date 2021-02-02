@@ -90,9 +90,11 @@ module UCBLIT
             values = table.values_for(row)
             expect(values).not_to be_nil, "No values found for row #{row}"
 
-            puts "#{row}) #{record['245']['a']}: #{record['500']['a']}"
-            headers.each_with_index { |h, i| puts "\t#{h}\t#{values[i]}" }
-            puts "\n" if row + 1 < records.size
+            # uncomment this to debug:
+            # 
+            # puts "#{row}) #{record['245']['a']}: #{record['500']['a']}"
+            # headers.each_with_index { |h, i| puts "\t#{h}\t#{values[i]}" }
+            # puts "\n" if row + 1 < records.size
 
             aggregate_failures 'headers' do
 

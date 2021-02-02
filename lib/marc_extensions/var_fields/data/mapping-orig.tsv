@@ -1,0 +1,265 @@
+Field	Retain?	Incoming Subfields	TIND Subfields	Label	MARC Definition	Instructions	Comments / Details
+• All TIND fields should have both indicators set to blank, except where specially noted in column 1. • Incoming subfields (column 3) do not indicate a specific order. Subfields should be processed in the order in which they appear in the MARC record. • TIND subfields (column 4) do indicate an order. Add or combine subfields using this order 							
+LDR BibLvl	move data, drop	byte 07			Bibliographic level	Move to 903__b	
+LDR format	move data, drop	byte 06			Type of record	Translate to 336__a. Use mapping on 2nd tab of MARC Fields for TIND 20190208	
+001	move data, drop				OCLC Number	Delete 001 but put OCLC number into 901__o	See instructions for 901
+003	drop				Control Number Identifier		
+005	drop				Date and Time of Latest Transaction		
+006	drop				Additional Material Characteristics		
+007	drop				Physical Description Fixed Field		
+008 date1, date2	move data, drop	bytes 07-10, 11-14			Fixed Fields	Delete 008 but preserve dates in 269__a,b if no more specific dates are available. Use only 4-digit years - drop other date formats, e.g., 19uu, etc.	Specific dates are the dates of an issue of a periodical, date of a specific photo, etc. The more specific date should be used in 260/269. Use dates from 008 as a date of "last resort". 269 is highly desirable but not required when date is unknown
+008 lang	move data, drop	bytes 35-37			Language code	Move to 041__a unless 041 already present	
+009	drop				Local Field		
+010	drop				Library of Congress Control Number		
+013	drop				Patent Control Information		
+015	drop				National Bibliography Number		
+016	drop				National Bibliographic Agency Control Number		
+017	drop				Copyright or Legal Deposit Number		
+018	drop				Copyright Article-Fee Code		
+020	drop				International Standard Book Number		
+022	drop				International Standard Serial Number		
+02470	drop		 		Obsolete. Do not use	Call numbers and identifiers now go in 02480_a	
+02480	drop		a		Local Identifier/Call number		
+025	drop				Overseas Acquisition Number		
+026	drop				Fingerprint Identifier		
+027	drop				Standard Technical Report Number		
+028	drop				Publisher or Distributor Number		
+030	drop				CODEN Designation		
+031	drop				Musical Incipits Information		
+032	drop				Postal Registration Number		
+033	drop				Date/Time and Place of an Event		
+034	drop				Coded Cartographic Mathematical Data		
+035	drop				System Control Number		
+036	drop				Original Study Number for Computer Data Files		
+037	drop				Source of Acquisition		
+038	drop				Record Content Licensor		
+040	drop				Cataloging Source		
+041__a	retain	a	a		Language Code		
+042	drop				Authentication Code		
+043	drop				Geographic Area Code		
+044	drop				Country of Publishing/Producing Entity Code		
+045	drop				Time Period of Content		
+046	drop				Special Coded Dates		
+047	drop				Form of Musical Composition Code		
+048	drop				Number of Musical Instruments or Voices Codes		
+050	drop				Library of Congress Call Number		
+051	drop				Library of Congress Copy, Issue, Offprint Statement		
+052	drop				Geographic Classification		
+055	drop				Classification Numbers Assigned in Canada		
+060	drop				National Library of Medicine Call Number		
+061	drop				National Library of Medicine Copy Statement		
+066	drop				Character Sets Present		
+070	drop				National Agricultural Library Call Number		
+071	drop				National Agricultural Library Copy Statement		
+072	drop				Subject Category Code		
+074	drop				GPO Item Number		
+080	drop				Universal Decimal Classification Number		
+082	drop				Dewey Decimal Classification Number		
+083	drop				Additional Dewey Decimal Classification Number		
+084	drop				Other Classification Number		
+085	drop				Synthesized Classification Number Components		
+086	drop				Government Document Classification Number		
+088	drop				Report Number		
+090	drop				Local call number		
+100	move data, drop	6, a, b, c, d, e, q			Personal Name	Move data to 7001_ See instructions for 7001	
+110	move data, drop	6, a, b, c, d, e			Corporate Name	Move data to 7102_ See instructions for 7102_	Note: $b is often repeated
+111	move data, drop	6, a, c, d, e, f, n, p, t			Meeting Name	Move data to 711__ See instructions for 711__	
+130	drop				Uniform Title		This field is not useful for TIND
+210	drop				Abbreviated Title		
+220	drop				Key Title		
+240	drop				Uniform title		
+242	move data, drop	6, a, b, p, n	 		Translation of Title by Cataloging Agency	Move data to 246__	
+230	drop				Collective Uniform Title		
+245__	retain	6, a, b, f, p, n, k	6, a, b, p		Title	Combine$n and $p into a single $p (part/vol/issue, etc). Append $f and $k to $b if it exists, else create a new $b and put it there. Keep 6 as is. 	Use $p for vol/date/part, etc. designations, e.g., specific volumes, issue dates, etc.
+245__c	move data (see note)		b		Interviewer/Interviewee	Append $c to end of $b or add to new $b	FOR ORAL HISTORIES ONLY
+246__	retain	6, a, b, p, n	6, a		Varying Form of Title	Combine all subfields into $a	
+247	drop				Former Title		
+250__	retain	a	a		Edition Statement		
+254	drop				Musical Presentation Statement		
+255__	retain	a, b, c	a, b, c		Cartographic Mathematical Data		
+256	drop				Computer File Characteristics		
+257	drop				Country of Producing Entity		
+258	drop				Philatelic Issue Data		
+260__	retain	6, a, b, c	6, a, b, c		Publication, Distribution, Etc	Delete all square brackets. Delete :;, when occuring at the end of a subfield	
+263	drop				Projected Publication Date		
+264	move data, drop	6, a, b, c			Publication, Distribution, Etc.	Move data to 260__ 6, a, b, and c unless 260 already present	When 260 and 264 are present, use 260, drop 264. When mulitple 264s are present, use the first one and drop the rest. 
+269__	drop		a, b		TIND internal normalized date	E.g., 2019-06-13, or 2019-06 (month) or just 2019 if that's all you know is the year	When possible use the most specific date as possible when readily available. A year can be used from the Date 008 fixed field, or 260/264 $c or other source of information such as a landing page or information in the title. Use your judgement about when these specific dates are worth the effort, e.g., long newspaper or journal runs are most useful when users can sort down to the day level. 
+270	drop				Address		
+300__	retain	3, a, b, c	a, b, c		Physical Description	Delete all square brackets. Delete :;, when occuring at the end of a subfield. Capitalize first letter of $3 if necessary and insert at the beginning of $a	
+307	drop				Hours, etc.		
+310	drop				Current Publication Frequency		
+321	drop				Former Publication Frequency		
+336	drop				Content Type		
+336__a	drop				V2F_PUB_TYPE	Assign type of digital resource (Image, Video, etc.) from controlled list	
+337	drop				Media Type		
+338	drop				Carrier Type		
+340	drop				Physical Medium		
+341	drop				Accessibility Content		
+342	drop				Geospatial Reference Data		
+342_0c	drop				Sheet Name	Record here Sheet Name only for map collections	
+342_0d	drop				Sheet Number	Record here Sheet Number only for map collections	
+343	drop				Planar Coordinate Data		
+344	drop				Sound Characteristics		
+345	drop				Projection Characteristics of Moving Image		
+346	drop				Video Characteristics		
+347	drop				Digital File Characteristics		
+348	drop				Format of Notated Music		
+351	move data, drop	a, b			Organization and Arrangement	Combine $a and $b and move data to 505__a	
+352	drop				Digital Graphic Representation		
+355	drop				Security Classification Control		
+357	drop				Originator Dissemination Control		
+362	drop				Dates of Publication and/or Sequential Designation		
+363	drop				Normalized Date and Sequential Designation		
+365	drop				Trade Price		
+366	drop				Trade Availability Information		
+370	drop				Associated Place		
+377	drop				Associated Language		
+380	drop				Form of Work		
+381	drop				Other Distinguishing Characteristics of Work		
+382	drop				Medium of Performance		
+383	drop				Numeric Designation of Musical Work		
+384	drop				Key		
+385	drop				Audience Characteristics		
+386	drop				Creator/Contributor Characteristics		
+388	drop				Time Period of Creation		
+490__	retain	a, v	a		Series Statement	Combine into $a	
+500__	retain	a	a, 3		General Note	Append $3 when more information about the type of note is desired	For note fields coming in from METS, assign to $3 the value of the @type attribute when the field maps to 500.
+501	drop				With Note		
+502__	retain	a, b, c, d, g, o	a		Dissertation Note	Combine into single $a	
+504	drop				Bibliography, etc. Note		
+505__	retain	a, g, r, t	a		Formatted Contents Note	Combine into single $a	
+506	move data, drop	a			Restrictions on Access Note	Move data to 542__f	
+507	move data, drop	a	a		Scale Note for Graphic Material	Move data to 255__a unless 255__a already present. 	
+508	drop				Creation/Production Credits Note		
+510	drop				Citation/References Note		
+511	drop				Participant or Performer Note		
+513	drop				Type of Report and Period Covered Note		
+514	drop				Data Quality Note		
+515	drop				Numbering Peculiarities Note		
+516	drop				Type of Computer File or Data Note		
+518	drop				Date/Time and Place of an Event Note		
+520__	retain	a	a		Summary, etc.		
+521	drop				Target Audience Note		
+522__	retain	a	a		Geographic Coverage Note		
+524__	retain	a	a		Preferred Citation		
+525	drop				Supplement Note		
+526	drop				Study Program Information Note		
+530	drop				Additional Physical Form available Note		
+532	drop				Accessibility Note		
+533	drop				Reproduction Note		
+534	drop				Original Version Note		
+535	drop				Location of Originals/Duplicates Note		
+536__	retain	a	a		Funding Information Note		note (@type="funding")
+538	drop				System Details Note		
+540__	retain	a, b	a		Terms Governing Use and Reproduction Note		Permission to publish/print etc.
+541__	retain	c, a, d	a		Immediate Source of Acquisition Note		
+542__	retain	f	f		Restrictions		Copyright statements
+544	drop				Location of Other Archival Materials Note		
+545__	retain	a	a		Biographical or Historical Data		
+546__	retain	a	a		Language Note		
+547	drop				Former Title Complexity Note		
+550	drop				Issuing Body Note		
+552	drop				Entity and Attribute Information Note		
+555	drop				Cumulative Index/Finding Aids Note		
+556	drop				Information About Documentation Note		
+561	drop				Ownership and Custodial History		
+562	drop				Copy and Version Identification Note		
+563	drop				Binding Information		
+565	drop				Case File Characteristics Note		
+567	drop				Methodology Note		
+580	drop				Linking Entry Complexity Note		
+581	drop				Publications About Described Materials Note		
+583	drop				Action Note		
+584	drop				Accumulation and Frequency of Use Note		
+585	drop				Exhibitions Note		
+586	drop				Awards Note		
+588	drop				Source of Description, Etc. Note		
+590	drop				Local Note		
+600__	retain	a, b, c, d, f, j, k, l, m, n, o, p, q, r, s, t, v, x, y, z	a		Subject Personal Name	Combine subfields into $a. Supply ISBD punctuation	Replace $x, $y, $z, $v with " -- ". Replace all other subfields with a space
+610__	retain	a, b, c, d, f, j, k, l, m, n, o, p, q, r, s, t, v, x, y, z	a		Subject Corporate Name	Combine subfields into $a. Supply ISBD punctuation	Replace $x, $y, $z, $v with " -- ". Replace all other subfields with a space
+611__	retain	a, b, c, d, f, j, k, l, m, n, o, p, q, r, s, t, v, x, y, z	a		Subject Meeting Name	Combine subfields into $a. Supply ISBD punctuation	Replace $x, $y, $z, $v with " -- ". Replace all other subfields with a space
+630__	retain	a, b, c, d, f, j, k, l, m, n, o, p, q, r, s, t, v, x, y, z	a		Subject Uniform Title	Combine subfields into $a. Supply ISBD punctuation	Replace $x, $y, $z, $v with " -- ". Replace all other subfields with a space
+647	drop				Subject Named Event		
+648	drop				Subject Chronological Term		
+650__	retain	a, b, c, v, x, y, z	a		Subject Topical Term	Combine subfields into $a. Supply ISBD punctuation	Replace $x, $y, $z, $v with " -- ". Replace all other subfields with a space
+651__	retain	a, v, x, y, z	a		Subject Geographic Name	Combine subfields into $a. Supply ISBD punctuation	Replace $x, $y, $z, $v with " -- ". Replace all other subfields with a space
+653	drop				Index Term - Uncontrolled		
+654	drop				Faceted Topical Terms		
+655__	retain	a, v, x, y, z, 2	a, 2		Genre/Form	Combine subfields a,v,x,y,z into $a. Supply ISBD punctuation	Replace $x, $y, $z, $v with " -- ". 
+656	drop				Occupation		
+657	drop				Function		
+658	drop				Curriculum Objective		
+662	drop				Hierarchical Place Name		
+69X	drop				Local Subject Access Fields		
+7001_	retain	6, a, b, c, d, e, q	6, a, e		Personal Name	Combine subfields a, b, c, d into $a. Retain subfield e in $e	
+7102_	retain	6, a, b, e	6, a, e		Corporate Name	Combine subfields a, b into $a. Retain subfield e in $e	Note: $b is often repeated
+711__	retain	6, a, c, d, e, f, n, p, t	6, a, e		Meeting Name	Combine subfields into $a.	
+720	move data, drop	a, e			Added Entry-Uncontrolled Name	Move data to 7001_	
+730	drop				Uniform Title		
+740	drop				Added Entry–Uncontrolled Related/Analytical Title		
+747	drop				Named Event		
+748	drop				Chronological Term		
+750	drop				Topical Term		
+751	drop				Geographic Name		
+752	move data, drop	a, b, c, d, f, g			Hierarchical Place Name	Move data to 651__a	Replace subfields with " -- "
+753	drop				System Details Access to Computer Files		
+754	drop				Taxonomic Identification		
+755	drop				Genre/Form Term		
+758	drop				Resource Identifier		
+760	drop				Main Series Entry (OCLC)		
+762	drop				Medium of Performance Term		
+765	drop				Original Language Entry		
+767	drop				Translation Entry		
+770	drop				Supplement/Special Issue Entry		
+772	drop				Supplement Parent Entry		
+773__	retain	t, j, k, o	t, j, k, o		Host Item Entry		
+774	drop				Constituent Unit Entry		
+775	drop				Other Edition Entry		
+776	drop				Additional Physical Form		
+777	drop				Issued With Entry		
+778	drop				Other Edition Entry		
+780	drop				Preceding Entry		
+781	drop				Subdivision Linking Entry - Geographic Subdivision		
+782	drop				Subdivision Linking Entry - Chronological Subdivision		
+785	drop				Subdivision Linking Entry - Form Subdivision		
+786	drop				Subdivision Linking Entry - Data Source Entry		
+787	drop				Subdivision Linking Entry - Other Relationship Entry		
+788	drop				Subdivision Linking Entry - Complex Linking Entry Data		
+799	drop				Local "hook" for batch loads 		
+800	drop				Series APersonal Name		
+810	drop				Series Corporate Name		
+811	drop				Series Meeting Name		
+830	drop				Series Added Entry		
+851	drop				Physical Location		This is now added from column in spreadsheet
+852__	drop				Location /Archive/Repository		This is now added from column in spreadsheet
+856	drop				Electronic Location and Access	Use for our own web links	
+880__$6245	retain and copy	6, a, b, p, n	6, a, b, p		Non-Roman Scripts	Process/combine subfields like for 245. Then copy to 912 without $6	Native treatment of 880 coming in a future enhancement. Retain for that update but for now copy to 912
+880__$6260	retain and copy	6, a, b, c	6, a, b, c		Non-Roman Scripts	Process/combine subfields like for 260. Then copy to 913 without $6	
+880__$6100	retain and change $6 value						Change $6 value from "100-1" to "700-1";  Make sure indicator to be [1,""]; Make sure subfields are in the original order:  $6,$a,$d
+883	drop				Machine-generated Metadata Provenance		
+884	drop				Description Conversion Information		
+885	drop				Matching Information		
+907	move data, drop	a			Millennium Record Number	Trim to b + 8 digits. Move to 901 $m and use in link to catalog record 856	Delete initial period and final check-digit, e.g.,  .b10280302x -> b10280302
+9XX	drop				Drop all other 9XX fields		
+							
+							
+ Local TIND 9XX Fields to ADD 							
+Reminder: Fields 901, 902, 903 are not repeatable. All applicable subfields should be written to a single field. E.g., $a, $f, $g, $m, $o all go in the same 901 field.							
+901__a					Ark identifier for METS file	Required when applicable	901 is internal field used for IDENTIFIERS
+901__f					Ark identifier for finding aid	Optional	
+901__g					PJID:DBID from GenDB	Required when applicable	
+901__m					Millennium record number	Optional	
+901__o					OCLC Number	Optional	Strip off initial letters, e.g., ocm, ocn, etc. and all initial zeroes. e.g., ocm00080599 -> 80599
+902__d					Date of batch file creation	Required	902 is internal field use for RECORD CREATION DETAILS. It's good policy to fill in the optional fields too
+902__f					METS filename or other file used as source of data	Required when applicable for METS filenames	
+902__n					Batch uploader's initials	Required	
+902__p					Description of the process and programs used	Optional	
+903__b					Bibliographic level		903 is used for various BIBLIOGRAPHIC CODES from the MARC record
+950__a					Local/Administrative Notes	Use for local notes. Optionally $3 for note type	950 is repeatable and can be used for internal administrative notes. Especially useful for pulling together records of administrative interest. Example: $aMissing Cal Heritage Images
+982__a					Short collection name	Displays in facet. REQUIRED	Every batchload must have 982 $a and $b. Use only from master spreadsheet of collection names
+982__b					Long collection name	Displays in record. REQUIRED	
+982__p					Project Name	May display in record -- NOT REQUIRED	
+991					Restricted	Create restricted collection 991__a and create roles that can access each. When setting an existing collection to dark, add it to this collection by updating the record 991 field. When two collections are associated with a record, the most restrictive policy applies	Examples: 991__a = "Restricted2Bancroft" 991__a = "Restricted2EAL" 991__a = "Restricted2Admin" Example restricted record: https://digicoll.lib.berkeley.edu/record/55168
+852__c					Library Location	REQUIRED	Use 852 -- Repository column from spreadsheet
+998					AV streaming		
+02480					Local Identifier/Call number		

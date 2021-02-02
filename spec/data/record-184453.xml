@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">184453</controlfield>
+    <controlfield tag="005">20201106140340.0</controlfield>
+    <datafield tag="024" ind1="8" ind2="0">
+      <subfield code="a">212.5</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">ethnodocs_cubanc_57_1_00234402</subfield>
+    </datafield>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Informant: Susie Shepard on myths</subfield>
+    </datafield>
+
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">91 pp.</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">Text</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Filename: cubanc212_5.pdf</subfield>
+    </datafield>
+    <datafield tag="540" ind1=" " ind2=" ">
+      <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+    </datafield>
+    <datafield tag="852" ind1=" " ind2=" ">
+      <subfield code="c">The Bancroft Library</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2=" ">
+      <subfield code="9">1cb4bf99-541b-43fc-b64f-946b14b00652</subfield>
+      <subfield code="s">17411899</subfield>
+      <subfield code="u">http://digicoll.lib.berkeley.edu/record/184453/files/cubanc144_1_7.pdf</subfield>
+    </datafield>
+    <datafield tag="901" ind1=" " ind2=" ">
+      <subfield code="a">ark:/28722/h29k45v9x</subfield>
+      <subfield code="g">57:1</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="n">DZ</subfield>
+      <subfield code="d">2020-11-05 16:26:17</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="f">cubanc_57_1_00234402.xml</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">EthnoDocs: Ethno Docs</subfield>
+    </datafield>
+    <datafield tag="982" ind1=" " ind2=" ">
+      <subfield code="a">Ethnological Documents</subfield>
+      <subfield code="b">Ethnological Documents of the Department and Museum of Anthropology, University of California, Berkeley, 1875-1958</subfield>
+    </datafield>
+    <datafield tag="991" ind1=" " ind2=" ">
+      <subfield code="a">Restricted2Bancroft</subfield>
+    </datafield>
+  </record>
+</collection>

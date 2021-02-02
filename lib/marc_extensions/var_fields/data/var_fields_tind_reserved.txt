@@ -1,0 +1,32 @@
+# Adapted from https://docs.tind.io/article/vwihxqwp67-marc-fields-used-by-tind
+# Retrieved 2021-01-15
+
+# Note: this only includes fields relevant to our TIND/DA implementation.
+
+035 - EXTERNAL IDENTIFIER (NR)
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $a - External identifier (NR)
+
+# TODO: is (R) correct here?
+980 - COLLECTION QUERY TAG (R)
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $a - Collection identifier
+
+991 - RESTRICTION STATUS (NR)
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $a - Restriction tag

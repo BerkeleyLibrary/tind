@@ -1,0 +1,78 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">187888</controlfield>
+    <controlfield tag="005">20201109133856.0</controlfield>
+    <datafield tag="024" ind1="8" ind2="0">
+      <subfield code="a">BANC FILM 2216: 82.3</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">ethnodocs_cubanc_57_1_00188380</subfield>
+    </datafield>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Notes on Cupeño grammar, II (198 pp.). &lt;ref actuate="onrequest" show="replace" target="fnote120">[Note 120]&lt;/ref></subfield>
+    </datafield>
+
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">Text</subfield>
+    </datafield>
+    <datafield tag="505" ind1=" " ind2=" ">
+      <subfield code="a">PDF 1: Grammar notes</subfield>
+    </datafield>
+    <datafield tag="505" ind1=" " ind2=" ">
+      <subfield code="a">PDF 1: Filename: cubanc82_3_1.pdf</subfield>
+    </datafield>
+    <datafield tag="505" ind1=" " ind2=" ">
+      <subfield code="a">PDF 1: BANC FILM 2216: 82.3.1</subfield>
+    </datafield>
+    <datafield tag="505" ind1=" " ind2=" ">
+      <subfield code="a">PDF 2: Grammar notes</subfield>
+    </datafield>
+    <datafield tag="505" ind1=" " ind2=" ">
+      <subfield code="a">PDF 2: Filename: cubanc82_3_2.pdf</subfield>
+    </datafield>
+    <datafield tag="505" ind1=" " ind2=" ">
+      <subfield code="a">PDF 2: BANC FILM 2216: 82.3.2</subfield>
+    </datafield>
+    <datafield tag="540" ind1=" " ind2=" ">
+      <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+    </datafield>
+    <datafield tag="852" ind1=" " ind2=" ">
+      <subfield code="c">The Bancroft Library</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2=" ">
+      <subfield code="y">PDF 1: Grammar notes</subfield>
+      <subfield code="9">4a939fe2-2665-4c67-832b-b0e5267db449</subfield>
+      <subfield code="s">46606766</subfield>
+      <subfield code="u">http://digicoll.lib.berkeley.edu/record/187888/files/cubanc82_3_1.pdf</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2=" ">
+      <subfield code="y">PDF 2: Grammar notes</subfield>
+      <subfield code="9">0aacdd29-b467-4c5c-93ab-415069f431c0</subfield>
+      <subfield code="s">56588923</subfield>
+      <subfield code="u">http://digicoll.lib.berkeley.edu/record/187888/files/cubanc82_3_2.pdf</subfield>
+    </datafield>
+    <datafield tag="901" ind1=" " ind2=" ">
+      <subfield code="a">ark:/28722/bk00153517n</subfield>
+      <subfield code="g">57:1</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="n">DZ</subfield>
+      <subfield code="d">2020-11-09 13:28:11</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="f">cubanc_57_1_00188380.xml</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">EthnoDocs: Ethno Docs</subfield>
+    </datafield>
+    <datafield tag="982" ind1=" " ind2=" ">
+      <subfield code="a">Ethnological Documents</subfield>
+      <subfield code="b">Ethnological Documents of the Department and Museum of Anthropology, University of California, Berkeley, 1875-1958</subfield>
+    </datafield>
+    <datafield tag="991" ind1=" " ind2=" ">
+      <subfield code="a">Restricted2Bancroft</subfield>
+    </datafield>
+  </record>
+</collection>

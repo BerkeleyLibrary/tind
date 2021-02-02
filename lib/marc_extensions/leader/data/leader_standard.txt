@@ -1,0 +1,87 @@
+# MARC 21 Format for Bibliographic Data Field List
+# Adapted from https://www.loc.gov/marc/bibliographic/ecbdlist.html
+# Retrieved 2021-01-13
+
+--Leader and Directory--
+  LEADER
+     Character Positions
+     00-04 - Logical record length
+     05 - Record status
+         a - Increase in encoding level
+         c - Corrected or revised
+         d - Deleted
+         n - New
+         p - Increase in encoding level from prepublication
+     06 - Type of record
+         a - Language material
+         b - Archival and manuscripts control [OBSOLETE]
+         c - Notated music
+         d - Manuscript notated music
+         e - Cartographic material
+         f - Manuscript cartographic material
+         g - Projected medium
+         h - Microform publications [OBSOLETE]
+         i - Nonmusical sound recording
+         j - Musical sound recording
+         k - Two-dimensional nonprojectable graphic
+         m - Computer file
+         n - Special instructional material [OBSOLETE]
+         o - Kit
+         p - Mixed material
+         r - Three-dimensional artifact or naturally occurring object
+         t - Manuscript language material
+     07 - Bibliographic level
+         a - Monographic component part
+         b - Serial component part
+         c - Collection
+         d - Subunit
+         i - Integrating resource
+         m - Monograph/item
+         s - Serial
+     08 - Type of control
+         # - No specific type
+         a - Archival
+     09 - Character coding scheme
+         # - MARC-8
+         a - UCS/Unicode
+     10 - Indicator count
+     11 - Subfield code count
+     12-16 - Base address of data
+     17 - Encoding level
+         # - Full level
+         1 - Full level, material not examined
+         2 - Less-than-full level, material not examined
+         3 - Abbreviated level
+         4 - Core level
+         5 - Partial (preliminary) level
+         7 - Minimal level
+         8 - Prepublication level
+         u - Unknown
+         z - Not applicable
+     18 - Descriptive cataloging form
+         # - Non-ISBD
+         a - AACR 2
+         c - ISBD punctuation omitted
+         i - ISBD punctuation included
+         n - Non-ISBD punctuation omitted
+         p - Partial ISBD (BK) [OBSOLETE]
+         r - Provisional (VM MP MU) [OBSOLETE]
+         u - Unknown
+     19 - Multipart resource record level
+         # - Not specified or not applicable
+         a - Set
+         b - Part with independent title
+         c - Part with dependent title
+     20-23 - Entry map
+     20 - Length of the length-of-field portion
+     21 - Length of the starting-character-position portion
+     22 - Length of the implementation-defined portion
+     23 - Undefined Entry map character position
+
+   DIRECTORY
+   Character Positions
+      00-02 - Tag
+      03-06 - Field length
+      07-11 - Starting character position
+
+

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<collection>
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 1</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">No 970a</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="b">1: value for 970__b-1</subfield>
+      <subfield code="c">1: value for 970__c-1</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="b">1: value for 970__b-2</subfield>
+      <subfield code="c">1: value for 970__c-2</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 2</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">No 970b</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="a">2: value for 970__a-1</subfield>
+      <subfield code="c">2: value for 970__c-1</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="a">2: value for 970__a-2</subfield>
+      <subfield code="c">2: value for 970__c-2</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 3</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Alternating 970a/b</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="a">3: value for 970__a-1</subfield>
+      <subfield code="c">3: value for 970__c-1</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="b">3: value for 970__b-2</subfield>
+      <subfield code="c">3: value for 970__c-2</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 4</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">No first 970</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="a">4: value for 970__a-2</subfield>
+      <subfield code="b">4: value for 970__b-2</subfield>
+      <subfield code="c">4: value for 970__c-2</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 5</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">No second 970</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="a">5: value for 970__a-1</subfield>
+      <subfield code="b">5: value for 970__b-1</subfield>
+      <subfield code="c">5: value for 970__c-1</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 6</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">First 970 in wrong column</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="a">6: value for 970__a-1</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 7</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Only third 970</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="d">7: value for 970__d-3</subfield>
+      <subfield code="e">7: value for 970__e-3</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 8</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Only fourth 970</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="f">8: value for 970__f-4</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+  <record>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Record 9</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Multiple 970a in same field</subfield>
+    </datafield>
+    <datafield tag="970" ind1=" " ind2=" ">
+      <subfield code="a">8: first value for 970__a-1</subfield>
+      <subfield code="a">8: second value for 970__a-1</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Test Collection 012621</subfield>
+    </datafield>
+  </record>
+
+</collection>

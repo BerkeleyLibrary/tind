@@ -1,0 +1,104 @@
+# Adapted from https://docs.google.com/spreadsheets/d/1QbIxsJGosgzKYBXhDhJJlTZtvCRjz75TRecn1cbDhm8/edit
+# Retrieved 2021-01-15
+# TODO: check Google Sheets automatically for updates
+
+852 - LOCATION (R)
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $c - Location/Archive/Repository
+
+901 - IDENTIFIERS [INTERNAL] (NR) [REQUIRED WHEN APPLICABLE]
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $a - Ark identifier for METS file [REQUIRED WHEN APPLICABLE]
+      $f - Ark identifier for finding aid
+      $g - PJID:DBID from GenDB [REQUIRED WHEN APPLICABLE]
+      $m - Millennium record number
+      $o - OCLC Number
+
+902 - RECORD CREATION DETAILS [INTERNAL] (NR) [REQUIRED]
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $d - Date of batch file creation [REQUIRED]
+      $f - METS filename or other file used as source of data [REQUIRED WHEN APPLICABLE]
+      $n - Batch uploader's initials [REQUIRED]
+      $p - Description of the process and programs used
+
+903 - BIBLIOGRAPHIC CODES FROM MARC RECORD (NR)
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $b - Bibliographic codes
+
+950 - Local/Administrative Notes (R)
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $a - Notes
+      $3 - Note type
+
+982 - COLLECTION / PROJECT NAME (R) [REQUIRED]
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $a - Short collection name (displays in facet) [REQUIRED]
+      $b - Long collection name (displays in record) [REQUIRED]
+      $p - Project Name
+
+991 - RESTRICTION STATUS (NR)
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $a - Restricted collection identifier
+
+998	- AV TRACK INFO (R)
+   Indicators
+      First - Undefined
+         # - Undefined
+      Second - Undefined
+         # - Undefined
+   Subfield Codes
+      $a - Duration (hh:mm:ss)
+      $t - Title
+      $g - Relative path [REQUIRED]
+
+# Note: 856 is not documented in the spreadsheet, but inferred from use
+
+856 - ELECTRONIC LOCATION AND ACCESS (R)
+   Indicators
+      First - Access method
+         4 - HTTP
+      Second - Relationship
+         # - Content file
+         1 - Library catalog record
+         2 - Related resource
+   Subfield Codes
+      $s - File size (NR)
+      $u - Uniform Resource Identifier (NR) [REQUIRED]
+      $y - Link text (NR)
+      $z - Comment (NR)
+      $9 - Checksum (NR)

@@ -1,6 +1,6 @@
 module UCBLIT
   module TIND
-    class MARCTable
+    module Export
       class Row
 
         attr_reader :columns

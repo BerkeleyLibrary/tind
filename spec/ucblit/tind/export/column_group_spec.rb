@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module UCBLIT
   module TIND
-    class MARCTable
+    module Export
       describe ColumnGroup do
         describe :new do
           it 'rejects invalid indicators' do

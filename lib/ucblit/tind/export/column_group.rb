@@ -1,9 +1,9 @@
-require 'ucblit/tind/marc_table/column'
+require 'ucblit/tind/export/column'
 require 'ucblit/util/arrays'
 
 module UCBLIT
   module TIND
-    class MARCTable
+    module Export
 
       # A group of columns representing the subfields of a particular
       # data field.

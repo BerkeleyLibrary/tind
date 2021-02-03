@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 require 'csv'
+require 'stringio'
 
 module UCBLIT
   module TIND
@@ -265,7 +266,28 @@ module UCBLIT
             expect(csv_row.headers).to eq(table.headers)
             expect(csv_row.fields).to eq(table.rows[row].values)
           end
+        end
 
+        it 'accepts an IO object' do
+          csv_str = StringIO.new.tap { |out| table.to_csv(out) }.string
+
+          CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
+            expect(csv_row.headers).to eq(table.headers)
+            expect(csv_row.fields).to eq(table.rows[row].values)
+          end
+        end
+
+        it 'accepts a filename' do
+          Dir.mktmpdir(File.basename(__FILE__, '.rb')) do |dir|
+            out_path = File.join(dir, 'out.csv')
+            table.to_csv(out_path)
+            csv_str = File.read(out_path)
+
+            CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
+              expect(csv_row.headers).to eq(table.headers)
+              expect(csv_row.fields).to eq(table.rows[row].values)
+            end
+          end
         end
       end
     end

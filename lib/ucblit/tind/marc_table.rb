@@ -6,6 +6,8 @@ require 'ucblit/tind/marc_table/column_group'
 require 'ucblit/tind/marc_table/column'
 require 'ucblit/tind/marc_table/row'
 
+require 'stringio'
+
 module UCBLIT
   module TIND
     class MARCTable
@@ -104,13 +106,10 @@ module UCBLIT
       # ------------------------------------------------------------
       # Misc. instance methods
 
-      def to_csv
-        # TODO: use roo instead of ::CSV
-        # TODO: support writing to IO or file
-        CSV.generate do |csv|
-          csv << headers
-          each_row { |row| csv << row.values }
-        end
+      def to_csv(out = nil)
+        return write_csv(out) if out
+
+        StringIO.new.tap { |io| write_csv(io) }.string
       end
 
       # ------------------------------------------------------------
@@ -149,6 +148,12 @@ module UCBLIT
         end
         tag_column_groups << new_group
         tag_column_groups.size - 1
+      end
+
+      def write_csv(out)
+        csv = out.respond_to?(:write) ? CSV.new(out) : CSV.open(out, 'wb')
+        csv << headers
+        each_row { |row| csv << row.values }
       end
     end
   end

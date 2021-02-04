@@ -18,9 +18,7 @@ module UCBLIT
           @api_key ||= ENV[ENV_TIND_API_KEY]
         end
 
-        def api_key=(value)
-          @api_key = value
-        end
+        attr_writer :api_key
 
         def api_base_uri
           return unless base_uri
@@ -41,8 +39,8 @@ module UCBLIT
           raise ArgumentError, "No endpoint URL found for #{endpoint.inspect}" if endpoint_url.empty?
 
           resp = HTTP.follow
-                     .headers(Authorization: "Token #{api_key}")
-                     .get(endpoint_url, params: params)
+            .headers(Authorization: "Token #{api_key}")
+            .get(endpoint_url, params: params)
 
           resp.status.tap do |status|
             next if status.success?

@@ -5,7 +5,7 @@ module UCBLIT
     module Config
 
       def base_uri
-        Config::base_uri
+        Config.base_uri
       end
 
       class << self

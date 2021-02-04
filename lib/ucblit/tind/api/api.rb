@@ -1,5 +1,6 @@
-require 'ucblit/tind/config'
 require 'http'
+require 'ucblit/tind/config'
+require 'ucblit/util/uris'
 
 module UCBLIT
   module TIND
@@ -10,6 +11,7 @@ module UCBLIT
       end
 
       class << self
+        include UCBLIT::Util
         include UCBLIT::TIND::Config
 
         ENV_TIND_API_KEY = 'LIT_TIND_API_KEY'.freeze
@@ -23,15 +25,13 @@ module UCBLIT
         def api_base_uri
           return unless base_uri
 
-          # TODO: something less awful than File.join
-          URI.join(base_uri, File.join(base_uri.path, '/api/v1'))
+          URIs.append(base_uri, '/api/v1')
         end
 
         def uri_for(endpoint)
           return unless api_base_uri
 
-          # TODO: something less awful than File.join
-          URI.join(api_base_uri, File.join(api_base_uri.path, endpoint.to_s))
+          URIs.append(api_base_uri, endpoint)
         end
 
         def get(endpoint, **params)

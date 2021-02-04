@@ -1,4 +1,4 @@
-require 'ucblit/util/refinements/stringio'
+require 'ucblit/util/stringios'
 
 module UCBLIT
   module Util
@@ -8,7 +8,7 @@ module UCBLIT
     # {https://ruby-doc.org/stdlib-2.7.0/libdoc/pathname/rdoc/Pathname.html `Pathname`}
     # instead.
     module Paths
-      using UCBLIT::TIND::Util::Refinements::StringIO
+      include UCBLIT::Util::StringIOs
 
       class << self
         include Paths
@@ -26,6 +26,9 @@ module UCBLIT
       #
       # The returned path ends in a slash only if it is the root `/`.
       # @see https://9p.io/sys/doc/lexnames.html Rob Pike, "Lexical File Names in Plan 9 or Getting Dot-Dot Right"
+      #
+      # @param path [String, nil] the path to clean
+      # @return [String, nil] the cleaned path, or `nil` for a nil path.
       def clean(path)
         return unless path
         return '.' if ['', '.'].include?(path)
@@ -36,6 +39,20 @@ module UCBLIT
           r, dotdot = process_next(r, dotdot, path, out) while r < path.size
           out << '.' if out.pos == 0
         end.string
+      end
+
+      # Joins any number of path elements into a single path, separating
+      # them with slashes, ignoring empty elements and passing the result
+      # to {#clean(path)}.
+      #
+      # @param elements [Array<String>] the elements to join
+      # @return [String] the joined path
+      def join(*elements)
+        elements = elements.reject { |e| [nil, ''].include?(e) }
+        joined_raw = elements.join('/')
+        return '' if joined_raw == ''
+
+        clean(joined_raw)
       end
 
       private
@@ -85,7 +102,7 @@ module UCBLIT
 
       def backtrack_to_dotdot(out, dotdot)
         out.seek(-1, IO::SEEK_CUR)
-        out.seek(-1, IO::SEEK_CUR) while out.pos > dotdot && out[out.pos] != 47 # '/' is ASCII 37
+        out.seek(-1, IO::SEEK_CUR) while out.pos > dotdot && getbyte(out, out.pos) != 47 # '/' is ASCII 37
         out.truncate(out.pos)
       end
 

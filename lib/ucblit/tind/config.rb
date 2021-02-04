@@ -1,4 +1,4 @@
-require 'uri'
+require 'ucblit/util/uris'
 
 module UCBLIT
   module TIND
@@ -9,6 +9,7 @@ module UCBLIT
       end
 
       class << self
+        include UCBLIT::Util::URIs
 
         ENV_TIND_BASE_URL = 'LIT_TIND_BASE_URL'.freeze
 
@@ -21,12 +22,6 @@ module UCBLIT
         end
 
         private
-
-        def uri_or_nil(url)
-          return unless url
-
-          url.is_a?(URI) ? url : URI.parse(url)
-        end
 
         def default_tind_base_uri
           return unless (base_url = ENV[ENV_TIND_BASE_URL] || rails_tind_base_uri)

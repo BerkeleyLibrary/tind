@@ -31,7 +31,6 @@ module MARCExtensions
     #   Yields each control field.
     #   @yieldparam field [MARC::ControlField] Each control field.
     def each_control_field(&block)
-      # noinspection RubyYardReturnMatch
       each_sorted_by_tag('000'..'009', &block)
     end
 
@@ -46,7 +45,6 @@ module MARCExtensions
     #   Yields each data field.
     #   @yieldparam field [MARC::DataField] Each data field.
     def each_data_field(&block)
-      # noinspection RubyYardReturnMatch
       each_sorted_by_tag('010'..'999', &block)
     end
 
@@ -54,7 +52,6 @@ module MARCExtensions
     #
     # @return [Hash<String, Array<MARC::DataField>>] a hash from tags to fields
     def data_fields_by_tag
-      # noinspection RubyYardReturnMatch
       each_data_field.with_object({}) { |df, t2df| (t2df[df.tag] ||= []) << df }
     end
 

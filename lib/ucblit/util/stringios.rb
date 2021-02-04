@@ -1,0 +1,30 @@
+require 'stringio'
+
+module UCBLIT
+  module Util
+    module StringIOs
+      # Returns the byte (**not** character) at the specified byte index
+      # in the specified `StringIO`.
+      #
+      # @param i [Integer] the byte index
+      # @param s [StringIO] the StringIO to search in
+      # @return [Integer, nil] the byte, or nil if the byte index is invalid.
+      def getbyte(s, i)
+        return if i > s.size
+        return if s.size + i < 0
+
+        pos_orig = s.pos
+        begin
+          s.seek(i >= 0 ? i : s.size + i)
+          s.getbyte
+        ensure
+          s.seek(pos_orig)
+        end
+      end
+
+      class << self
+        include StringIOs
+      end
+    end
+  end
+end

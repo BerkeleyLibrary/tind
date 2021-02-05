@@ -8,6 +8,10 @@ module UCBLIT
         Config.base_uri
       end
 
+      def logger
+        UCBLIT::TIND.logger
+      end
+
       class << self
         include UCBLIT::Util::URIs
 
@@ -31,9 +35,9 @@ module UCBLIT
 
         def rails_tind_base_uri
           return unless (rails_config = self.rails_config)
-          return unless rails_config.respond_to?(:uri)
+          return unless rails_config.respond_to?(:tind_base_uri)
 
-          rails_config.uri
+          rails_config.tind_base_uri
         end
 
         def rails_config

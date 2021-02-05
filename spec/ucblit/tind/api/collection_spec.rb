@@ -8,14 +8,17 @@ module UCBLIT
         let(:base_uri) { 'https://tind.example.org/' }
         let(:api_key) { 'not-a-real-api-key' }
 
-        around(:each) do |example|
-          base_uri_orig = UCBLIT::TIND::Config.instance_variable_get(:@base_uri)
-          api_key_orig = UCBLIT::TIND::API.instance_variable_get(:@api_key)
+        before(:each) do
+          @base_uri_orig = UCBLIT::TIND::Config.instance_variable_get(:@base_uri)
           UCBLIT::TIND::Config.base_uri = base_uri
+
+          @api_key_orig = UCBLIT::TIND::API.instance_variable_get(:@api_key)
           UCBLIT::TIND::API.api_key = api_key
-          example.run
-          UCBLIT::TIND::Config.instance_variable_set(:@base_uri, base_uri_orig)
-          UCBLIT::TIND::API.instance_variable_set(:@api_key, api_key_orig)
+        end
+
+        after(:each) do
+          UCBLIT::TIND::Config.instance_variable_set(:@base_uri, @base_uri_orig)
+          UCBLIT::TIND::API.instance_variable_set(:@api_key, @api_key_orig)
         end
 
         describe :all do
@@ -42,6 +45,13 @@ module UCBLIT
             examiner = bancroft.children.find { |c| c.name == 'SFExaminer' }
             expect(examiner.name_en).to eq('San Francisco Examiner')
             expect(examiner.size).to eq(15_564)
+          end
+
+          it 'returns an empty array in the event of an error' do
+            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/collection?depth=100')
+            stub_request(:get, query_uri).to_return(status: 404)
+
+            expect(Collection.all).to eq([])
           end
         end
       end

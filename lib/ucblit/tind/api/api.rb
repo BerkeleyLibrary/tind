@@ -5,11 +5,6 @@ require 'ucblit/util/uris'
 module UCBLIT
   module TIND
     module API
-
-      def get(endpoint, **params)
-        API.get(endpoint, **params)
-      end
-
       class << self
         include UCBLIT::Util
         include UCBLIT::TIND::Config
@@ -38,19 +33,23 @@ module UCBLIT
           endpoint_url = uri_for(endpoint).to_s
           raise ArgumentError, "No endpoint URL found for #{endpoint.inspect}" if endpoint_url.empty?
 
-          resp = HTTP.follow
+          response = do_get(endpoint_url, params)
+          response.body.to_s # TODO: convert body to something IO-like?
+        end
+
+        private
+
+        def do_get(endpoint_url, params)
+          logger.debug("GET #{endpoint_url}")
+          response = HTTP.follow
             .headers(Authorization: "Token #{api_key}")
             .get(endpoint_url, params: params)
+          logger.debug("GET #{endpoint_url} returned #{status = response.status}")
+          return response if status.success?
 
-          resp.status.tap do |status|
-            next if status.success?
-
-            raise HTTP::ResponseError, status.to_s
-          end
-
-          # TODO: convert body to something IO-like?
-          resp.body.to_s
+          raise HTTP::ResponseError, status.to_s
         end
+
       end
     end
   end

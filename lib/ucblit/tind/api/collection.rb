@@ -27,6 +27,9 @@ module UCBLIT
           def all
             json = API.get(:collection, depth: 100)
             all_from_json(json)
+          rescue HTTP::ResponseError => e
+            logger.error(e)
+            []
           end
 
           def all_from_json(json)

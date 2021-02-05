@@ -57,7 +57,7 @@ module UCBLIT::Util
         'abc/../../././../def' => '../../def'
       }.each do |orig, expected|
         it "clean(#{orig.inspect}) -> #{expected.inspect}" do
-          expect(actual = Paths.clean(orig)).to eq(expected)
+          expect(Paths.clean(orig)).to eq(expected)
         end
       end
     end
@@ -82,7 +82,7 @@ module UCBLIT::Util
         ['', ''] => ''
       }.each do |orig, expected|
         it "join(#{orig.map(&:inspect).join(', ')}) -> #{expected.inspect}" do
-          expect(actual = Paths.join(*orig)).to eq(expected)
+          expect(Paths.join(*orig)).to eq(expected)
         end
       end
     end

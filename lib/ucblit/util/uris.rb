@@ -4,6 +4,10 @@ require 'uri'
 module UCBLIT
   module Util
     module URIs
+      class << self
+        include URIs
+      end
+
       # Appends the specified paths to the path of the specified URI, removing any extraneous slashes,
       # and returns a new URI with that path and the same scheme, host, query, fragment, etc.
       # as the original.
@@ -17,7 +21,11 @@ module UCBLIT
 
         original_uri.dup.tap do |new_uri|
           path = UCBLIT::Util::Paths.join(original_path, *elements)
-          (path.size - 1).downto(0).each { |i| path = extract_fragments_and_queries(new_uri, path, i) }
+          (path.size - 1).downto(0).each do |i|
+            next unless apply_fragment?(new_uri, path[i..]) || apply_query?(new_uri, path[i..])
+
+            path.slice!(i..)
+          end
           new_uri.path = path
         end
       end
@@ -32,27 +40,30 @@ module UCBLIT
         url.is_a?(URI) ? url : URI.parse(url.to_s)
       end
 
-      class << self
-        include URIs
-      end
-
       private
 
-      # TODO: clean this up
-      def extract_fragments_and_queries(new_uri, path, index)
-        return path unless %w[# ?].include?(path[i])
+      def apply_fragment?(uri, str)
+        return false unless str&.start_with?('#')
 
-        case path[index]
-        when '#'
-          raise URI::InvalidComponentError, "Too many URI fragments: #{new_uri.fragment}, #{path[i..]}" if new_uri.fragment
+        fragment = str[1..]
+        true.tap do |_|
+          raise URI::InvalidComponentError, "Too many URL fragments: #{[uri.fragment, fragment].map(&:inspect)}" if uri.fragment
 
-          new_uri.fragment = path[index + 1..]
-        when '?'
-          raise URI::InvalidComponentError, "Too many query strings: #{new_uri.query}, #{path[i..]}" if new_uri.query
-
-          new_uri.query = path[index + 1..]
+          # if fragment is empty, don't set it but still strip `#`
+          uri.fragment = fragment unless fragment == ''
         end
-        path[0...index]
+      end
+
+      def apply_query?(uri, str)
+        return false unless str&.start_with?('?')
+
+        query = str[1..]
+        true.tap do |_|
+          raise URI::InvalidComponentError, "Too many query strings: #{[uri.query, query].map(&:inspect)}" if uri.query
+
+          # if query is empty, don't set it but still strip `?`
+          uri.query = query unless query == ''
+        end
       end
 
     end

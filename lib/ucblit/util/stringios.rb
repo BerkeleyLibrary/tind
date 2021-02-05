@@ -3,6 +3,10 @@ require 'stringio'
 module UCBLIT
   module Util
     module StringIOs
+      class << self
+        include StringIOs
+      end
+
       # Returns the byte (**not** character) at the specified byte index
       # in the specified `StringIO`.
       #
@@ -20,10 +24,6 @@ module UCBLIT
         ensure
           s.seek(pos_orig)
         end
-      end
-
-      class << self
-        include StringIOs
       end
     end
   end

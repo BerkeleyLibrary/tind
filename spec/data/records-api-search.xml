@@ -1,0 +1,234 @@
+<response>
+  <total>5</total>
+  <collection xmlns="http://www.loc.gov/MARC21/slim">
+    <record>
+  <controlfield tag="001">26217</controlfield>
+  <controlfield tag="005">20200213220600.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1982.078:15--ALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_89_00157798</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Indian Rancheria near San Diego.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">lang: B1326</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">180072</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/26217/files/I0015385A.jpg</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf696nb4sf</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf4m3nb40w</subfield>
+    <subfield code="g">25:89</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_89_00157798.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Cal Scenery by Taber</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Taber (Isaiah West) California Scenery</subfield>
+    <subfield code="b">California Scenery, Published by Taber, Photographer, San Francisco, Cal., ca. 1885</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">26218</controlfield>
+  <controlfield tag="005">20200213220600.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1982.078:24--ALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_89_00157807</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Glen Annie, Residence of Col. W.W. Hollister, Santa Barbara.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">lang: A430</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">206717</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/26218/files/I0015394A.jpg</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf696nb4sf</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf2580052v</subfield>
+    <subfield code="g">25:89</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_89_00157807.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Cal Scenery by Taber</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Taber (Isaiah West) California Scenery</subfield>
+    <subfield code="b">California Scenery, Published by Taber, Photographer, San Francisco, Cal., ca. 1885</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">26219</controlfield>
+  <controlfield tag="005">20200213220600.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1982.078:28--ALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_89_00157811</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Arlington House. W.N. Cowles, Proprietor, Santa Barbara.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">lang: B1308</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">190600</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/26219/files/I0015398A.jpg</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf696nb4sf</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf6c6007zt</subfield>
+    <subfield code="g">25:89</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_89_00157811.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Cal Scenery by Taber</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Taber (Isaiah West) California Scenery</subfield>
+    <subfield code="b">California Scenery, Published by Taber, Photographer, San Francisco, Cal., ca. 1885</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">26223</controlfield>
+  <controlfield tag="005">20200213220600.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1982.078:12--ALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_89_00157795</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[People on small beach surrounded by dramatically eroded cliffs; La Jolla area?]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">168953</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/26223/files/I0015382A.jpg</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf696nb4sf</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf9j49p3fq</subfield>
+    <subfield code="g">25:89</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_89_00157795.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Cal Scenery by Taber</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Taber (Isaiah West) California Scenery</subfield>
+    <subfield code="b">California Scenery, Published by Taber, Photographer, San Francisco, Cal., ca. 1885</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">26230</controlfield>
+  <controlfield tag="005">20200213220600.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1982.078:14--ALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_89_00157797</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[Man seated in horse drawn buggy in open landscape]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">184482</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/26230/files/I0015384A.jpg</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf696nb4sf</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf7w1009ss</subfield>
+    <subfield code="g">25:89</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_89_00157797.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Cal Scenery by Taber</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Taber (Isaiah West) California Scenery</subfield>
+    <subfield code="b">California Scenery, Published by Taber, Photographer, San Francisco, Cal., ca. 1885</subfield>
+  </datafield>
+</record>
+  </collection>
+</response>

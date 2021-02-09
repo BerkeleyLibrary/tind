@@ -20,13 +20,13 @@ module UCBLIT
         it 'accepts a Date' do
           date = Date.new(2021, 2, 6)
           utc_time = Time.new(2021, 2, 6).getutc
-          expect(times.ensure_utc(date)).to eq(utc_time)
+          expect(Times.ensure_utc(date)).to eq(utc_time)
         end
 
         it 'accepts a Datetime' do
-          datetime = Datetime.parse('2021-02-05 16:19:11.37707 -0800')
+          datetime = DateTime.parse('2021-02-05 16:19:11.37707 -0800')
           utc_time = Time.parse('2021-02-06 00:19:11.37707 UTC')
-          expect(times.ensure_utc(datetime)).to eq(utc_time)
+          expect(Times.ensure_utc(datetime)).to eq(utc_time)
         end
       end
     end

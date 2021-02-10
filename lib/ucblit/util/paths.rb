@@ -43,7 +43,7 @@ module UCBLIT
 
       # Joins any number of path elements into a single path, separating
       # them with slashes, ignoring empty elements and passing the result
-      # to {#clean(path)}.
+      # to {Paths#clean}.
       #
       # @param elements [Array<String>] the elements to join
       # @return [String] the joined path

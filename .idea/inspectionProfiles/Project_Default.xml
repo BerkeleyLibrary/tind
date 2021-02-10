@@ -13,6 +13,9 @@
     <inspection_tool class="RubyLocalVariableNamingConvention" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="RubyNilAnalysis" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="RubyStringKeysInHashInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="RubyYardParamTypeMatch" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="checkNillability" value="false" />
+    </inspection_tool>
     <inspection_tool class="RubyYardReturnMatch" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <option name="checkNillability" value="false" />
     </inspection_tool>
@@ -21,5 +24,6 @@
       <option name="processLiterals" value="true" />
       <option name="processComments" value="true" />
     </inspection_tool>
+    <inspection_tool class="YARDTagsInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
   </profile>
 </component>

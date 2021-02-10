@@ -33,6 +33,18 @@ module UCBLIT::Util
         expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?grault=xyzzy#baz'))
       end
 
+      it 'appends query parameters with &' do
+        original_uri = URI('https://example.org/foo/bar#baz')
+        new_uri = URIs.append(original_uri, '/qux', '/corge/', '//garply?grault=xyzzy', '&plugh=flob')
+        expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?grault=xyzzy&plugh=flob'))
+      end
+
+      it 'creates a query when none is present' do
+        original_uri = URI('https://example.org/foo/bar#baz')
+        new_uri = URIs.append(original_uri, '/qux', '/corge/', 'garply', '&plugh=flob')
+        expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?plugh=flob#baz'))
+      end
+
       it 'accepts a fragment if no previous fragment present' do
         original_uri = URI('https://example.org/foo/bar?baz=qux')
         new_uri = URIs.append(original_uri, '/qux', '/corge/', '//garply#grault')

@@ -26,7 +26,7 @@ module UCBLIT
 
         describe :search_id do
           it 'parses <search_id>' do
-            expected = 'DnF1ZXJ5VGhlbkZldGNoBQAAAAABw6adFmN0YjJMb0tKUTQtV1VfVzI2Qm8yY1EAAAAAGFyBJBZJT2M0QjVUaVFvV01MZS1VeU44cC13AAAAAAG2ThEWNlR5UGc4SEFSVlM4eGQwMF9BUUxHUQAAAAABu3E3FklOQ0hlX1JRU2xtV1RpY0xva3g2SWcAAAAAChqraRZjdjc0YXN0ZlNUMkd2TXFVX3psSWR3'
+            expected = 'adBJG2ThENlR5UGc4SEFSVlM4eGQwF9B'
             reader = XMLReader.new('spec/data/records-api-search-p1.xml')
             reader.take_while { true } # make sure we've parsed something
             expect(reader.search_id).to eq(expected)

@@ -13,18 +13,21 @@ module UCBLIT
       # as the original.
       #
       # @param uri [URI, String] the original URI
-      # @param elements [Array<String>] the URI elements to join.
+      # @param elements [Array<String, Symbol>] the URI elements to join.
       # @return [URI] a new URI appending the joined path elements.
       def append(uri, *elements)
         original_uri = uri_or_nil(uri)
         original_path = original_uri.path
 
         original_uri.dup.tap do |new_uri|
+          puts "join(#{original_path.inspect}, #{elements.inspect})"
           path = UCBLIT::Util::Paths.join(original_path, *elements)
           (path.size - 1).downto(0).each do |i|
+            puts "#{i}: #{path} (query: #{new_uri.query})"
             next unless apply_fragment?(new_uri, path[i..]) || apply_query?(new_uri, path[i..])
 
             path.slice!(i..)
+            puts "\t-> #{path}"
           end
           new_uri.path = path
         end
@@ -55,14 +58,11 @@ module UCBLIT
       end
 
       def apply_query?(uri, str)
-        return false unless str&.start_with?('?')
+        return false unless str && %w[& ?].any? { |c| str.start_with?(c) }
 
-        query = str[1..]
         true.tap do |_|
-          raise URI::InvalidComponentError, "Too many query strings: #{[uri.query, query].map(&:inspect)}" if uri.query
-
-          # if query is empty, don't set it but still strip `?`
-          uri.query = query unless query == ''
+          query = str[1..]
+          uri.query = uri.query ? query + '&' + uri.query : query
         end
       end
 

@@ -36,14 +36,14 @@ module UCBLIT
         # ############################################################
         # Initializer
 
-        def initialize(file)
-          @handle = ensure_io(file)
+        # Reads MARC records from an XML datasource given either as a file path,
+        # or as an IO object.
+        #
+        # @param source [String, Pathname, IO] the path to a file, or an IO to read from directly
+        def initialize(source)
+          @handle = ensure_io(source)
           init
         end
-
-        # @yieldparam record [MARC::Record] the record
-
-        # @return record [MARC::Record]
 
         class << self
           include MARCExtensions::XMLReaderClassExtensions
@@ -52,6 +52,7 @@ module UCBLIT
         # ############################################################
         # Nokogiri::XML::SAX::Document overrides
 
+        # @see Nokogiri::XML::Sax::Document#start_element_namespace
         # rubocop:disable Metrics/ParameterLists
         def start_element_namespace(name, attrs = [], prefix = nil, uri = nil, ns = [])
           super
@@ -59,12 +60,14 @@ module UCBLIT
         end
         # rubocop:enable Metrics/ParameterLists
 
+        # @see Nokogiri::XML::Sax::Document#end_element_namespace
         def end_element_namespace(name, prefix = nil, uri = nil)
           super
 
           @current_element_name = nil
         end
 
+        # @see Nokogiri::XML::Sax::Document#characters
         def characters(string)
           return unless (name = @current_element_name)
 
@@ -76,6 +79,7 @@ module UCBLIT
           end
         end
 
+        # @see Nokogiri::XML::Sax::Document#comment
         def comment(string)
           return unless (md = COMMENT_TOTAL_RE.match(string))
 

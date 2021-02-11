@@ -56,6 +56,7 @@ module UCBLIT
             xml_reader = UCBLIT::TIND::MARC::XMLReader.new(body)
             xml_reader.each(&block)
             xml_reader.search_id
+          ensure
             body.close
           end
           perform_search(search_id: search_id, &block) if search_id

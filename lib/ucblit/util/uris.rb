@@ -8,6 +8,15 @@ module UCBLIT
         include URIs
       end
 
+      QUERY_DELIM = '?'
+      FRAGMENT_DELIM = '#'
+      DELIMS = [QUERY_DELIM, FRAGMENT_DELIM].freeze
+
+      ALL_DELIMS = %w[? & #].freeze
+
+      RFC_DELIMS_RE = /[?#]/.freeze
+      ALL_DELIMS_RE = /[#{ALL_DELIMS}]/.freeze
+
       # Appends the specified paths to the path of the specified URI, removing any extraneous slashes,
       # and returns a new URI with that path and the same scheme, host, query, fragment, etc.
       # as the original.
@@ -16,20 +25,59 @@ module UCBLIT
       # @param elements [Array<String, Symbol>] the URI elements to join.
       # @return [URI] a new URI appending the joined path elements.
       def append(uri, *elements)
-        original_uri = uri_or_nil(uri)
-        original_path = original_uri.path
+        require 'ucblit/tind/config'
+        raise ArgumentError, "uri cannot be nil" unless (original_uri = uri_or_nil(uri))
+
+        # TODO: clean this up: URIAppender class?
+        path_elements = []
+        query_elements = original_uri.query ? [original_uri.query] : []
+        fragment_elements = original_uri.fragment ? [original_uri.fragment] : []
+
+        query_start_index = nil
+        fragment_start_index = nil
+
+        elem_strs = elements.map(&:to_s)
+        elem_strs.each_with_index do |e, i|
+
+          if (q_index = e.index('?'))
+            raise URI::InvalidComponentError, "#{e.inspect}: Query delimiter '?' cannot follow fragment delimeter '#'" if fragment_start_index
+
+            path_end, q_start = e[0...q_index], e[(q_index + 1)..]
+            if query_elements.empty?
+              if (f_index = q_start.index('#'))
+                q_start = q_start[0...f_index]
+                elem_strs[i + 1] = "#{q_start[f_index + 1..]}#{elem_strs[i + 1]}"
+              end
+              query_elements << q_start
+              path_elements << path_end
+              query_start_index = i
+            else
+              raise URI::InvalidComponentError, "#{e.inspect}: URI already has a query string: #{query_elements.join.inspect}"
+            end
+          elsif (f_index = e.index('#'))
+            path_or_query_end, f_start = e[0...f_index], e[(f_index + 1)..]
+            if fragment_elements.empty?
+              raise URI::InvalidComponentError, "#{e.inspect}: Query delimiter '?' cannot follow fragment delimeter '#'" if f_start.include?('?')
+
+              fragment_elements << f_start
+              (query_start_index ? query_elements : path_elements) << path_or_query_end
+              fragment_start_index = i
+            else
+              raise URI::InvalidComponentError, "#{e.inspect}: URI already has a fragment: #{fragment_elements.join.inspect}"
+            end
+          elsif fragment_start_index
+            fragment_elements << e
+          elsif query_start_index
+            query_elements << e
+          else
+            path_elements << e
+          end
+        end
 
         original_uri.dup.tap do |new_uri|
-          puts "join(#{original_path.inspect}, #{elements.inspect})"
-          path = UCBLIT::Util::Paths.join(original_path, *elements)
-          (path.size - 1).downto(0).each do |i|
-            puts "#{i}: #{path} (query: #{new_uri.query})"
-            next unless apply_fragment?(new_uri, path[i..]) || apply_query?(new_uri, path[i..])
-
-            path.slice!(i..)
-            puts "\t-> #{path}"
-          end
-          new_uri.path = path
+          new_uri.path = Paths.join(original_uri.path, *path_elements)
+          new_uri.query = query_elements.join unless query_elements.empty?
+          new_uri.fragment = fragment_elements.join unless fragment_elements.empty?
         end
       end
 

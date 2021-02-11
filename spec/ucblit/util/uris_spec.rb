@@ -9,6 +9,14 @@ module UCBLIT::Util
         expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply'))
       end
 
+      it 'does not modify the original URI' do
+        original_uri = URI('https://example.org/foo/bar')
+        original_url = original_uri.to_s
+        new_uri = URIs.append(original_uri, 'qux', 'corge', 'garply')
+        expect(new_uri).not_to be(original_uri)
+        expect(original_uri.to_s).to eq(original_url)
+      end
+
       it 'removes extraneous slashes' do
         original_uri = URI('https://example.org/foo/bar')
         new_uri = URIs.append(original_uri, '/qux', '/corge/', '//garply')
@@ -36,13 +44,13 @@ module UCBLIT::Util
       it 'appends query parameters with &' do
         original_uri = URI('https://example.org/foo/bar#baz')
         new_uri = URIs.append(original_uri, '/qux', '/corge/', '//garply?grault=xyzzy', '&plugh=flob')
-        expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?grault=xyzzy&plugh=flob'))
+        expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?grault=xyzzy&plugh=flob#baz'))
       end
 
-      it 'creates a query when none is present' do
+      it 'treats & as a path element if no query is present' do
         original_uri = URI('https://example.org/foo/bar#baz')
         new_uri = URIs.append(original_uri, '/qux', '/corge/', 'garply', '&plugh=flob')
-        expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?plugh=flob#baz'))
+        expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply/&plugh=flob#baz'))
       end
 
       it 'accepts a fragment if no previous fragment present' do

@@ -65,6 +65,8 @@ module UCBLIT
             else
               raise URI::InvalidComponentError, "#{e.inspect}: URI already has a fragment: #{fragment_elements.join.inspect}"
             end
+          elsif e.include?('&') && !query_elements.empty? && !fragment_start_index
+            query_elements << e
           elsif fragment_start_index
             fragment_elements << e
           elsif query_start_index

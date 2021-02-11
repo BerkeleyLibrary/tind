@@ -47,6 +47,12 @@ module UCBLIT::Util
         expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?grault=xyzzy&plugh=flob#baz'))
       end
 
+      it 'appends query parameters to original URI query' do
+        original_uri = URI('https://example.org/foo/bar/qux/corge/garply?grault=xyzzy')
+        new_uri = URIs.append(original_uri, '&plugh=flob')
+        expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?grault=xyzzy&plugh=flob'))
+      end
+
       it 'treats & as a path element if no query is present' do
         original_uri = URI('https://example.org/foo/bar#baz')
         new_uri = URIs.append(original_uri, '/qux', '/corge/', 'garply', '&plugh=flob')

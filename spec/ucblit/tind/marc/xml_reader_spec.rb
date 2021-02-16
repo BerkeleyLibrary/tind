@@ -8,6 +8,10 @@ module UCBLIT
           reader = XMLReader.new('spec/data/records-api-search.xml')
           records = reader.to_a
           expect(records.size).to eq(5)
+
+          record0 = records[0]
+          expect(record0).to be_a(::MARC::Record)
+          expect(record0['024']['a']).to eq('BANC PIC 1982.078:15--ALB')
         end
 
         describe :total do

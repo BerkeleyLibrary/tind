@@ -27,9 +27,10 @@ module UCBLIT
         end
 
         # ------------------------------------------------------------
-        # Factory method
+        # Class methods
 
         class << self
+
           def from_data_field(data_field, index_in_tag)
             raise ArgumentError, "Not a MARC data field: #{data_field}" unless data_field_like?(data_field)
 

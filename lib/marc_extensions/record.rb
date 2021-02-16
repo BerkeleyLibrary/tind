@@ -76,10 +76,12 @@ module MARCExtensions
     def frozen?
       (fields.frozen? && leader.frozen?)
     end
+
   end
 end
 
 module MARC
+  # @see https://rubydoc.info/gems/marc/MARC/Record RubyGems documentation
   class Record
     prepend MARCExtensions::RecordExtensions
   end

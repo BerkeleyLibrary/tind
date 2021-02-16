@@ -22,6 +22,7 @@ module MARCExtensions
 end
 
 module MARC
+  # @see https://rubydoc.info/gems/marc/MARC/DataField RubyGems documentation
   class DataField
     prepend MARCExtensions::DataFieldExtensions
   end

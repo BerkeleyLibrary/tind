@@ -40,13 +40,23 @@ module UCBLIT
         # or as an IO object.
         #
         # @param source [String, Pathname, IO] the path to a file, or an IO to read from directly
-        def initialize(source)
+        # @param freeze [Boolean] whether to freeze each record after reading
+        def initialize(source, freeze: false)
           @handle = ensure_io(source)
+          @freeze = freeze
           init
         end
 
         class << self
           include MARCExtensions::XMLReaderClassExtensions
+        end
+
+        # ############################################################
+        # MARC::GenericPullParser overrides
+
+        def yield_record
+          @record[:record].freeze if @freeze
+          super
         end
 
         # ############################################################
@@ -56,6 +66,7 @@ module UCBLIT
         # rubocop:disable Metrics/ParameterLists
         def start_element_namespace(name, attrs = [], prefix = nil, uri = nil, ns = [])
           super
+
           @current_element_name = name
         end
         # rubocop:enable Metrics/ParameterLists
@@ -76,6 +87,8 @@ module UCBLIT
             @search_id = string
           when 'total'
             @total = string.to_i
+          else
+            super
           end
         end
 

@@ -6,6 +6,7 @@ require 'ucblit/tind/export/column_group'
 require 'ucblit/tind/export/column'
 require 'ucblit/tind/export/row'
 
+require 'csv'
 require 'stringio'
 
 module UCBLIT

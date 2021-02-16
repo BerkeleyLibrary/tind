@@ -35,31 +35,34 @@ module UCBLIT
         end
 
         # Iterates over the records returned by this search.
-        # @overload each_result(&block)
+        # @overload each_result(freeze: false, &block)
         #   Yields each record to the provided block.
-        #   @yieldparam [MARC::Record] each record
-        # @overload each_result
+        #   @param freeze [Boolean] whether to freeze each record before yielding.
+        #   @yieldparam marc_record [MARC::Record] each record
+        #   @return [self]
+        # @overload each_result(freeze: false)
         #   Returns an enumerator of the records.
+        #   @param freeze [Boolean] whether to freeze each record before yielding.
         #   @return [Enumerable<MARC::Record>] the records
-        def each_result(&block)
-          return to_enum(:each_result) unless block_given?
+        def each_result(freeze: false, &block)
+          return to_enum(:each_result, freeze: freeze) unless block_given?
 
-          perform_search(&block)
+          perform_search(freeze: freeze, &block)
           self
         end
 
         private
 
-        def perform_search(search_id: nil, &block)
+        def perform_search(search_id: nil, freeze: false, &block)
           params = search_id ? self.params.merge(search_id: search_id) : self.params
           search_id = API.get(:search, params) do |body|
-            xml_reader = UCBLIT::TIND::MARC::XMLReader.new(body)
+            xml_reader = UCBLIT::TIND::MARC::XMLReader.read(body, freeze: freeze)
             xml_reader.each(&block)
             xml_reader.search_id
           ensure
             body.close
           end
-          perform_search(search_id: search_id, &block) if search_id
+          perform_search(search_id: search_id, freeze: freeze, &block) if search_id
         end
       end
     end

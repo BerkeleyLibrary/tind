@@ -34,6 +34,7 @@ module MARCExtensions
 end
 
 module MARC
+  # @see https://rubydoc.info/gems/marc/MARC/FieldMap RubyGems documentation
   class FieldMap
     prepend MARCExtensions::FieldMapExtensions
   end

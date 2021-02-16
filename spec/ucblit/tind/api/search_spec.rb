@@ -59,6 +59,38 @@ module UCBLIT
               enum.each { |r| results << r }
               expect(results.size).to eq(5)
             end
+
+            describe :freeze do
+              describe 'with block' do
+                it 'defaults to false' do
+                  search.each_result do |marc_record|
+                    expect(marc_record).not_to be_frozen
+                  end
+                end
+
+                it 'freezes results if true' do
+                  search.each_result(freeze: true) do |marc_record|
+                    expect(marc_record).to be_frozen
+                  end
+                end
+              end
+
+              describe 'as enumerator' do
+                it 'defaults to false' do
+                  enum = search.each_result
+                  enum.each do |marc_record|
+                    expect(marc_record).not_to be_frozen
+                  end
+                end
+
+                it 'freezes results if true' do
+                  enum = search.each_result(freeze: true)
+                  enum.each do |marc_record|
+                    expect(marc_record).to be_frozen
+                  end
+                end
+              end
+            end
           end
         end
 
@@ -91,6 +123,10 @@ module UCBLIT
               results = search.results
               expect(results).to be_a(Array)
               expect(results.size).to eq(205)
+
+              record0 = results[0]
+              expect(record0).to be_a(::MARC::Record)
+              expect(record0['024']['a']).to eq('BANC PIC 1982.078:15--ALB')
             end
           end
 
@@ -107,6 +143,38 @@ module UCBLIT
               expect(enum).to be_a(Enumerable)
               enum.each { |r| results << r }
               expect(results.size).to eq(205)
+            end
+
+            describe :freeze do
+              describe 'with block' do
+                it 'defaults to false' do
+                  search.each_result do |marc_record|
+                    expect(marc_record).not_to be_frozen
+                  end
+                end
+
+                it 'freezes results if true' do
+                  search.each_result(freeze: true) do |marc_record|
+                    expect(marc_record).to be_frozen
+                  end
+                end
+              end
+
+              describe 'as enumerator' do
+                it 'defaults to false' do
+                  enum = search.each_result
+                  enum.each do |marc_record|
+                    expect(marc_record).not_to be_frozen
+                  end
+                end
+
+                it 'freezes results if true' do
+                  enum = search.each_result(freeze: true)
+                  enum.each do |marc_record|
+                    expect(marc_record).to be_frozen
+                  end
+                end
+              end
             end
           end
         end

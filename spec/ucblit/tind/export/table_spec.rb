@@ -1,16 +1,14 @@
 require 'spec_helper'
 
-require 'csv'
-require 'stringio'
-
 module UCBLIT
   module TIND
     module Export
+      include MARCExtensions::XMLReaderClassExtensions
       describe Table do
 
         describe :<< do
           let(:table) { Table.new }
-          let(:records) { MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a }
+          let(:records) { MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a }
 
           it 'adds one record' do
             table << (record = records.first)
@@ -25,7 +23,7 @@ module UCBLIT
 
         describe :headers do
           it 'aligns with the correct values' do
-            records = MARC::XMLReader.read_frozen('spec/data/disjoint-records.xml').to_a
+            records = MARC::XMLReader.read('spec/data/disjoint-records.xml', freeze: true).to_a
             table = Table.from_records(records)
 
             headers = table.headers
@@ -74,7 +72,7 @@ module UCBLIT
 
         describe :freeze do
           it 'prevents adding new records' do
-            records = MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a
+            records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a
             table = records[0...3].each_with_object(Table.new) { |r, t| t << r }
             table.freeze
             expect(table.row_count).to eq(3) # just to be sure
@@ -87,14 +85,14 @@ module UCBLIT
           end
 
           it 'freezes the MARC records array' do
-            records = MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a
+            records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a
             table = records.each_with_object(Table.new) { |r, t| t << r }
             table.freeze
             expect { table.marc_records << records.last }.to raise_error(FrozenError)
           end
 
           it 'freezes the columns' do
-            records = MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a
+            records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a
             table = records.each_with_object(Table.new) { |r, t| t << r }
             table.freeze
 
@@ -102,7 +100,7 @@ module UCBLIT
           end
 
           it 'freezes the rows' do
-            records = MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a
+            records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a
             table = records.each_with_object(Table.new) { |r, t| t << r }
             table.freeze
 
@@ -110,14 +108,14 @@ module UCBLIT
           end
 
           it 'returns self' do
-            records = MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a
+            records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a
             table = records.each_with_object(Table.new) { |r, t| t << r }
             expect(table.freeze).to be(table)
           end
         end
 
         describe :from_records do
-          let(:records) { MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a }
+          let(:records) { MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a }
           it 'reads the records' do
             table = Table.from_records(records)
             expect(table.row_count).to eq(records.size)
@@ -132,7 +130,7 @@ module UCBLIT
         describe :rows do
 
           it 'returns the rows' do
-            records = MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a
+            records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a
             table = Table.from_records(records)
             rows = table.rows
             expect(rows.size).to eq(records.size)
@@ -140,7 +138,7 @@ module UCBLIT
           end
 
           it 'is not cached when table is not frozen' do
-            records = MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a
+            records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a
             some_records = records[0...3]
             table = Table.from_records(some_records)
             rows1 = table.rows
@@ -155,7 +153,7 @@ module UCBLIT
           end
 
           it 'is cached when table is frozen' do
-            records = MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a
+            records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a
             some_records = records[0...3]
             table = Table.from_records(some_records, freeze: true)
             rows = table.rows
@@ -167,7 +165,7 @@ module UCBLIT
             describe :values do
 
               it 'returns the values for the specified row' do
-                records = MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a
+                records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a
                 table = Table.from_records(records)
 
                 record = records[0]
@@ -179,7 +177,7 @@ module UCBLIT
               end
 
               it 'handles adding records with extra fields' do
-                records = %w[184453 184458].map { |n| MARC::XMLReader.read_frozen("spec/data/record-#{n}.xml").first }
+                records = %w[184453 184458].map { |n| MARC::XMLReader.read("spec/data/record-#{n}.xml", freeze: true).first }
                 table = Table.from_records(records, freeze: true)
 
                 vv_actual = (0..1).map { |row| table.rows[row].values }
@@ -197,7 +195,7 @@ module UCBLIT
               end
 
               it 'handles records with missing fields' do
-                records = %w[184458 184453].map { |n| MARC::XMLReader.read_frozen("spec/data/record-#{n}.xml").first }
+                records = %w[184458 184453].map { |n| MARC::XMLReader.read("spec/data/record-#{n}.xml", freeze: true).first }
                 table = Table.from_records(records, freeze: true)
 
                 vv_actual = (0..1).map { |row| table.rows[row].values }
@@ -215,7 +213,7 @@ module UCBLIT
               end
 
               it 'handles records with disjoint fields' do
-                records = MARC::XMLReader.read_frozen('spec/data/disjoint-records.xml').to_a
+                records = MARC::XMLReader.read('spec/data/disjoint-records.xml', freeze: true).to_a
                 table = Table.from_records(records, freeze: true)
 
                 vv_actual = (0...records.size).map { |row| table.rows[row].values }
@@ -233,7 +231,7 @@ module UCBLIT
         end
 
         describe :each_row do
-          let(:records) { MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml').to_a }
+          let(:records) { MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true).to_a }
           let(:table) { Table.from_records(records) }
 
           it 'yields each row' do
@@ -253,7 +251,7 @@ module UCBLIT
         end
 
         describe :to_csv do
-          let(:records) { MARC::XMLReader.read_frozen('spec/data/records-manual-search.xml') }
+          let(:records) { MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: true) }
           let(:table) { Table.from_records(records, freeze: true) }
 
           it 'outputs CSV' do
@@ -269,9 +267,23 @@ module UCBLIT
           it 'accepts an IO object' do
             csv_str = StringIO.new.tap { |out| table.to_csv(out) }.string
 
-            CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
-              expect(csv_row.headers).to eq(table.headers)
-              expect(csv_row.fields).to eq(table.rows[row].values)
+            aggregate_failures 'rows' do
+              CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
+                expect(csv_row.headers).to eq(table.headers)
+                expect(csv_row.fields).to eq(table.rows[row].values)
+
+                marc_record = table.marc_records[row]
+                csv_row.headers.each do |header|
+                  values = marc_record.values_for(header)
+
+                  value = csv_row[header]
+                  if values.empty?
+                    expect(value).to be_nil, "#{header}: expected no values in row/record #{row}, got #{value.inspect}"
+                  else
+                    expect(values).to include(value), "#{header}: expected one of: #{values.inspect}, got #{value}"
+                  end
+                end
+              end
             end
           end
 

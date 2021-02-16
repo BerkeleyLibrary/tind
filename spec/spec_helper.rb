@@ -25,3 +25,41 @@ end
 # Code under test
 
 require 'ucblit/tind'
+
+# ------------------------------------------------------------
+# Helper methods
+
+# TODO: replace w/custom matcher
+
+module MARC
+  class Record
+    HEADER_RE = /^(?<tag>[0-9]{3})(?<ind1>[0-9a-z_])(?<ind2>[0-9a-z_])(?<subfield_code>[0-9a-z])/.freeze
+
+    # rubocop:disable Metrics/AbcSize
+    def values_for(tind_col_header)
+      raise ArgumentError, "Not a table column header: #{tind_col_header.inspect}" unless (md = HEADER_RE.match(tind_col_header))
+
+      ind1 = clean_ind(md['ind1'])
+      ind2 = clean_ind(md['ind2'])
+      subfield_code = md['subfield_code']
+
+      [].tap do |values|
+        each_by_tag(md['tag']) do |df|
+          next unless df.indicator1 == ind1
+          next unless df.indicator2 == ind2
+
+          df.subfields.each do |sf|
+            next unless sf.code == subfield_code
+
+            values << sf.value
+          end
+        end
+      end
+    end
+    # rubocop:enable Metrics/AbcSize
+
+    def clean_ind(ind)
+      ind.tap { |i| return ' ' if i == '_' }
+    end
+  end
+end

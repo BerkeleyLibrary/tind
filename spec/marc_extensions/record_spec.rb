@@ -23,6 +23,12 @@ describe MARC::Record do
         expect(df).to be_frozen
       end
     end
+
+    it 'does not clobber the data' do
+      expected = marc_record.to_hash
+      marc_record.freeze
+      expect(marc_record.to_hash).to eq(expected)
+    end
   end
 
   describe :frozen? do

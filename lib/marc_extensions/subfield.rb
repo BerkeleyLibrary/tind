@@ -14,6 +14,7 @@ module MARCExtensions
 end
 
 module MARC
+  # @see https://rubydoc.info/gems/marc/MARC/Subfield RubyGems documentation
   class Subfield
     prepend MARCExtensions::SubfieldExtensions
   end

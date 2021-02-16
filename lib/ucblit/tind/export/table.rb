@@ -131,6 +131,7 @@ module UCBLIT
           end
         end
 
+        # TODO: speed this up
         def add_data_fields(marc_record, row)
           marc_record.data_fields_by_tag.each do |tag, data_fields|
             tag_column_groups = (column_groups_by_tag[tag] ||= [])

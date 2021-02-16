@@ -50,18 +50,30 @@ module UCBLIT
             Exporter.export(collection, out)
           end.string
 
+          # TODO: something better than this minimal sanity check
           aggregate_failures 'rows' do
             CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
               marc_record = records[row]
+
+              record_values_by_prefix = {}
+              csv_values_by_prefix = {}
+
               csv_row.headers.each do |header|
-                values = marc_record.values_for(header)
+                tag, ind1, ind2, subfield_code = ::MARC::Record.decompose_header(header)
+                prefix = [tag, ind1, ind2, subfield_code]
+
+                record_values = (record_values_by_prefix[prefix] ||= [])
+                record_values.concat(marc_record.values_for(header)).uniq!
 
                 value = csv_row[header]
-                if values.empty?
-                  expect(value).to be_nil, "#{header}: expected no values in row/record #{row}, got #{value.inspect}"
-                else
-                  expect(values).to include(value), "#{header}: expected one of: #{values.inspect}, got #{value.inspect}"
-                end
+                csv_values = (csv_values_by_prefix[prefix] ||= [])
+                csv_values << value unless value.to_s == ''
+              end
+
+              record_values_by_prefix.each do |prefix, record_values|
+                actual = csv_values_by_prefix[prefix].sort
+                expected = record_values.sort
+                expect(actual).to eq(expected), "#{row}\t#{prefix}: expected #{expected.inspect}, got #{actual.inspect}"
               end
             end
           end

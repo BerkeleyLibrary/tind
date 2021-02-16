@@ -4,6 +4,7 @@ module UCBLIT
   module TIND
     module Exporter
       class << self
+        # TODO: select CSV/LibreOffice
         def export(collection, out = $stdout)
           search = API::Search.new(collection: collection)
           results = search.each_result(freeze: true)

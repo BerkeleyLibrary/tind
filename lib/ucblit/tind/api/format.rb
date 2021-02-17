@@ -1,11 +1,13 @@
 require 'typesafe_enum'
+
 module UCBLIT
   module TIND
     module API
       class Format < TypesafeEnum::Base
-        new(:ID, 'id')
-        new(:XML, 'xml')
-        new(:FILES, 'files')
+        new(:ID, 'id'.freeze)
+        new(:XML, 'xml'.freeze)
+        new(:FILES, 'files'.freeze)
+        new(:JSON, 'json'.freeze)
 
         def to_s
           value
@@ -20,7 +22,7 @@ module UCBLIT
             return unless format
             return format if format.is_a?(Format)
 
-            fmt = Format.find_by_value(format)
+            fmt = Format.find_by_value(format.to_s)
             return fmt if fmt
 
             raise ArgumentError, "Can't convert #{format.inspect} to #{Format}"

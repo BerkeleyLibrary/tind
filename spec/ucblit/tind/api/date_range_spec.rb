@@ -9,15 +9,15 @@ module UCBLIT
         let(:t2) { Time.new(2021, 2, 16, 19, 23, 14, '-07:00') }
 
         it 'is always in UTC' do
-          expect(t1.utc_offset).to eq(-28800) # just to be sure
-          expect(t2.utc_offset).to eq(-25200) # just to be sure
+          expect(t1.utc_offset).to eq(-28_800) # just to be sure
+          expect(t2.utc_offset).to eq(-25_200) # just to be sure
 
           date_range = DateRange.new(from_time: t1, until_time: t2)
           expect(date_range.from_time).to eq(t1.getutc)
           expect(date_range.until_time).to eq(t2.getutc)
 
-          expect(t1.utc_offset).to eq(-28800), 'DateRange initializer should not modify input from_time'
-          expect(t2.utc_offset).to eq(-25200), 'DateRange initializer should not modify input until_time'
+          expect(t1.utc_offset).to eq(-28_800), 'DateRange initializer should not modify input from_time'
+          expect(t2.utc_offset).to eq(-25_200), 'DateRange initializer should not modify input until_time'
         end
 
         it 'rejects invalid ranges' do

@@ -87,11 +87,13 @@ module UCBLIT
       def invert(arr)
         return unless arr
 
-        # noinspection RubyNilAnalysis,RubyYardReturnMatch
-        arr.each_with_index.with_object([]) do |(v, i), inv|
-          next inv[v] = i unless (prev_index = inv[v])
+        # noinspection RubyNilAnalysis
+        Array.new(arr.size).tap do |inv|
+          arr.each_with_index do |v, i|
+            next inv[v] = i unless (prev_index = inv[v])
 
-          raise ArgumentError, "Duplicate value #{v} at index #{i} already found at #{prev_index}"
+            raise ArgumentError, "Duplicate value #{v} at index #{i} already found at #{prev_index}"
+          end
         end
       end
 
@@ -100,28 +102,35 @@ module UCBLIT
       # @param a2 [Array] the second array
       # @return [Array] a merged array that is an ordered superset of both `a1` and `a2`
       # @see Arrays#ordered_superset?
-      # rubocop:disable Metrics/AbcSize
       def merge(a1, a2)
-        shorter, longer = [a1, a2].sort_by(&:size)
+        return a1 if a2.empty?
+        return a2 if a1.empty?
 
+        shorter, longer = a1.size > a2.size ? [a2, a1] : [a1, a2]
+        do_merge(shorter, longer)
+      end
+
+      private
+
+      def do_merge(shorter, longer)
         shorter.each_with_index do |v, ix_s|
           next unless (ix_l = longer.find_index(v))
 
           shorter_unmatched = shorter[0...ix_s]
           longer_unmatched = longer[0...ix_l]
-          all_unmatched = sort_by_first(shorter_unmatched, longer_unmatched).flatten
+          all_unmatched = sort_by_first_and_flatten(shorter_unmatched, longer_unmatched)
           return (all_unmatched << v) + merge(shorter[ix_s + 1..], longer[ix_l + 1..])
         end
 
-        sort_by_first(longer, shorter).flatten
+        sort_by_first_and_flatten(longer, shorter)
       end
-      # rubocop:enable Metrics/AbcSize
 
-      private
+      def sort_by_first_and_flatten(a1, a2)
+        return a1 if a2.empty?
+        return a2 if a1.empty?
+        return a2 + a1 if a1.first.respond_to?(:>) && a1.first > a2.first
 
-      def sort_by_first(a1, a2)
-        do_flip = (order = a1.first.respond_to?(:<=>) && a1.first <=> a2.first) && order > 0
-        (do_flip ? [a2, a1] : [a1, a2])
+        a1 + a2
       end
 
       def find_all_indices(source, target)

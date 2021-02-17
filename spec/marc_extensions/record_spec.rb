@@ -131,6 +131,19 @@ describe MARC::Record do
         dff.each { |df| expect(df.tag).to eq(tag) }
       end
     end
+
+    describe :each_sorted_by_tag do
+      it 'returns all tags if not passed a tag list' do
+        fields = marc_record.fields
+
+        expected = fields.each_with_object({}) do |f, ex|
+          (ex[f.tag] ||= []) << f
+        end.values.flatten
+
+        enum = marc_record.each_sorted_by_tag
+        expect(enum.to_a).to eq(expected)
+      end
+    end
   end
 
   describe :each_control_field do

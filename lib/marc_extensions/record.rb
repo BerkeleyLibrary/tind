@@ -8,15 +8,21 @@ module MARCExtensions
     # Gets the specified fields in order by tag.
     #
     # @see FieldMapExtensions#each_sorted_by_tag
-    # @overload each_sorted_by_tag(tags)
-    #   An enumerator of the specified variable fields.
-    #   @param tags [String, Enumerable<String>] A tag, range of tags, array of tags, or similar
-    #   @return [Enumerator::Lazy<MARC::ControlField, MARC::DataField>] the fields
     # @overload each_sorted_by_tag(tags, &block)
     #   Yields each specified field.
     #   @param tags [String, Enumerable<String>] A tag, range of tags, array of tags, or similar
     #   @yieldparam field [MARC::ControlField, MARC::DataField] Each field.
-    def each_sorted_by_tag(tags, &block)
+    # @overload each_sorted_by_tag(tags)
+    #   An enumerator of the specified variable fields, sorted by tag.
+    #   @param tags [String, Enumerable<String>] A tag, range of tags, array of tags, or similar
+    #   @return [Enumerator::Lazy<MARC::ControlField, MARC::DataField>] the fields
+    # @overload each_sorted_by_tag(&block)
+    #   Yields all fields, sorted by tag.
+    #   @yieldparam field [MARC::ControlField, MARC::DataField] Each field.
+    # @overload each_sorted_by_tag
+    #   An enumerator of all fields, sorted by tag.
+    #   @return [Enumerator::Lazy<MARC::ControlField, MARC::DataField>] the fields
+    def each_sorted_by_tag(tags = nil, &block)
       @fields.each_sorted_by_tag(tags, &block)
     end
 
@@ -31,7 +37,7 @@ module MARCExtensions
     #   Yields each control field.
     #   @yieldparam field [MARC::ControlField] Each control field.
     def each_control_field(&block)
-      each_sorted_by_tag('000'..'009', &block)
+      each_sorted_by_tag.take_while { |df| df.tag.to_i <= 10 }.each(&block)
     end
 
     # Gets only the data fields (tag 010-999) from the record. (Note that
@@ -45,7 +51,7 @@ module MARCExtensions
     #   Yields each data field.
     #   @yieldparam field [MARC::DataField] Each data field.
     def each_data_field(&block)
-      each_sorted_by_tag('010'..'999', &block)
+      each_sorted_by_tag.select { |df| df.tag.to_i > 10 }.each(&block)
     end
 
     # Gets the data fields from the record and groups them by tag.

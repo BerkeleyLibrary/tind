@@ -32,13 +32,7 @@ module UCBLIT
         class << self
 
           def from_data_field(data_field, index_in_tag)
-            raise ArgumentError, "Not a MARC data field: #{data_field}" unless data_field_like?(data_field)
-
             ColumnGroup.new(data_field.tag, index_in_tag, data_field.indicator1, data_field.indicator2, data_field.subfield_codes)
-          end
-
-          def data_field_like?(df)
-            %i[tag indicator1 indicator2 subfield_codes].all? { |m| df.respond_to?(m) }
           end
         end
 
@@ -83,10 +77,9 @@ module UCBLIT
         private
 
         def can_add?(data_field)
-          ColumnGroup.data_field_like?(data_field) &&
-            data_field.tag == tag &&
-            data_field.indicator1 == ind1 &&
-            data_field.indicator2 == ind2
+          data_field.tag == tag &&
+          data_field.indicator1 == ind1 &&
+          data_field.indicator2 == ind2
         end
 
         def subfield_indices_for(row)

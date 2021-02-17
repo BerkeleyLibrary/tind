@@ -4,7 +4,7 @@ module UCBLIT
   module TIND
     module API
       class DateRange
-        FORMAT = '%Y-%m-%d %H:%M:%S'
+        FORMAT = '%Y-%m-%d %H:%M:%S'.freeze
 
         attr_reader :from_time, :until_time
 

@@ -23,10 +23,11 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ruby_version
 
   spec.add_dependency 'http', '~> 4.4'
+  # rchardet should install libxml-ruby, but doesn't (https://github.com/gorn/rspreadsheet/issues/60)
+  spec.add_dependency 'libxml-ruby', '~> 3.2'
   spec.add_dependency 'marc', '~> 1.0'
   spec.add_dependency 'rchardet', '~> 1.8'
-  spec.add_dependency 'roo', '~> 2.8'
-  spec.add_dependency 'roo-xls', '~> 1.2'
+  spec.add_dependency 'rspreadsheet', '~> 0.5'
   spec.add_dependency 'typesafe_enum', '~> 0.3'
   spec.add_dependency 'ucblit-logging'
 

@@ -19,7 +19,7 @@ module UCBLIT
         UCBLIT::TIND::API.instance_variable_set(:@api_key, @api_key_orig)
       end
 
-      describe :export do
+      describe 'export' do
         let(:collection) { 'Bancroft Library' }
 
         before(:each) do
@@ -34,47 +34,64 @@ module UCBLIT
             query_uri = UCBLIT::Util::URIs.append(query_uri, "&search_id=#{search_id}") if search_id
             stub_request(:get, query_uri)
               .with(headers: {
-                      'Authorization' => 'Token not-a-real-api-key',
-                      'Connection' => 'close',
-                      'Host' => 'tind.example.org',
-                      'User-Agent' => 'http.rb/4.4.1'
-                    })
+                'Authorization' => 'Token not-a-real-api-key',
+                'Connection' => 'close',
+                'Host' => 'tind.example.org',
+                'User-Agent' => 'http.rb/4.4.1'
+              })
               .to_return(status: 200, body: body)
           end
         end
 
-        it 'exports a collection' do
-          records = API::Search.new(collection: collection).each_result(freeze: true).to_a
+        describe :export_csv do
 
-          csv_str = StringIO.new.tap do |out|
-            Exporter.export(collection, out)
-          end.string
+          it 'exports a collection' do
+            records = API::Search.new(collection: collection).each_result(freeze: true).to_a
 
-          # TODO: something better than this minimal sanity check
-          aggregate_failures 'rows' do
-            CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
-              marc_record = records[row]
+            csv_str = StringIO.new.tap do |out|
+              Exporter.export_csv(collection, out)
+            end.string
 
-              record_values_by_prefix = {}
-              csv_values_by_prefix = {}
+            # TODO: something better than this minimal sanity check
+            aggregate_failures 'rows' do
+              CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
+                marc_record = records[row]
 
-              csv_row.headers.each do |header|
-                tag, ind1, ind2, subfield_code = ::MARC::Record.decompose_header(header)
-                prefix = [tag, ind1, ind2, subfield_code]
+                record_values_by_prefix = {}
+                csv_values_by_prefix = {}
 
-                record_values = (record_values_by_prefix[prefix] ||= [])
-                record_values.concat(marc_record.values_for(header)).uniq!
+                csv_row.headers.each do |header|
+                  tag, ind1, ind2, subfield_code = ::MARC::Record.decompose_header(header)
+                  prefix = [tag, ind1, ind2, subfield_code]
 
-                value = csv_row[header]
-                csv_values = (csv_values_by_prefix[prefix] ||= [])
-                csv_values << value unless value.to_s == ''
+                  record_values = (record_values_by_prefix[prefix] ||= [])
+                  record_values.concat(marc_record.values_for(header)).uniq!
+
+                  value = csv_row[header]
+                  csv_values = (csv_values_by_prefix[prefix] ||= [])
+                  csv_values << value unless value.to_s == ''
+                end
+
+                record_values_by_prefix.each do |prefix, record_values|
+                  actual = csv_values_by_prefix[prefix].sort
+                  expected = record_values.sort
+                  expect(actual).to eq(expected), "#{row}\t#{prefix}: expected #{expected.inspect}, got #{actual.inspect}"
+                end
               end
+            end
+          end
+        end
 
-              record_values_by_prefix.each do |prefix, record_values|
-                actual = csv_values_by_prefix[prefix].sort
-                expected = record_values.sort
-                expect(actual).to eq(expected), "#{row}\t#{prefix}: expected #{expected.inspect}, got #{actual.inspect}"
-              end
+        describe :export_libreoffice do
+          it 'exports a collection' do
+            # Dir.mktmpdir(File.basename(__FILE__, '.rb')) do |dir|
+            #
+            # end
+
+            File.open('/tmp/exporter_spec.ods', 'wb') do |f|
+              # records = API::Search.new(collection: collection).each_result(freeze: true).to_a
+              Exporter.export_libreoffice(collection, f)
+              puts f.path
             end
           end
         end

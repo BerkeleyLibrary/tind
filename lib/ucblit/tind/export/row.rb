@@ -14,6 +14,10 @@ module UCBLIT
         def values
           columns.map { |c| c.value_at(row) }
         end
+
+        def each_value(&block)
+          columns.map { |c| c.value_at(row) }.each(&block)
+        end
       end
     end
   end

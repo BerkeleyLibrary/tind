@@ -19,10 +19,15 @@ module UCBLIT
         # Factory method
 
         class << self
+          # Returns a new Table for the provided MARC records.
+          #
+          # @param records [Enumerable<MARC::Record>] the records
+          # @param freeze [Boolean] whether to freeze the table
+          # @return [Table] the table
           def from_records(records, freeze: false)
-            records.each_with_object(Table.new) { |r, t| t << r }.tap do |table|
-              table.freeze if freeze
-            end
+            table = records.each_with_object(Table.new) { |r, t| t << r }
+            # noinspection RubyYardReturnMatch
+            table.tap { |t| t.freeze if freeze }
           end
         end
 

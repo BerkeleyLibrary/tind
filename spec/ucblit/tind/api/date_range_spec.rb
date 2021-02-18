@@ -99,6 +99,10 @@ module UCBLIT
             expect(date_range.from_time).to eq(t1.getutc)
             expect(date_range.until_time).to eq(t2.getutc)
           end
+
+          it 'rejects things that are not date/time ranges' do
+            expect { DateRange.ensure_date_range('1975-1990') }.to raise_error(ArgumentError)
+          end
         end
       end
     end

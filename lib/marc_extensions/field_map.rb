@@ -23,8 +23,7 @@ module MARCExtensions
     def each_sorted_by_tag(tags = nil, &block)
       reindex unless @clean
 
-      indices = indices_for(tags)
-      indices.map { |i| self[i] }.each(&block)
+      indices_for(tags).map { |i| self[i] }.each(&block)
     end
 
     private

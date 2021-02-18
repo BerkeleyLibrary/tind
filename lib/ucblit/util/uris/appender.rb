@@ -121,8 +121,8 @@ module UCBLIT
           return q_start unless (f_index = q_start.index('#'))
 
           next_index = elem_index + 1
-          q_start, q_next = split_around(q_start, f_index)
-          elements[next_index] = "#{q_next}#{elements[next_index]}"
+          q_start, q_next = split_around(q_start, f_index)           # NOTE: this doesn't return the '#'
+          elements[next_index] = "##{q_next}#{elements[next_index]}" #       so we prepend one here
           q_start
         end
 

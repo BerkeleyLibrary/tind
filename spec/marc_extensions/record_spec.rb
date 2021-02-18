@@ -104,6 +104,36 @@ describe MARC::Record do
     end
   end
 
+  describe :each_sorted_by_tag do
+    let(:tags) do
+      %w[856 852] # NOTE: not sorted
+    end
+
+    let(:expected) do
+      [].tap do |ff|
+        ff << marc_record['852']
+        marc_record.each_by_tag('856') { |f| ff << f }
+      end
+    end
+
+    it 'returns only fields with the specified tags, sorted, in original order' do
+      result = []
+      marc_record.each_sorted_by_tag(tags) { |f| result << f }
+      expect(result).to eq(expected)
+    end
+
+    it 'returns nil if passed a block' do
+      result = marc_record.each_sorted_by_tag(tags) { |_| next }
+      expect(result).to be_nil
+    end
+
+    it 'returns an enum if not passed a block' do
+      enum = marc_record.each_sorted_by_tag(tags)
+      expect(enum).to be_a(Enumerator::Lazy)
+      expect(enum.to_a).to eq(expected)
+    end
+  end
+
   describe :data_fields_by_tag do
     it 'groups fields by tag' do
       fields = marc_record.fields

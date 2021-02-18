@@ -84,6 +84,29 @@ module UCBLIT::Util
         original_uri = URI('https://example.org/foo/bar')
         expect { URIs.append(original_uri, 'baz#qux', 'grault#plugh') }.to raise_error(URI::InvalidComponentError)
       end
+
+      it 'rejects queries after fragments' do
+        original_uri = URI('https://example.org/foo/bar')
+        expect { URIs.append(original_uri, 'baz#qux', '?grault=plugh') }.to raise_error(URI::InvalidComponentError)
+      end
+
+      it 'correctly handles fragments in mid-path-segment' do
+        original_uri = URI('https://example.org/foo/bar')
+        new_uri = URIs.append(original_uri, 'qux#corge')
+        expect(new_uri).to eq(URI('https://example.org/foo/bar/qux#corge'))
+      end
+
+      it 'correctly handles fragments in query start' do
+        original_uri = URI('https://example.org/foo/bar')
+        new_uri = URIs.append(original_uri, '?qux=corge&grault=plugh#xyzzy')
+        expect(new_uri).to eq(URI('https://example.org/foo/bar?qux=corge&grault=plugh#xyzzy'))
+      end
+
+      it 'correctly handles fragments in mid-query' do
+        original_uri = URI('https://example.org/foo/bar')
+        new_uri = URIs.append(original_uri, '?qux=corge', '&grault=plugh#xyzzy')
+        expect(new_uri).to eq(URI('https://example.org/foo/bar?qux=corge&grault=plugh#xyzzy'))
+      end
     end
   end
 end

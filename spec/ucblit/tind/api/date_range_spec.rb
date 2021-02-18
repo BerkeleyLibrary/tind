@@ -43,11 +43,33 @@ module UCBLIT
         end
 
         describe :to_params do
+          let(:tz_utc) { TZInfo::Timezone.get('UTC') }
+          let(:tz_local) { TZInfo::Timezone.get('Antarctica/South_Pole') }
+
+          before(:each) do
+            @tz_orig = UCBLIT::TIND::Config.instance_variable_get(:@timezone)
+          end
+
+          after(:each) do
+            UCBLIT::TIND::Config.instance_variable_set(:@timezone, @tz_orig)
+          end
+
           it 'formats the dates' do
+            UCBLIT::TIND::Config.timezone = tz_utc
+
             date_range = DateRange.new(from_time: t1, until_time: t2)
             params = date_range.to_params
             expect(params[:d1]).to eq('2021-02-16 00:23:14')
             expect(params[:d2]).to eq('2021-02-17 02:23:14')
+          end
+
+          it 'formats the dates in the configured timezone' do
+            UCBLIT::TIND::Config.timezone = tz_local
+
+            date_range = DateRange.new(from_time: t1, until_time: t2)
+            params = date_range.to_params
+            expect(params[:d1]).to eq('2021-02-16 13:23:14')
+            expect(params[:d2]).to eq('2021-02-17 15:23:14')
           end
         end
 

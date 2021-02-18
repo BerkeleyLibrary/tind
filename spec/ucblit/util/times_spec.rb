@@ -28,6 +28,11 @@ module UCBLIT
           utc_time = Time.parse('2021-02-06 00:19:11.37707 UTC')
           expect(Times.ensure_utc(datetime)).to eq(utc_time)
         end
+
+        it 'rejects non-date/time objects' do
+          # noinspection RubyYardParamTypeMatch
+          expect { Times.ensure_utc(Object.new) }.to raise_error(ArgumentError)
+        end
       end
     end
   end

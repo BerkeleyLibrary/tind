@@ -1,4 +1,5 @@
 require 'ucblit/util/uris'
+require 'tzinfo'
 
 module UCBLIT
   module TIND
@@ -16,6 +17,7 @@ module UCBLIT
         include UCBLIT::Util::URIs
 
         ENV_TIND_BASE_URL = 'LIT_TIND_BASE_URL'.freeze
+        DEFAULT_TZID = 'America/Los_Angeles'.freeze
 
         def base_uri
           @base_uri ||= default_tind_base_uri
@@ -25,7 +27,21 @@ module UCBLIT
           @base_uri = uri_or_nil(value)
         end
 
+        def timezone
+          @timezone ||= default_timezone
+        end
+
+        def timezone=(value)
+          raise ArgumentError, "Not a #{TZInfo::Timezone}" unless value.respond_to?(:utc_to_local)
+
+          @timezone = value
+        end
+
         private
+
+        def default_timezone
+          TZInfo::Timezone.get(DEFAULT_TZID)
+        end
 
         def default_tind_base_uri
           return unless (base_url = ENV[ENV_TIND_BASE_URL] || rails_tind_base_uri)

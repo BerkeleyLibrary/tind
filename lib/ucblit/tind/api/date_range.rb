@@ -1,4 +1,5 @@
 require 'ucblit/util/times'
+require 'ucblit/tind/config'
 
 module UCBLIT
   module TIND
@@ -18,7 +19,7 @@ module UCBLIT
         end
 
         def to_params
-          { d1: from_time.strftime(FORMAT), d2: until_time.strftime(FORMAT) }.tap do |params|
+          { d1: format_param(from_time), d2: format_param(until_time) }.tap do |params|
             params[:dt] = 'm' if mtime?
           end
         end
@@ -50,6 +51,15 @@ module UCBLIT
 
             raise ArgumentError, "Not a valid range: #{from_time.inspect}..#{until_time.inspect}"
           end
+        end
+
+        private
+
+        def format_param(t)
+          tz = UCBLIT::TIND::Config.timezone
+          t_utc = UCBLIT::Util::Times.ensure_utc(t) # just to be sure
+          t_local = tz.utc_to_local(t_utc)
+          t_local.strftime(FORMAT)
         end
       end
     end

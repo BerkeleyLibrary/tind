@@ -6,12 +6,12 @@ require 'stringio'
 module UCBLIT
   module TIND
     module API
+      # The environment variable from which to read the TIND API key.
+      ENV_TIND_API_KEY = 'LIT_TIND_API_KEY'.freeze
+
       class << self
         include UCBLIT::Util
         include UCBLIT::TIND::Config
-
-        # The environment variable from which to read the TIND API key.
-        ENV_TIND_API_KEY = 'LIT_TIND_API_KEY'.freeze
 
         # Sets the TIND API key.
         # @param value [String] the API key.
@@ -20,7 +20,7 @@ module UCBLIT
         # Gets the TIND API key.
         # @return [String, nil] the TIND API key, or `nil` if not set.
         def api_key
-          @api_key ||= ENV[ENV_TIND_API_KEY]
+          @api_key ||= ENV[API::ENV_TIND_API_KEY]
         end
 
         # Gets the API base URI.
@@ -79,16 +79,13 @@ module UCBLIT
         private
 
         def do_get(endpoint_url, params)
-          logger.debug("GET #{endpoint_url}")
-
+          logger.info("GET #{endpoint_url}?#{URI.encode_www_form(params)}")
           request = HTTP.follow
           request = request.headers(Authorization: "Token #{api_key}") if api_key
-
-          response = request.get(endpoint_url, params: params)
-          logger.debug("GET #{endpoint_url} returned #{status = response.status}")
-          return response if status.success?
-
-          raise HTTP::ResponseError, status.to_s
+          request.get(endpoint_url, params: params).tap do |response|
+            logger.info("GET #{endpoint_url} returned #{response.status}")
+            raise(HTTP::ResponseError, status.to_s) unless response.status.success?
+          end
         end
 
         def stream_response_body(body)

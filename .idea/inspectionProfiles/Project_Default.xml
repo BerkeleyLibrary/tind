@@ -14,6 +14,7 @@
     <inspection_tool class="RubyNilAnalysis" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="RubyStringKeysInHashInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
     <inspection_tool class="RubyTooManyMethodsInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="RubyUnnecessaryReturnStatement" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="RubyYardParamTypeMatch" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="checkNillability" value="false" />
     </inspection_tool>

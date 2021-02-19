@@ -5,6 +5,9 @@ module UCBLIT
   module TIND
     module Config
 
+      ENV_TIND_BASE_URL = 'LIT_TIND_BASE_URL'.freeze
+      DEFAULT_TZID = 'America/Los_Angeles'.freeze
+
       def base_uri
         Config.base_uri
       end
@@ -15,9 +18,6 @@ module UCBLIT
 
       class << self
         include UCBLIT::Util::URIs
-
-        ENV_TIND_BASE_URL = 'LIT_TIND_BASE_URL'.freeze
-        DEFAULT_TZID = 'America/Los_Angeles'.freeze
 
         def base_uri
           @base_uri ||= default_tind_base_uri
@@ -40,11 +40,11 @@ module UCBLIT
         private
 
         def default_timezone
-          TZInfo::Timezone.get(DEFAULT_TZID)
+          TZInfo::Timezone.get(Config::DEFAULT_TZID)
         end
 
         def default_tind_base_uri
-          return unless (base_url = ENV[ENV_TIND_BASE_URL] || rails_tind_base_uri)
+          return unless (base_url = ENV[Config::ENV_TIND_BASE_URL] || rails_tind_base_uri)
 
           uri_or_nil(base_url)
         end

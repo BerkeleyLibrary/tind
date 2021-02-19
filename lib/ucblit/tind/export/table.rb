@@ -14,6 +14,7 @@ module UCBLIT
     module Export
       class Table
         include UCBLIT::Util::Arrays
+        include UCBLIT::TIND::Config
 
         # ------------------------------------------------------------
         # Factory method
@@ -100,11 +101,11 @@ module UCBLIT
         def <<(marc_record)
           raise FrozenError, "can't modify frozen MARCTable" if frozen?
 
-          warn 'MARC record is not frozen' unless marc_record.frozen?
-
+          logger.warn('MARC record is not frozen') unless marc_record.frozen?
           add_data_fields(marc_record, marc_records.size)
-
           marc_records << marc_record
+          log_record_added(marc_record)
+
           self
         end
 
@@ -136,6 +137,10 @@ module UCBLIT
         # Private methods
 
         private
+
+        def log_record_added(marc_record)
+          return logger.info("Added #{marc_record.record_id}: #{row_count} records total") if marc_record
+        end
 
         def column_groups_by_tag
           @column_groups_by_tag ||= {}

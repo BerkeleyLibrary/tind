@@ -4,7 +4,7 @@ require 'roo'
 module UCBLIT
   # noinspection RubyYardParamTypeMatch
   module TIND
-    describe Exporter do
+    describe Export do
       let(:base_uri) { 'https://tind.example.org/' }
       let(:api_key) { 'not-a-real-api-key' }
 
@@ -55,7 +55,7 @@ module UCBLIT
             expected_csv = expected_table.to_csv
 
             csv_str = StringIO.new.tap do |out|
-              Exporter.export_csv(collection, out)
+              Export.export_csv(collection, out)
             end.string
 
             expect(csv_str).to eq(expected_csv)
@@ -70,7 +70,7 @@ module UCBLIT
               output_path = File.join(dir, "#{basename}.ods")
               File.open(output_path, 'wb') do |f|
                 # records = API::Search.new(collection: collection).each_result(freeze: true).to_a
-                Exporter.export_libreoffice(collection, f)
+                Export.export_libreoffice(collection, f)
               end
 
               ss = Roo::Spreadsheet.open(output_path)
@@ -105,7 +105,7 @@ module UCBLIT
             basename = File.basename(__FILE__, '.rb')
             Dir.mktmpdir(basename) do |dir|
               output_path = File.join(dir, "#{basename}.ods")
-              Exporter.export_libreoffice(collection, output_path)
+              Export.export_libreoffice(collection, output_path)
 
               ss = Roo::Spreadsheet.open(output_path)
 

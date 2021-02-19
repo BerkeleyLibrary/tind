@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
+require 'dotenv/load'
+require 'ucblit/tind'
+
+UCBLIT::TIND::Export::ExportCommand.new.execute!

@@ -4,12 +4,10 @@ module UCBLIT
   module TIND
     module API
       class Format < TypesafeEnum::Base
-        new(:ID, 'id'.freeze)
-        new(:XML, 'xml'.freeze)
-        new(:FILES, 'files'.freeze)
-        new(:JSON, 'json'.freeze)
+        %i[ID XML FILES JSON].each { |fmt| new(fmt) }
 
         def to_s
+          # noinspection RubyYardReturnMatch
           value
         end
 
@@ -22,10 +20,10 @@ module UCBLIT
             return unless format
             return format if format.is_a?(Format)
 
-            fmt = Format.find_by_value(format.to_s)
+            fmt = Format.find_by_value(format.to_s.downcase)
             return fmt if fmt
 
-            raise ArgumentError, "Can't convert #{format.inspect} to #{Format}"
+            raise ArgumentError, "Unknown #{Format}: #{format.inspect}"
           end
         end
       end

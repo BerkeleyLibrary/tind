@@ -7,8 +7,10 @@ module UCBLIT
   module TIND
     class << self
       def logger
-        UCBLIT::Logging::Loggers.default_logger
+        @logger ||= UCBLIT::Logging::Loggers.default_logger
       end
+
+      attr_writer :logger
     end
   end
 end

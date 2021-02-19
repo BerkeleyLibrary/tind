@@ -83,6 +83,17 @@ module MARCExtensions
       (fields.frozen? && leader.frozen?)
     end
 
+    # TODO: use info from parsed documentation? or move to TIND-specific extension
+    def record_id
+      cf_001 = self['001']
+      return cf_001.value if cf_001
+
+      df_024 = self['024']
+      return df_024['a'] if df_024['a']
+
+      df_035 = self['035']
+      return df_035['a'] if df_035['a']
+    end
   end
 end
 

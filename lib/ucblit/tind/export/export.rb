@@ -1,13 +1,22 @@
-require 'ucblit/tind/api/search'
 require 'rodf'
+require 'ucblit/tind/api/search'
+require 'ucblit/tind/export/table'
+require 'ucblit/tind/export/export_format'
 
 module UCBLIT
   module TIND
-    module Exporter
+    module Export
+
       class << self
+        include UCBLIT::TIND::Config
+
+        def export(collection, format = ExportFormat::CSV, out = $stdout)
+          ExportFormat.ensure_format(format).export(collection, out)
+        end
 
         def export_csv(collection, out = $stdout)
           table = table_for(collection)
+          logger.info('Writing CSV')
           table.to_csv(out)
         end
 
@@ -26,14 +35,18 @@ module UCBLIT
         # @param collection [String] the collection name
         # @return [Export::Table] the table
         def table_for(collection)
+          logger.info("Reading collection #{collection.inspect}")
           search = API::Search.new(collection: collection)
           results = search.each_result(freeze: true)
+
+          logger.info('Creating export table')
           # noinspection RubyYardParamTypeMatch
           Export::Table.from_records(results, freeze: true)
         end
 
         def libreoffice_spreadsheet_for(collection)
           table = table_for(collection)
+          logger.info('Creating spreadsheet')
           RODF::Spreadsheet.new do
             table(collection) do
               row { table.headers.each { |h| cell(h) } }

@@ -55,6 +55,7 @@ module UCBLIT
 
         private
 
+        # TODO: figure out why we're never getting > 200 records
         def perform_search(search_id: nil, freeze: false, &block)
           logger.info("perform_search(search_id: #{search_id.inspect})")
           params = search_id ? self.params.merge(search_id: search_id) : self.params

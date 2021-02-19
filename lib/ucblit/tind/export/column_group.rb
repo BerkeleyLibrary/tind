@@ -30,7 +30,6 @@ module UCBLIT
         # Class methods
 
         class << self
-
           def from_data_field(data_field, index_in_tag)
             ColumnGroup.new(data_field.tag, index_in_tag, data_field.indicator1, data_field.indicator2, data_field.subfield_codes)
           end

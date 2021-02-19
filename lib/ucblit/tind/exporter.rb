@@ -1,5 +1,5 @@
 require 'ucblit/tind/api/search'
-require 'rspreadsheet'
+require 'rodf'
 
 module UCBLIT
   module TIND
@@ -12,20 +12,14 @@ module UCBLIT
         end
 
         def export_libreoffice(collection, out = $stdout)
-          wb = Rspreadsheet.new
-          ws = wb.create_worksheet
           table = table_for(collection)
-          # NOTE: spreadsheet rows/columns are 1-indexed
-          table.headers.each_with_index do |h, col|
-            ws.cell(1, col + 1).value = h
-          end
-          table.each_row.with_index do |r, row|
-            r.each_value.with_index do |v, col|
-              puts("cell(#{row + 1}, #{col + 1}).value = #{v.inspect}")
-              ws.cell(row + 1, col + 1).value = v
+          ss = RODF::Spreadsheet.new do
+            table(collection) do
+              row { table.headers.each { |h| cell(h) } }
+              table.each_row { |r| row { r.each_value { |v| cell(v) } } }
             end
           end
-          wb.save(out)
+          out.write(ss.bytes)
         end
 
         private

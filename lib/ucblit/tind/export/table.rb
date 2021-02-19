@@ -32,6 +32,15 @@ module UCBLIT
         end
 
         # ------------------------------------------------------------
+        # Cell accessors
+
+        def value_at(row, col)
+          return unless (column = columns[col])
+
+          column.value_at(row)
+        end
+
+        # ------------------------------------------------------------
         # Column accessors
 
         # The column headers
@@ -47,6 +56,10 @@ module UCBLIT
         def columns
           # NOTE: this isn't ||= because we only cache on #freeze
           @columns || all_column_groups.map(&:columns).flatten
+        end
+
+        def column_count
+          columns.size
         end
 
         # ------------------------------------------------------------

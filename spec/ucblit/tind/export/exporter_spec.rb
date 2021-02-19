@@ -1,6 +1,8 @@
 require 'spec_helper'
+require 'roo'
 
 module UCBLIT
+  # noinspection RubyYardParamTypeMatch
   module TIND
     describe Exporter do
       let(:base_uri) { 'https://tind.example.org/' }
@@ -22,6 +24,8 @@ module UCBLIT
       describe 'export' do
         let(:collection) { 'Bancroft Library' }
 
+        attr_reader :expected_table
+
         before(:each) do
           search_id_to_page = {
             nil => 'spec/data/records-api-search-p1.xml',
@@ -34,64 +38,66 @@ module UCBLIT
             query_uri = UCBLIT::Util::URIs.append(query_uri, "&search_id=#{search_id}") if search_id
             stub_request(:get, query_uri)
               .with(headers: {
-                'Authorization' => 'Token not-a-real-api-key',
-                'Connection' => 'close',
-                'Host' => 'tind.example.org',
-                'User-Agent' => 'http.rb/4.4.1'
-              })
+                      'Authorization' => 'Token not-a-real-api-key',
+                      'Connection' => 'close',
+                      'Host' => 'tind.example.org',
+                      'User-Agent' => 'http.rb/4.4.1'
+                    })
               .to_return(status: 200, body: body)
           end
+
+          records = API::Search.new(collection: collection).each_result(freeze: true).to_a
+          @expected_table = Export::Table.from_records(records, freeze: true)
         end
 
         describe :export_csv do
-
           it 'exports a collection' do
-            records = API::Search.new(collection: collection).each_result(freeze: true).to_a
+            expected_csv = expected_table.to_csv
 
             csv_str = StringIO.new.tap do |out|
               Exporter.export_csv(collection, out)
             end.string
 
-            # TODO: something better than this minimal sanity check
-            aggregate_failures 'rows' do
-              CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
-                marc_record = records[row]
-
-                record_values_by_prefix = {}
-                csv_values_by_prefix = {}
-
-                csv_row.headers.each do |header|
-                  tag, ind1, ind2, subfield_code = ::MARC::Record.decompose_header(header)
-                  prefix = [tag, ind1, ind2, subfield_code]
-
-                  record_values = (record_values_by_prefix[prefix] ||= [])
-                  record_values.concat(marc_record.values_for(header)).uniq!
-
-                  value = csv_row[header]
-                  csv_values = (csv_values_by_prefix[prefix] ||= [])
-                  csv_values << value unless value.to_s == ''
-                end
-
-                record_values_by_prefix.each do |prefix, record_values|
-                  actual = csv_values_by_prefix[prefix].sort
-                  expected = record_values.sort
-                  expect(actual).to eq(expected), "#{row}\t#{prefix}: expected #{expected.inspect}, got #{actual.inspect}"
-                end
-              end
-            end
+            expect(csv_str).to eq(expected_csv)
           end
         end
 
         describe :export_libreoffice do
           it 'exports a collection' do
-            # Dir.mktmpdir(File.basename(__FILE__, '.rb')) do |dir|
-            #
-            # end
+            basename = File.basename(__FILE__, '.rb')
 
-            File.open('/tmp/exporter_spec.ods', 'wb') do |f|
-              # records = API::Search.new(collection: collection).each_result(freeze: true).to_a
-              Exporter.export_libreoffice(collection, f)
-              puts f.path
+            Dir.mktmpdir(basename) do |dir|
+              output_path = File.join(dir, "#{basename}.ods")
+              File.open(output_path, 'wb') do |f|
+                # records = API::Search.new(collection: collection).each_result(freeze: true).to_a
+                Exporter.export_libreoffice(collection, f)
+              end
+
+              ss = Roo::Spreadsheet.open(output_path)
+
+              # NOTE: spreadsheets are 1-indexed, but row 1 is header
+
+              aggregate_failures 'headers' do
+                expected_table.headers.each_with_index do |h, col|
+                  ss_col = 1 + col
+                  actual_header = ss.cell(1, ss_col)
+                  expect(actual_header).to eq(h), "Expected header #{h.inspect} for column #{ss_col}, got #{actual_header.inspect}"
+                end
+              end
+
+              aggregate_failures 'values' do
+                (0..expected_table.row_count).each do |row|
+                  ss_row = 2 + row # row 1 is header
+                  (0..expected_table.column_count).each do |col|
+                    ss_col = 1 + col
+                    expected_value = expected_table.value_at(row, col)
+                    actual_value = ss.cell(ss_row, ss_col)
+                    expect(actual_value).to eq(expected_value), "(#{ss_row}, #{ss_col}): expected #{expected_value.inspect}, got #{actual_value.inspect}"
+                  end
+                end
+              end
+
+              ss.close
             end
           end
         end

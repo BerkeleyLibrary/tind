@@ -23,7 +23,7 @@ module UCBLIT
 
         describe :all do
           it 'reads the collections from the API' do
-            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/collection?depth=100')
+            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/collections?depth=100')
             stub_request(:get, query_uri)
               .with(headers: {
                       'Authorization' => 'Token not-a-real-api-key',
@@ -48,10 +48,30 @@ module UCBLIT
           end
 
           it 'returns an empty array in the event of an error' do
-            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/collection?depth=100')
+            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/collections?depth=100')
             stub_request(:get, query_uri).to_return(status: 404)
 
             expect(Collection.all).to eq([])
+          end
+        end
+
+        describe :each_collection do
+          it 'yields each collection' do
+            collections_json = File.read('spec/data/collections.json')
+            expected_names = File.readlines('spec/data/collection-names.txt', chomp: true)
+
+            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/collections?depth=100')
+            stub_request(:get, query_uri)
+              .with(headers: {
+                      'Authorization' => 'Token not-a-real-api-key',
+                      'Connection' => 'close',
+                      'Host' => 'tind.example.org',
+                      'User-Agent' => 'http.rb/4.4.1'
+                    })
+              .to_return(status: 200, body: collections_json)
+
+            actual_names = Collection.each_collection.each_with_object([]) { |c, arr| arr << c.name }
+            expect(actual_names).to contain_exactly(*expected_names)
           end
         end
       end

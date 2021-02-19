@@ -100,6 +100,40 @@ module UCBLIT
               ss.close
             end
           end
+
+          it 'exports to a file' do
+            basename = File.basename(__FILE__, '.rb')
+            Dir.mktmpdir(basename) do |dir|
+              output_path = File.join(dir, "#{basename}.ods")
+              Exporter.export_libreoffice(collection, output_path)
+
+              ss = Roo::Spreadsheet.open(output_path)
+
+              # NOTE: spreadsheets are 1-indexed, but row 1 is header
+
+              aggregate_failures 'headers' do
+                expected_table.headers.each_with_index do |h, col|
+                  ss_col = 1 + col
+                  actual_header = ss.cell(1, ss_col)
+                  expect(actual_header).to eq(h), "Expected header #{h.inspect} for column #{ss_col}, got #{actual_header.inspect}"
+                end
+              end
+
+              aggregate_failures 'values' do
+                (0..expected_table.row_count).each do |row|
+                  ss_row = 2 + row # row 1 is header
+                  (0..expected_table.column_count).each do |col|
+                    ss_col = 1 + col
+                    expected_value = expected_table.value_at(row, col)
+                    actual_value = ss.cell(ss_row, ss_col)
+                    expect(actual_value).to eq(expected_value), "(#{ss_row}, #{ss_col}): expected #{expected_value.inspect}, got #{actual_value.inspect}"
+                  end
+                end
+              end
+
+              ss.close
+            end
+          end
         end
       end
     end

@@ -21,15 +21,29 @@ module UCBLIT
           names['en']
         end
 
+        def each_descendant(include_self: false, &block)
+          yield self if include_self
+
+          children.each { |c| c.each_descendant(include_self: include_self, &block) }
+        end
+
         class << self
           include UCBLIT::TIND::Config
 
+          ENDPOINT = 'collections'.freeze
+
           def all
-            json = API.get(:collection, depth: 100)
+            json = API.get(ENDPOINT, depth: 100)
             all_from_json(json)
           rescue HTTP::ResponseError => e
             logger.error(e)
             []
+          end
+
+          def each_collection(&block)
+            return to_enum(:each_collection) unless block_given?
+
+            all.each { |c| c.each_descendant(include_self: true, &block) }
           end
 
           def all_from_json(json)

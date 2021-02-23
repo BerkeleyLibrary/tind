@@ -42,6 +42,16 @@ module UCBLIT
         class << self
 
           DEFAULT_FORMAT = ExportFormat::CSV
+          FORMATS = ExportFormat.to_a.map(&:value).join(', ')
+          OPTS = {
+            f: ['--format FORMAT', "Format (#{FORMATS}; defaults to output file extension, or else to #{DEFAULT_FORMAT})"],
+            o: ['--output-file FILE', 'Output file'],
+            l: ['--list-collections', 'List collection names'],
+            u: ['--tind-base-url URL', "TIND base URL (default $#{UCBLIT::TIND::Config::ENV_TIND_BASE_URL})"],
+            k: ['--api-key KEY', "TIND API key (default $#{UCBLIT::TIND::API::ENV_TIND_API_KEY})"],
+            v: ['--verbose', 'Verbose error logging'],
+            h: ['--help', 'Show help and exit']
+          }.freeze
 
           def parse_options(argv)
             opts = {}
@@ -89,23 +99,20 @@ module UCBLIT
             ExportFormat.ensure_format(fmt)
           end
 
+          # rubocop:disable Metrics/AbcSize
           def option_parser(opts = {})
-            formats = ExportFormat.to_a.map(&:value).join(', ')
             OptionParser.new do |p|
               p.summary_indent = ' '
-              p.on('-f', '--format FORMAT', "Format (#{formats}; defaults to output file extension, or else to #{DEFAULT_FORMAT})") do |fmt|
-                opts[:format] = fmt
-              end
-              p.on('-o', '--output-file FILE', 'Output file') { |out| opts[:outfile] = out }
-              p.on('-l', '--list-collections', 'List collection names') { opts[:list] = true }
-              p.on('-u', '--tind-base-url URL', "TIND base URL (default $#{UCBLIT::TIND::Config::ENV_TIND_BASE_URL})") do |url|
-                opts[:tind_base_url] = url
-              end
-              p.on('-k', '--api-key KEY', "TIND API key (default $#{UCBLIT::TIND::API::ENV_TIND_API_KEY})") { |k| opts[:api_key] = k }
-              p.on('-v', '--verbose', 'Verbose error logging') { opts[:verbose] = true }
-              p.on('-h', '--help', 'Show help and exit') { print_usage_and_exit! }
+              p.on('-f', *OPTS[:f]) { |fmt| opts[:format] = fmt }
+              p.on('-o', *OPTS[:o]) { |out| opts[:outfile] = out }
+              p.on('-l', *OPTS[:l]) { opts[:list] = true }
+              p.on('-u', *OPTS[:u]) { |url| opts[:tind_base_url] = url }
+              p.on('-k', *OPTS[:k]) { |k| opts[:api_key] = k }
+              p.on('-v', *OPTS[:v]) { opts[:verbose] = true }
+              p.on('-h', *OPTS[:h]) { print_usage_and_exit! }
             end
           end
+          # rubocop:enable Metrics/AbcSize
 
           def print_usage_and_exit!(out = $stdout, exit_code = 0, msg = nil)
             out.puts("#{msg}\n\n") if msg

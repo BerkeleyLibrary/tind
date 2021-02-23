@@ -115,14 +115,14 @@ module UCBLIT
 
           def usage
             <<~USAGE
-              Usage: tind-export [options]
+              Usage: tind-export [options] COLLECTION
 
               Options:
                 #{summarize_options}
 
               Examples:
                 tind-export --list-collections
-                tind-export 'Abraham Lincoln Papers' -f ODS -o lincoln-papers.ods
+                tind-export -f ODS -o lincoln-papers.ods 'Abraham Lincoln Papers'
             USAGE
           end
 

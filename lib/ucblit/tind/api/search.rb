@@ -55,19 +55,20 @@ module UCBLIT
 
         private
 
-        # TODO: figure out why we're never getting > 200 records
         def perform_search(search_id: nil, freeze: false, &block)
           logger.info("perform_search(search_id: #{search_id.inspect})")
           params = search_id ? self.params.merge(search_id: search_id) : self.params
           next_search_id = perform_single_search(params, freeze, &block)
-          perform_search(search_id: next_search_id, freeze: freeze, &block) if next_search_id && next_search_id != search_id
+          perform_search(search_id: next_search_id, freeze: freeze, &block) if next_search_id
         end
 
         def perform_single_search(params, freeze, &block)
           API.get(:search, params) do |body|
             xml_reader = UCBLIT::TIND::MARC::XMLReader.read(body, freeze: freeze)
             xml_reader.each(&block)
-            xml_reader.search_id
+            logger.debug("yielded #{xml_reader.records_yielded} of #{xml_reader.total} records")
+            logger.debug("next search ID: #{xml_reader.search_id}")
+            xml_reader.search_id if xml_reader.records_yielded > 0
           ensure
             body.close
           end

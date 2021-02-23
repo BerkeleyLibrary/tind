@@ -83,8 +83,9 @@ module UCBLIT
           request = HTTP.follow
           request = request.headers(Authorization: "Token #{api_key}") if api_key
           request.get(endpoint_url, params: params).tap do |response|
-            logger.info("GET #{endpoint_url} returned #{response.status}")
-            raise(HTTP::ResponseError, status.to_s) unless response.status.success?
+            status = response.status
+            logger.info("GET #{endpoint_url} returned #{status}")
+            raise(HTTP::ResponseError, status.to_s) unless status.success?
           end
         end
 

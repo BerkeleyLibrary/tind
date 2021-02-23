@@ -23,42 +23,50 @@ module UCBLIT
 
       describe 'export' do
         let(:collection) { 'Bancroft Library' }
+        let(:search) { Search.new(collection: collection) }
+        let(:search_id) { 'DnF1ZXJ5VGhlbkZldG' }
+        let(:expected_count) { 554 }
 
         attr_reader :expected_table
 
         before(:each) do
-          search_id_to_page = {
-            nil => 'spec/data/records-api-search-p1.xml',
-            'adBJG2ThENlR5UGc4SEFSVlM4eGQwF9B' => 'spec/data/records-api-search-p2.xml',
-            'noFSHTv5UM3o0Z1NZaDNUU2kwZ1BonJ4' => 'spec/data/records-api-search.xml'
-          }
-          search_id_to_page.each do |search_id, body_src|
-            body = File.read(body_src)
-            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Bancroft%20Library&format=xml')
-            query_uri = UCBLIT::Util::URIs.append(query_uri, "&search_id=#{search_id}") if search_id
-            stub_request(:get, query_uri)
-              .with(headers: {
-                      'Authorization' => 'Token not-a-real-api-key',
-                      'Connection' => 'close',
-                      'Host' => 'tind.example.org',
-                      'User-Agent' => 'http.rb/4.4.1'
-                    })
-              .to_return(status: 200, body: body)
-          end
+          result_xml_pages = (1..7).map { |page| File.read("spec/data/records-api-search-p#{page}.xml") }
 
-          records = API::Search.new(collection: collection).each_result(freeze: true).to_a
-          @expected_table = Export::Table.from_records(records, freeze: true)
+          query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Bancroft%20Library&format=xml')
+          headers = {
+            'Authorization' => 'Token not-a-real-api-key',
+            'Connection' => 'close',
+            'Host' => 'tind.example.org',
+            'User-Agent' => 'http.rb/4.4.1'
+          }
+
+          stub_request(:get, query_uri)
+            .with(headers: headers).to_return(status: 200, body: result_xml_pages[0])
+
+          query_uri = UCBLIT::Util::URIs.append(query_uri, "&search_id=#{search_id}")
+          stubs = result_xml_pages[1..].map { |b| { status: 200, body: b } }
+          stub_request(:get, query_uri).with(headers: headers).to_return(stubs)
+
+          expected_records = Enumerator.new do |y|
+            result_xml_pages.each do |xml_page|
+              reader = UCBLIT::TIND::MARC::XMLReader.new(xml_page, freeze: true)
+              reader.each { |marc_record| y << marc_record }
+            end
+          end
+          @expected_table = Export::Table.from_records(expected_records, freeze: true)
         end
 
         describe :export_csv do
           it 'exports a collection' do
             expected_csv = expected_table.to_csv
 
-            csv_str = StringIO.new.tap do |out|
+            actual_csv = StringIO.new.tap do |out|
               Export.export_csv(collection, out)
             end.string
 
-            expect(csv_str).to eq(expected_csv)
+            File.open('tmp/actual.csv', 'wb') { |f| f.write(actual_csv) }
+            File.open('tmp/expected.csv', 'wb') { |f| f.write(expected_csv) }
+            expect(actual_csv).to eq(expected_csv)
           end
         end
 

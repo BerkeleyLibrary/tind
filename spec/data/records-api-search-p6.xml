@@ -1,0 +1,2436 @@
+<response>
+  <total>554</total>
+  <search_id>DnF1ZXJ5VGhlbkZldG</search_id>
+  <collection xmlns="http://www.loc.gov/MARC21/slim">
+    <record>
+  <controlfield tag="001">32100</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:125--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139970</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 13. Spreckels Sugar Mill, Salinas Valley]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">194421</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32100/files/I0028225A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf7f59p3gz</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139970.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32103</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:166--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139994</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 15. Earthquake Effects; Frame Buildings]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">177509</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32103/files/I0028266A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf6k4009c9</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139994.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32109</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:119--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140122</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 23. Earthquake and Fire Effects for First Class Structures, Mainly Class A Type]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">155839</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32109/files/I0028550A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf9199p4rk</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140122.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32113</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:079--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139930</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">10. Palo Alto, Principally Stanford University</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">202255</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32113/files/I0028179A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf6k4009bs</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139930.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32127</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:227--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140038</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[First Unitarian Church, Franklin and Geary]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">148946</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32127/files/I0028341A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf1n39n956</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140038.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32128</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:167--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139828</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 2. General Views, Earthquake and Fire Ruins]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">147419</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32128/files/I0027935A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf9b69p447</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139828.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32132</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:115--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139961</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">North Second St. between St. John and Santa Clara Sts., San Jose</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">174536</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32132/files/I0028215A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf700009gs</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139961.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32133</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:204--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140181</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Fair Building, Front &amp; Pacific Streets, corrugated iron doors</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">203317</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32133/files/I0028635A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf45800750</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140181.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32138</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:228--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139854</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Haywards [Hayward] - General View</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">187986</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32138/files/I0027996A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf9779p3tf</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139854.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32141</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:093--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140102</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Main entrance - Ellis Street</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">175674</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32141/files/I0028524A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf3v19p0mz</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140102.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32146</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 4:024--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140212</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 28. San Francisco Scenes: (1) Buildings and Streets Before the Earthquake and Fire of April 1906; (2) Construction Views After the Calamity]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">179650</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32146/files/I0028697A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf5489p1fw</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140212.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32148</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:024--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140065</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Emporium Dome</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">182860</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32148/files/I0028414A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf8j49p3m0</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140065.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32156</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:231--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140041</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Baptist Church, Oakland</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">177546</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32156/files/I0028347A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf400007kf</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140041.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32168</controlfield>
+  <controlfield tag="005">20200213220651.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:192--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140009</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 17. Earthquake Effects; Brick Buildings]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">175841</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32168/files/I0028292A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf7g5009zr</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140009.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32183</controlfield>
+  <controlfield tag="005">20200213220652.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:055--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140084</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 22. Earthquake Destruction to Public Buildings in San Francisco]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">162503</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32183/files/I0028486A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf4j49p1xf</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140084.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32185</controlfield>
+  <controlfield tag="005">20200213220652.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:232--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139857</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Haywards [Hayward]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">246241</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32185/files/I0028000A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf7199p2r0</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139857.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32186</controlfield>
+  <controlfield tag="005">20200213220652.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:132--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139794</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">2. General Views, Earthquake and Fire Ruins</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">172865</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32186/files/I0027900A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf1r29n94b</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139794.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32212</controlfield>
+  <controlfield tag="005">20200213220652.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:025--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140066</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 21. Earthquake and Fire Effects to Class B Buildings]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">201009</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32212/files/I0028415A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf1000054t</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140066.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32213</controlfield>
+  <controlfield tag="005">20200213220652.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:011--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139879</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 6. Santa Rosa, General Earthquake and Fire Views]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">190300</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32213/files/I0028056A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf6z09p2x5</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139879.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32216</controlfield>
+  <controlfield tag="005">20200213220652.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:075--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139738</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 2. General Views, Earthquake and Fire Ruins]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">176589</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32216/files/I0027843A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf587007pq</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139738.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32399</controlfield>
+  <controlfield tag="005">20200213220654.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:226--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140037</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">First Unitarian Church, Franklin and Geary</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">218336</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32399/files/I0028340A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf0m3nb1x5</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140037.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32401</controlfield>
+  <controlfield tag="005">20200213220654.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:212--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139838</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 2. General Views, Earthquake and Fire Ruins]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">267028</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32401/files/I0027980A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf2f59p04s</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139838.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32406</controlfield>
+  <controlfield tag="005">20200213220654.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:146--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139808</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 2. General Views, Earthquake and Fire Ruins]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">159352</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32406/files/I0027914A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf8m3nb6th</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139808.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32409</controlfield>
+  <controlfield tag="005">20200213220654.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:093--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139942</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">10. Palo Alto, Principally Stanford University</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">184964</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32409/files/I0028193A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf5f59p2r0</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139942.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32413</controlfield>
+  <controlfield tag="005">20200213220654.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:026--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140067</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Enterprise Warehouse, Second and Bryant St. Wooden Floor Beams</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">227524</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32413/files/I0028416A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf28700662</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140067.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32417</controlfield>
+  <controlfield tag="005">20200213220654.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 4:065--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140226</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Stanford Library</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">170404</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32417/files/I0028738A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf0x0nb1s2</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140226.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32436</controlfield>
+  <controlfield tag="005">20200213220654.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:051--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139907</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">8. Damage to San Francisco's Water Supply</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">173956</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32436/files/I0028151A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf6199p1j3</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139907.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32439</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:060--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140087</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">22. Earthquake Destruction to Public Buildings in San Francisco</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">184072</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32439/files/I0028491A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf8000101g</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140087.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32442</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:098--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139760</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 2. General Views, Earthquake and Fire Ruins]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">187569</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32442/files/I0027866A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf200005g9</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139760.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32445</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:181--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140001</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 17. Earthquake Effects; Brick Buildings]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">181546</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32445/files/I0028281A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf809nb6tk</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140001.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32450</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:230--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140040</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[First Unitarian Church, Franklin and Geary]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">178078</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32450/files/I0028345A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf4f59p1g2</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140040.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32451</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:051--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139714</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Market St. from Ferry</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">232610</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32451/files/I0027819A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf4290079d</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139714.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32458</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:068--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140092</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Main Entrance</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">216738</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32458/files/I0028499A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf038nb1nr</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140092.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32459</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:017--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139688</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Copyright 1906 by A. Blumberg</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">169570</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32459/files/I0027785A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf5m3nb4tm</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139688.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32465</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:102--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139764</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 2. General Views, Earthquake and Fire Ruins]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">195382</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32465/files/I0027870A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf409nb483</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139764.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32466</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:108--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139954</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 11. Agnews Insane Asylum]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">173359</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32466/files/I0028208A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf4r29p1d0</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139954.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32469</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:246--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139859</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 5. Geological Views, 1906]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">210222</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32469/files/I0028014A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf3v19p0kf</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139859.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32470</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:083--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139934</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">10. Palo Alto, Principally Stanford University</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">168994</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32470/files/I0028183A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf10000539</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139934.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32471</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:155--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139816</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 2. General Views, Earthquake and Fire Ruins]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">147331</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32471/files/I0027923A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf5p3008tw</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139816.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32472</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:074--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139737</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 2. General Views, Earthquake and Fire Ruins]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">180552</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32472/files/I0027842A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf109nb1kc</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139737.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32474</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:148--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139982</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Concrete Arch at San Leandro, - no reinforcing</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">187068</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32474/files/I0028248A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf3580075p</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139982.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32480</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:207--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140184</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Back of California Wine Association, Townsend near Second</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">212522</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32480/files/I0028638A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf067nb1gt</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140184.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32490</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:155--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139987</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 15. Earthquake Effects; Frame Buildings]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">225703</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32490/files/I0028255A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf1v19n97j</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139987.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32495</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:003--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139674</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Copyright 1906 by Stewart and Rogers</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">241596</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32495/files/I0027771A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf1c6005fj</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139674.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32501</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:105--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140110</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 23. Earthquake and Fire Effects for First Class Structures, Mainly Class A Type]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">205360</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32501/files/I0028536A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf1p3005r5</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140110.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32506</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 4:018--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140208</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Humboldt Bank Aug. 5th '06 [August 5, 1906]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">199090</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32506/files/I0028691A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf7p30100p</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140208.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32519</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 1:140--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139802</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Buckling of cement and expoliation [sic] of stone, due to heat.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">194210</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32519/files/I0027908A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf4b69p0cc</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139802.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32520</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:087--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140098</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Fourth floor, showing damage to hollow tile partitions; also to ceilings by cracking of lower flanges of tile, - what remains is not able to sustain weight</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">198273</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32520/files/I0028518A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf9779p3vz</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140098.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32521</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:116--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140119</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 23. Earthquake and Fire Effects for First Class Structures, Mainly Class A Type]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">177190</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32521/files/I0028547A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf500007ns</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140119.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32523</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:104--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140109</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 23. Earthquake and Fire Effects for First Class Structures, Mainly Class A Type]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">202358</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32523/files/I0028535A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf3r29p0d6</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140109.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32529</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 2:085--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00139936</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">10. Palo Alto, Principally Stanford University</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">208464</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32529/files/I0028185A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf5z09p1vb</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00139936.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32532</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:184--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140172</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Basement Aronson Bldg.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">166022</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32532/files/I0028615A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf6199p1km</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140172.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32533</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:052--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140083</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">[No caption: 22. Earthquake Destruction to Public Buildings in San Francisco]</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">175720</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32533/files/I0028484A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf6s20092z</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140083.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+    <record>
+  <controlfield tag="001">32536</controlfield>
+  <controlfield tag="005">20200213220655.0</controlfield>
+  <datafield tag="024" ind1="8" ind2="0">
+    <subfield code="a">BANC PIC 1958.021 Vol. 3:162--fALB</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">calher_cubanc_25_42_00140155</subfield>
+  </datafield>
+  <datafield tag="245" ind1=" " ind2=" ">
+    <subfield code="a">Crocker Building, Seventh floor</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">Image</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">Researchers may make free and open use of the UC Berkeley Library’s digitized public domain materials. However, some materials in our online collections may be protected by U.S. copyright law (Title 17, U.S.C.). Use or reproduction of materials protected by copyright beyond that allowed by fair use (Title 17, U.S.C. § 107) requires permission from the copyright owners. The use or reproduction of some materials may also be restricted by terms of University of California gift or purchase agreements, privacy and publicity rights, or trademark law. Responsibility for determining rights status and permissibility of any use or reproduction rests exclusively with the researcher. To learn more or make inquiries, please see our permissions policies (https://www.lib.berkeley.edu/about/permissions-policies).</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="c">The Bancroft Library</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://www.oac.cdlib.org/findaid/ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="y">View collection guide</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2=" ">
+    <subfield code="s">186544</subfield>
+    <subfield code="u">http://digicoll.lib.berkeley.edu/record/32536/files/I0028593A.jpg</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">ark:/13030/tf8m3nb6v1</subfield>
+    <subfield code="f">ark:/13030/tf0q2nb1hm</subfield>
+    <subfield code="g">25:42</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="f">cubanc_25_42_00140155.xml</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="a">CalHer: Derleth</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="a">Derleth (Charles) San Francisco</subfield>
+    <subfield code="b">Photographs of the San Francisco Earthquake and Fire from the Charles Derleth Papers</subfield>
+  </datafield>
+</record>
+  </collection>
+</response>

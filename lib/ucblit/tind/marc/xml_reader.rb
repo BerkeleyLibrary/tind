@@ -33,6 +33,13 @@ module UCBLIT
           @total&.to_i
         end
 
+        # Returns the number of records yielded.
+        #
+        # @return [Integer] the number of records yielded.
+        def records_yielded
+          @records_yielded ||= 0
+        end
+
         # ############################################################
         # Initializer
 
@@ -57,6 +64,8 @@ module UCBLIT
         def yield_record
           @record[:record].freeze if @freeze
           super
+        ensure
+          increment_records_yielded!
         end
 
         # ############################################################
@@ -102,10 +111,18 @@ module UCBLIT
         # ############################################################
         # Private
 
+        private
+
         def ensure_io(file)
           return file if file.respond_to?(:read)
+          return File.new(file) if File.exist?(file)
+          return StringIO.new(file) if file =~ /^\s*</x
 
-          File.new(file)
+          raise ArgumentError, "Don't know how to read XML from #{file.inspect}: not an IO, file path, or XML text"
+        end
+
+        def increment_records_yielded!
+          @records_yielded = records_yielded + 1
         end
       end
     end

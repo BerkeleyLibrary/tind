@@ -95,38 +95,43 @@ module UCBLIT
         end
 
         describe 'multiple pages' do
-          let(:search) { Search.new(collection: 'Bancroft Library') }
+          let(:collection) { 'Bancroft Library' }
+          let(:search) { Search.new(collection: collection) }
+          let(:search_id) { 'DnF1ZXJ5VGhlbkZldG' }
+          let(:expected_count) { 554 }
 
           before(:each) do
-            search_id_to_page = {
-              nil => 'spec/data/records-api-search-p1.xml',
-              'adBJG2ThENlR5UGc4SEFSVlM4eGQwF9B' => 'spec/data/records-api-search-p2.xml',
-              'noFSHTv5UM3o0Z1NZaDNUU2kwZ1BonJ4' => 'spec/data/records-api-search.xml'
+            result_xml_pages = (2..7).map { |page| File.read("spec/data/records-api-search-p#{page}.xml") }
+
+            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Bancroft%20Library&format=xml')
+            headers = {
+              'Authorization' => 'Token not-a-real-api-key',
+              'Connection' => 'close',
+              'Host' => 'tind.example.org',
+              'User-Agent' => 'http.rb/4.4.1'
             }
-            search_id_to_page.each do |search_id, body_src|
-              body = File.read(body_src)
-              query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Bancroft%20Library&format=xml')
-              query_uri = UCBLIT::Util::URIs.append(query_uri, "&search_id=#{search_id}") if search_id
-              stub_request(:get, query_uri)
-                .with(headers: {
-                        'Authorization' => 'Token not-a-real-api-key',
-                        'Connection' => 'close',
-                        'Host' => 'tind.example.org',
-                        'User-Agent' => 'http.rb/4.4.1'
-                      })
-                .to_return(status: 200, body: body)
-            end
+
+            stub_request(:get, query_uri)
+              .with(headers: headers).to_return(status: 200, body: File.read('spec/data/records-api-search-p1.xml'))
+
+            query_uri = UCBLIT::Util::URIs.append(query_uri, "&search_id=#{search_id}")
+            stubs = result_xml_pages.map { |b| { status: 200, body: b } }
+            stub_request(:get, query_uri).with(headers: headers).to_return(stubs)
           end
 
           describe :results do
             it 'returns the results' do
               results = search.results
               expect(results).to be_a(Array)
-              expect(results.size).to eq(205)
+              expect(results.size).to eq(expected_count)
 
-              record0 = results[0]
-              expect(record0).to be_a(::MARC::Record)
-              expect(record0['024']['a']).to eq('BANC PIC 1982.078:15--ALB')
+              first = results.first
+              expect(first).to be_a(::MARC::Record)
+              expect(first['024']['a']).to eq('BANC PIC 1958.021 Vol. 2:001--fALB')
+
+              last = results.last
+              expect(last).to be_a(::MARC::Record)
+              expect(last['024']['a']).to eq('BANC PIC 1958.021 Vol. 3:162--fALB')
             end
           end
 
@@ -134,7 +139,7 @@ module UCBLIT
             it 'iterates over the results' do
               results = []
               search.each_result { |r| results << r }
-              expect(results.size).to eq(205)
+              expect(results.size).to eq(expected_count)
             end
 
             it 'returns an enumerator' do
@@ -142,7 +147,7 @@ module UCBLIT
               enum = search.each_result
               expect(enum).to be_a(Enumerable)
               enum.each { |r| results << r }
-              expect(results.size).to eq(205)
+              expect(results.size).to eq(expected_count)
             end
 
             describe :freeze do

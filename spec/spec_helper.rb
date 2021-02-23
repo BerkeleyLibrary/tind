@@ -15,6 +15,7 @@ RSpec.configure do |config|
   config.formatter = :documentation
   config.before(:each) { WebMock.disable_net_connect!(allow_localhost: true) }
   config.after(:each) { WebMock.allow_net_connect! }
+  config.around(:each) { |ex| UCBLIT::TIND.logger.silence { ex.run } }
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end

@@ -183,6 +183,26 @@ module UCBLIT
             end
           end
         end
+
+        it 'handles CJK' do
+          query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Houcun%20ju%20shi%20ji&format=xml')
+          headers = {
+            'Authorization' => 'Token not-a-real-api-key',
+            'Connection' => 'close',
+            'Host' => 'tind.example.org',
+            'User-Agent' => 'http.rb/4.4.1'
+          }
+          stub_request(:get, query_uri).with(headers: headers)
+            .to_return(status: 200, body: File.read('spec/data/records-api-search-cjk-p1.xml'))
+          query_uri = UCBLIT::Util::URIs.append(query_uri, '&search_id=DnF1ZXJ5VGhlbkZldGNoBQAAAAAA')
+          stub_request(:get, query_uri).with(headers: headers)
+            .to_return(status: 200, body: File.read('spec/data/records-api-search-cjk-p2.xml'))
+
+          search = Search.new(collection: 'Houcun ju shi ji')
+          results = search.results
+          expect(results).to be_a(Array)
+          expect(results.size).to eq(5)
+        end
       end
     end
   end

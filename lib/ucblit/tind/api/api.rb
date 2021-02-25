@@ -82,7 +82,7 @@ module UCBLIT
           logger.info("GET #{endpoint_url}?#{URI.encode_www_form(params)}")
           request = HTTP.follow
           request = request.headers(Authorization: "Token #{api_key}") if api_key
-          request.get(endpoint_url, params: params).tap do |response|
+          request.get(endpoint_url, params: params, encoding: Encoding::BINARY).tap do |response|
             status = response.status
             logger.info("GET #{endpoint_url} returned #{status}")
             raise(HTTP::ResponseError, status.to_s) unless status.success?
@@ -94,13 +94,29 @@ module UCBLIT
             t = copying_thread(body, wr)
             yield rd
           ensure
-            t.join
+            t.join if t
           end
         end
 
         def copying_thread(body, dst)
+          body_encoding = body.instance_variable_get(:@encoding).inspect
+          dst_encoding = (dst.encoding if dst.respond_to?(:encoding))
+          UCBLIT::TIND.logger.debug('copying_thread():')
+          UCBLIT::TIND.logger.debug("body.encoding = #{body_encoding}")
+          UCBLIT::TIND.logger.debug("dst.encoding = #{dst_encoding}")
+
           Thread.new do
-            body.each { |chunk| dst.write(chunk) }
+            chunk_encodings = []
+
+            body.each do |chunk|
+              chunk_encoding = (chunk.encoding if chunk.respond_to?(:encoding))
+              if chunk_encoding != chunk_encodings.last || chunk_encodings.empty?
+                UCBLIT::TIND.logger.debug("chunk.encoding = #{chunk_encoding.inspect}")
+              end
+              chunk_encodings << chunk_encoding
+
+              dst.write(chunk)
+            end
           rescue StandardError => e
             UCBLIT::TIND.logger.error(e)
           ensure

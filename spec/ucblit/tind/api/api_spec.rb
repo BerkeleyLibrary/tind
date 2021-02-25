@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'webmock'
 
 module UCBLIT
   module TIND
@@ -17,26 +18,18 @@ module UCBLIT
       end
 
       describe :get do
-        # TODO: make real body streaming work
-        xit "logs an error if the body can't be copied" do
-          expected_msg = 'help I am trapped in a fortune cookie factory'
-          body = instance_double(HTTP::Response::Body)
-          expect(body).to receive(:each).and_raise(IOError, expected_msg)
+        it "raises #{API::APIException} in the event of an invalid response" do
+          aggregate_failures 'responses' do
+            [207, 400, 401, 403, 404, 405, 418, 451, 500, 503].each do |code|
+              endpoint = "endpoint-#{code}"
+              url_str = API.uri_for(endpoint).to_s
+              stub_request(:get, url_str).to_return(status: code)
 
-          instance_double(HTTP::Response).tap do |response|
-            status = HTTP::Response::Status.new(200)
-            allow(response).to receive(:status).and_return(status)
-            allow(response).to receive(:body).and_return(body)
-            allow_any_instance_of(HTTP::Client).to receive(:get).and_return(response)
+              expect { API.get(endpoint) }.to raise_error(API::APIException) do |e|
+                expect(e.message).to include(code.to_s)
+              end
+            end
           end
-
-          logdev = StringIO.new
-          UCBLIT::TIND.logger = Logger.new(logdev)
-
-          result = StringIO.new
-          API.get('some-endpoint') { |b| IO.copy_stream(b, result) }
-          expect(result.string).to be_empty
-          expect(logdev.string).to include(expected_msg)
         end
       end
     end

@@ -28,12 +28,7 @@ module UCBLIT
             body = File.read('spec/data/records-api-search.xml')
             query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Bancroft%20Library&format=xml')
             stub_request(:get, query_uri)
-              .with(headers: {
-                      'Authorization' => 'Token not-a-real-api-key',
-                      'Connection' => 'close',
-                      'Host' => 'tind.example.org',
-                      'User-Agent' => 'http.rb/4.4.1'
-                    })
+              .with(headers: { 'Authorization' => 'Token not-a-real-api-key' })
               .to_return(status: 200, body: body)
           end
 
@@ -104,12 +99,7 @@ module UCBLIT
             result_xml_pages = (1..7).map { |page| File.read("spec/data/records-api-search-p#{page}.xml") }
 
             query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Bancroft%20Library&format=xml')
-            headers = {
-              'Authorization' => 'Token not-a-real-api-key',
-              'Connection' => 'close',
-              'Host' => 'tind.example.org',
-              'User-Agent' => 'http.rb/4.4.1'
-            }
+            headers = { 'Authorization' => 'Token not-a-real-api-key' }
 
             stub_request(:get, query_uri)
               .with(headers: headers).to_return(status: 200, body: result_xml_pages[0])
@@ -186,12 +176,7 @@ module UCBLIT
 
         it 'handles CJK' do
           query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Houcun%20ju%20shi%20ji&format=xml')
-          headers = {
-            'Authorization' => 'Token not-a-real-api-key',
-            'Connection' => 'close',
-            'Host' => 'tind.example.org',
-            'User-Agent' => 'http.rb/4.4.1'
-          }
+          headers = { 'Authorization' => 'Token not-a-real-api-key' }
           stub_request(:get, query_uri).with(headers: headers)
             .to_return(status: 200, body: File.read('spec/data/records-api-search-cjk-p1.xml'))
           query_uri = UCBLIT::Util::URIs.append(query_uri, '&search_id=DnF1ZXJ5VGhlbkZldGNoBQAAAAAA')

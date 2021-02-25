@@ -19,6 +19,19 @@ module UCBLIT
             records.each { |r| table << r }
             expect(table.marc_records).to eq(records)
           end
+
+          it 'logs the MARC record ID and data field in the event of a bad indicator' do
+            tag = '245'
+            ind_bad = '!'
+
+            record = records.first
+            record[tag].indicator1 = ind_bad
+            expect { table << record }.to raise_error(Export::ExportException) do |e|
+              expect(e.message).to include('184458')
+              expect(e.message).to include(tag)
+              expect(e.message).to include(ind_bad)
+            end
+          end
         end
 
         describe :headers do
@@ -242,6 +255,7 @@ module UCBLIT
             end
           end
         end
+
       end
     end
   end

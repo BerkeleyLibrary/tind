@@ -22,9 +22,9 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ruby_version
 
-  spec.add_dependency 'http', '~> 4.4'
   spec.add_dependency 'marc', '~> 1.0'
   spec.add_dependency 'rchardet', '~> 1.8'
+  spec.add_dependency 'rest-client', '~> 2.1'
   spec.add_dependency 'rodf', '~> 1.1'
   spec.add_dependency 'typesafe_enum', '~> 0.3'
   spec.add_dependency 'ucblit-logging'

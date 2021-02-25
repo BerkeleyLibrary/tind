@@ -1,7 +1,9 @@
-require 'http'
+require 'stringio'
+require 'open-uri'
+
 require 'ucblit/tind/config'
 require 'ucblit/util/uris'
-require 'stringio'
+require 'ucblit/tind/api/api_exception'
 
 module UCBLIT
   module TIND
@@ -70,27 +72,24 @@ module UCBLIT
           endpoint_url = uri_for(endpoint).to_s
           raise ArgumentError, "No endpoint URL found for #{endpoint.inspect}" if endpoint_url.empty?
 
-          response = do_get(endpoint_url, params)
-          return response.body.to_s unless block_given?
+          body = URIs.get(endpoint_url, params, headers)
+          return body unless block_given?
 
-          stream_response_body(response.body, &block)
+          stream_response_body(body, &block)
+        rescue RestClient::RequestFailed => e
+          raise APIException, e.message
         end
 
         private
 
-        def do_get(endpoint_url, params)
-          logger.info("GET #{endpoint_url}?#{URI.encode_www_form(params)}")
-          request = HTTP.follow
-          request = request.headers(Authorization: "Token #{api_key}") if api_key
-          request.get(endpoint_url, params: params, encoding: Encoding::BINARY).tap do |response|
-            status = response.status
-            logger.info("GET #{endpoint_url} returned #{status}")
-            raise(HTTP::ResponseError, status.to_s) unless status.success?
+        def headers
+          {}.tap do |headers|
+            headers['Authorization'] = "Token #{api_key}" if api_key
           end
         end
 
+        # TODO: make real body streaming work
         def stream_response_body(body)
-          # TODO: make real body streaming work
           yield StringIO.new(body.to_s)
         end
       end

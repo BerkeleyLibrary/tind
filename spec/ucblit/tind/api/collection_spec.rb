@@ -25,12 +25,7 @@ module UCBLIT
           it 'reads the collections from the API' do
             query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/collections?depth=100')
             stub_request(:get, query_uri)
-              .with(headers: {
-                      'Authorization' => 'Token not-a-real-api-key',
-                      'Connection' => 'close',
-                      'Host' => 'tind.example.org',
-                      'User-Agent' => 'http.rb/4.4.1'
-                    })
+              .with(headers: { 'Authorization' => 'Token not-a-real-api-key' })
               .to_return(status: 200, body: File.read('spec/data/collections.json'))
 
             all_collections = Collection.all
@@ -66,12 +61,7 @@ module UCBLIT
 
             query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/collections?depth=100')
             stub_request(:get, query_uri)
-              .with(headers: {
-                      'Authorization' => 'Token not-a-real-api-key',
-                      'Connection' => 'close',
-                      'Host' => 'tind.example.org',
-                      'User-Agent' => 'http.rb/4.4.1'
-                    })
+              .with(headers: { 'Authorization' => 'Token not-a-real-api-key' })
               .to_return(status: 200, body: collections_json)
 
             actual_names = Collection.each_collection.each_with_object([]) { |c, arr| arr << c.name }

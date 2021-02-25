@@ -32,6 +32,8 @@ module UCBLIT
         class << self
           def from_data_field(data_field, index_in_tag)
             ColumnGroup.new(data_field.tag, index_in_tag, data_field.indicator1, data_field.indicator2, data_field.subfield_codes)
+          rescue StandardError => e
+            raise ArgumentError, "Error adding #{data_field.tag} field at index #{index_in_tag}: #{e.message}"
           end
         end
 
@@ -104,7 +106,7 @@ module UCBLIT
         end
 
         def valid_ind(ind)
-          return ind if ind =~ /[0-9a-z ]/
+          return ind if ind =~ /^[0-9a-z ]$/
 
           raise ArgumentError, "Not a valid indicator: #{ind.inspect}"
         end

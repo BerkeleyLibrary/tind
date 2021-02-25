@@ -1,5 +1,6 @@
-require 'ucblit/tind/config'
 require 'json'
+require 'ucblit/tind/config'
+require 'ucblit/tind/api/api_exception'
 
 module UCBLIT
   module TIND
@@ -35,7 +36,7 @@ module UCBLIT
           def all
             json = API.get(ENDPOINT, depth: 100)
             all_from_json(json)
-          rescue HTTP::ResponseError => e
+          rescue API::APIException => e
             logger.error(e)
             []
           end

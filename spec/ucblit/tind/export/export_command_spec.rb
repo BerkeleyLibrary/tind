@@ -96,7 +96,7 @@ module UCBLIT
           end
 
           it 'prints usage and exits in the event of an error' do
-            err_class = HTTP::ResponseError
+            err_class = UCBLIT::TIND::API::APIException
             err_msg = '403 Forbidden'
             expect(UCBLIT::TIND::Export).to receive(:export).and_raise(err_class, err_msg)
             stderr_orig = $stderr

@@ -4,6 +4,7 @@ require 'ucblit/util/arrays'
 
 require 'ucblit/tind/export/column_group'
 require 'ucblit/tind/export/column'
+require 'ucblit/tind/export/export_exception'
 require 'ucblit/tind/export/row'
 
 require 'csv'
@@ -162,6 +163,8 @@ module UCBLIT
               1 + add_data_field(df, row, tag_column_groups, at_or_after: offset)
             end
           end
+        rescue StandardError => e
+          raise Export::ExportException, "Error adding MARC record #{marc_record.record_id} at row #{row}: #{e.message}"
         end
 
         def add_data_field(data_field, row, tag_column_groups, at_or_after: 0)
@@ -169,7 +172,7 @@ module UCBLIT
           return added_at if added_at
 
           new_group = ColumnGroup.from_data_field(data_field, tag_column_groups.size).tap do |cg|
-            raise ArgumentError, "Unexpected failure to add #{data_field} to #{cg}" unless cg.maybe_add_at(row, data_field)
+            raise Export::ExportException, "Unexpected failure to add #{data_field} to #{cg}" unless cg.maybe_add_at(row, data_field)
           end
           tag_column_groups << new_group
           tag_column_groups.size - 1

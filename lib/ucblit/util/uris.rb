@@ -1,4 +1,6 @@
 require 'ucblit/util/uris/appender'
+require 'ucblit/util/uris/requester'
+require 'ucblit/util/uris/validator'
 
 module UCBLIT
   module Util
@@ -19,14 +21,23 @@ module UCBLIT
         Appender.new(uri, *elements).to_uri
       end
 
+      # Performs a GET request.
+      #
+      # @param uri [URI, String] the URI to GET
+      # @param params [Hash] the query parameters to add to the URI. (Note that the URI may already include query parameters.)
+      # @param headers [Hash] the request headers.
+      # @return [String] the body as a string.
+      # @raise [RestClient::Exception] in the event of an error.
+      def get(uri, params = {}, headers = {})
+        Requester.get(uri, params, headers)
+      end
+
       # Returns the specified URL as a URI.
       # @param url [String, URI] the URL.
       # @return [URI] the URI.
       # @raise [URI::InvalidURIError] if `url` cannot be parsed as a URI.
       def uri_or_nil(url)
-        return unless url
-
-        url.is_a?(URI) ? url : URI.parse(url.to_s)
+        Validator.uri_or_nil(url)
       end
     end
   end

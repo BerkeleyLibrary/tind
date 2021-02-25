@@ -101,7 +101,7 @@ module UCBLIT
           let(:expected_count) { 554 }
 
           before(:each) do
-            result_xml_pages = (2..7).map { |page| File.read("spec/data/records-api-search-p#{page}.xml") }
+            result_xml_pages = (1..7).map { |page| File.read("spec/data/records-api-search-p#{page}.xml") }
 
             query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Bancroft%20Library&format=xml')
             headers = {
@@ -112,10 +112,10 @@ module UCBLIT
             }
 
             stub_request(:get, query_uri)
-              .with(headers: headers).to_return(status: 200, body: File.read('spec/data/records-api-search-p1.xml'))
+              .with(headers: headers).to_return(status: 200, body: result_xml_pages[0])
 
             query_uri = UCBLIT::Util::URIs.append(query_uri, "&search_id=#{search_id}")
-            stubs = result_xml_pages.map { |b| { status: 200, body: b } }
+            stubs = result_xml_pages[1..].map { |b| { status: 200, body: b } }
             stub_request(:get, query_uri).with(headers: headers).to_return(stubs)
           end
 

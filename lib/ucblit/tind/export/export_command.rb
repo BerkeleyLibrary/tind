@@ -4,16 +4,20 @@ require 'ucblit/tind/api'
 require 'ucblit/tind/config'
 require 'ucblit/tind/export/export'
 require 'ucblit/tind/export/export_format'
+require 'ucblit/util/sys_exits'
 
 module UCBLIT
   module TIND
     module Export
       class ExportCommand
+        include UCBLIT::Util::SysExits
 
         attr_reader :options
+        attr_reader :out
 
-        def initialize(argv = ARGV)
-          @options = ExportCommand.parse_options(argv)
+        def initialize(*args, out: $stdout)
+          @options = ExportCommand.parse_options(args || ARGV)
+          @out = out
         end
 
         def execute!
@@ -23,23 +27,26 @@ module UCBLIT
         rescue StandardError => e
           warn(e)
           warn(e.backtrace.join("\n")) if e.backtrace && options[:verbose]
+
+          exit(EX_SOFTWARE)
         end
 
         private
 
         def list_collection_names
-          UCBLIT::TIND::API::Collection.each_collection { |c| puts c.name }
+          UCBLIT::TIND::API::Collection.each_collection { |c| out.puts c.name }
         end
 
         def export_collection
           UCBLIT::TIND::Export.export(
             options[:collection],
             options[:format],
-            options[:outfile] || $stdout
+            options[:outfile] || out
           )
         end
 
         class << self
+          include UCBLIT::Util::SysExits
 
           DEFAULT_FORMAT = ExportFormat::CSV
           FORMATS = ExportFormat.to_a.map(&:value).join(', ')
@@ -54,26 +61,23 @@ module UCBLIT
           }.freeze
 
           def parse_options(argv)
-            opts = {}
-            option_parser(opts).parse!(argv)
-            opts[:collection] = argv.pop
-            opts[:format] = ensure_format(opts)
-
-            valid_options(opts)
+            {}.tap do |opts|
+              option_parser(opts).parse!(argv)
+              opts[:collection] = argv.pop
+              opts[:format] = ensure_format(opts)
+              validate!(opts)
+              configure!(opts)
+            end
           rescue StandardError => e
-            print_usage_and_exit!($stderr, -1, e.message)
+            print_usage_and_exit!($stderr, EX_USAGE, e.message)
           end
 
           private
 
-          def valid_options(options)
-            options.tap do |opts|
-              next if options[:list]
-              raise ArgumentError, 'Collection not specified' unless opts[:collection]
-              raise ArgumentError, 'OpenOffice/LibreOffice export requires a filename' if opts[:format] == ExportFormat::ODS && !opts[:outfile]
-
-              configure!(opts)
-            end
+          def validate!(opts)
+            return if opts[:list]
+            raise ArgumentError, 'Collection not specified' unless opts[:collection]
+            raise ArgumentError, 'OpenOffice/LibreOffice export requires a filename' if opts[:format] == ExportFormat::ODS && !opts[:outfile]
           end
 
           def configure!(opts)
@@ -85,11 +89,8 @@ module UCBLIT
           def configure_logger(opts)
             return Logger.new(File::NULL) unless opts[:verbose]
 
-            # TODO: simpler log format?
-            UCBLIT::Logging::Loggers.new_readable_logger($stderr).tap do |logger|
-              # TODO: support different log levels?
-              logger.level = Logger::DEBUG
-            end
+            # TODO: simpler log format? different log levels?
+            UCBLIT::Logging::Loggers.new_readable_logger($stderr).tap { |logger| logger.level = Logger::DEBUG }
           end
 
           def ensure_format(opts)
@@ -114,10 +115,10 @@ module UCBLIT
           end
           # rubocop:enable Metrics/AbcSize
 
-          def print_usage_and_exit!(out = $stdout, exit_code = 0, msg = nil)
+          def print_usage_and_exit!(out = $stdout, exit_code = EX_OK, msg = nil)
             out.puts("#{msg}\n\n") if msg
             out.puts(usage)
-            raise SystemExit, exit_code
+            exit(exit_code)
           end
 
           def usage

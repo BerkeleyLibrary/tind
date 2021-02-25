@@ -53,6 +53,10 @@ module UCBLIT
 
             expect(Collection.all).to eq([])
           end
+
+          it 'raises an error if the API key is not set' do
+            UCBLIT::TIND::API.instance_variable_set(:@api_key, nil)
+          end
         end
 
         describe :each_collection do

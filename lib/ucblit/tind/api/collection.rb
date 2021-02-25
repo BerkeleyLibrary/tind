@@ -46,6 +46,10 @@ module UCBLIT
             all.each { |c| c.each_descendant(include_self: true, &block) }
           end
 
+          # Returns an array of collection tree roots, which can be traversed
+          # with {Collection#each_descendant}.
+          #
+          # @return [Array<Collection>] an array of top-level collections
           def all_from_json(json)
             ensure_hash(json).map do |name, attrs|
               translations = attrs['translations']

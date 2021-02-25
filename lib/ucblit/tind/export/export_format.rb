@@ -21,6 +21,10 @@ module UCBLIT
           value
         end
 
+        def inspect
+          "#{ExportFormat}::#{key}"
+        end
+
         class << self
           def ensure_format(format)
             return unless format

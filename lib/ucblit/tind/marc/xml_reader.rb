@@ -114,11 +114,25 @@ module UCBLIT
         private
 
         def ensure_io(file)
-          return file if file.respond_to?(:read)
-          return File.new(file) if File.exist?(file)
+          return file if io_like?(file)
+          return File.new(file) if file_exists?(file)
           return StringIO.new(file) if file =~ /^\s*</x
 
           raise ArgumentError, "Don't know how to read XML from #{file.inspect}: not an IO, file path, or XML text"
+        end
+
+        # Returns true if `obj` is close enough to an IO object for Nokogiri
+        # to parse as one.
+        #
+        # @param obj [Object] the object that might be an IO
+        # @see https://github.com/sparklemotion/nokogiri/blob/v1.11.1/lib/nokogiri/xml/sax/parser.rb#L81 Nokogiri::XML::SAX::Parser#parse
+        def io_like?(obj)
+          obj.respond_to?(:read) && obj.respond_to?(:close)
+        end
+
+        def file_exists?(path)
+          (path.respond_to?(:exist?) && path.exist?) ||
+            (path.respond_to?(:to_str) && File.exist?(path))
         end
 
         def increment_records_yielded!

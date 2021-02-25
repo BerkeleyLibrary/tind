@@ -63,7 +63,7 @@ module UCBLIT
         #   end
         #   ```
         #
-        #   @param endpoint [Symbol, String] the API endpoint, e.g. `:search` or `:collection`
+        #   @param endpoint [Symbol, String] the API endpoint, e.g. `:search` or `:collections`
         #   @param **params [Hash] the query parameters
         #   @yieldparam body [IO] the response body, as an IO stream
         def get(endpoint, **params, &block)
@@ -91,13 +91,21 @@ module UCBLIT
 
         def stream_response_body(body)
           IO.pipe do |rd, wr|
-            Thread.new do
-              body.each { |chunk| wr.write(chunk) }
-              wr.close
-              Thread.exit
-            end
-
+            t = copying_thread(body, wr)
             yield rd
+          ensure
+            t.join
+          end
+        end
+
+        def copying_thread(body, dst)
+          Thread.new do
+            body.each { |chunk| dst.write(chunk) }
+          rescue StandardError => e
+            UCBLIT::TIND.logger.error(e)
+          ensure
+            dst.close
+            Thread.exit
           end
         end
       end

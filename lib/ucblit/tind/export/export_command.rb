@@ -16,7 +16,7 @@ module UCBLIT
         attr_reader :out
 
         def initialize(*args, out: $stdout)
-          @options = ExportCommand.parse_options(args || ARGV)
+          @options = ExportCommand.parse_options(args)
           @out = out
         end
 

@@ -5,4 +5,4 @@ require 'bundler/setup'
 require 'dotenv/load'
 require 'ucblit/tind'
 
-UCBLIT::TIND::Export::ExportCommand.new.execute!
+UCBLIT::TIND::Export::ExportCommand.new(*ARGV).execute!

@@ -5,11 +5,15 @@ module UCBLIT
     module Export
       describe ExportCommand do
         before(:each) do
+          @base_uri_orig = UCBLIT::TIND::Config.base_uri
+          @api_key_orig = UCBLIT::TIND::API.api_key
           @logger_orig = UCBLIT::TIND.logger
         end
 
         after(:each) do
           UCBLIT::TIND.logger = @logger_orig
+          UCBLIT::TIND::API.api_key = @api_key_orig
+          UCBLIT::TIND::Config.base_uri = @base_uri_orig
         end
 
         describe :usage do
@@ -40,10 +44,38 @@ module UCBLIT
           end
         end
 
-        describe '-v' do
-          it 'configures a debug-level logger' do
-            ExportCommand.new('-l', '-v')
-            expect(UCBLIT::TIND.logger.level).to eq(0)
+        describe 'flags' do
+          let(:api_key) { 'ZghOT0eRm4U9s' }
+          let(:output_path) { '/tmp/export.ods' }
+          let(:collection) { 'Houcun ju shi ji' }
+
+          attr_reader :command
+
+          before(:each) do
+            @command = ExportCommand.new('-v', '-k', api_key, '-o', output_path, collection)
+          end
+
+          describe '-v' do
+            it 'configures a debug-level logger' do
+              expect(UCBLIT::TIND.logger.level).to eq(0)
+            end
+          end
+
+          describe '-k' do
+            it 'sets the API key' do
+              expect(UCBLIT::TIND::API.api_key).to eq(api_key)
+            end
+          end
+
+          describe '-o' do
+            it 'sets the output file and format' do
+              expect(command.options[:outfile]).to eq(output_path)
+              expect(command.options[:format]).to eq(ExportFormat::ODS)
+            end
+          end
+
+          it 'sets the collection' do
+            expect(command.options[:collection]).to eq(collection)
           end
         end
 

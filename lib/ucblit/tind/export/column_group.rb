@@ -106,7 +106,9 @@ module UCBLIT
         end
 
         def valid_ind(ind)
-          return ind if ind =~ /^[0-9a-z ]$/
+          # indicators SHOULD NOT be capital letters, but TIND doesn't enforce that
+          # and we have bad data in there, unfortunately. Thus the /i flag.
+          return ind if ind =~ /^[0-9a-z ]$/i
 
           raise ArgumentError, "Not a valid indicator: #{ind.inspect}"
         end

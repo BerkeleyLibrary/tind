@@ -11,6 +11,8 @@ module UCBLIT
         attr_reader :collection, :pattern, :index, :date_range, :format
 
         def initialize(collection: nil, pattern: nil, index: nil, date_range: nil, format: Format::XML)
+          raise ArgumentError, 'Search requires a collection' unless collection
+
           @collection = collection
           @pattern = pattern
           @index = index

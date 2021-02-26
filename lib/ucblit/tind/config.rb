@@ -12,6 +12,7 @@ module UCBLIT
         Config.base_uri
       end
 
+      # TODO: move to own module?
       def logger
         UCBLIT::TIND.logger
       end

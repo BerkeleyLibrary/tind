@@ -31,6 +31,21 @@ module UCBLIT
             end
           end
         end
+
+        it 'logs the response body if an error occurs in handling' do
+          endpoint = 'test-endpoint'
+          url_str = API.uri_for(endpoint).to_s
+          body_text = 'the body'
+          stub_request(:get, url_str).to_return(status: 200, body: body_text)
+
+          logdev = StringIO.new
+          UCBLIT::TIND.logger = UCBLIT::Logging::Loggers.new_readable_logger(logdev)
+
+          msg = 'the error message'
+          expect { API.get(endpoint) { |_| raise(StandardError, msg) } }.to raise_error(StandardError, msg)
+          puts logdev.string
+          expect(logdev.string).to include(body_text)
+        end
       end
     end
   end

@@ -90,9 +90,14 @@ module UCBLIT
 
         # TODO: make real body streaming work
         def stream_response_body(body)
-          yield StringIO.new(body.to_s)
+          yield StringIO.new(body)
+        rescue StandardError => e
+          # We don't log the full stack trace here as we assume the block will do that
+          logger.warn("Error yielding response body: #{e}: body was: #{body}")
+          raise
         end
       end
+
     end
   end
 end

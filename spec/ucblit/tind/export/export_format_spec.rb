@@ -19,6 +19,15 @@ module UCBLIT
             expect { ExportFormat.ensure_format(:wks) }.to raise_error(ArgumentError)
           end
         end
+
+        describe :description do
+          it 'returns a description' do
+            ExportFormat.each do |fmt|
+              expect(fmt.description).to be_a(String)
+              expect(fmt.description).not_to be_empty
+            end
+          end
+        end
       end
     end
   end

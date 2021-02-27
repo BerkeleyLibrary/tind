@@ -12,6 +12,11 @@ module UCBLIT
           return Export.export_libreoffice(collection, out) if self == ExportFormat::ODS
         end
 
+        def description
+          return 'CSV (comma-separated text)' if self == ExportFormat::CSV
+          return 'LibreOffice/OpenOffice spreadsheet' if self == ExportFormat::ODS
+        end
+
         def to_s
           # noinspection RubyYardReturnMatch
           value

@@ -32,6 +32,10 @@ module UCBLIT
           "#{ExportFormat}::#{key}"
         end
 
+        def default?
+          self == DEFAULT
+        end
+
         class << self
           def ensure_format(format)
             return unless format

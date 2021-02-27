@@ -34,6 +34,14 @@ module UCBLIT
             expect(ExportFormat::DEFAULT).to be(ExportFormat::ODS)
           end
         end
+
+        describe :default? do
+          it 'returns true for default, false otherwise' do
+            ExportFormat.each do |fmt|
+              expect(fmt.default?).to eq(fmt == ExportFormat::DEFAULT)
+            end
+          end
+        end
       end
     end
   end

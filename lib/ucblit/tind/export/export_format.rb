@@ -7,6 +7,8 @@ module UCBLIT
         new :CSV
         new :ODS
 
+        DEFAULT = ODS
+
         def export(collection, out = $stdout)
           return Export.export_csv(collection, out) if self == ExportFormat::CSV
           return Export.export_libreoffice(collection, out) if self == ExportFormat::ODS

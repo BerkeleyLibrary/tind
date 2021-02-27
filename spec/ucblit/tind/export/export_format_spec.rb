@@ -28,6 +28,12 @@ module UCBLIT
             end
           end
         end
+
+        describe :DEFAULT do
+          it 'defaults to ODS' do
+            expect(ExportFormat::DEFAULT).to be(ExportFormat::ODS)
+          end
+        end
       end
     end
   end

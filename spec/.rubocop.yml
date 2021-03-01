@@ -32,4 +32,3 @@ Metrics/MethodLength:
 # Sometimes we're testing the operator
 Lint/BinaryOperatorWithIdenticalOperands:
   Enabled: false
-

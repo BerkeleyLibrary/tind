@@ -83,9 +83,9 @@ module UCBLIT
         end
 
         def valid_subfield_codes(subfield_codes)
-          return subfield_codes if subfield_codes.all? { |c| c =~ SUBFIELD_CODE_RE }
-
-          raise ArgumentError, "Invalid subfield codes: #{subfield_codes.inspect}"
+          subfield_codes.tap do |scc|
+            raise ArgumentError, "Invalid subfield codes: #{scc.inspect}" unless scc.all? { |c| c =~ SUBFIELD_CODE_RE }
+          end
         end
 
         def can_add?(data_field)

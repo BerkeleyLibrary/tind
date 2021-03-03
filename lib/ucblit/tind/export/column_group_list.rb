@@ -57,10 +57,6 @@ module UCBLIT
           all_groups.each(&block)
         end
 
-        def to_a(*_args)
-          all_groups
-        end
-
         # ------------------------------------------------------------
         # Object overrides
 

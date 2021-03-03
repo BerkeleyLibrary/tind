@@ -1,33 +1,29 @@
-require 'marc_extensions'
-
-require 'ucblit/util/arrays'
-
-require 'ucblit/tind/export/column_group'
-require 'ucblit/tind/export/column'
-require 'ucblit/tind/export/export_exception'
-require 'ucblit/tind/export/row'
-
 require 'csv'
 require 'stringio'
-require 'ucblit/tind/export/tags'
+
+require 'marc_extensions'
+require 'ucblit/tind/export/column_group_list'
 
 module UCBLIT
   module TIND
     module Export
       class Table
-        include UCBLIT::Util::Arrays
         include UCBLIT::TIND::Config
 
         # ------------------------------------------------------------
         # Accessors
 
+        attr_reader :column_groups
+
         # ------------------------------------------------------------
         # Initializer
 
-        # @param all_fields [Boolean] whether to include all fields, or only exportable fields
+        # Initializes a new Table
+        #
+        # @param filter_for_export [Boolean] whether to filter out non-exportable fields
         # @see Tags
-        def initialize(all_fields: true)
-          @all_fields = all_fields
+        def initialize(filter_for_export: false)
+          @column_groups = ColumnGroupList.new(filter_for_export: filter_for_export)
         end
 
         # ------------------------------------------------------------
@@ -38,20 +34,14 @@ module UCBLIT
           #
           # @param records [Enumerable<MARC::Record>] the records
           # @param freeze [Boolean] whether to freeze the table
-          # @param all_fields [Boolean] whether to include only exportable fields
+          # @param filter_for_export [Boolean] whether to include only exportable fields
           # @return [Table] the table
-          def from_records(records, freeze: false, all_fields: true)
-            table = records.each_with_object(Table.new(all_fields: all_fields)) { |r, t| t << r }
-            # noinspection RubyYardReturnMatch
-            table.tap { |t| t.freeze if freeze }
+          def from_records(records, freeze: false, filter_for_export: false)
+            Table.new(filter_for_export: filter_for_export).tap do |table|
+              records.each { |r| table << r }
+              table.freeze if freeze
+            end
           end
-        end
-
-        # ------------------------------------------------------------
-        # Accessors
-
-        def all_fields?
-          @all_fields
         end
 
         # ------------------------------------------------------------
@@ -78,7 +68,7 @@ module UCBLIT
         # @return [Array<Column>] the columns.
         def columns
           # NOTE: this isn't ||= because we only cache on #freeze
-          @columns || all_column_groups.map(&:columns).flatten
+          @columns || column_groups.map(&:columns).flatten
         end
 
         def column_count
@@ -124,7 +114,7 @@ module UCBLIT
           raise FrozenError, "can't modify frozen MARCTable" if frozen?
 
           logger.warn('MARC record is not frozen') unless marc_record.frozen?
-          add_data_fields(marc_record, marc_records.size)
+          column_groups.add_data_fields(marc_record, marc_records.size)
           marc_records << marc_record
           log_record_added(marc_record)
 
@@ -135,12 +125,12 @@ module UCBLIT
         # Object overrides
 
         def frozen?
-          [marc_records, column_groups_by_tag].all?(&:frozen?) &&
+          [marc_records, column_groups].all?(&:frozen?) &&
             [@rows, @columns].all? { |d| !d.nil? && d.frozen? }
         end
 
         def freeze
-          [marc_records, column_groups_by_tag].each(&:freeze)
+          [marc_records, column_groups].each(&:freeze)
           @columns ||= columns.freeze
           @rows ||= rows.freeze
           self
@@ -162,56 +152,6 @@ module UCBLIT
 
         def log_record_added(marc_record)
           return logger.info("Added #{marc_record.record_id}: #{row_count} records total") if marc_record
-        end
-
-        def column_groups_by_tag
-          @column_groups_by_tag ||= {}
-        end
-
-        def all_column_groups
-          all_tags = column_groups_by_tag.keys.sort
-          all_tags.each_with_object([]) do |tag, groups|
-            tag_column_groups = column_groups_by_tag[tag]
-            groups.concat(tag_column_groups)
-          end
-        end
-
-        def add_data_fields(marc_record, row)
-          marc_record.data_fields_by_tag.each do |tag, data_fields|
-            next unless can_export_tag(tag)
-
-            tag_column_groups = (column_groups_by_tag[tag] ||= [])
-            data_fields.inject(0) do |offset, df|
-              next offset unless can_export_df(df)
-
-              1 + add_data_field(df, row, tag_column_groups, at_or_after: offset)
-            end
-          end
-        rescue StandardError => e
-          raise Export::ExportException, "Error adding MARC record #{marc_record.record_id} at row #{row}: #{e.message}"
-        end
-
-        def can_export_tag(tag)
-          all_fields? || Tags.can_export_tag?(tag)
-        end
-
-        def can_export_df(df)
-          all_fields? || Tags.can_export_data_field?(df)
-        end
-
-        def add_data_field(df, row, tag_column_groups, at_or_after: 0)
-          added_at = find_index(in_array: tag_column_groups, start_index: at_or_after) { |cg| cg.maybe_add_at(row, df) }
-          return added_at if added_at
-
-          new_group = ColumnGroup.new(df.tag, tag_column_groups.size, df.indicator1, df.indicator2, exportable_subfield_codes(df)).tap do |cg|
-            raise Export::ExportException, "Unexpected failure to add #{df} to #{cg}" unless cg.maybe_add_at(row, df)
-          end
-          tag_column_groups << new_group
-          tag_column_groups.size - 1
-        end
-
-        def exportable_subfield_codes(df)
-          all_fields? ? df.subfield_codes : Tags.exportable_subfield_codes(df)
         end
 
         def write_csv(out)

@@ -3,10 +3,10 @@ module UCBLIT
     module Export
       module Tags
         DO_NOT_EXPORT_FIELDS = ['005', '8564 ', '902  ', '903  ', '991', '998'].map(&:freeze).freeze
-        DO_NOT_EDIT_FIELDS = ['001'.freeze].append(DO_NOT_EXPORT_FIELDS).freeze
+        DO_NOT_EDIT_FIELDS = (['001'.freeze] + DO_NOT_EXPORT_FIELDS).freeze
 
         DO_NOT_EXPORT_SUBFIELDS = ['336  a', '852  c', '901  a', '901  f', '901  g', '980  a', '982  a', '982  b', '982  p'].map(&:freeze).freeze
-        DO_NOT_EDIT_SUBFIELDS = ['035  a'.freeze].append(DO_NOT_EXPORT_SUBFIELDS)
+        DO_NOT_EDIT_SUBFIELDS = (['035  a'.freeze] + DO_NOT_EXPORT_SUBFIELDS).freeze
 
         class << self
           def can_export_tag?(tag)
@@ -21,7 +21,7 @@ module UCBLIT
             DO_NOT_EXPORT_FIELDS.each { |f| return [] if df_matches(df, f) }
 
             excluded_codes = DO_NOT_EXPORT_SUBFIELDS.select { |f| df_matches(df, f) }.map { |f| f[5] }
-            return df.subfields if excluded_codes.empty?
+            return df.subfield_codes if excluded_codes.empty?
 
             df.subfield_codes.reject { |code| excluded_codes.include?(code) }
           end

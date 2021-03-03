@@ -17,6 +17,9 @@ module UCBLIT
 
               table << record
               values = table.rows[0].values
+
+              # match_array gives a better error message than #eq() but doesn't enforce order
+              expect(values).to match_array(expected_values)
               expect(values).to eq(expected_values)
             end
 

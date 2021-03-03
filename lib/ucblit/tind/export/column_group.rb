@@ -15,8 +15,10 @@ module UCBLIT
         # Constants
 
         # Indicators SHOULD NOT be capital letters, but TIND internal fields
-        # don't respect taht. Thus the /i flag.
+        # don't respect that. Thus the /i flag.
         INDICATOR_RE = /^[0-9a-z ]$/i.freeze
+
+        SUBFIELD_CODE_RE = /^[0-9a-z]$/.freeze
 
         # ------------------------------------------------------------
         # Accessors
@@ -28,16 +30,8 @@ module UCBLIT
 
         def initialize(tag, index_in_tag, ind1, ind2, subfield_codes)
           @tag, @ind1, @ind2 = valid_tag_and_indicators(tag, ind1, ind2)
-          @subfield_codes = subfield_codes.dup.freeze
+          @subfield_codes = valid_subfield_codes(subfield_codes).dup.freeze
           @index_in_tag = index_in_tag
-        end
-
-        def valid_tag_and_indicators(tag, ind1, ind2)
-          raise ArgumentError, "#{tag}#{ind1}#{ind2}: not a valid tag" unless tag.size == 3 && UCBLIT::Util::Strings.ascii_numeric?(tag)
-          raise ArgumentError, "#{tag}#{ind1}#{ind2}: not a valid indicator: #{ind1.inspect}" unless ind1 =~ INDICATOR_RE
-          raise ArgumentError, "#{tag}#{ind1}#{ind2}: not a valid indicator: #{ind2.inspect}" unless ind2 =~ INDICATOR_RE
-
-          [tag, ind1, ind2]
         end
 
         # ------------------------------------------------------------
@@ -79,6 +73,20 @@ module UCBLIT
         # Private methods
 
         private
+
+        def valid_tag_and_indicators(tag, ind1, ind2)
+          raise ArgumentError, "#{tag}#{ind1}#{ind2}: not a valid tag" unless tag.size == 3 && UCBLIT::Util::Strings.ascii_numeric?(tag)
+          raise ArgumentError, "#{tag}#{ind1}#{ind2}: not a valid indicator: #{ind1.inspect}" unless ind1 =~ INDICATOR_RE
+          raise ArgumentError, "#{tag}#{ind1}#{ind2}: not a valid indicator: #{ind2.inspect}" unless ind2 =~ INDICATOR_RE
+
+          [tag, ind1, ind2]
+        end
+
+        def valid_subfield_codes(subfield_codes)
+          return subfield_codes if subfield_codes.all? { |c| c =~ SUBFIELD_CODE_RE }
+
+          raise ArgumentError, "Invalid subfield codes: #{subfield_codes.inspect}"
+        end
 
         def can_add?(data_field)
           data_field.tag == tag &&

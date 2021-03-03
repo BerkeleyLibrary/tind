@@ -1,4 +1,6 @@
 require 'typesafe_enum'
+require 'ucblit/tind/export/csv_exporter'
+require 'ucblit/tind/export/ods_exporter'
 
 module UCBLIT
   module TIND
@@ -10,8 +12,9 @@ module UCBLIT
         DEFAULT = ODS
 
         def export(collection, out = $stdout)
-          return Export.export_csv(collection, out) if self == ExportFormat::CSV
-          return Export.export_libreoffice(collection, out) if self == ExportFormat::ODS
+          raise ArgumentError, "Don't know how to export #{self}" unless (exporter = exporter_for(collection))
+
+          exporter.export(out)
         end
 
         def description
@@ -46,6 +49,13 @@ module UCBLIT
 
             raise ArgumentError, "Unknown #{ExportFormat}: #{format.inspect}"
           end
+        end
+
+        private
+
+        def exporter_for(collection)
+          return CSVExporter.new(collection) if self == ExportFormat::CSV
+          return ODSExporter.new(collection) if self == ExportFormat::ODS
         end
       end
 

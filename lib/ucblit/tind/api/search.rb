@@ -1,12 +1,13 @@
+require 'ucblit/tind/logging'
+require 'ucblit/tind/marc/xml_reader'
 require 'ucblit/tind/api/date_range'
 require 'ucblit/tind/api/format'
-require 'ucblit/tind/marc/xml_reader'
 
 module UCBLIT
   module TIND
     module API
       class Search
-        include UCBLIT::TIND::Config
+        include UCBLIT::TIND::Logging
 
         attr_reader :collection, :pattern, :index, :date_range, :format
 

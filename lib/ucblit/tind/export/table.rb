@@ -2,13 +2,14 @@ require 'csv'
 require 'stringio'
 
 require 'marc_extensions'
+require 'ucblit/tind/logging'
 require 'ucblit/tind/export/column_group_list'
 
 module UCBLIT
   module TIND
     module Export
       class Table
-        include UCBLIT::TIND::Config
+        include UCBLIT::TIND::Logging
 
         # ------------------------------------------------------------
         # Accessors
@@ -139,6 +140,7 @@ module UCBLIT
         # ------------------------------------------------------------
         # Misc. instance methods
 
+        # TODO: move to UCBLIT::TIND::Export::CSVExporter
         def to_csv(out = nil)
           return write_csv(out) if out
 

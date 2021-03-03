@@ -138,6 +138,39 @@ module UCBLIT
             table = Table.from_records(records, freeze: true)
             expect(table.frozen?).to eq(true)
           end
+
+          it 'parses the data fields into rows' do
+            table = Table.from_records(records, freeze: true)
+
+            aggregate_failures 'row parsing' do
+              records.each_with_index do |marc_record, row|
+                expected_headers = []
+                expected_values = []
+
+                marc_record.each_data_field.each do |df|
+                  prefix = ColumnGroup.prefix_for(df)
+                  df.subfields.each do |sf|
+                    expected_headers << "#{prefix}#{sf.code}"
+                    expected_values << sf.value
+                  end
+                end
+
+                expected_index = 0
+                table.rows[row].values.each_with_index do |actual_value, index|
+                  next unless actual_value
+
+                  expected_header = expected_headers[expected_index]
+                  actual_header = table.headers[index]
+                  expect(actual_header).to start_with(expected_header)
+
+                  expected_value = expected_values[expected_index]
+                  expect(actual_value).to eq(expected_value)
+
+                  expected_index += 1
+                end
+              end
+            end
+          end
         end
 
         describe :rows do
@@ -226,18 +259,6 @@ module UCBLIT
               CSV.parse(csv_str, headers: true).each_with_index do |csv_row, row|
                 expect(csv_row.headers).to eq(table.headers)
                 expect(csv_row.fields).to eq(table.rows[row].values)
-
-                marc_record = table.marc_records[row]
-                csv_row.headers.each do |header|
-                  values = marc_record.values_for(header)
-
-                  value = csv_row[header]
-                  if values.empty?
-                    expect(value).to be_nil, "#{header}: expected no values in row/record #{row}, got #{value.inspect}"
-                  else
-                    expect(values).to include(value), "#{header}: expected one of: #{values.inspect}, got #{value}"
-                  end
-                end
               end
             end
           end

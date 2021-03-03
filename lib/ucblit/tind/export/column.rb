@@ -1,3 +1,5 @@
+require 'marc_extensions'
+
 module UCBLIT
   module TIND
     module Export
@@ -21,6 +23,37 @@ module UCBLIT
 
         def value_at(row)
           column_group.value_at(row, col_in_group)
+        end
+
+        class << self
+          HEADER_RE = /^(?<tag>[0-9]{3})(?<ind1>[0-9a-z_])(?<ind2>[0-9a-z_])(?<subfield_code>[0-9a-z])/.freeze
+
+          def values_for(header, marc_record)
+            tag, ind1, ind2, subfield_code = decompose_header(header)
+            [].tap do |values|
+              marc_record.each_field_with(tag: tag, ind1: ind1, ind2: ind2) do |df|
+                df.subfields.each do |sf|
+                  next unless sf.code == subfield_code
+
+                  values << sf.value unless sf.value.to_s == ''
+                end
+              end
+            end
+          end
+
+          private
+
+          def decompose_header(header)
+            raise ArgumentError, "Not a table column header: #{header.inspect}" unless (md = HEADER_RE.match(header))
+
+            tag = md['tag']
+            ind1 = md['ind1'] == '_' ? ' ' : md['ind1']
+            ind2 = md['ind2'] == '_' ? ' ' : md['ind2']
+            subfield_code = md['subfield_code']
+
+            [tag, ind1, ind2, subfield_code]
+          end
+
         end
       end
     end

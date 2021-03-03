@@ -35,10 +35,28 @@ module UCBLIT
         end
 
         # ------------------------------------------------------------
+        # Class methods
+
+        class << self
+
+          def prefix_for(data_field)
+            format_prefix(data_field.tag, data_field.indicator1, data_field.indicator2)
+          end
+
+          def format_indicator(ind)
+            ind == ' ' ? '_' : ind
+          end
+
+          def format_prefix(tag, ind1, ind2)
+            [tag, format_indicator(ind1), format_indicator(ind2)].join
+          end
+        end
+
+        # ------------------------------------------------------------
         # Instance methods
 
         def prefix
-          [tag, format_ind(ind1), format_ind(ind2)].join
+          ColumnGroup.format_prefix(tag, ind1, ind2)
         end
 
         def maybe_add_at(row, data_field)
@@ -90,8 +108,8 @@ module UCBLIT
 
         def can_add?(data_field)
           data_field.tag == tag &&
-          data_field.indicator1 == ind1 &&
-          data_field.indicator2 == ind2
+            data_field.indicator1 == ind1 &&
+            data_field.indicator2 == ind2
         end
 
         def subfield_indices_for(row)
@@ -113,13 +131,12 @@ module UCBLIT
         end
 
         def format_ind(ind)
-          ind == ' ' ? '_' : ind
+          ColumnGroup.format_indicator(ind)
         end
 
         def data_fields
           @data_fields ||= []
         end
-
       end
     end
   end

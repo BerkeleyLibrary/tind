@@ -1,5 +1,6 @@
 require 'ucblit/tind/export/column'
 require 'ucblit/util/arrays'
+require 'ucblit/util/strings'
 
 module UCBLIT
   module TIND
@@ -11,6 +12,13 @@ module UCBLIT
         include UCBLIT::Util::Arrays
 
         # ------------------------------------------------------------
+        # Constants
+
+        # Indicators SHOULD NOT be capital letters, but TIND internal fields
+        # don't respect taht. Thus the /i flag.
+        INDICATOR_RE = /^[0-9a-z ]$/i.freeze
+
+        # ------------------------------------------------------------
         # Accessors
 
         attr_reader :tag, :index_in_tag, :ind1, :ind2, :subfield_codes
@@ -19,22 +27,17 @@ module UCBLIT
         # Initializer
 
         def initialize(tag, index_in_tag, ind1, ind2, subfield_codes)
-          @tag = tag
-          @ind1 = valid_ind(ind1)
-          @ind2 = valid_ind(ind2)
+          @tag, @ind1, @ind2 = valid_tag_and_indicators(tag, ind1, ind2)
           @subfield_codes = subfield_codes.dup.freeze
           @index_in_tag = index_in_tag
         end
 
-        # ------------------------------------------------------------
-        # Class methods
+        def valid_tag_and_indicators(tag, ind1, ind2)
+          raise ArgumentError, "#{tag}#{ind1}#{ind2}: not a valid tag" unless tag.size == 3 && UCBLIT::Util::Strings.ascii_numeric?(tag)
+          raise ArgumentError, "#{tag}#{ind1}#{ind2}: not a valid indicator: #{ind1.inspect}" unless ind1 =~ INDICATOR_RE
+          raise ArgumentError, "#{tag}#{ind1}#{ind2}: not a valid indicator: #{ind2.inspect}" unless ind2 =~ INDICATOR_RE
 
-        class << self
-          def from_data_field(data_field, index_in_tag)
-            ColumnGroup.new(data_field.tag, index_in_tag, data_field.indicator1, data_field.indicator2, data_field.subfield_codes)
-          rescue StandardError => e
-            raise ArgumentError, "Error adding #{data_field.tag} field at index #{index_in_tag}: #{e.message}"
-          end
+          [tag, ind1, ind2]
         end
 
         # ------------------------------------------------------------
@@ -103,14 +106,6 @@ module UCBLIT
 
         def format_ind(ind)
           ind == ' ' ? '_' : ind
-        end
-
-        def valid_ind(ind)
-          # indicators SHOULD NOT be capital letters, but TIND doesn't enforce that
-          # and we have bad data in there, unfortunately. Thus the /i flag.
-          return ind if ind =~ /^[0-9a-z ]$/i
-
-          raise ArgumentError, "Not a valid indicator: #{ind.inspect}"
         end
 
         def data_fields

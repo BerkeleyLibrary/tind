@@ -9,6 +9,7 @@ require 'ucblit/tind/export/row'
 
 require 'csv'
 require 'stringio'
+require 'ucblit/tind/export/tags'
 
 module UCBLIT
   module TIND
@@ -18,6 +19,18 @@ module UCBLIT
         include UCBLIT::TIND::Config
 
         # ------------------------------------------------------------
+        # Accessors
+
+        # ------------------------------------------------------------
+        # Initializer
+
+        # @param all_fields [Boolean] whether to include all fields, or only exportable fields
+        # @see Tags
+        def initialize(all_fields: true)
+          @all_fields = all_fields
+        end
+
+        # ------------------------------------------------------------
         # Factory method
 
         class << self
@@ -25,12 +38,20 @@ module UCBLIT
           #
           # @param records [Enumerable<MARC::Record>] the records
           # @param freeze [Boolean] whether to freeze the table
+          # @param all_fields [Boolean] whether to include only exportable fields
           # @return [Table] the table
-          def from_records(records, freeze: false)
-            table = records.each_with_object(Table.new) { |r, t| t << r }
+          def from_records(records, freeze: false, all_fields: true)
+            table = records.each_with_object(Table.new(all_fields: all_fields)) { |r, t| t << r }
             # noinspection RubyYardReturnMatch
             table.tap { |t| t.freeze if freeze }
           end
+        end
+
+        # ------------------------------------------------------------
+        # Accessors
+
+        def all_fields?
+          @all_fields
         end
 
         # ------------------------------------------------------------
@@ -157,9 +178,12 @@ module UCBLIT
 
         def add_data_fields(marc_record, row)
           marc_record.data_fields_by_tag.each do |tag, data_fields|
-            tag_column_groups = (column_groups_by_tag[tag] ||= [])
+            next unless can_export_tag(tag)
 
+            tag_column_groups = (column_groups_by_tag[tag] ||= [])
             data_fields.inject(0) do |offset, df|
+              next offset unless can_export_df(df)
+
               1 + add_data_field(df, row, tag_column_groups, at_or_after: offset)
             end
           end
@@ -167,15 +191,27 @@ module UCBLIT
           raise Export::ExportException, "Error adding MARC record #{marc_record.record_id} at row #{row}: #{e.message}"
         end
 
-        def add_data_field(data_field, row, tag_column_groups, at_or_after: 0)
-          added_at = find_index(in_array: tag_column_groups, start_index: at_or_after) { |cg| cg.maybe_add_at(row, data_field) }
+        def can_export_tag(tag)
+          all_fields? || Tags.can_export_tag?(tag)
+        end
+
+        def can_export_df(df)
+          all_fields? || Tags.can_export_data_field?(df)
+        end
+
+        def add_data_field(df, row, tag_column_groups, at_or_after: 0)
+          added_at = find_index(in_array: tag_column_groups, start_index: at_or_after) { |cg| cg.maybe_add_at(row, df) }
           return added_at if added_at
 
-          new_group = ColumnGroup.from_data_field(data_field, tag_column_groups.size).tap do |cg|
-            raise Export::ExportException, "Unexpected failure to add #{data_field} to #{cg}" unless cg.maybe_add_at(row, data_field)
+          new_group = ColumnGroup.new(df.tag, tag_column_groups.size, df.indicator1, df.indicator2, exportable_subfield_codes(df)).tap do |cg|
+            raise Export::ExportException, "Unexpected failure to add #{df} to #{cg}" unless cg.maybe_add_at(row, df)
           end
           tag_column_groups << new_group
           tag_column_groups.size - 1
+        end
+
+        def exportable_subfield_codes(df)
+          all_fields? ? df.subfield_codes : Tags.exportable_subfield_codes(df)
         end
 
         def write_csv(out)

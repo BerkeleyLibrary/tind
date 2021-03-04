@@ -12,6 +12,13 @@ module UCBLIT
         end
       end
 
+      def diff_index(s1, s2)
+        s1.chars.each_with_index do |c, i|
+          return i if c != s2[i]
+        end
+        s2.length if s2.length > s1.length
+      end
+
       class << self
         include Strings
       end

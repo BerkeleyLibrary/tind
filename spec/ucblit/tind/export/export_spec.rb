@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'roo'
 
+require_relative 'export_matcher'
+
 module UCBLIT
   # noinspection RubyYardParamTypeMatch
   module TIND
@@ -24,24 +26,16 @@ module UCBLIT
 
         describe :export_csv do
           it 'returns a string by default' do
-            expected_csv = expected_table.to_csv
             actual_csv = Export.export_csv(collection)
-
-            # File.open('tmp/actual.csv', 'wb') { |f| f.write(actual_csv) }
-            # File.open('tmp/expected.csv', 'wb') { |f| f.write(expected_csv) }
-            expect(actual_csv).to eq(expected_csv)
+            expect(actual_csv).to match_table(expected_table)
           end
 
           it 'exports to an IO' do
-            expected_csv = expected_table.to_csv
-
             actual_csv = StringIO.new.tap do |out|
               Export.export_csv(collection, out)
             end.string
 
-            # File.open('tmp/actual.csv', 'wb') { |f| f.write(actual_csv) }
-            # File.open('tmp/expected.csv', 'wb') { |f| f.write(expected_csv) }
-            expect(actual_csv).to eq(expected_csv)
+            expect(actual_csv).to match_table(expected_table)
           end
         end
 
@@ -53,32 +47,12 @@ module UCBLIT
               output_path = File.join(dir, "#{basename}.ods")
               File.write(output_path, result)
 
-              # TODO: share verification code
               ss = Roo::Spreadsheet.open(output_path)
-
-              # NOTE: spreadsheets are 1-indexed, but row 1 is header
-
-              aggregate_failures 'headers' do
-                expected_table.headers.each_with_index do |h, col|
-                  ss_col = 1 + col
-                  actual_header = ss.cell(1, ss_col)
-                  expect(actual_header).to eq(h), "Expected header #{h.inspect} for column #{ss_col}, got #{actual_header.inspect}"
-                end
+              begin
+                expect(ss).to match_table(expected_table)
+              ensure
+                ss.close
               end
-
-              aggregate_failures 'values' do
-                (0..expected_table.row_count).each do |row|
-                  ss_row = 2 + row # row 1 is header
-                  (0..expected_table.column_count).each do |col|
-                    ss_col = 1 + col
-                    expected_value = expected_table.value_at(row, col)
-                    actual_value = ss.cell(ss_row, ss_col)
-                    expect(actual_value).to eq(expected_value), "(#{ss_row}, #{ss_col}): expected #{expected_value.inspect}, got #{actual_value.inspect}"
-                  end
-                end
-              end
-
-              ss.close
             end
           end
 
@@ -90,32 +64,12 @@ module UCBLIT
                 Export.export_libreoffice(collection, f)
               end
 
-              # TODO: share verification code
               ss = Roo::Spreadsheet.open(output_path)
-
-              # NOTE: spreadsheets are 1-indexed, but row 1 is header
-
-              aggregate_failures 'headers' do
-                expected_table.headers.each_with_index do |h, col|
-                  ss_col = 1 + col
-                  actual_header = ss.cell(1, ss_col)
-                  expect(actual_header).to eq(h), "Expected header #{h.inspect} for column #{ss_col}, got #{actual_header.inspect}"
-                end
+              begin
+                expect(ss).to match_table(expected_table)
+              ensure
+                ss.close
               end
-
-              aggregate_failures 'values' do
-                (0..expected_table.row_count).each do |row|
-                  ss_row = 2 + row # row 1 is header
-                  (0..expected_table.column_count).each do |col|
-                    ss_col = 1 + col
-                    expected_value = expected_table.value_at(row, col)
-                    actual_value = ss.cell(ss_row, ss_col)
-                    expect(actual_value).to eq(expected_value), "(#{ss_row}, #{ss_col}): expected #{expected_value.inspect}, got #{actual_value.inspect}"
-                  end
-                end
-              end
-
-              ss.close
             end
           end
 
@@ -124,55 +78,27 @@ module UCBLIT
               output_path = File.join(dir, "#{basename}.ods")
               Export.export_libreoffice(collection, output_path)
 
-              # TODO: share verification code
               ss = Roo::Spreadsheet.open(output_path)
-
-              # NOTE: spreadsheets are 1-indexed, but row 1 is header
-
-              aggregate_failures 'headers' do
-                expected_table.headers.each_with_index do |h, col|
-                  ss_col = 1 + col
-                  actual_header = ss.cell(1, ss_col)
-                  expect(actual_header).to eq(h), "Expected header #{h.inspect} for column #{ss_col}, got #{actual_header.inspect}"
-                end
+              begin
+                expect(ss).to match_table(expected_table)
+              ensure
+                ss.close
               end
-
-              aggregate_failures 'values' do
-                (0..expected_table.row_count).each do |row|
-                  ss_row = 2 + row # row 1 is header
-                  (0..expected_table.column_count).each do |col|
-                    ss_col = 1 + col
-                    expected_value = expected_table.value_at(row, col)
-                    actual_value = ss.cell(ss_row, ss_col)
-                    expect(actual_value).to eq(expected_value), "(#{ss_row}, #{ss_col}): expected #{expected_value.inspect}, got #{actual_value.inspect}"
-                  end
-                end
-              end
-
-              ss.close
             end
           end
         end
 
         describe :export do
           describe 'CSV formats' do
-            attr_reader :expected_csv
-
-            before(:each) do
-              @expected_csv = expected_table.to_csv
-            end
-
             it 'defaults to CSV' do
               actual_csv = Export.export(collection)
-              expect(actual_csv).to eq(expected_csv)
+              expect(actual_csv).to match_table(expected_table)
             end
 
             [Export::ExportFormat::CSV, :csv, 'CSV'].each do |fmt|
               it "accepts #{fmt.inspect} as a format parameter" do
                 actual_csv = Export.export(collection, fmt)
-                # File.open("tmp/actual-#{i}.csv", 'wb') { |f| f.write(actual_csv) }
-                # File.open("tmp/expected-#{i}.csv", 'wb') { |f| f.write(expected_csv) }
-                expect(actual_csv).to eq(expected_csv), "Wrong CSV for #{fmt.inspect}"
+                expect(actual_csv).to match_table(expected_table)
               end
             end
           end
@@ -184,32 +110,12 @@ module UCBLIT
                   output_path = File.join(dir, "#{basename}-#{i}.ods")
                   Export.export(collection, fmt, output_path)
 
-                  # TODO: share verification code
                   ss = Roo::Spreadsheet.open(output_path)
-
-                  # NOTE: spreadsheets are 1-indexed, but row 1 is header
-
-                  aggregate_failures 'headers' do
-                    expected_table.headers.each_with_index do |h, col|
-                      ss_col = 1 + col
-                      actual_header = ss.cell(1, ss_col)
-                      expect(actual_header).to eq(h), "Expected header #{h.inspect} for column #{ss_col}, got #{actual_header.inspect}"
-                    end
+                  begin
+                    expect(ss).to match_table(expected_table)
+                  ensure
+                    ss.close
                   end
-
-                  aggregate_failures 'values' do
-                    (0..expected_table.row_count).each do |row|
-                      ss_row = 2 + row # row 1 is header
-                      (0..expected_table.column_count).each do |col|
-                        ss_col = 1 + col
-                        expected_value = expected_table.value_at(row, col)
-                        actual_value = ss.cell(ss_row, ss_col)
-                        expect(actual_value).to eq(expected_value), "(#{ss_row}, #{ss_col}): expected #{expected_value.inspect}, got #{actual_value.inspect}"
-                      end
-                    end
-                  end
-
-                  ss.close
                 end
               end
             end

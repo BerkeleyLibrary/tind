@@ -21,10 +21,10 @@ module UCBLIT
 
         # Initializes a new Table
         #
-        # @param filter_for_export [Boolean] whether to filter out non-exportable fields
+        # @param exportable_only [Boolean] whether to filter out non-exportable fields
         # @see Tags
-        def initialize(filter_for_export: false)
-          @column_groups = ColumnGroupList.new(filter_for_export: filter_for_export)
+        def initialize(exportable_only: false)
+          @column_groups = ColumnGroupList.new(exportable_only: exportable_only)
         end
 
         # ------------------------------------------------------------
@@ -35,10 +35,10 @@ module UCBLIT
           #
           # @param records [Enumerable<MARC::Record>] the records
           # @param freeze [Boolean] whether to freeze the table
-          # @param filter_for_export [Boolean] whether to include only exportable fields
+          # @param exportable_only [Boolean] whether to include only exportable fields
           # @return [Table] the table
-          def from_records(records, freeze: false, filter_for_export: false)
-            Table.new(filter_for_export: filter_for_export).tap do |table|
+          def from_records(records, freeze: false, exportable_only: false)
+            Table.new(exportable_only: exportable_only).tap do |table|
               records.each { |r| table << r }
               table.freeze if freeze
             end

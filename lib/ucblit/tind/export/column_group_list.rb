@@ -14,15 +14,15 @@ module UCBLIT
         # ------------------------------------------------------------
         # Initializer
 
-        def initialize(filter_for_export: false)
-          @filter_for_export = filter_for_export
+        def initialize(exportable_only: false)
+          @exportable_only = exportable_only
         end
 
         # ------------------------------------------------------------
         # Accessors
 
-        def filter_for_export?
-          @filter_for_export
+        def exportable_only?
+          @exportable_only
         end
 
         # ------------------------------------------------------------
@@ -107,19 +107,19 @@ module UCBLIT
         end
 
         def can_export_tag(tag)
-          return true unless filter_for_export?
+          return true unless exportable_only?
 
           Tags.can_export_tag?(tag)
         end
 
         def can_export_df(df)
-          return true unless filter_for_export?
+          return true unless exportable_only?
 
           Tags.can_export_data_field?(df)
         end
 
         def exportable_subfield_codes(df)
-          return df.subfield_codes unless filter_for_export?
+          return df.subfield_codes unless exportable_only?
 
           Tags.exportable_subfield_codes(df)
         end

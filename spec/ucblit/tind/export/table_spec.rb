@@ -171,6 +171,45 @@ module UCBLIT
               end
             end
           end
+
+          describe :exportable_only do
+            it 'filters out non-exportable values' do
+              excluded_prefixes = (Tags::DO_NOT_EXPORT_FIELDS + Tags::DO_NOT_EXPORT_SUBFIELDS).map { |h| h.gsub(' ', '_') }
+              table = Table.from_records(records, freeze: true, exportable_only: true)
+
+              aggregate_failures 'row parsing' do
+                records.each_with_index do |marc_record, row|
+                  expected_headers = []
+                  expected_values = []
+
+                  marc_record.each_data_field.each do |df|
+                    prefix = ColumnGroup.prefix_for(df)
+                    df.subfields.each do |sf|
+                      header = "#{prefix}#{sf.code}"
+                      next if excluded_prefixes.any? { |h| header.start_with?(h) }
+
+                      expected_headers << header
+                      expected_values << sf.value
+                    end
+                  end
+
+                  expected_index = 0
+                  table.rows[row].values.each_with_index do |actual_value, index|
+                    next unless actual_value
+
+                    expected_header = expected_headers[expected_index]
+                    actual_header = table.headers[index]
+                    expect(actual_header).to start_with(expected_header)
+
+                    expected_value = expected_values[expected_index]
+                    expect(actual_value).to eq(expected_value)
+
+                    expected_index += 1
+                  end
+                end
+              end
+            end
+          end
         end
 
         describe :rows do

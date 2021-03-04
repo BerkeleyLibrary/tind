@@ -16,25 +16,19 @@ module UCBLIT
         # @return [String] the collection name
         attr_reader :collection
 
+        # @return [Boolean] whether to include only exportable fields
+        attr_reader :exportable_only
+
         # ------------------------------------------------------------
         # Initializer
 
         # Initializes a new exporter
         #
-        # @overload initialize(collection)
-        #   Initializes an exporter that will return a string.
-        #   @param collection [String] The collection name
-        #   @param format [ExportFormat, String, Symbol] the export format
-        # @overload initialize(collection, out)
-        #   Initialies an exporter that will write to the specified output stream.
-        #   @param collection [String] The collection name
-        #   @param out [IO] the output stream
-        # @overload initialize(collection, path)
-        #   Initialies an exporter that will write to the specified output file.
-        #   @param collection [String] The collection name
-        #   @param path [String, Pathname] the path to the output file
-        def initialize(collection) # TODO: add filtering
+        # @param collection [String] The collection name
+        # @param exportable_only [Boolean] whether to include only exportable fields
+        def initialize(collection, exportable_only: true)
           @collection = collection
+          @exportable_only = exportable_only
         end
 
         # ------------------------------------------------------------
@@ -54,7 +48,7 @@ module UCBLIT
 
             logger.info('Creating export table')
             # noinspection RubyYardParamTypeMatch
-            Export::Table.from_records(results, freeze: true)
+            Export::Table.from_records(results, freeze: true, exportable_only: exportable_only)
           end
         end
 

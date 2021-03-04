@@ -1,4 +1,4 @@
-require 'ucblit/tind/export/tags'
+require 'ucblit/tind/export/filter'
 require 'ucblit/tind/export/column_group'
 require 'ucblit/tind/export/column'
 require 'ucblit/tind/export/export_exception'
@@ -109,19 +109,19 @@ module UCBLIT
         def can_export_tag(tag)
           return true unless exportable_only?
 
-          Tags.can_export_tag?(tag)
+          Filter.can_export_tag?(tag)
         end
 
         def can_export_df(df)
           return true unless exportable_only?
 
-          Tags.can_export_data_field?(df)
+          Filter.can_export_data_field?(df)
         end
 
         def exportable_subfield_codes(df)
           return df.subfield_codes unless exportable_only?
 
-          Tags.exportable_subfield_codes(df)
+          Filter.exportable_subfield_codes(df)
         end
       end
     end

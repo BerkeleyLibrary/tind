@@ -174,7 +174,7 @@ module UCBLIT
 
           describe :exportable_only do
             it 'filters out non-exportable values' do
-              excluded_prefixes = (Tags::DO_NOT_EXPORT_FIELDS + Tags::DO_NOT_EXPORT_SUBFIELDS).map { |h| h.gsub(' ', '_') }
+              excluded_prefixes = (Filter::DO_NOT_EXPORT_FIELDS + Filter::DO_NOT_EXPORT_SUBFIELDS).map { |h| h.gsub(' ', '_') }
               table = Table.from_records(records, freeze: true, exportable_only: true)
 
               aggregate_failures 'row parsing' do

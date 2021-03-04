@@ -6,7 +6,6 @@ module UCBLIT
     module Export
       # Exporter for CSV (comma-separated value) text
       class CSVExporter < ExporterBase
-
         # Exports {ExportBase#collection} as CSV
         # @overload export
         #   Exports to a new string.

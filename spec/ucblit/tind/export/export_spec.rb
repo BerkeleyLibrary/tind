@@ -13,7 +13,7 @@ module UCBLIT
           .map { |p| UCBLIT::TIND::MARC::XMLReader.new(p, freeze: true).to_a }
           .flatten
       end
-      let(:expected_table) { Export::Table.from_records(records, freeze: true) }
+      let(:expected_table) { Export::Table.from_records(records, freeze: true, exportable_only: true) }
       let(:collection) { 'Bancroft Library' }
       let(:basename) { File.basename(__FILE__, '.rb') }
 

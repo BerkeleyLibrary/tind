@@ -11,8 +11,9 @@ module UCBLIT
 
         DEFAULT = ODS
 
-        def export(collection, out = $stdout)
-          raise ArgumentError, "Don't know how to export #{self}" unless (exporter = exporter_for(collection))
+        def export(collection, out = $stdout, exportable_only: true)
+          exporter = exporter_for(collection, exportable_only)
+          raise ArgumentError, "Don't know how to export #{self}" unless exporter
 
           exporter.export(out)
         end
@@ -39,7 +40,13 @@ module UCBLIT
           self == DEFAULT
         end
 
+        # noinspection RubyYardReturnMatch
         class << self
+          # Converts a string or symbol to an {ExportFormat}, or returns
+          # an {ExportFormat} if passed on
+          #
+          # @param format [String, Symbol, ExportFormat] the format
+          # @return [ExportFormat] the format
           def ensure_format(format)
             return unless format
             return format if format.is_a?(ExportFormat)
@@ -53,9 +60,9 @@ module UCBLIT
 
         private
 
-        def exporter_for(collection)
-          return CSVExporter.new(collection) if self == ExportFormat::CSV
-          return ODSExporter.new(collection) if self == ExportFormat::ODS
+        def exporter_for(collection, exportable_only)
+          return CSVExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::CSV
+          return ODSExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::ODS
         end
       end
 

@@ -1,7 +1,7 @@
 module UCBLIT
   module TIND
     module Export
-      module Tags
+      module Filter
         DO_NOT_EXPORT_FIELDS = ['005', '8564 ', '902  ', '903  ', '991', '998'].map(&:freeze).freeze
         DO_NOT_EDIT_FIELDS = (['001'.freeze] + DO_NOT_EXPORT_FIELDS).freeze
 

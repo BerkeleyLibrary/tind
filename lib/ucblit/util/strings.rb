@@ -13,6 +13,8 @@ module UCBLIT
       end
 
       def diff_index(s1, s2)
+        return unless [s1, s2].all? { |s| s.respond_to?(:chars) && s.respond_to?(:length) }
+
         s1.chars.each_with_index do |c, i|
           return i if c != s2[i]
         end

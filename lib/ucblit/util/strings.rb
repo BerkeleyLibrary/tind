@@ -15,10 +15,11 @@ module UCBLIT
       def diff_index(s1, s2)
         return unless [s1, s2].all? { |s| s.respond_to?(:chars) && s.respond_to?(:length) }
 
+        # TODO: determine shorter & iterate that first
         s1.chars.each_with_index do |c, i|
           return i if c != s2[i]
         end
-        s2.length if s2.length > s1.length
+        s1.length if s2.length > s1.length
       end
 
       class << self

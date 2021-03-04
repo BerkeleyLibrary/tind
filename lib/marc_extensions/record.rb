@@ -71,34 +71,6 @@ module MARCExtensions
       data_fields_by_tag.values.flatten
     end
 
-    # Finds data fields with the specified tag and indicators.
-    #
-    # @overload each_field_with(tag:, ind1:, ind2:)
-    #   Returns an Enumerator that yields each matching field.
-    #   @param tag [String] the tag
-    #   @param ind1 [String] the first indicator
-    #   @param ind2 [String] the second indicator
-    #   @return [Enumerator<MARC::DataField>]
-    #   @raise ArgumentError if the tag is not a data field tag (050-999)
-    # @overload each_field_with(tag:, ind1:, ind2:, &block)
-    #   Yields each matching field.
-    #   @param tag [String] the tag
-    #   @param ind1 [String] the first indicator
-    #   @param ind2 [String] the second indicator
-    #   @yieldparam df [MARC::DataField] the field
-    #   @raise ArgumentError if the tag is not a data field tag (050-999)
-    def each_field_with(tag:, ind1:, ind2:)
-      raise ArgumentError, "Can't find  fields tagged #{tag.inspect} by indicator" unless tag.to_i >= 10 && tag.to_i <= 999
-      return enum_for(:each_field_with, tag: tag, ind1: ind1, ind2: ind2) unless block_given?
-
-      each_by_tag(tag) do |df|
-        next unless df.indicator1 == ind1
-        next unless df.indicator2 == ind2
-
-        yield df
-      end
-    end
-
     # Freezes the leader and fields.
     def freeze
       leader.freeze

@@ -130,10 +130,6 @@ module UCBLIT
           invert(df_index_to_cg_index)
         end
 
-        def format_ind(ind)
-          ColumnGroup.format_indicator(ind)
-        end
-
         def data_fields
           @data_fields ||= []
         end

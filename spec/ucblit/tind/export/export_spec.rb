@@ -39,6 +39,7 @@ module UCBLIT
           end
         end
 
+        # TODO: test locking, formatting
         describe :export_libreoffice do
           it 'returns a string by default' do
             result = Export.export_libreoffice(collection)

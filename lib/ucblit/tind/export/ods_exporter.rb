@@ -1,5 +1,6 @@
 require 'rodf'
 require 'ucblit/tind/export/exporter_base'
+require 'ucblit/tind/export/odf'
 
 module UCBLIT
   module TIND
@@ -42,12 +43,11 @@ module UCBLIT
 
         private
 
+        # TODO: clean this up
         def create_spreadsheet(collection, export_table)
           logger.info("Creating spreadsheet for #{collection}")
 
-          table_columns = export_table.columns
-
-          RODF::Spreadsheet.new do
+          ss = RODF::Spreadsheet.new do
             style(STYLE_CELL_DEFAULT, family: :cell) do
               property(:cell, 'cell-protect' => 'none')
             end
@@ -62,28 +62,25 @@ module UCBLIT
               property(:text, 'color' => LOCKED_CELL_COLOR)
               property(:column, 'column-width' => COLUMN_WIDTH)
             end
-
-            # table_columns.each do |col|
-            #   col_style = col.can_edit? ? STYLE_COL_DEFAULT : STYLE_COL_LOCKED
-            #   column(style: col_style)
-            # end
-
-            ss_table = table(collection) do
-              row { export_table.headers.each { |h| cell(h) } }
-              export_table.each_row { |r| row { r.each_value { |v| cell(v) } } }
-            end
-
-            table_columns.each do |col|
-              col_style = col.can_edit? ? STYLE_COL_DEFAULT : STYLE_COL_LOCKED
-              ss_col = RODF::Column.new(style: col_style)
-
-              cell_style = col.can_edit? ? STYLE_CELL_DEFAULT : STYLE_CELL_LOCKED
-              elem_attrs = ss_col.instance_variable_get(:@elem_attrs) # TODO: get them to patch this
-              elem_attrs['table:default-cell-style-name'] = cell_style
-
-              ss_table.columns << ss_col
-            end
           end
+
+          ss_table = ODF::ODFTable.new(collection)
+          ss.tables << ss_table
+
+          ss_table.row { export_table.headers.each { |h| cell(h) } }
+          export_table.each_row { |r| ss_table.row { r.each_value { |v| cell(v) } } }
+
+          export_table.columns.each do |col|
+            col_style = col.can_edit? ? STYLE_COL_DEFAULT : STYLE_COL_LOCKED
+            cell_style = col.can_edit? ? STYLE_CELL_DEFAULT : STYLE_CELL_LOCKED
+            ss_col = ODF::ODFColumn.new(
+              style: col_style,
+              default_cell_style_name: cell_style
+            )
+            ss_table.columns << ss_col
+          end
+
+          ss
         end
 
         def write_spreadsheet_to_string

@@ -25,8 +25,14 @@ module UCBLIT
             Builder::XmlMarkup.new.tag!(
               'table:table',
               'table:name' => @title,
-              'table:protected' => 'protected'
+              'table:protected' => 'true'
             ) do |xml|
+              # # TODO: does this work in OpenOffice or only LibreOffice?
+              # xml << Builder::XmlMarkup.new.tag!(
+              #   'loext:table-protection',
+              #   'loext:select-protected-cells' => 'true',
+              #   'loext:select-unprotected-cells' => 'true'
+              # )
               xml << columns_xml
               xml << rows_xml
             end

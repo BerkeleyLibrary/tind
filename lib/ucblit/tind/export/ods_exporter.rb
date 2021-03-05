@@ -8,12 +8,11 @@ module UCBLIT
       # Exporter for OpenOffice/LibreOffice format
       class ODSExporter < ExporterBase
 
-        COLUMN_WIDTH = '1.0in'.freeze
+        COLUMN_WIDTH = '1in'.freeze
         LOCKED_CELL_COLOR = '#c0362c'.freeze
-        STYLE_COL_DEFAULT = 'column-default'.freeze
-        STYLE_COL_LOCKED = 'column-locked'.freeze
-        STYLE_CELL_DEFAULT = 'cell-default'.freeze
-        STYLE_CELL_LOCKED = 'cell-locked'.freeze
+        STYLE_COL = 'co1'.freeze
+        STYLE_CELL_DEFAULT = 'ce1'.freeze
+        STYLE_CELL_LOCKED = 'ce2'.freeze
 
         # Exports {ExportBase#collection} as an OpenOffice/LibreOffice spreadsheet
         # @overload export
@@ -47,20 +46,17 @@ module UCBLIT
         def create_spreadsheet(collection, export_table)
           logger.info("Creating spreadsheet for #{collection}")
 
+          # ss = ODF::ODFSpreadsheet.new do
           ss = RODF::Spreadsheet.new do
+            style(STYLE_COL, family: :column) do
+              property(:column, 'column-width' => COLUMN_WIDTH)
+            end
             style(STYLE_CELL_DEFAULT, family: :cell) do
               property(:cell, 'cell-protect' => 'none')
             end
             style(STYLE_CELL_LOCKED, family: :cell) do
               property(:text, 'color' => LOCKED_CELL_COLOR)
               property(:cell, 'cell-protect' => 'protected')
-            end
-            style(STYLE_COL_DEFAULT, family: :column) do
-              property(:column, 'column-width' => COLUMN_WIDTH)
-            end
-            style(STYLE_COL_LOCKED, family: :column) do
-              property(:text, 'color' => LOCKED_CELL_COLOR)
-              property(:column, 'column-width' => COLUMN_WIDTH)
             end
           end
 
@@ -70,17 +66,27 @@ module UCBLIT
           ss_table.row { export_table.headers.each { |h| cell(h) } }
           export_table.each_row { |r| ss_table.row { r.each_value { |v| cell(v) } } }
 
-          export_table.columns.each do |col|
-            col_style = col.can_edit? ? STYLE_COL_DEFAULT : STYLE_COL_LOCKED
-            cell_style = col.can_edit? ? STYLE_CELL_DEFAULT : STYLE_CELL_LOCKED
-            ss_col = ODF::ODFColumn.new(
-              style: col_style,
-              default_cell_style_name: cell_style
-            )
+          each_ss_column(export_table.columns) do |ss_col|
             ss_table.columns << ss_col
           end
 
           ss
+        end
+
+        def each_ss_column(export_columns, &block)
+          editable_count = export_columns.take_while(&:can_edit?).size
+          yield ODF::ODFColumn.create(STYLE_COL, STYLE_CELL_DEFAULT, editable_count) if editable_count > 0
+
+          remaining_columns = export_columns[editable_count..]
+          return if remaining_columns.empty?
+
+          locked_count = remaining_columns.take_while { |c| !c.can_edit? }.size
+          return if locked_count == 0
+
+          yield ODF::ODFColumn.create(STYLE_COL, STYLE_CELL_LOCKED, locked_count)
+
+          remaining_columns = remaining_columns[locked_count..]
+          each_ss_column(remaining_columns, &block) unless remaining_columns.empty?
         end
 
         def write_spreadsheet_to_string

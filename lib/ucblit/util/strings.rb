@@ -12,19 +12,31 @@ module UCBLIT
         end
       end
 
+      # Locates the point at which two strings differ
+      #
+      # @return [Integer, nil] the index of the first character in either string
+      #   that differs from the other, or `nil` if the strings are identical,
+      #   or are not strings
       def diff_index(s1, s2)
-        return unless [s1, s2].all? { |s| s.respond_to?(:chars) && s.respond_to?(:length) }
+        return unless string_like?(s1, s2)
 
-        # TODO: determine shorter & iterate that first
-        s1.chars.each_with_index do |c, i|
-          return i if c != s2[i]
+        shorter, longer = s1.size > s2.size ? [s2, s1] : [s1, s2]
+        shorter.chars.each_with_index do |c, i|
+          return i if c != longer[i]
         end
-        s1.length if s2.length > s1.length
+        shorter.length if shorter.length < longer.length # otherwise they're equal
       end
 
       class << self
         include Strings
       end
+
+      private
+
+      def string_like?(*strs)
+        strs.all? { |s| s.respond_to?(:chars) && s.respond_to?(:size) }
+      end
+
     end
   end
 end

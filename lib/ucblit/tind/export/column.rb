@@ -7,6 +7,10 @@ module UCBLIT
         attr_reader :col_in_group
         attr_reader :column_group
 
+        # Initializes a new column
+        #
+        # @param column_group [ColumnGroup] the group containing this column
+        # @param col_in_group [Integer] the index of this column in the group
         def initialize(column_group, col_in_group)
           @column_group = column_group
           @col_in_group = col_in_group
@@ -24,6 +28,16 @@ module UCBLIT
         def value_at(row)
           column_group.value_at(row, col_in_group)
         end
+
+        def can_edit?
+          @can_edit ||= Filter.can_edit?(
+            column_group.tag,
+            column_group.ind1,
+            column_group.ind2,
+            subfield_code
+          )
+        end
+
       end
     end
   end

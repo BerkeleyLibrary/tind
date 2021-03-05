@@ -8,6 +8,8 @@ module UCBLIT
         DO_NOT_EXPORT_SUBFIELDS = ['336  a', '852  c', '901  a', '901  f', '901  g', '980  a', '982  a', '982  b', '982  p'].map(&:freeze).freeze
         DO_NOT_EDIT_SUBFIELDS = (['035  a'.freeze] + DO_NOT_EXPORT_SUBFIELDS).freeze
 
+        DO_NOT_EDIT = (DO_NOT_EDIT_FIELDS + DO_NOT_EDIT_SUBFIELDS).freeze
+
         class << self
           def can_export_tag?(tag)
             !DO_NOT_EXPORT_FIELDS.include?(tag)
@@ -18,20 +20,30 @@ module UCBLIT
           end
 
           def exportable_subfield_codes(df)
-            DO_NOT_EXPORT_FIELDS.each { |f| return [] if df_matches(df, f) }
+            tag, ind1, ind2 = decompose_field(df)
+            DO_NOT_EXPORT_FIELDS.each { |f| return [] if excludes?(f, tag, ind1, ind2) }
 
-            excluded_codes = DO_NOT_EXPORT_SUBFIELDS.select { |f| df_matches(df, f) }.map { |f| f[5] }
+            excluded_codes = DO_NOT_EXPORT_SUBFIELDS.select { |f| excludes?(f, tag, ind1, ind2) }.map { |f| f[5] }
             return df.subfield_codes if excluded_codes.empty?
 
             df.subfield_codes.reject { |code| excluded_codes.include?(code) }
           end
 
+          def can_edit?(tag, ind1, ind2, code)
+            DO_NOT_EDIT.none? { |f| excludes?(f, tag, ind1, ind2, code) }
+          end
+
           private
 
-          def df_matches(df, f)
-            f == df.tag ||
-              f.size > 3 && f.start_with?(df.tag) &&
-                f[3] == df.indicator1 && f[4] == df.indicator2
+          def decompose_field(df)
+            [df.tag, df.indicator1, df.indicator2]
+          end
+
+          def excludes?(f, tag, ind1, ind2, code = nil)
+            return f == tag if f.size == 3
+
+            excludes_tag = f.start_with?(tag) && f[3] == ind1 && f[4] == ind2
+            code ? excludes_tag && code : excludes_tag
           end
         end
       end

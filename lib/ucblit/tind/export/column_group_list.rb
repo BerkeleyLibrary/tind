@@ -40,6 +40,7 @@ module UCBLIT
         end
 
         def add_data_fields(marc_record, row)
+          # TODO: what about control fields?
           marc_record.data_fields_by_tag.each do |tag, data_fields|
             next unless can_export_tag(tag)
             next if data_fields.empty?

@@ -22,7 +22,7 @@ module UCBLIT
           end
         end
 
-        describe :list_collection_names do
+        describe :list_collections do
           it 'lists the collection names' do
             collections = UCBLIT::TIND::API::Collection.all_from_json(File.read('spec/data/collections.json'))
             allow(UCBLIT::TIND::API::Collection).to receive(:all).and_return(collections)

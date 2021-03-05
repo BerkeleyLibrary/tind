@@ -21,7 +21,7 @@ module UCBLIT
         end
 
         def execute!
-          return list_collection_names if options[:list]
+          return list_collections if options[:list]
 
           export_collection
         rescue StandardError => e
@@ -33,8 +33,8 @@ module UCBLIT
 
         private
 
-        def list_collection_names
-          UCBLIT::TIND::API::Collection.each_collection { |c| out.puts c.name }
+        def list_collections
+          UCBLIT::TIND::API::Collection.each_collection { |c| out.puts "#{c.nb_rec}\t#{c.name}" }
         end
 
         def export_collection
@@ -53,7 +53,7 @@ module UCBLIT
           OPTS = {
             f: ['--format FORMAT', "Format (#{FORMATS}; defaults to output file extension, or else to #{DEFAULT_FORMAT})"],
             o: ['--output-file FILE', 'Output file'],
-            l: ['--list-collections', 'List collection names'],
+            l: ['--list-collections', 'List collection sizes and names'],
             u: ['--tind-base-url URL', "TIND base URL (default $#{UCBLIT::TIND::Config::ENV_TIND_BASE_URL})"],
             k: ['--api-key KEY', "TIND API key (default $#{UCBLIT::TIND::API::ENV_TIND_API_KEY})"],
             v: ['--verbose', 'Verbose error logging'],

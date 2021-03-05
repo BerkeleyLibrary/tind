@@ -52,8 +52,6 @@ module UCBLIT
               begin
                 expect(ss).to match_table(expected_table)
               ensure
-                xml_text = ss.instance_variable_get(:@doc).to_s
-                File.open('tmp/doc.xml', 'wb') { |f| f.write(xml_text) }
                 ss.close
               end
             end

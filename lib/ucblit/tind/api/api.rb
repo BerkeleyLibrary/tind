@@ -74,6 +74,8 @@ module UCBLIT
           endpoint_url = uri_for(endpoint).to_s
           raise ArgumentError, "No endpoint URL found for #{endpoint.inspect}" if endpoint_url.empty?
 
+          logger.debug("GET #{debug_uri(endpoint_url, params)}")
+          # logger.debug("Headers", headers)
           body = URIs.get(endpoint_url, params, headers)
           return body unless block_given?
 
@@ -88,6 +90,10 @@ module UCBLIT
           {}.tap do |headers|
             headers['Authorization'] = "Token #{api_key}" if api_key
           end
+        end
+
+        def debug_uri(url, params)
+          URIs.append(url, "?#{URI.encode_www_form(params)}")
         end
 
         # TODO: make real body streaming work

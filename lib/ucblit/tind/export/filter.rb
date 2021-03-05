@@ -20,13 +20,12 @@ module UCBLIT
           end
 
           def exportable_subfield_codes(df)
-            tag, ind1, ind2 = decompose_field(df)
+            tag, ind1, ind2 = decompose_data_field(df)
             DO_NOT_EXPORT_FIELDS.each { |f| return [] if excludes?(f, tag, ind1, ind2) }
 
-            excluded_codes = DO_NOT_EXPORT_SUBFIELDS.select { |f| excludes?(f, tag, ind1, ind2) }.map { |f| f[5] }
-            return df.subfield_codes if excluded_codes.empty?
-
-            df.subfield_codes.reject { |code| excluded_codes.include?(code) }
+            df.subfield_codes.reject do |code|
+              DO_NOT_EXPORT_SUBFIELDS.any? { |f| excludes?(f, tag, ind1, ind2, code) }
+            end
           end
 
           def can_edit?(tag, ind1, ind2, code)
@@ -35,10 +34,11 @@ module UCBLIT
 
           private
 
-          def decompose_field(df)
+          def decompose_data_field(df)
             [df.tag, df.indicator1, df.indicator2]
           end
 
+          # TODO: test this more carefully
           def excludes?(f, tag, ind1, ind2, code = nil)
             return f == tag if f.size == 3
 

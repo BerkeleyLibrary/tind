@@ -74,6 +74,7 @@ module UCBLIT
           end
         end
 
+        # TODO: set column width
         def cell_style_for(export_column)
           export_column.can_edit? ? STYLE_CELL_DEFAULT : STYLE_CELL_LOCKED
         end

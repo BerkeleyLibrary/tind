@@ -43,7 +43,6 @@ module UCBLIT
 
         private
 
-        # TODO: clean this up
         def create_spreadsheet(collection, export_table)
           logger.info("Creating spreadsheet for #{collection}")
 
@@ -52,6 +51,7 @@ module UCBLIT
           end
         end
 
+        # TODO: lock cells, not columns
         def new_table(collection, export_table)
           ss_table = ODF::ODFTable.new(collection)
           ss_table.row { export_table.headers.each { |h| cell(h) } }

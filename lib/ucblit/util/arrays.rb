@@ -17,6 +17,29 @@ module UCBLIT
         !find_indices(in_array: superset, for_array: subset).nil?
       end
 
+      # Counts how many contiguous elements from the start of an
+      # sequence of values satisfy the given block.
+      #
+      # @overload count_while(arr:)
+      #   Returns an enumerator.
+      #   @param values [Enumerable] the values
+      #   @return [Enumerator] the enumerator.
+      # @overload count_while(arr:, &block)
+      #   Passes elements to the block until the block returns nil or false,
+      #   then stops iterating and returns the count of matching elements.
+      #   @param values [Enumerable] the values
+      #   @return [Integer] the count
+      def count_while(values:)
+        return to_enum(:count_while, values: values) unless block_given?
+
+        values.inject(0) do |count, x|
+          matched = yield x
+          break count unless matched
+
+          count + 1
+        end
+      end
+
       # Given two lists, one of which is a superset of the other, with elements
       # in the same order (but possibly with additional elements in the superset),
       # returns an array the length of the subset, containing for each element in

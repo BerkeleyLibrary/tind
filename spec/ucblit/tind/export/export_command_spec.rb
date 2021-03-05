@@ -29,7 +29,9 @@ module UCBLIT
 
             out = StringIO.new
             ExportCommand.new('-l', out: out).execute!
-            expect(out.string).to eq(File.read('spec/data/collection-names.txt'))
+            # TODO: test counts
+            names_only = out.string.gsub!(/^[0-9]+\t/, '')
+            expect(names_only).to eq(File.read('spec/data/collection-names.txt'))
           end
         end
 

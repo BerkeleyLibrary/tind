@@ -1,4 +1,5 @@
 require 'rodf'
+require 'ucblit/util/arrays'
 require 'ucblit/tind/export/exporter_base'
 require 'ucblit/tind/export/odf'
 
@@ -46,47 +47,45 @@ module UCBLIT
         def create_spreadsheet(collection, export_table)
           logger.info("Creating spreadsheet for #{collection}")
 
-          # ss = ODF::ODFSpreadsheet.new do
-          ss = RODF::Spreadsheet.new do
-            style(STYLE_COL, family: :column) do
-              property(:column, 'column-width' => COLUMN_WIDTH)
-            end
-            style(STYLE_CELL_DEFAULT, family: :cell) do
-              property(:cell, 'cell-protect' => 'none')
-            end
-            style(STYLE_CELL_LOCKED, family: :cell) do
-              property(:text, 'color' => LOCKED_CELL_COLOR)
-              property(:cell, 'cell-protect' => 'protected')
-            end
+          new_spreadsheet.tap do |ss|
+            ss.tables << new_table(collection, export_table)
           end
+        end
 
+        def new_table(collection, export_table)
           ss_table = ODF::ODFTable.new(collection)
-          ss.tables << ss_table
-
           ss_table.row { export_table.headers.each { |h| cell(h) } }
           export_table.each_row { |r| ss_table.row { r.each_value { |v| cell(v) } } }
 
           each_ss_column(export_table.columns) do |ss_col|
             ss_table.columns << ss_col
           end
-
-          ss
+          ss_table
         end
 
-        def each_ss_column(export_columns, &block)
-          editable_count = export_columns.take_while(&:can_edit?).size
-          yield ODF::ODFColumn.create(STYLE_COL, STYLE_CELL_DEFAULT, editable_count) if editable_count > 0
+        def new_spreadsheet
+          RODF::Spreadsheet.new do
+            style(STYLE_COL, family: :column) { property(:column, 'column-width' => COLUMN_WIDTH) }
+            style(STYLE_CELL_DEFAULT, family: :cell) { property(:cell, 'cell-protect' => 'none') }
+            style(STYLE_CELL_LOCKED, family: :cell) do
+              property(:text, 'color' => LOCKED_CELL_COLOR)
+              property(:cell, 'cell-protect' => 'protected')
+            end
+          end
+        end
 
-          remaining_columns = export_columns[editable_count..]
-          return if remaining_columns.empty?
+        def cell_style_for(export_column)
+          export_column.can_edit? ? STYLE_CELL_DEFAULT : STYLE_CELL_LOCKED
+        end
 
-          locked_count = remaining_columns.take_while { |c| !c.can_edit? }.size
-          return if locked_count == 0
-
-          yield ODF::ODFColumn.create(STYLE_COL, STYLE_CELL_LOCKED, locked_count)
-
-          remaining_columns = remaining_columns[locked_count..]
-          each_ss_column(remaining_columns, &block) unless remaining_columns.empty?
+        def each_ss_column(export_columns)
+          remaining_columns = export_columns
+          until remaining_columns.empty?
+            first_column_style = cell_style_for(remaining_columns.first)
+            num_repeats = 1 + UCBLIT::Util::Arrays.count_while(values: remaining_columns[1..]) { |c| cell_style_for(c) == first_column_style }
+            yield ODF::ODFColumn.create(STYLE_COL, first_column_style, num_repeats)
+            remaining_columns = remaining_columns[num_repeats..]
+          end
         end
 
         def write_spreadsheet_to_string

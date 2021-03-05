@@ -54,6 +54,30 @@ module UCBLIT::Util
       end
     end
 
+    describe :count_while do
+      it 'returns the count of matching elements' do
+        a = [1, 3, 5, 2, 4, 6, 7, 11, 13]
+        expect(Arrays.count_while(values: a, &:odd?)).to eq(3)
+      end
+
+      it 'returns 0 if the first element does not match' do
+        a = [2, 4, 6, 7, 11, 13]
+        expect(Arrays.count_while(values: a, &:odd?)).to eq(0)
+      end
+
+      it 'returns an enumerator if not passed a block' do
+        a = [1, 3, 5, 2, 4, 6, 7, 11, 13]
+        e = Arrays.count_while(values: a)
+        expect(e.each(&:odd?)).to eq(3)
+      end
+
+      it 'works on non-arrays' do
+        a = [1, 3, 5, 2, 4, 6, 7, 11, 13]
+        e = Enumerator.new { |y| a.each { |x| y << x } }
+        expect(Arrays.count_while(values: e, &:odd?)).to eq(3)
+      end
+    end
+
     describe :find_indices do
       let(:target) { %w[a b c d e] }
 

@@ -80,6 +80,10 @@ module UCBLIT
           @columns ||= (0...subfield_codes.length).map { |col| Column.new(self, col) }
         end
 
+        def row_count
+          data_fields.size
+        end
+
         # ------------------------------------------------------------
         # Object overrides
 

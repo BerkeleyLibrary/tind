@@ -38,6 +38,17 @@ module UCBLIT
           )
         end
 
+        def width_chars
+          @width_chars = nil unless column_group.frozen?
+          @width_chars ||= begin
+            w_header = header.size
+            (0...column_group.row_count).inject(w_header) do |w_max, row|
+              w_row = value_at(row).to_s.size
+              [w_max, w_row].max
+            end
+          end
+        end
+
       end
     end
   end

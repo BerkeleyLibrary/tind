@@ -62,6 +62,7 @@ module UCBLIT
         # Object overrides
 
         def freeze
+          column_groups_by_tag.each_value(&:freeze)
           column_groups_by_tag.freeze
           @all_groups ||= all_groups.freeze
           self
@@ -82,7 +83,7 @@ module UCBLIT
         end
 
         def add_fields_at(data_fields, row)
-          tag = data_fields[0].tag
+          tag = data_fields[0].tag.freeze
           tag_column_groups = (column_groups_by_tag[tag] ||= [])
 
           data_fields.inject(0) do |offset, df|

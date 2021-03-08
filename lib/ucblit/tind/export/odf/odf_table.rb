@@ -15,6 +15,15 @@ module UCBLIT
             @protected
           end
 
+          def add_row(row)
+            rows << row
+            @last_row = 1 + rows.size
+          end
+
+          def add_column(col)
+            columns << col
+          end
+
           def xml
             return super unless protected?
 

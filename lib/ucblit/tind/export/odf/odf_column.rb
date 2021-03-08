@@ -19,7 +19,7 @@ module UCBLIT
           end
 
           class << self
-            def create(column_style, default_cell_style, num_repeated)
+            def repeat(num_repeated, column_style:, default_cell_style:)
               opts = { style: column_style, default_cell_style_name: default_cell_style }
               opts[:number_columns_repeated] = num_repeated if num_repeated > 1
               ODFColumn.new(opts)

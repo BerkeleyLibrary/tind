@@ -38,17 +38,13 @@ module UCBLIT
           )
         end
 
-        def width_chars
-          @width_chars = nil unless column_group.frozen?
-          @width_chars ||= begin
-            w_header = header.size
-            (0...column_group.row_count).inject(w_header) do |w_max, row|
-              w_row = value_at(row).to_s.size
-              [w_max, w_row].max
-            end
+        def each_value
+          return to_enum(:each_value) unless block_given?
+
+          (0...column_group.row_count).each do |row|
+            yield value_at(row)
           end
         end
-
       end
     end
   end

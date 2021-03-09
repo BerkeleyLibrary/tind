@@ -1,5 +1,5 @@
 require 'nokogiri'
-require 'ucblit/util/ods/xml/document_content'
+require 'ucblit/util/ods/xml/office/document_content'
 
 module UCBLIT
   module Util
@@ -17,7 +17,7 @@ module UCBLIT
           end
 
           def document_content
-            @document_content ||= DocumentContent.new(doc: doc)
+            @document_content ||= Office::DocumentContent.new(doc: doc)
           end
 
           private

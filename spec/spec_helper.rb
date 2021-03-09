@@ -25,6 +25,7 @@ end
 # Code under test
 
 require 'ucblit/tind'
+require 'ucblit/util'
 
 FileUtils.mkdir_p('log')
 UCBLIT::TIND.logger = UCBLIT::Logging::Loggers.new_readable_logger('log/test.log')

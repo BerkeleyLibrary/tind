@@ -63,7 +63,6 @@ module UCBLIT
           total_rows - export_table.row_count
         end
 
-
         def total_cols
           @total_cols ||= COL_PAD_MULTIPLE * ((export_table.column_count / COL_PAD_MULTIPLE.to_f) + 0.5).ceil
         end

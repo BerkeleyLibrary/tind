@@ -10,7 +10,7 @@ module UCBLIT
             def initialize(protected, doc:)
               super(:table, 'table-cell-properties', doc: doc)
               @protected = protected
-              add_default_attributes!
+              set_default_attributes!
             end
 
             def protected?
@@ -19,9 +19,9 @@ module UCBLIT
 
             private
 
-            def add_default_attributes!
-              add_attribute('cell-protect', protected? ? 'protected' : 'none')
-              add_attribute('print-content', 'true')
+            def set_default_attributes!
+              set_attribute('cell-protect', protected? ? 'protected' : 'none')
+              set_attribute('print-content', 'true')
             end
           end
         end

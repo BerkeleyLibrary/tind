@@ -8,14 +8,14 @@ module UCBLIT
           class TableProperties < ElementNode
             def initialize(doc:)
               super(:table, 'table-properties', doc: doc)
-              add_default_attributes!
+              set_default_attributes!
             end
 
             private
 
-            def add_default_attributes!
-              add_attribute('display', 'true')
-              add_attribute('writing-mode', 'lr-tb')
+            def set_default_attributes!
+              set_attribute('display', 'true')
+              set_attribute('writing-mode', 'lr-tb')
             end
           end
         end

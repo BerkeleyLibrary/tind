@@ -9,14 +9,14 @@ module UCBLIT
             def initialize(doc:)
               super(:loext, 'table-protection', doc: doc)
 
-              add_default_attributes!
+              set_default_attributes!
             end
 
             private
 
-            def add_default_attributes!
-              add_attribute('select-protected-cells', 'true')
-              add_attribute('select-unprotected-cells', 'true')
+            def set_default_attributes!
+              set_attribute('select-protected-cells', 'true')
+              set_attribute('select-unprotected-cells', 'true')
             end
           end
         end

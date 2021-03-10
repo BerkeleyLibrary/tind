@@ -34,23 +34,49 @@ module UCBLIT
           end
 
           # rubocop:disable Style/OptionalArguments
-          def add_attribute(namespace = prefix, name, value)
-            prefix = namespace.to_s == 'xmlns' ? namespace : ensure_namespace(namespace).prefix
-            attributes["#{prefix}:#{name}"] = value.to_s
+          def set_attribute(namespace = prefix, name, value)
+            attr_name = prefixed_attr_name(namespace, name)
+            attributes[attr_name] = value.to_s
+          end
+          # rubocop:enable Style/OptionalArguments
+
+          # rubocop:disable Style/OptionalArguments
+          def clear_attribute(namespace = prefix, name)
+            attr_name = prefixed_attr_name(namespace, name)
+            attributes.delete(attr_name)
           end
           # rubocop:enable Style/OptionalArguments
 
           def add_child(child)
-            raise ArgumentError, "Not an element: #{child.inspect}" unless child.is_a?(ElementNode)
+            raise ArgumentError, "Not text or an element: #{child.inspect}" unless child.is_a?(ElementNode) || child.is_a?(String)
 
             child.tap { |c| children << c }
           end
 
+          def empty?
+            children.empty?
+          end
+
           protected
+
+          def prefixed_attr_name(ns, name)
+            return "xmlns:#{name}" if ns.to_s == 'xmlns'
+
+            "#{ensure_namespace(ns).prefix}:#{name}"
+          end
+
+          def attr_prefix(namespace)
+            namespace.to_s == 'xmlns' ? namespace : ensure_namespace(namespace).prefix
+          end
 
           def create_element
             doc.create_element("#{prefix}:#{name}", attributes).tap do |element|
-              children.each { |child| element.add_child(child.element) }
+              children.each do |child|
+                next element.add_child(child.element) if child.is_a?(ElementNode)
+
+                text_node = doc.create_text_node(child.to_s)
+                element.add_child(text_node)
+              end
             end
           end
 

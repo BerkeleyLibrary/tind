@@ -14,13 +14,13 @@ module UCBLIT
             def initialize(color, doc:)
               super(:table, 'text-properties', doc: doc)
               @color = ensure_color(color)
-              add_default_attributes!
+              set_default_attributes!
             end
 
             private
 
-            def add_default_attributes!
-              add_attribute(:fo, 'color', color)
+            def set_default_attributes!
+              set_attribute(:fo, 'color', color)
             end
 
             def ensure_color(color)

@@ -12,15 +12,15 @@ module UCBLIT
               super(:table, 'table-row-properties', doc: doc)
               @height = height
 
-              add_default_attributes!
+              set_default_attributes!
             end
 
             private
 
-            def add_default_attributes!
-              add_attribute('row-height', height)
-              add_attribute(:fo, 'break-before', 'auto')
-              add_attribute('use-optimal-row-height', 'true')
+            def set_default_attributes!
+              set_attribute('row-height', height)
+              set_attribute(:fo, 'break-before', 'auto')
+              set_attribute('use-optimal-row-height', 'true')
             end
           end
         end

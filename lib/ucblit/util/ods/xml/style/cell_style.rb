@@ -8,9 +8,14 @@ module UCBLIT
       module XML
         module Style
           class CellStyle < Style
+
+            # Initializes a new cell style. Note that this should not be called
+            # directly, but only from {XML::Office::AutomaticStyles#add_cell_style}.
+            #
+            # @param styles [XML::Office::AutomaticStyles] the document styles
             # rubocop:disable Style/OptionalBooleanParameter
-            def initialize(name, protected = false, color = nil, doc:)
-              super(name, :table_cell, doc: doc)
+            def initialize(name, protected = false, color = nil, styles:)
+              super(name, :table_cell, doc: styles.doc)
               @protected = protected
               @color = color
               add_default_children!

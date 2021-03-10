@@ -12,8 +12,14 @@ module UCBLIT
 
             attr_reader :height
 
-            def initialize(name, height = nil, doc:)
-              super(name, :table_row, doc: doc)
+            # Initializes a new cell style. Note that this should not be called
+            # directly, but only from {XML::Office::AutomaticStyles#add_row_style}.
+            #
+            # @param name [String] the name of the style
+            # @param height [String] the row height
+            # @param styles [XML::Office::AutomaticStyles] the document styles
+            def initialize(name, height = nil, styles:)
+              super(name, :table_row, doc: styles.doc)
               @height = height || DEFAULT_HEIGHT
               add_default_children!
             end

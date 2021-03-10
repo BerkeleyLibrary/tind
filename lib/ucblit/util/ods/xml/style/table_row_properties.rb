@@ -11,14 +11,14 @@ module UCBLIT
             def initialize(width, doc:)
               super(:table, 'table-column-properties', doc: doc)
               @width = width
-              add_default_attributes!
+              set_default_attributes!
             end
 
             private
 
-            def add_default_attributes!
-              add_attribute(:fo, 'break-before', 'auto')
-              add_attribute('column-width', width)
+            def set_default_attributes!
+              set_attribute(:fo, 'break-before', 'auto')
+              set_attribute('column-width', width)
             end
           end
         end

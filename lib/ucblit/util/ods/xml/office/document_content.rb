@@ -14,7 +14,7 @@ module UCBLIT
             def initialize(doc:)
               super(:office, 'document-content', doc: doc)
 
-              add_default_attributes!
+              set_default_attributes!
               add_default_children!
             end
 
@@ -32,9 +32,9 @@ module UCBLIT
 
             private
 
-            def add_default_attributes!
-              Namespace.each { |ns| add_attribute(:xmlns, ns.prefix, ns.uri) }
-              add_attribute('version', '1.2')
+            def set_default_attributes!
+              Namespace.each { |ns| set_attribute(:xmlns, ns.prefix, ns.uri) }
+              set_attribute('version', '1.2')
             end
 
             def add_default_children!

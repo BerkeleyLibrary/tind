@@ -8,10 +8,15 @@ module UCBLIT
       module XML
         module Style
           class TableStyle < Style
-            def initialize(name, doc:)
-              super(name, :table, doc: doc)
+            # Initializes a new table style. Note that this should not be called
+            # directly, but only from {XML::Office::AutomaticStyles#add_table_style}.
+            #
+            # @param name [String] the name of the style
+            # @param styles [XML::Office::AutomaticStyles] the document styles
+            def initialize(name, styles:)
+              super(name, :table, doc: styles.doc)
 
-              add_attribute('master-page-name', 'Default')
+              set_attribute('master-page-name', 'Default')
               children << TableProperties.new(doc: doc)
             end
           end

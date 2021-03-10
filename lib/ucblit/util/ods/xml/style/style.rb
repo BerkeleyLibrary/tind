@@ -16,14 +16,14 @@ module UCBLIT
               @name = name
               @family = Family.ensure_family(family)
 
-              add_default_attributes!
+              set_default_attributes!
             end
 
             private
 
-            def add_default_attributes!
-              add_attribute('name', name)
-              add_attribute('family', family)
+            def set_default_attributes!
+              set_attribute('name', name)
+              set_attribute('family', family)
             end
           end
         end

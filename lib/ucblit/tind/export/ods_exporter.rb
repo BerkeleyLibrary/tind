@@ -145,7 +145,7 @@ module UCBLIT
             row_number = 2 + index # row 1 is header
             row = ODF::ODFRow.new(row_number) do |r|
               xr.each_value { |v| r.cell(v) }
-              r.cells << trailing_repeated_blank_cell if trailing_repeated_blank_cell
+              r.explicit_cells << trailing_repeated_blank_cell if trailing_repeated_blank_cell
             end
             yield row
           end

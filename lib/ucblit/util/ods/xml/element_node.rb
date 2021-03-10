@@ -30,7 +30,26 @@ module UCBLIT
           end
 
           def element
-            @element ||= doc.create_element("#{prefix}:#{name}", attributes).tap do |element|
+            @element ||= create_element
+          end
+
+          # rubocop:disable Style/OptionalArguments
+          def add_attribute(namespace = prefix, name, value)
+            prefix = namespace.to_s == 'xmlns' ? namespace : ensure_namespace(namespace).prefix
+            attributes["#{prefix}:#{name}"] = value.to_s
+          end
+          # rubocop:enable Style/OptionalArguments
+
+          def add_child(child)
+            raise ArgumentError, "Not an element: #{child.inspect}" unless child.is_a?(ElementNode)
+
+            child.tap { |c| children << c }
+          end
+
+          protected
+
+          def create_element
+            doc.create_element("#{prefix}:#{name}", attributes).tap do |element|
               children.each { |child| element.add_child(child.element) }
             end
           end
@@ -45,13 +64,6 @@ module UCBLIT
           def children
             @children ||= []
           end
-
-          # rubocop:disable Style/OptionalArguments
-          def add_attribute(namespace = prefix, name, value)
-            prefix = namespace.to_s == 'xmlns' ? namespace : ensure_namespace(namespace).prefix
-            attributes["#{prefix}:#{name}"] = value
-          end
-          # rubocop:enable Style/OptionalArguments
 
           private
 

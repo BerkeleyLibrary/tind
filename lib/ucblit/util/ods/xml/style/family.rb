@@ -6,34 +6,35 @@ module UCBLIT
       module XML
         module Style
           class Family < TypesafeEnum::Base
-            new(:TABLE_CELL, 'table-cell', 'ce')
-            new(:TABLE_COLUMN, 'table-column', 'co')
-            new(:TABLE_ROW, 'table-row', 'ro')
-            new(:TABLE, 'table', 'ta')
+            # ------------------------------------------------------------
+            # Enum instances
 
-            attr_reader :name_prefix
-
-            def initialize(key, value, name_prefix)
-              super(key, value)
-
-              @name_prefix = name_prefix
-            end
-
-            def to_s
-              # noinspection RubyYardReturnMatch
-              value
-            end
-
-            def next_name(names)
-              prefixed_names = names.lazy.select do |n|
-                next false unless n.start_with(prefix)
-
-                n[prefix.size..] =~ /^[0-9]+$/
+            new(:TABLE_CELL, 'table-cell') do
+              def prefix
+                'ce'
               end
-
-              last_index = prefixed_names.map { |n| n[prefix.size..].to_i }.max
-              "#{prefix}#{last_index + 1}"
             end
+
+            new(:TABLE_COLUMN, 'table-column') do
+              def prefix
+                'co'
+              end
+            end
+
+            new(:TABLE_ROW, 'table-row') do
+              def prefix
+                'ro'
+              end
+            end
+
+            new(:TABLE, 'table') do
+              def prefix
+                'ta'
+              end
+            end
+
+            # ------------------------------------------------------------
+            # Class methods
 
             class << self
               def from_string(str)
@@ -48,6 +49,47 @@ module UCBLIT
                 raise ArgumentError, "Not a style family: #{f.inspect}"
               end
             end
+
+            # ------------------------------------------------------------
+            # Public instance methods
+
+            def prefix
+              @prefix ||= find_prefix
+            end
+
+            def next_name(names)
+              prefixed_names = names.lazy.select do |n|
+                next false unless n.start_with(prefix)
+
+                n[prefix.size..] =~ /^[0-9]+$/
+              end
+
+              last_index = prefixed_names.map { |n| n[prefix.size..].to_i }.max || 0
+              "#{prefix}#{last_index + 1}"
+            end
+
+            # ------------------------------------------------------------
+            # TypesafeEnum overrides
+
+            def to_s
+              # noinspection RubyYardReturnMatch
+              value
+            end
+
+            # ------------------------------------------------------------
+            # Private methods
+
+            private
+
+            PREFIX_RE = /-([a-z][^-])[^-]+$/.freeze
+            private_constant :PREFIX_RE
+
+            def find_prefix
+              return value unless (match_data = PREFIX_RE.match(value))
+
+              match_data[1]
+            end
+
           end
         end
       end

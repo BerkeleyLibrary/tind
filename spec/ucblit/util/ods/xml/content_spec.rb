@@ -82,6 +82,21 @@ module UCBLIT
                   expect(styles.name).to eq('automatic-styles')
                 end
               end
+
+              describe '<body/>' do
+                attr_reader :body
+
+                before(:each) do
+                  @body = root.elements[4]
+                end
+
+                it 'includes a <body/> element' do
+                  expect(body).to be_a(REXML::Element)
+                  expect(body.prefix).to eq('office')
+                  expect(body.name).to eq('body')
+                end
+              end
+
             end
 
           end

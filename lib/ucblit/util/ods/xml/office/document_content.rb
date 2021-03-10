@@ -3,6 +3,8 @@ require 'ucblit/util/ods/xml/element_node'
 require 'ucblit/util/ods/xml/office/scripts'
 require 'ucblit/util/ods/xml/office/font_face_decls'
 require 'ucblit/util/ods/xml/office/automatic_styles'
+require 'ucblit/util/ods/xml/office/body'
+require 'ucblit/util/ods/xml/office/spreadsheet'
 
 module UCBLIT
   module Util
@@ -11,12 +13,18 @@ module UCBLIT
         module Office
           class DocumentContent < XML::ElementNode
 
+            # ------------------------------------------------------------
+            # Initializer
+
             def initialize(doc:)
               super(:office, 'document-content', doc: doc)
 
               set_default_attributes!
               add_default_children!
             end
+
+            # ------------------------------------------------------------
+            # Accessors and utility methods
 
             def scripts
               @scripts ||= Scripts.new(doc: doc)
@@ -41,8 +49,11 @@ module UCBLIT
             end
 
             def body
-              @body ||= Office::Body.new(doc: doc).tap { |body| body.children << spreadsheet }
+              @body ||= Body.new(doc: doc).tap { |body| body.children << spreadsheet }
             end
+
+            # ------------------------------------------------------------
+            # Private methods
 
             private
 

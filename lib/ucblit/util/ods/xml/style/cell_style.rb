@@ -9,6 +9,8 @@ module UCBLIT
         module Style
           class CellStyle < Style
 
+            attr_reader :color
+
             # Initializes a new cell style. Note that this should not be called
             # directly, but only from {XML::Office::AutomaticStyles#add_cell_style}.
             #

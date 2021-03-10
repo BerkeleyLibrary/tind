@@ -1,6 +1,9 @@
 require 'ucblit/util/ods/xml/element_node'
-require 'ucblit/util/ods/xml/style/style'
+require 'ucblit/util/ods/xml/style/cell_style'
+require 'ucblit/util/ods/xml/style/column_style'
 require 'ucblit/util/ods/xml/style/row_style'
+require 'ucblit/util/ods/xml/style/style'
+require 'ucblit/util/ods/xml/style/table_style'
 
 module UCBLIT
   module Util
@@ -145,16 +148,17 @@ module UCBLIT
               return add_cell_style if f == Style::Family::TABLE_CELL
               return add_column_style if f == Style::Family::TABLE_COLUMN
               return add_row_style if f == Style::Family::TABLE_ROW
-              return add_table_style if f == Style::Family::Table
+              return add_table_style if f == Style::Family::TABLE
             end
 
             def next_name_for(family)
+              f = Style::Family.ensure_family(family)
               styles = styles_for_family(f)
-              family.next_name(styles.map(&:name))
+              f.next_name(styles.map(&:name))
             end
 
             def styles_for_family(family)
-              (styles_by_family[Family.ensure_family(family)] ||= [])
+              (styles_by_family[Style::Family.ensure_family(family)] ||= [])
             end
 
             def styles_by_family

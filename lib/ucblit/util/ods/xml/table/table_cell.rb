@@ -17,10 +17,15 @@ module UCBLIT
               set_attribute('style-name', cell_style.name) if cell_style
               @children = [XML::Text::P.new(value)] if value
             end
+
+            class << self
+              def repeat_empty(number_repeated, table:)
+                TableCell.new(nil, nil, number_repeated, table: table)
+              end
+            end
           end
         end
       end
     end
   end
-
 end

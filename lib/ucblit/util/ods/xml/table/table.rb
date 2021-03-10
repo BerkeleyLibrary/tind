@@ -37,19 +37,16 @@ module UCBLIT
 
               @name = name
               @styles = styles
-              @protected = protected
               @table_style = table_style || styles.default_style(:table)
 
-              set_default_attributes!
-              add_default_elements!
+              set_attribute('name', name)
+              set_attribute('style-name', table_style.name)
+
+              protect! if protected
             end
 
             # ------------------------------------------------------------
             # Accessors and utility methods
-
-            def protected?
-              @protected
-            end
 
             def column_count
               @column_count ||= 0
@@ -64,8 +61,8 @@ module UCBLIT
               default_cell_style = styles.find_or_create_cell_style(protected)
 
               add_or_repeat_column(column_style, default_cell_style).tap do
-                column_index = column_count - 1
-                header_row.set_value_at(column_index, header)
+                header_row = rows[0] || add_row
+                header_row.set_value_at(column_count - 1, header)
                 self.column_count += 1
               end
             end
@@ -100,8 +97,8 @@ module UCBLIT
             # Public XML::ElementNode overrides
 
             def add_child(child)
-              return add_table_column(child) if child.is_a?(TableColumn)
-              return add_table_row(child) if child.is_a?(TableRow)
+              return child.tap { |column| columns << column } if child.is_a?(TableColumn)
+              return child.tap { |row| rows << row } if child.is_a?(TableRow)
 
               child.tap { |c| other_children << c }
             end
@@ -112,25 +109,10 @@ module UCBLIT
             protected
 
             # ----------------------------------------
-            # Protected utility methods
-
-            def add_table_column(table_column)
-              table_column.tap { |column| columns << column }
-            end
-
-            def add_table_row(table_row)
-              table_row.tap { |row| rows << row }
-            end
-
-            # ----------------------------------------
             # Protected XML::ElementNode overrides
 
             def children
-              [].tap do |cc|
-                cc.concat(other_children)
-                cc.concat(columns)
-                cc.concat(rows)
-              end
+              [other_children, columns, rows].flatten
             end
 
             def create_element
@@ -144,6 +126,11 @@ module UCBLIT
             # Private methods
 
             private
+
+            def protect!
+              set_attribute('protected', 'true')
+              children << LOExt::TableProtection.new(doc: doc)
+            end
 
             def ensure_empty_columns!
               empty_required = MIN_COLUMNS - column_count
@@ -163,36 +150,16 @@ module UCBLIT
               @rows ||= []
             end
 
-            def header_row
-              return rows[0] unless rows.empty?
-
-              add_row
+            def other_children
+              @other_children ||= []
             end
 
             def add_or_repeat_column(column_style, default_cell_style)
-              if (last_column = columns.last).nil? ||
-                last_column.column_style != column_style ||
-                last_column.default_cell_style != default_cell_style
-
-                new_column = TableColumn.new(column_style, default_cell_style, table: self)
-                return add_table_column(new_column)
+              if (last_column = columns.last).nil? || !last_column.has_styles?(column_style, default_cell_style)
+                TableColumn.new(column_style, default_cell_style, table: self).tap { |c| columns << c }
+              else
+                last_column.tap(&:increment_repeats!)
               end
-
-              last_column.tap { |lc| lc.increment_repeats! }
-            end
-
-            def set_default_attributes!
-              set_attribute('name', name)
-              set_attribute('style-name', table_style.name)
-              set_attribute('protected', 'true') if protected?
-            end
-
-            def add_default_elements!
-              children << LOExt::TableProtection.new(doc: doc) if protected?
-            end
-
-            def other_children
-              @other_children ||= []
             end
 
           end

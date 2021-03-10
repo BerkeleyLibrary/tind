@@ -7,27 +7,91 @@ module UCBLIT
         module Text
           class P < XML::ElementNode
 
+            # ------------------------------------------------------------
+            # Constant
+
+            ESCAPABLE = ["\t", "\n", ' '].freeze
+
+            # ------------------------------------------------------------
+            # Accessors
+
             attr_reader :text
+
+            # ------------------------------------------------------------
+            # Initializer
 
             def initialize(text, doc:)
               super(:text, 'p', doc: doc)
 
               @text = text
+              add_default_children!
             end
+
+            # ------------------------------------------------------------
+            # Private methods
 
             private
 
-            def add_default_children
-              text.scan(/((?<= ) |(?:[^ \t\n]+|(?<! ) )+|\t|\n)/).each do |seq|
-                next children << S.new(doc: doc) if seq == ' '
-                next children << Tab.new(doc: doc) if seq == "\t"
-                next children << LineBreak.new(doc: doc) if seq == "\n"
+            def add_default_children!
+              each_child_element_or_string { |c| children << c }
+            end
 
-                children << seq
+            def each_child_element_or_string(last_char = nil, text_remaining = text, &block)
+              return if text_remaining.empty?
+
+              last_char, text_remaining = yield_while_unescaped(last_char, text_remaining, &block)
+              last_char, text_remaining = yield_while_escaped(last_char, text_remaining, &block)
+              each_child_element_or_string(last_char, text_remaining, &block)
+            end
+
+            def yield_while_unescaped(last_char, text_remaining, &block)
+              unescaped, last_char = take_while_unescaped(last_char, text_remaining)
+              unless unescaped.empty?
+                block.call(unescaped)
+                text_remaining = text_remaining[unescaped.size..]
+              end
+
+              [last_char, text_remaining]
+            end
+
+            def yield_while_escaped(last_char, text_remaining, &block)
+              escaped_char_count = 0
+              text_remaining.each_char do |c|
+                break unless escape?(c, last_char)
+
+                block.call(escape_element_for(c))
+                escaped_char_count += 1
+                last_char = c
+              end
+              text_remaining = text_remaining[escaped_char_count] unless escaped_char_count == 0
+
+              [last_char, text_remaining]
+            end
+
+            def take_while_unescaped(last_char, text_remaining)
+              text_remaining.each_char.with_object('') do |c, unescaped|
+                break if escape?(c, last_char)
+
+                unescaped << c
+                last_char = c
               end
             end
 
+            def escape?(c, last_char)
+              ESCAPABLE.include?(c) && (last_char == ' ' || c != ' ')
+            end
+
+            def escape_element_for(c)
+              raise ArgumentError, "Not an escapable character: #{c}" unless ESCAPABLE.include?(c)
+
+              return S.new(doc: doc) if c == ' '
+              return Tab.new(doc: doc) if c == "\t"
+              return LineBreak.new(doc: doc) if c == "\n"
+            end
           end
+
+          # ------------------------------------------------------------
+          # Helper classes
 
           class S < XML::ElementNode
             def initialize(doc:)

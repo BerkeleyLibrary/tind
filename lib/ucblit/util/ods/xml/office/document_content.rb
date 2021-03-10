@@ -30,6 +30,20 @@ module UCBLIT
               @automatic_styles ||= Office::AutomaticStyles.new(doc: doc)
             end
 
+            def add_table(name, table_style = nil, protected: true)
+              Table::Table.new(name, table_style, styles: automatic_styles, protected: protected).tap do |table|
+                spreadsheet.children << table
+              end
+            end
+
+            def spreadsheet
+              @spreadsheet ||= Office::Spreadsheet.new(doc: doc)
+            end
+
+            def body
+              @body ||= Office::Body.new(doc: doc).tap { |body| body.children << spreadsheet }
+            end
+
             private
 
             def set_default_attributes!
@@ -41,6 +55,7 @@ module UCBLIT
               children << scripts
               children << font_face_decls
               children << automatic_styles
+              children << body
             end
           end
         end

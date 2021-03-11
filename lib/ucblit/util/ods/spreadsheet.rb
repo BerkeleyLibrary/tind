@@ -22,16 +22,29 @@ module UCBLIT
         # ------------------------------------------------------------
         # Accessors
 
+        # Returns the content document
+        # @return [XML::ContentDoc] the container root-level content document
         def content
           @content ||= XML::ContentDoc.new
         end
 
+        # Returns the container styles
+        # @return [XML::StylesDoc] the container root-level style document
         def styles
           @styles ||= XML::StylesDoc.new
         end
 
+        # Returns the container manifest
+        # @return [XML::ManifestDoc] the container manifest document
         def manifest
           @manifest ||= XML::ManifestDoc.new
+        end
+
+        # Gets the document styles
+        #
+        # @return [UCBLIT::Util::ODS::XML::Office::AutomaticStyles] the styles
+        def auto_styles
+          content.document_content.automatic_styles
         end
 
         # ------------------------------------------------------------

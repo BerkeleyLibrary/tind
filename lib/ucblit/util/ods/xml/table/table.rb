@@ -64,12 +64,17 @@ module UCBLIT
             end
 
             def add_column(header, width = nil, protected: false)
-              column_style = styles.find_or_create_column_style(width)
-              default_cell_style = styles.find_or_create_cell_style(protected)
+              add_column_with_styles(
+                header,
+                column_style: styles.find_or_create_column_style(width),
+                default_cell_style: styles.find_or_create_cell_style(protected)
+              )
+            end
 
-              add_or_repeat_column(column_style, default_cell_style).tap do
+            def add_column_with_styles(header, column_style:, default_cell_style: nil, header_cell_style: nil)
+              add_or_repeat_column(column_style, default_cell_style || styles.find_or_create_cell_style).tap do
                 header_row = rows[0] || add_row
-                header_row.set_value_at(column_count, header)
+                header_row.set_value_at(column_count, header, header_cell_style)
                 self.column_count += 1
               end
             end
@@ -86,16 +91,9 @@ module UCBLIT
 
             # Adds a new row with the specified height.
             # @param height [String] the row height. Defaults to {XML::Style::RowStyle::DEFAULT_HEIGHT}.
+            # @param number_repeated [Integer] the number of identical rows to repeat
             # @return [TableRow] the new row
-            def add_row(height = nil)
-              row_style = styles.find_or_create_row_style(height)
-              TableRow.new(row_style, table: self).tap do |row|
-                rows << row
-                self.row_count += 1
-              end
-            end
-
-            def add_empty_rows(number_repeated, height = nil)
+            def add_row(height = nil, number_repeated = 1)
               row_style = styles.find_or_create_row_style(height)
               TableRow.new(row_style, number_repeated, table: self).tap do |row|
                 rows << row
@@ -149,7 +147,7 @@ module UCBLIT
 
             def ensure_empty_rows!
               empty_required = MIN_ROWS - row_count
-              add_empty_rows(empty_required) if empty_required > 0
+              add_row(nil, empty_required) if empty_required > 0
             end
 
             def columns

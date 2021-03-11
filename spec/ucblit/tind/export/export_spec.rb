@@ -7,17 +7,18 @@ module UCBLIT
   # noinspection RubyYardParamTypeMatch
   module TIND
     describe Export do
-      let(:records) do
-        (1..7)
-          .map { |page| File.read("spec/data/records-api-search-p#{page}.xml") }
-          .map { |p| UCBLIT::TIND::MARC::XMLReader.new(p, freeze: true).to_a }
-          .flatten
-      end
-      let(:expected_table) { Export::Table.from_records(records, freeze: true, exportable_only: true) }
-      let(:collection) { 'Bancroft Library' }
       let(:basename) { File.basename(__FILE__, '.rb') }
 
       describe 'export' do
+        let(:records) do
+          (1..7)
+            .map { |page| File.read("spec/data/records-api-search-p#{page}.xml") }
+            .map { |p| UCBLIT::TIND::MARC::XMLReader.new(p, freeze: true).to_a }
+            .flatten
+        end
+        let(:expected_table) { Export::Table.from_records(records, freeze: true, exportable_only: true) }
+        let(:collection) { 'Bancroft Library' }
+
         before(:each) do
           search = instance_double(UCBLIT::TIND::API::Search)
           allow(search).to receive(:each_result).with(freeze: true).and_return(records.each)
@@ -46,7 +47,7 @@ module UCBLIT
 
             Dir.mktmpdir(basename) do |dir|
               output_path = File.join(dir, "#{basename}.ods")
-              File.write(output_path, result)
+              File.write(output_path, result, encoding: Encoding::BINARY)
 
               ss = Roo::Spreadsheet.open(output_path)
               begin
@@ -121,6 +122,37 @@ module UCBLIT
               end
             end
           end
+        end
+      end
+
+      describe 'CJK support' do
+        let(:collection) { 'Houcun ju shi ji' }
+        let(:records) { UCBLIT::TIND::MARC::XMLReader.new('spec/data/records-api-search-cjk-p1.xml', freeze: true).to_a }
+        let(:expected_table) { Export::Table.from_records(records, freeze: true, exportable_only: true) }
+
+        before(:each) do
+          search = instance_double(UCBLIT::TIND::API::Search)
+          allow(search).to receive(:each_result).with(freeze: true).and_return(records.each)
+          allow(UCBLIT::TIND::API::Search).to receive(:new).with(collection: collection).and_return(search)
+        end
+
+        it 'works for LibreOffice' do
+          Dir.mktmpdir(basename) do |dir|
+            output_path = File.join(dir, "#{basename}.ods")
+            Export.export_libreoffice(collection, output_path)
+
+            ss = Roo::Spreadsheet.open(output_path)
+            begin
+              expect(ss).to match_table(expected_table)
+            ensure
+              ss.close
+            end
+          end
+        end
+
+        it 'works for CSV' do
+          actual_csv = Export.export_csv(collection)
+          expect(actual_csv).to match_table(expected_table)
         end
       end
     end

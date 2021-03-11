@@ -38,9 +38,10 @@ module UCBLIT
           )
         end
 
-        def each_value
-          return to_enum(:each_value) unless block_given?
+        def each_value(include_header: false)
+          return to_enum(:each_value, include_header: include_header) unless block_given?
 
+          yield header if include_header
           (0...column_group.row_count).each do |row|
             yield value_at(row)
           end

@@ -84,6 +84,9 @@ module UCBLIT
               end
             end
 
+            # Adds a new row with the specified height.
+            # @param height [String] the row height. Defaults to {XML::Style::RowStyle::DEFAULT_HEIGHT}.
+            # @return [TableRow] the new row
             def add_row(height = nil)
               row_style = styles.find_or_create_row_style(height)
               TableRow.new(row_style, table: self).tap do |row|

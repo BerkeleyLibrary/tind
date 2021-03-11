@@ -35,7 +35,7 @@ module UCBLIT
 
               it 'includes all namespaces' do
                 aggregate_failures('namespaces') do
-                  Namespace.each do |ns|
+                  Office::DocumentContent::REQUIRED_NAMESPACES.each do |ns|
                     expect(root["xmlns:#{ns.prefix}"]).to eq(ns.uri)
                   end
                 end

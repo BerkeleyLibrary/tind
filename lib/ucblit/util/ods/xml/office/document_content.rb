@@ -14,7 +14,11 @@ module UCBLIT
         module Office
           class DocumentContent < XML::ElementNode
 
+            # ------------------------------------------------------------
+            # Constants
+
             OFFICE_VERSION = '1.2'.freeze
+            REQUIRED_NAMESPACES = Namespace.reject { |ns| ns == Namespace::MANIFEST }
 
             # ------------------------------------------------------------
             # Initializer
@@ -59,12 +63,8 @@ module UCBLIT
 
             private
 
-            def required_namespaces
-              Namespace.reject { |ns| ns == Namespace::MANIFEST }
-            end
-
             def set_default_attributes!
-              required_namespaces.each { |ns| set_attribute(:xmlns, ns.prefix, ns.uri) }
+              REQUIRED_NAMESPACES.each { |ns| set_attribute(:xmlns, ns.prefix, ns.uri) }
               set_attribute('version', OFFICE_VERSION)
             end
 

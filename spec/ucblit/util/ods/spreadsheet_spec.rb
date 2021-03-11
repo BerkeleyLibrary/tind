@@ -21,7 +21,8 @@ module UCBLIT
 
           Dir.mktmpdir(basename) do |dir|
             output_path = File.join(dir, "#{basename}.ods")
-            File.open(output_path, 'wb') { |f| spreadsheet.write_to(f) }
+            spreadsheet.write_to_file(output_path)
+            # File.open(output_path, 'wb') { |f| spreadsheet.write_to_stream(f) }
 
             ss = Roo::Spreadsheet.open(output_path, file_warning: :warning)
             aggregate_failures 'cells' do

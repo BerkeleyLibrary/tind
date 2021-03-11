@@ -23,10 +23,6 @@ module UCBLIT
             write_xml_to_file(out, compact: compact)
           end
 
-          def root_element_node
-            raise ArgumentError, "#{self.class} must implement #{DocumentNode}#root_element_node"
-          end
-
           def doc
             @doc ||= Nokogiri::XML::Document.new.tap do |doc|
               doc.encoding = ENCODING

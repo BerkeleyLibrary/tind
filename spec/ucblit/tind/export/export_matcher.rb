@@ -1,7 +1,6 @@
 require 'rspec'
 require 'ucblit/util/strings'
 
-# rubocop:disable Metrics/AbcSize
 RSpec::Matchers.define :match_table do |expected_table|
   match { |actual| diff(expected_table, actual).empty? }
 
@@ -111,4 +110,3 @@ RSpec::Matchers.define :match_table do |expected_table|
     end
   end
 end
-# rubocop:enable Metrics/AbcSize

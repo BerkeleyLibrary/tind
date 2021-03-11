@@ -55,10 +55,6 @@ module UCBLIT
             # ------------------------------------------------------------
             # Public instance methods
 
-            def prefix
-              @prefix ||= find_prefix
-            end
-
             def split_name(style_name)
               return [nil, style_name] unless style_name.start_with?(prefix)
 
@@ -67,7 +63,7 @@ module UCBLIT
 
             def index_part(style_name)
               prefix, suffix = split_name(style_name)
-              return unless prefix
+              return unless prefix == self.prefix
               return unless (suffix_i = suffix.to_i).to_s == suffix
 
               suffix_i
@@ -79,20 +75,6 @@ module UCBLIT
             def to_s
               # noinspection RubyYardReturnMatch
               value
-            end
-
-            # ------------------------------------------------------------
-            # Private methods
-
-            private
-
-            PREFIX_RE = /-([a-z][^-])[^-]+$/.freeze
-            private_constant :PREFIX_RE
-
-            def find_prefix
-              return value unless (match_data = PREFIX_RE.match(value))
-
-              match_data[1]
             end
 
           end

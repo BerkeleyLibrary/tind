@@ -32,23 +32,7 @@ module UCBLIT
             value
           end
 
-          def attr(name, value)
-            { "#{prefix}:#{name}" => value }
-          end
-
-          def to_str
-            prefix
-          end
-
           class << self
-            def as_attributes
-              {}.tap do |attrs|
-                Namespace.each do |ns|
-                  attrs["xmlns:#{ns.prefix}"] = ns.uri
-                end
-              end
-            end
-
             def for_prefix(prefix)
               @by_prefix ||= Namespace.map { |ns| [ns.prefix, ns] }.to_h
               @by_prefix[prefix.to_s]

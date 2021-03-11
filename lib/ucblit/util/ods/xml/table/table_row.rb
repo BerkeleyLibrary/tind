@@ -58,9 +58,9 @@ module UCBLIT
             # Protected utility methods
 
             def add_table_cell(cell)
-              return cell.tap { |c| explicit_cells << c } if (explicit_cell_count + 1) <= table.column_count
+              return cell.tap { |c| explicit_cells << c } if explicit_cell_count < table.column_count
 
-              raise ArgumentError, "Can't add cell #{explicit_cell_count} to table with only #{table.column_count} columns"
+              raise ArgumentError, "Can't add cell at column index #{explicit_cell_count} to table with only #{table.column_count} columns"
             end
 
             # ----------------------------------------

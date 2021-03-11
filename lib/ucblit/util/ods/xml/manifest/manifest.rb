@@ -10,11 +10,8 @@ module UCBLIT
             REQUIRED_NAMESPACES = [:manifest].freeze
             MANIFEST_VERSION = '1.2'.freeze
 
-            attr_reader :manifest_doc
-
-            def initialize(manifest_doc:)
-              super(:manifest, 'manifest', doc: manifest_doc.doc)
-              @manifest_doc = manifest_doc
+            def initialize(doc:)
+              super(:manifest, 'manifest', doc: doc)
 
               set_default_attributes!
               add_file_entry(self_file_entry)

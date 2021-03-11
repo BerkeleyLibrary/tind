@@ -102,7 +102,7 @@ module UCBLIT
             # Public XML::ElementNode overrides
 
             def add_child(child)
-              child.is_a?(Style::Style) ? add_style(style) : child.tap { |c| other_children << c }
+              child.is_a?(Style::Style) ? add_style(child) : child.tap { |c| other_children << c }
             end
 
             # ------------------------------------------------------------

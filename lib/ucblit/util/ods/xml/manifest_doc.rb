@@ -17,7 +17,7 @@ module UCBLIT
           end
 
           def manifest
-            @manifest ||= Manifest::Manifest.new(manifest_doc: self)
+            @manifest ||= Manifest::Manifest.new(doc: doc)
           end
         end
       end

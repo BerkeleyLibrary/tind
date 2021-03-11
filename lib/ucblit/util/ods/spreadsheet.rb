@@ -70,9 +70,9 @@ module UCBLIT
         #   @return[void]
         #   @see UCBLIT::Util::ODS::Spreadsheet#write_exploded_to
         # noinspection RubyYardReturnMatch
-        def write_to(out)
+        def write_to(out = nil)
           return write_to_string unless out
-          return write_to_stream(out) if out.respond_to?(:write)
+          return write_to_stream(out) if io_like?(out)
           return write_exploded_to(out) if File.directory?(out)
 
           write_to_file(out)
@@ -138,9 +138,7 @@ module UCBLIT
         # Returns true if `out` is IO-like enough for {Zip::OutputStream}, false otherwise
         # @return [Boolean] whether `out` can be passed to {Zip::OutputStream#write_buffer}
         def io_like?(out)
-          out.respond_to?(:reopen) &&
-          out.respond_to?(:rewind) &&
-          out.respond_to?(:<<)
+          %i[reopen rewind <<].all? { |m| out.respond_to?(m) }
         end
 
         def write_zipfile(out)

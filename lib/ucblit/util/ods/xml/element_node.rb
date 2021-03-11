@@ -60,20 +60,12 @@ module UCBLIT
             child.tap { |c| children << c }
           end
 
-          def empty?
-            children.empty?
-          end
-
           protected
 
           def prefixed_attr_name(ns, name)
             return "xmlns:#{name}" if ns.to_s == 'xmlns'
 
             "#{ensure_namespace(ns).prefix}:#{name}"
-          end
-
-          def attr_prefix(namespace)
-            namespace.to_s == 'xmlns' ? namespace : ensure_namespace(namespace).prefix
           end
 
           def create_element

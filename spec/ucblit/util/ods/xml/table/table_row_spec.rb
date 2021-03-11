@@ -142,6 +142,35 @@ module UCBLIT
                 end
               end
             end
+
+            describe :add_child do
+              it 'adds a cell' do
+                value = 'Value 0'
+                cell = TableCell.new(value, table: table)
+                row.add_child(cell)
+                expect(table.get_value_at(1, 0)).to eq(value)
+              end
+
+              it 'adds a non-cell child' do
+                child = ElementNode.new(:office, 'test', doc: table.doc)
+                row.add_child(child)
+              end
+
+              it "fails if there aren't enough columns" do
+                column_count = table.column_count
+                (0..column_count).each do |col_index|
+                  value = "Value #{col_index}"
+                  cell = TableCell.new(value, table: table)
+                  if col_index < column_count
+                    expect { row.add_child(cell) }.not_to raise_error
+                    expect(table.get_value_at(1, col_index)).to eq(value)
+                  else
+                    expect { row.add_child(cell) }.to raise_error(ArgumentError)
+                    expect(table.get_value_at(1, col_index)).to be_nil
+                  end
+                end
+              end
+            end
           end
         end
       end

@@ -25,10 +25,9 @@ module UCBLIT
               return nil unless other.instance_of?(self.class)
 
               s_index, o_index = [style_name, other.style_name].map { |n| family.index_part(n) }
-              order = s_index <=> o_index
-              return order if order && order != 0
+              return style_name <=> other.style_name unless s_index && o_index
 
-              style_name <=> other.style_name
+              s_index <=> o_index
             end
 
             private

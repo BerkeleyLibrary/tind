@@ -57,6 +57,8 @@ module UCBLIT
               text_remaining.each_char do |c|
                 break unless escape?(c, last_char)
 
+                # TODO: collapse contiguous spaces with attribute 'text:c'
+                #   https://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part1.html#attribute-text_c
                 block.call(escape_element_for(c))
                 escaped_char_count += 1
                 last_char = c

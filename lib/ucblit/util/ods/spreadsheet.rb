@@ -33,7 +33,7 @@ module UCBLIT
             styles.to_xml(stream)
 
             stream.put_next_entry('content.xml')
-            stream.write(content.to_xml)
+            content.to_xml(stream)
           end
           zos.flush
         end

@@ -19,26 +19,24 @@ module UCBLIT
             num_cols.times { |c| row.set_value_at(c, (r * c).to_s) }
           end
 
-          # TODO: stop writing this once it works
-          File.open('tmp/spreadsheet.ods', 'wb') { |f| spreadsheet.write_to(f) }
-
           Dir.mktmpdir(basename) do |dir|
             output_path = File.join(dir, "#{basename}.ods")
             File.open(output_path, 'wb') { |f| spreadsheet.write_to(f) }
 
-            # TODO: figure out why this isn't writing properly
-            ss = Roo::Spreadsheet.open(output_path)
+            ss = Roo::Spreadsheet.open(output_path, file_warning: :warning)
             aggregate_failures 'cells' do
               num_cols.times do |col|
                 # NOTE: spreadsheet rows are 1-indexed, but row 1 is header
-                actual = ss.cell(1, 1 + col)
+                cell_index = [1, 1 + col]
+                actual = ss.cell(*cell_index)
                 expected = "Column #{col}"
-                expect(actual).to eq(expected), "Wrong value at #{[1, 1 + col]}; expected #{expected.inspect}, was #{actual.inspect}"
+                expect(actual).to eq(expected), "Wrong value at #{cell_index}; expected #{expected.inspect}, was #{actual.inspect}"
 
                 num_rows.times do |row|
-                  actual = ss.cell(2 + row, 1 + col)
+                  cell_index = [2 + row, 1 + col]
+                  actual = ss.cell(*cell_index)
                   expected = (row * col).to_s
-                  expect(actual).to eq(expected), "Wrong value at #{[2 + row, 1 + col]}; expected #{expected.inspect}, was #{actual.inspect}"
+                  expect(actual).to eq(expected), "Wrong value at #{cell_index}; expected #{expected.inspect}, was #{actual.inspect}"
                 end
               end
             end

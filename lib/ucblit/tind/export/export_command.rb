@@ -9,6 +9,7 @@ require 'ucblit/util/sys_exits'
 module UCBLIT
   module TIND
     module Export
+      # rubocop:disable Metrics/ClassLength
       class ExportCommand
         include UCBLIT::Util::SysExits
 
@@ -52,7 +53,7 @@ module UCBLIT
           FORMATS = ExportFormat.to_a.map(&:value).join(', ')
           OPTS = {
             f: ['--format FORMAT', "Format (#{FORMATS}; defaults to output file extension, or else to #{DEFAULT_FORMAT})"],
-            o: ['--output-file FILE', 'Output file'],
+            o: ['--output-file FILE', 'Output file or directory'],
             l: ['--list-collections', 'List collection sizes and names'],
             u: ['--tind-base-url URL', "TIND base URL (default $#{UCBLIT::TIND::Config::ENV_TIND_BASE_URL})"],
             k: ['--api-key KEY', "TIND API key (default $#{UCBLIT::TIND::API::ENV_TIND_API_KEY})"],
@@ -129,8 +130,13 @@ module UCBLIT
                 #{summarize_options}
 
               Examples:
-                tind-export --list-collections
-                tind-export -f ODS -o lincoln-papers.ods 'Abraham Lincoln Papers'
+                1. list collections
+                   tind-export --list-collections
+                2. export a collection as an OpenOffice/LibreOffice spreadsheet
+                   tind-export -o lincoln-papers.ods 'Abraham Lincoln Papers'
+                3. export a collection as an OpenOffice/LibreOffice spreadsheet in exploded XML format,
+                   where `lincoln-papers` is a directory
+                   tind-export -v -f ODS -o lincoln-papers 'Abraham Lincoln Papers'
             USAGE
           end
 
@@ -139,6 +145,7 @@ module UCBLIT
           end
         end
       end
+      # rubocop:enable Metrics/ClassLength
     end
   end
 end

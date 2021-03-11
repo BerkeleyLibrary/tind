@@ -7,6 +7,11 @@ module UCBLIT
     module ODS
       module XML
         class StylesDoc < DocumentNode
+
+          def initialize
+            super('styles.xml')
+          end
+
           def root_element_node
             document_styles
           end

@@ -136,16 +136,34 @@ module UCBLIT
           allow(UCBLIT::TIND::API::Search).to receive(:new).with(collection: collection).and_return(search)
         end
 
-        it 'works for LibreOffice' do
-          Dir.mktmpdir(basename) do |dir|
-            output_path = File.join(dir, "#{basename}.ods")
-            Export.export_libreoffice(collection, output_path)
+        describe 'LibreOffice' do
+          it 'works for LibreOffice' do
+            Dir.mktmpdir(basename) do |dir|
+              output_path = File.join(dir, "#{basename}.ods")
+              Export.export_libreoffice(collection, output_path)
 
-            ss = Roo::Spreadsheet.open(output_path)
-            begin
-              expect(ss).to match_table(expected_table)
-            ensure
-              ss.close
+              ss = Roo::Spreadsheet.open(output_path)
+              begin
+                expect(ss).to match_table(expected_table)
+              ensure
+                ss.close
+              end
+            end
+          end
+
+          it 'writes to an exploded directory' do
+            Dir.mktmpdir(basename) do |dir|
+              Export.export_libreoffice(collection, dir)
+
+              expected_paths_relative = %w[META-INF/manifest.xml styles.xml content.xml]
+              expected_paths_absolute = expected_paths_relative.map do |path_relative|
+                joined_path = File.join(dir, path_relative)
+                File.absolute_path(joined_path)
+              end
+
+              expected_paths_absolute.each do |path_absolute|
+                expect(File.file?(path_absolute)).to eq(true)
+              end
             end
           end
         end

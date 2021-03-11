@@ -23,9 +23,11 @@ module UCBLIT
         #   @param out [IO] the output stream
         #   @return[void]
         # @overload export(path)
-        #   Exports to the specified file.
-        #   @param path [String, Pathname] the path to the output file
+        #   Exports to the specified file. If `path` denotes a directory, the
+        #   spreadsheet will be written as exploded, pretty-printed XML.
+        #   @param path [String, Pathname] the path to the output file or directory
         #   @return[void]
+        #   @see UCBLIT::Util::ODS::Spreadsheet#write_exploded_to
         def export(out = nil)
           populate_spreadsheet!
           spreadsheet.write_to(out)

@@ -8,6 +8,14 @@ module UCBLIT
 
           ENCODING = 'UTF-8'.freeze
 
+          attr_reader :path
+
+          # Initializes a new DocumentNode
+          # @param path [String] the path to this document in the container
+          def initialize(path)
+            @path = path
+          end
+
           def to_xml(out = nil, compact: true)
             return write_xml_to_string(compact: compact) unless out
             return write_xml_to_stream(out, compact: compact) if out.respond_to?(:write)
@@ -18,8 +26,6 @@ module UCBLIT
           def root_element_node
             raise ArgumentError, "#{self.class} must implement #{DocumentNode}#root_element_node"
           end
-
-          protected
 
           def doc
             @doc ||= Nokogiri::XML::Document.new.tap do |doc|
@@ -46,7 +52,7 @@ module UCBLIT
           end
 
           def write_xml_to_file(path, compact:)
-            File.open(path, 'wb') { write_xml_to_stream(out, compact: compact) }
+            File.open(path, 'wb') { |f| write_xml_to_stream(f, compact: compact) }
           end
         end
       end

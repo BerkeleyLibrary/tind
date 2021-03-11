@@ -135,9 +135,42 @@ module UCBLIT
 
             private
 
+            # ------------------------------
+            # Private writers
+
+            attr_writer :column_count
+
+            attr_writer :row_count
+
+            # ------------------------------
+            # Private readers
+
+            def columns
+              @columns ||= []
+            end
+
+            def rows
+              @rows ||= []
+            end
+
+            def other_children
+              @other_children ||= []
+            end
+
+            # ------------------------------
+            # Private utility methods
+
             def protect!
               set_attribute('protected', 'true')
-              children << LOExt::TableProtection.new(doc: doc)
+              add_child(LOExt::TableProtection.new(doc: doc))
+            end
+
+            def add_or_repeat_column(column_style, default_cell_style)
+              if (last_column = columns.last).nil? || !last_column.has_styles?(column_style, default_cell_style)
+                TableColumn.new(column_style, default_cell_style, table: self).tap { |c| columns << c }
+              else
+                last_column.tap(&:increment_repeats!)
+              end
             end
 
             def ensure_empty_columns!
@@ -149,31 +182,6 @@ module UCBLIT
               empty_required = MIN_ROWS - row_count
               add_row(nil, empty_required) if empty_required > 0
             end
-
-            def columns
-              @columns ||= []
-            end
-
-            def rows
-              @rows ||= []
-            end
-
-            attr_writer :column_count
-
-            attr_writer :row_count
-
-            def other_children
-              @other_children ||= []
-            end
-
-            def add_or_repeat_column(column_style, default_cell_style)
-              if (last_column = columns.last).nil? || !last_column.has_styles?(column_style, default_cell_style)
-                TableColumn.new(column_style, default_cell_style, table: self).tap { |c| columns << c }
-              else
-                last_column.tap(&:increment_repeats!)
-              end
-            end
-
           end
         end
       end

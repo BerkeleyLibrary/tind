@@ -7,6 +7,11 @@ module UCBLIT
     module ODS
       module XML
         class ContentDoc < DocumentNode
+
+          def initialize
+            super('content.xml')
+          end
+
           def root_element_node
             document_content
           end

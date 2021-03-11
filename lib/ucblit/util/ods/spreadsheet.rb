@@ -1,7 +1,8 @@
+require 'fileutils'
+require 'zip'
 require 'ucblit/util/ods/xml/content_doc'
 require 'ucblit/util/ods/xml/styles_doc'
 require 'ucblit/util/ods/xml/manifest_doc'
-require 'zip'
 
 module UCBLIT
   module Util
@@ -58,12 +59,16 @@ module UCBLIT
         #   @param out [IO] the output stream
         #   @return[void]
         # @overload write_to(path)
-        #   Writes to the specified file.
+        #   Writes to the specified file. If `path` denotes a directory, the
+        #   spreadsheet will be written as exploded, pretty-printed XML.
         #   @param path [String, Pathname] the path to the output file
         #   @return[void]
+        #   @see UCBLIT::Util::ODS::Spreadsheet#write_exploded_to
+        # noinspection RubyYardReturnMatch
         def write_to(out)
           return write_to_string unless out
           return write_to_stream(out) if out.respond_to?(:write)
+          return write_exploded_to(out) if File.directory?(out)
 
           write_to_file(out)
         end
@@ -92,10 +97,35 @@ module UCBLIT
           File.open(path, 'wb') { |f| write_to_stream(f) }
         end
 
+        # Writes this spreadsheet as an exploded set of pretty-printed XML files.
+        # NOTE: OpenOffice itself and many other tools get confused by the extra text
+        # nodes in the pretty-printed files and won't read them properly; this method
+        # is mostly for debugging.
+        #
+        # @return [Array<String>] a list of files written.
+        def write_exploded_to(dir)
+          raise ArgumentError, "Not a directory: #{dir.inspect}" unless File.directory?(dir)
+
+          [].tap do |files_written|
+            document_nodes.each do |doc|
+              output_path = File.join(dir, doc.path)
+              FileUtils.mkdir_p(File.dirname(output_path))
+              doc.to_xml(output_path, compact: false)
+
+              files_written << File.absolute_path(output_path)
+            end
+          end
+        end
+
         # ------------------------------------------------------------
         # Private methods
 
         private
+
+        # @return [Array<DocumentNode>] all documents to write to this container
+        def document_nodes
+          [manifest, styles, content]
+        end
 
         # Returns true if `out` is IO-like enough for {Zip::OutputStream}, false otherwise
         # @return [Boolean] whether `out` can be passed to {Zip::OutputStream#write_buffer}
@@ -107,14 +137,10 @@ module UCBLIT
 
         def write_zipfile(out)
           io = Zip::OutputStream.write_buffer(out) do |zip|
-            zip.put_next_entry('META-INF/manifest.xml')
-            manifest.to_xml(zip)
-
-            zip.put_next_entry('styles.xml')
-            styles.to_xml(zip)
-
-            zip.put_next_entry('content.xml')
-            content.to_xml(zip)
+            document_nodes.each do |doc|
+              zip.put_next_entry(doc.path)
+              doc.to_xml(zip)
+            end
           end
           # NOTE: Zip::OutputStream plays games with the stream and
           #   doesn't necessarily write everything unless flushed, see:

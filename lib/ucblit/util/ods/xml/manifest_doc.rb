@@ -7,12 +7,17 @@ module UCBLIT
     module ODS
       module XML
         class ManifestDoc < DocumentNode
+
+          def initialize
+            super('META-INF/manifest.xml')
+          end
+
           def root_element_node
             manifest
           end
 
           def manifest
-            @manifest ||= Manifest::Manifest.new(doc: doc)
+            @manifest ||= Manifest::Manifest.new(manifest_doc: self)
           end
         end
       end

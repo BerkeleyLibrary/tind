@@ -14,8 +14,8 @@ module UCBLIT
 
               @cell_style = cell_style
 
-              set_attribute('style-name', cell_style.name) if cell_style
-              @children = [XML::Text::P.new(value)] if value
+              set_attribute('style-name', cell_style.style_name) if cell_style
+              @children = [XML::Text::P.new(value, doc: doc)] if value
             end
 
             class << self

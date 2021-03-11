@@ -1,5 +1,6 @@
 require 'ucblit/util/ods/xml/namespace'
 require 'ucblit/util/ods/xml/element_node'
+require 'ucblit/util/ods/xml/table/table'
 require 'ucblit/util/ods/xml/office/scripts'
 require 'ucblit/util/ods/xml/office/font_face_decls'
 require 'ucblit/util/ods/xml/office/automatic_styles'
@@ -39,9 +40,8 @@ module UCBLIT
             end
 
             def add_table(name, table_style = nil, protected: true)
-              Table::Table.new(name, table_style, styles: automatic_styles, protected: protected).tap do |table|
-                spreadsheet.children << table
-              end
+              new_table = XML::Table::Table.new(name, table_style, styles: automatic_styles, protected: protected)
+              new_table.tap { |table| spreadsheet.children << table }
             end
 
             def spreadsheet

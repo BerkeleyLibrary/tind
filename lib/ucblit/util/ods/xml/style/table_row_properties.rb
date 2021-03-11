@@ -9,7 +9,7 @@ module UCBLIT
             attr_reader :width
 
             def initialize(width, doc:)
-              super(:table, 'table-column-properties', doc: doc)
+              super(:style, 'table-column-properties', doc: doc)
               @width = width
               set_default_attributes!
             end

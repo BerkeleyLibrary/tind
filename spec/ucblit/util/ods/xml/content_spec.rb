@@ -9,6 +9,12 @@ module UCBLIT
         describe Content do
           let(:content) { Content.new }
 
+          describe :document_content do
+            it 'returns a DocumentContent' do
+              expect(content.document_content).to be_a(Office::DocumentContent)
+            end
+          end
+
           describe :to_xml do
             attr_reader :doc, :root
 
@@ -95,8 +101,14 @@ module UCBLIT
                   expect(body.prefix).to eq('office')
                   expect(body.name).to eq('body')
                 end
-              end
 
+                it 'includes a <spreadsheet/> element' do
+                  spreadsheet = body.elements[1]
+                  expect(spreadsheet).to be_a(REXML::Element)
+                  expect(spreadsheet.prefix).to eq('office')
+                  expect(spreadsheet.name).to eq('spreadsheet')
+                end
+              end
             end
 
           end

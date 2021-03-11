@@ -57,17 +57,6 @@ module UCBLIT
               @prefix ||= find_prefix
             end
 
-            def next_name(names)
-              prefixed_names = names.lazy.select do |n|
-                next false unless n.start_with(prefix)
-
-                n[prefix.size..] =~ /^[0-9]+$/
-              end
-
-              last_index = prefixed_names.map { |n| n[prefix.size..].to_i }.max || 0
-              "#{prefix}#{last_index + 1}"
-            end
-
             # ------------------------------------------------------------
             # TypesafeEnum overrides
 

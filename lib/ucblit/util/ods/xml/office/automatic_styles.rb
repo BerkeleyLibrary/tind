@@ -119,7 +119,7 @@ module UCBLIT
             end
 
             def create_element
-              ensure_default_styles!
+              Style::Family.each { |f| default_style(f) }
 
               super
             end
@@ -132,15 +132,11 @@ module UCBLIT
             def add_or_insert_style(s)
               styles = styles_for_family(s.family)
               insert_index = styles.find_index do |s1|
-                raise ArgumentError, "A #{s.family} style named #{s.name} already exists" if s1.name == s.name
+                raise ArgumentError, "A #{s.family} style named #{s.style_name} already exists" if s1.style_name == s.style_name
 
-                s1.name > s.name
+                s1.style_name > s.style_name
               end
               insert_index ? styles.insert(insert_index, s) : styles << s
-            end
-
-            def ensure_default_styles!
-              Style::Family.each { |f| default_style(f) }
             end
 
             def add_default_style(family)
@@ -153,8 +149,15 @@ module UCBLIT
 
             def next_name_for(family)
               f = Style::Family.ensure_family(family)
-              styles = styles_for_family(f)
-              f.next_name(styles.map(&:name))
+
+              max_suffix = styles_for_family(f).inject(0) do |max, s|
+                next max unless (n = s.style_name).start_with?(f.prefix)
+                next max unless (suffix = n[f.prefix.size..]) =~ /^[0-9]+$/
+
+                [max, suffix.to_i].max
+              end
+
+              "#{f.prefix}#{max_suffix + 1}"
             end
 
             def styles_for_family(family)

@@ -8,12 +8,12 @@ module UCBLIT
         module Style
           class Style < XML::ElementNode
 
-            attr_reader :name, :family
+            attr_reader :style_name, :family
 
-            def initialize(name, family, doc:)
+            def initialize(style_name, family, doc:)
               super(:style, 'style', doc: doc)
 
-              @name = name
+              @style_name = style_name
               @family = Family.ensure_family(family)
 
               set_default_attributes!
@@ -22,7 +22,7 @@ module UCBLIT
             private
 
             def set_default_attributes!
-              set_attribute('name', name)
+              set_attribute('name', style_name)
               set_attribute('family', family)
             end
           end

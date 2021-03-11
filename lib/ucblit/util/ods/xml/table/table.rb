@@ -1,6 +1,8 @@
 require 'ucblit/util/ods/xml/element_node'
 require 'ucblit/util/ods/xml/loext/table_protection'
 require 'ucblit/util/ods/xml/style/column_style'
+require 'ucblit/util/ods/xml/table/table_column'
+require 'ucblit/util/ods/xml/table/table_row'
 
 module UCBLIT
   module Util
@@ -17,7 +19,8 @@ module UCBLIT
             # ------------------------------------------------------------
             # Accessors
 
-            attr_reader :name
+            attr_reader :table_name
+
             attr_reader :table_style
 
             # @return [XML::Office::AutomaticStyles] the document styles
@@ -32,15 +35,15 @@ module UCBLIT
             # @param style [XML::Style::TableStyle] the table style, if other than default
             # @param styles [XML::Office::AutomaticStyles] the document styles
             # @param protected [Boolean] whether the table is protected
-            def initialize(name, table_style = nil, styles:, protected: true)
+            def initialize(table_name, table_style = nil, styles:, protected: true)
               super(:table, 'table', doc: styles.doc)
 
-              @name = name
-              @styles = styles
+              @table_name = table_name
               @table_style = table_style || styles.default_style(:table)
+              @styles = styles
 
-              set_attribute('name', name)
-              set_attribute('style-name', table_style.name)
+              set_attribute('name', self.table_name)
+              set_attribute('style-name', self.table_style.style_name)
 
               protect! if protected
             end
@@ -62,7 +65,7 @@ module UCBLIT
 
               add_or_repeat_column(column_style, default_cell_style).tap do
                 header_row = rows[0] || add_row
-                header_row.set_value_at(column_count - 1, header)
+                header_row.set_value_at(column_count, header)
                 self.column_count += 1
               end
             end
@@ -72,7 +75,7 @@ module UCBLIT
               default_cell_style = styles.find_or_create_cell_style(protected)
 
               TableColumn.new(column_style, default_cell_style, number_repeated, table: self).tap do |col|
-                cols << col
+                columns << col
                 self.column_count += number_repeated
               end
             end
@@ -149,6 +152,10 @@ module UCBLIT
             def rows
               @rows ||= []
             end
+
+            attr_writer :column_count
+
+            attr_writer :row_count
 
             def other_children
               @other_children ||= []

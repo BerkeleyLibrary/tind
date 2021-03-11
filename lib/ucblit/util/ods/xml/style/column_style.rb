@@ -14,11 +14,11 @@ module UCBLIT
             # Initializes a new column style. Note that this should not be called
             # directly, but only from {XML::Office::AutomaticStyles#add_column_style}.
             #
-            # @param name [String] the name of the style
+            # @param style_name [String] the name of the style
             # @param width [String] the column width
             # @param styles [XML::Office::AutomaticStyles] the document styles
-            def initialize(name, width = nil, styles:)
-              super(name, :table_column, doc: styles.doc)
+            def initialize(style_name, width = nil, styles:)
+              super(style_name, :table_column, doc: styles.doc)
               @width = width || DEFAULT_WIDTH
               add_default_children!
             end

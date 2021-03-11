@@ -1,6 +1,7 @@
+require 'ucblit/util/arrays'
 require 'ucblit/util/ods/xml/element_node'
 require 'ucblit/util/ods/xml/table/repeatable'
-require 'ucblit/util/arrays'
+require 'ucblit/util/ods/xml/table/table_cell'
 
 module UCBLIT
   module Util
@@ -70,7 +71,7 @@ module UCBLIT
             end
 
             def set_default_attributes!
-              set_attribute('style-name', row_style.name)
+              set_attribute('style-name', row_style.style_name)
             end
 
             def other_children

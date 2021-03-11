@@ -14,14 +14,14 @@ module UCBLIT
           attr_reader :namespace
 
           # @return [String] the name of this element
-          attr_reader :name
+          attr_reader :element_name
 
           # @param namespace [String, Symbol, Namespace] the element namespace
-          # @param name [String] the element name
+          # @param element_name [String] the element name
           # @param doc [Nokogiri::XML::Document] the document containing this element
-          def initialize(namespace, name, doc:)
+          def initialize(namespace, element_name, doc:)
             @namespace = ensure_namespace(namespace)
-            @name = name
+            @element_name = element_name
             @doc = doc
           end
 
@@ -70,7 +70,7 @@ module UCBLIT
           end
 
           def create_element
-            doc.create_element("#{prefix}:#{name}", attributes).tap do |element|
+            doc.create_element("#{prefix}:#{element_name}", attributes).tap do |element|
               children.each do |child|
                 next element.add_child(child.element) if child.is_a?(ElementNode)
 

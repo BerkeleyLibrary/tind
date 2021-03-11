@@ -32,8 +32,8 @@ module UCBLIT
             private
 
             def set_default_attributes!
-              set_attribute('style-name', column_style.name)
-              set_attribute('default-cell-style-name', default_cell_style.name)
+              set_attribute('style-name', column_style.style_name)
+              set_attribute('default-cell-style-name', default_cell_style.style_name)
             end
           end
         end

@@ -96,11 +96,9 @@ module UCBLIT
             end
 
             def each_cell(columns_yielded = 0, remaining = explicit_cells, &block)
-              return if remaining.empty?
-
               columns_yielded, remaining = yield_while_non_nil(columns_yielded, remaining, &block)
               columns_yielded, remaining = yield_while_nil(columns_yielded, remaining, &block)
-              each_cell(columns_yielded, remaining, &block)
+              each_cell(columns_yielded, remaining, &block) unless remaining.empty?
             end
 
             def yield_while_non_nil(columns_yielded, remaining, &block)

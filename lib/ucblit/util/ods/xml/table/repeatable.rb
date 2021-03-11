@@ -5,7 +5,7 @@ module UCBLIT
         module Table
           class Repeatable < XML::ElementNode
 
-            attr_reader :table, :attr_name_num_repeated
+            attr_reader :table, :attr_name_num_repeated, :number_repeated
 
             def initialize(name, attr_name_num_repeated, number_repeated, table:)
               super(:table, name, doc: table.doc)

@@ -140,13 +140,14 @@ module UCBLIT
                   expect(header_cells_xml.size).to eq(columns_added + 1)
 
                   columns_added.times do |col|
+                    expected_header = "Column #{col}"
+                    expect(table.get_value_at(0, col)).to eq(expected_header) # just to be sure
+
                     header_cell_xml = header_cells_xml[col]
                     header_p = header_cell_xml.elements[1, 'p']
                     header_texts = header_p.texts
                     expect(header_texts.size).to eq(1)
 
-                    expected_header = "Column #{col}"
-                    expect(table.get_value_at(0, col)).to eq(expected_header) # just to be sure
                     expect(header_texts[0].value).to eq(expected_header)
                   end
 

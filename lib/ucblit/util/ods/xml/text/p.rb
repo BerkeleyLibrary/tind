@@ -37,11 +37,9 @@ module UCBLIT
             end
 
             def each_child_element_or_string(last_char = nil, text_remaining = text, &block)
-              return if text_remaining.empty?
-
-              last_char, text_remaining = yield_while_unescaped(last_char, text_remaining, &block)
               last_char, text_remaining = yield_while_escaped(last_char, text_remaining, &block)
-              each_child_element_or_string(last_char, text_remaining, &block)
+              last_char, text_remaining = yield_while_unescaped(last_char, text_remaining, &block)
+              each_child_element_or_string(last_char, text_remaining, &block) unless text_remaining.empty?
             end
 
             def yield_while_unescaped(last_char, text_remaining, &block)
@@ -63,18 +61,19 @@ module UCBLIT
                 escaped_char_count += 1
                 last_char = c
               end
-              text_remaining = text_remaining[escaped_char_count] unless escaped_char_count == 0
+              text_remaining = text_remaining[escaped_char_count..] unless escaped_char_count == 0
 
               [last_char, text_remaining]
             end
 
             def take_while_unescaped(last_char, text_remaining)
-              text_remaining.each_char.with_object('') do |c, unescaped|
-                break if escape?(c, last_char)
+              unescaped = text_remaining.each_char.with_object('') do |c, result|
+                break result if escape?(c, last_char)
 
-                unescaped << c
+                result << c
                 last_char = c
               end
+              [unescaped, last_char]
             end
 
             def escape?(c, last_char)

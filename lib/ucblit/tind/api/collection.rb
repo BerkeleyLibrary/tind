@@ -1,5 +1,5 @@
 require 'json'
-require 'ucblit/tind/logging'
+require 'ucblit/util/logging'
 require 'ucblit/tind/api/api_exception'
 
 module UCBLIT
@@ -29,7 +29,7 @@ module UCBLIT
         end
 
         class << self
-          include UCBLIT::TIND::Logging
+          include UCBLIT::Util::Logging
 
           ENDPOINT = 'collections'.freeze
 

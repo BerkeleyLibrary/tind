@@ -6,6 +6,8 @@ module UCBLIT
       module XML
         module Style
           class FontFace < XML::ElementNode
+            DEFAULT_FONT_FACE = 'Liberation Sans'.freeze
+
             attr_reader :name, :svg_family, :family_generic, :font_pitch
 
             def initialize(name, doc:, svg_family: nil, family_generic: nil, font_pitch: nil)
@@ -19,7 +21,7 @@ module UCBLIT
 
             class << self
               def default_face(doc:)
-                FontFace.new('Arial', family_generic: 'swiss', font_pitch: 'variable', doc: doc)
+                FontFace.new(FontFace::DEFAULT_FONT_FACE, family_generic: 'swiss', font_pitch: 'variable', doc: doc)
               end
             end
 
@@ -27,7 +29,13 @@ module UCBLIT
 
             def to_family(name)
               # TODO: https://www.w3.org/TR/CSS2/syndata.html#value-def-identifier
-              name =~ /^[[:alpha:]][[:alnum:]]*$/ ? name : name.inspect
+              name =~ /^[[:alpha:]][[:alnum:]]*$/ ? name : quote_name(name)
+            end
+
+            def quote_name(name)
+              return name.inspect if name.include?("'")
+
+              "'#{name}'"
             end
 
           end

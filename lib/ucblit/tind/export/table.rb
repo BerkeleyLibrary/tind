@@ -2,14 +2,14 @@ require 'csv'
 require 'stringio'
 
 require 'marc_extensions'
-require 'ucblit/tind/logging'
+require 'ucblit/util/logging'
 require 'ucblit/tind/export/column_group_list'
 
 module UCBLIT
   module TIND
     module Export
       class Table
-        include UCBLIT::TIND::Logging
+        include UCBLIT::Util::Logging
 
         # ------------------------------------------------------------
         # Accessors

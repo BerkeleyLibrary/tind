@@ -69,8 +69,10 @@ module UCBLIT
                   expect(face.prefix).to eq('style')
                   expect(face.name).to eq('font-face')
 
-                  expect(face['style:name']).to eq('Arial')
-                  expect(face['svg:font-family']).to eq('Arial')
+                  expected_face = Style::FontFace::DEFAULT_FONT_FACE
+
+                  expect(face['style:name']).to eq(expected_face)
+                  expect(face['svg:font-family']).to eq("'#{expected_face}'")
                   expect(face['style:font-family-generic']).to eq('swiss')
                 end
               end

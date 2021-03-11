@@ -1,16 +1,12 @@
 require 'marc_extensions'
-require 'ucblit/logging'
+require 'ucblit/util/logging'
 
 Dir.glob(File.expand_path('tind/*.rb', __dir__)).sort.each(&method(:require))
 
 module UCBLIT
   module TIND
     class << self
-      def logger
-        @logger ||= UCBLIT::Logging::Loggers.default_logger
-      end
-
-      attr_writer :logger
+      include UCBLIT::Util::Logging
     end
   end
 end

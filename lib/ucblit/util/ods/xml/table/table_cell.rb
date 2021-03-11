@@ -21,8 +21,8 @@ module UCBLIT
             end
 
             class << self
-              def repeat_empty(number_repeated, table:)
-                TableCell.new(nil, nil, number_repeated, table: table)
+              def repeat_empty(number_repeated, cell_style = nil, table:)
+                TableCell.new(nil, cell_style, number_repeated, table: table)
               end
             end
 
@@ -31,6 +31,7 @@ module UCBLIT
             def set_default_attributes!
               set_attribute('style-name', cell_style.style_name) if cell_style
               set_attribute(:office, 'value-type', 'string') if value
+              set_attribute(:calcext, 'value-type', 'string') if value
             end
 
             def add_default_children!

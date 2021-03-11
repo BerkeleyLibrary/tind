@@ -1,4 +1,4 @@
-require 'ucblit/tind/logging'
+require 'ucblit/util/logging'
 require 'ucblit/tind/api/search'
 require 'ucblit/tind/export/table'
 
@@ -8,7 +8,7 @@ module UCBLIT
 
       # Superclass of exporters for different formats
       class ExporterBase
-        include UCBLIT::TIND::Logging
+        include UCBLIT::Util::Logging
 
         # ------------------------------------------------------------
         # Accessors

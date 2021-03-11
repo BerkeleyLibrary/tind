@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'zip'
+require 'ucblit/util/logging'
 require 'ucblit/util/ods/xml/content_doc'
 require 'ucblit/util/ods/xml/styles_doc'
 require 'ucblit/util/ods/xml/manifest_doc'
@@ -8,6 +9,7 @@ module UCBLIT
   module Util
     module ODS
       class Spreadsheet
+        include UCBLIT::Util::Logging
 
         # ------------------------------------------------------------
         # Utility methods
@@ -38,7 +40,10 @@ module UCBLIT
         # Returns the container manifest
         # @return [XML::ManifestDoc] the container manifest document
         def manifest
-          @manifest ||= XML::ManifestDoc.new
+          @manifest ||= XML::ManifestDoc.new.tap do |mf_doc|
+            manifest = mf_doc.manifest
+            manifest_docs.each { |doc| manifest.add_entry_for(doc) }
+          end
         end
 
         # Gets the document styles
@@ -107,12 +112,10 @@ module UCBLIT
           raise ArgumentError, "Not a directory: #{dir.inspect}" unless File.directory?(dir)
 
           [].tap do |files_written|
-            document_nodes.each do |doc|
-              output_path = File.join(dir, doc.path)
-              FileUtils.mkdir_p(File.dirname(output_path))
-              doc.to_xml(output_path, compact: false)
-
+            each_document do |doc|
+              output_path = write_exploded(doc, dir)
               files_written << File.absolute_path(output_path)
+              logger.debug("Wrote #{files_written.last}")
             end
           end
         end
@@ -122,9 +125,14 @@ module UCBLIT
 
         private
 
-        # @return [Array<DocumentNode>] all documents to write to this container
-        def document_nodes
-          [manifest, styles, content]
+        def each_document(&block)
+          yield manifest
+
+          manifest_docs.each(&block)
+        end
+
+        def manifest_docs
+          [styles, content]
         end
 
         # Returns true if `out` is IO-like enough for {Zip::OutputStream}, false otherwise
@@ -137,15 +145,24 @@ module UCBLIT
 
         def write_zipfile(out)
           io = Zip::OutputStream.write_buffer(out) do |zip|
-            document_nodes.each do |doc|
-              zip.put_next_entry(doc.path)
-              doc.to_xml(zip)
-            end
+            each_document { |doc| write_zip_entry(doc, zip) }
           end
           # NOTE: Zip::OutputStream plays games with the stream and
           #   doesn't necessarily write everything unless flushed, see:
           #   https://github.com/rubyzip/rubyzip/issues/265
           io.flush
+        end
+
+        def write_zip_entry(doc, zip)
+          zip.put_next_entry(doc.path)
+          doc.to_xml(zip)
+        end
+
+        def write_exploded(doc, dir)
+          output_path = File.join(dir, doc.path)
+          FileUtils.mkdir_p(File.dirname(output_path))
+          doc.to_xml(output_path, compact: false)
+          output_path
         end
 
       end

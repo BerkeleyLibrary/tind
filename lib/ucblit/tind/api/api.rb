@@ -3,7 +3,7 @@ require 'open-uri'
 
 require 'ucblit/util/uris'
 require 'ucblit/tind/config'
-require 'ucblit/tind/logging'
+require 'ucblit/util/logging'
 require 'ucblit/tind/api/api_exception'
 
 module UCBLIT
@@ -15,7 +15,7 @@ module UCBLIT
       class << self
         include UCBLIT::Util
         include UCBLIT::TIND::Config
-        include UCBLIT::TIND::Logging
+        include UCBLIT::Util::Logging
 
         # Sets the TIND API key.
         # @param value [String] the API key.

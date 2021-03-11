@@ -173,14 +173,16 @@ module UCBLIT
               end
             end
 
+            # TODO: do we really need to use the LibreOffice default width/height?
+
             def ensure_empty_columns!
               empty_required = MIN_COLUMNS - column_count
-              add_empty_columns(empty_required) if empty_required > 0
+              add_empty_columns(empty_required, '0.889in') if empty_required > 0
             end
 
             def ensure_empty_rows!
               empty_required = MIN_ROWS - row_count
-              add_row(nil, empty_required) if empty_required > 0
+              add_row('0.178in', empty_required) if empty_required > 0
             end
           end
         end

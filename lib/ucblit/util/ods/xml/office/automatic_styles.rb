@@ -44,7 +44,8 @@ module UCBLIT
             end
 
             def add_row_style(name = nil, height = nil)
-              add_style(Style::RowStyle.new(name || next_name_for(:table_row), height, styles: self))
+              name ||= next_name_for(:table_row)
+              add_style(Style::RowStyle.new(name, height, styles: self))
             end
 
             def add_table_style(name = nil)
@@ -101,9 +102,7 @@ module UCBLIT
             # Public XML::ElementNode overrides
 
             def add_child(child)
-              return add_style(style) if child.is_a?(Style::Style)
-
-              child.tap { |c| other_children << c }
+              child.is_a?(Style::Style) ? add_style(style) : child.tap { |c| other_children << c }
             end
 
             # ------------------------------------------------------------
@@ -134,7 +133,7 @@ module UCBLIT
               insert_index = styles.find_index do |s1|
                 raise ArgumentError, "A #{s.family} style named #{s.style_name} already exists" if s1.style_name == s.style_name
 
-                s1.style_name > s.style_name
+                s1 > s
               end
               insert_index ? styles.insert(insert_index, s) : styles << s
             end

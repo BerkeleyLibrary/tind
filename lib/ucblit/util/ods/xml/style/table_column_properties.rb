@@ -9,7 +9,7 @@ module UCBLIT
             attr_reader :height
 
             def initialize(height, doc:)
-              super(:table, 'table-row-properties', doc: doc)
+              super(:style, 'table-row-properties', doc: doc)
               @height = height
 
               set_default_attributes!

@@ -8,7 +8,7 @@ module UCBLIT
           class TableCellProperties < ElementNode
 
             def initialize(protected, doc:)
-              super(:table, 'table-cell-properties', doc: doc)
+              super(:style, 'table-cell-properties', doc: doc)
               @protected = protected
               set_default_attributes!
             end
@@ -20,7 +20,7 @@ module UCBLIT
             private
 
             def set_default_attributes!
-              set_attribute('cell-protect', protected? ? 'protected' : 'none')
+              set_attribute(:style, 'cell-protect', protected? ? 'protected' : 'none')
               set_attribute('print-content', 'true')
             end
           end

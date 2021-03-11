@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'ucblit/util/logging'
 require 'ucblit/util/ods/xml/namespace'
 
 module UCBLIT
@@ -6,6 +7,7 @@ module UCBLIT
     module ODS
       module XML
         class ElementNode
+          include UCBLIT::Util::Logging
 
           # @return [Nokogiri::XML::Document] the document containing this element
           attr_reader :doc
@@ -30,6 +32,11 @@ module UCBLIT
           end
 
           def element
+            ensure_element!
+          end
+
+          # Finalize this XML element and prepare for output.
+          def ensure_element!
             @element ||= create_element
           end
 
@@ -87,6 +94,7 @@ module UCBLIT
           end
 
           # @return [Array<ElementNode>] the child elements
+          # TODO: replace this with :each_child and a protected default array
           def children
             @children ||= []
           end

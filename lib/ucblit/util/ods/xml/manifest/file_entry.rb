@@ -33,7 +33,6 @@ module UCBLIT
             def set_default_attributes!
               set_attribute('full-path', full_path)
               set_attribute('media-type', media_type)
-              set_attribute('version', manifest.version)
             end
           end
         end

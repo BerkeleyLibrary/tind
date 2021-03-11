@@ -20,6 +20,8 @@ module UCBLIT
               super(name, :table_cell, doc: styles.doc)
               @protected = protected
               @color = color
+
+              set_attribute('parent-style-name', 'Default')
               add_default_children!
             end
             # rubocop:enable Style/OptionalBooleanParameter
@@ -32,7 +34,7 @@ module UCBLIT
 
             def add_default_children!
               children << TableCellProperties.new(protected?, doc: doc)
-              children << TextProperties.new(color, doc: doc) if color
+              children << TextProperties.new(color: color, doc: doc) if color
             end
           end
         end

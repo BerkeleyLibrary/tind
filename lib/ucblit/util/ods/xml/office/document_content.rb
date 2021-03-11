@@ -47,7 +47,7 @@ module UCBLIT
 
             def add_table(name, table_style = nil, protected: true)
               new_table = XML::Table::Table.new(name, table_style, styles: automatic_styles, protected: protected)
-              new_table.tap { |table| spreadsheet.children << table }
+              new_table.tap { |table| spreadsheet.add_child(table) }
             end
 
             def spreadsheet
@@ -55,7 +55,23 @@ module UCBLIT
             end
 
             def body
-              @body ||= Body.new(doc: doc).tap { |body| body.children << spreadsheet }
+              @body ||= Body.new(doc: doc).tap { |body| body.add_child(spreadsheet) }
+            end
+
+            # ------------------------------------------------------------
+            # Protected methods
+
+            # ----------------------------------------
+            # Protected ElementNode overrides
+
+            protected
+
+            def create_element
+              # Make sure any styles, font faces, etc. needed for the body get created
+              # *before* we try to write them to XML
+              children.reverse_each(&:ensure_element!)
+
+              super
             end
 
             # ------------------------------------------------------------

@@ -10,14 +10,14 @@ module UCBLIT
             REQUIRED_NAMESPACES = [:manifest].freeze
             MANIFEST_VERSION = '1.2'.freeze
 
-            attr_reader :manifest
+            attr_reader :manifest_doc
 
             def initialize(manifest_doc:)
               super(:manifest, 'manifest', doc: manifest_doc.doc)
-              @manifest = manifest
+              @manifest_doc = manifest_doc
 
               set_default_attributes!
-              add_file_entry(FileEntry.new('/', manifest: self))
+              add_file_entry(self_file_entry)
             end
 
             def version
@@ -26,13 +26,8 @@ module UCBLIT
 
             # Adds a document to the manifest
             # @param doc [XML::DocumentNode] the document to add
-            def add_document(doc)
-              doc.tap do |d|
-                documents << d
-                next if d == manifest
-
-                add_file_entry(FileEntry.new(doc.path, manifest: self))
-              end
+            def add_entry_for(doc)
+              FileEntry.new(doc.path, manifest: self).tap { |e| add_file_entry(e) }
             end
 
             def add_child(child)
@@ -47,9 +42,10 @@ module UCBLIT
 
             private
 
-            # @return [Array<XML::DocumentNode>] the documents in this manifest
-            def documents
-              @documents ||= []
+            def self_file_entry
+              FileEntry.new('/', manifest: self).tap do |entry|
+                entry.set_attribute('version', version)
+              end
             end
 
             def file_entries

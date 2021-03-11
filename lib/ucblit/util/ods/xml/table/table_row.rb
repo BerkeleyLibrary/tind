@@ -14,14 +14,17 @@ module UCBLIT
             # Accessors
 
             attr_reader :row_style
+            attr_reader :default_cell_style
 
             # ------------------------------------------------------------
             # Initializer
 
             # @param table [Table] the table
-            def initialize(row_style, number_repeated = 1, table:)
+            # @param default_cell_style [Style::CellStyle] the default cell style
+            def initialize(row_style, number_repeated = 1, table:, default_cell_style: nil)
               super('table-row', 'number-rows-repeated', number_repeated, table: table)
               @row_style = row_style
+              @default_cell_style = default_cell_style
 
               set_default_attributes!
             end
@@ -30,7 +33,7 @@ module UCBLIT
             # Public utility methods
 
             def set_value_at(column_index, value = nil, cell_style = nil)
-              explicit_cells[column_index] = TableCell.new(value, cell_style, table: table)
+              explicit_cells[column_index] = TableCell.new(value, cell_style || default_cell_style, table: table)
             end
 
             def get_value_at(column_index)
@@ -121,7 +124,7 @@ module UCBLIT
             end
 
             def yield_repeat_empty(num_repeats, &block)
-              empty_cell = TableCell.repeat_empty(num_repeats, table: table)
+              empty_cell = TableCell.repeat_empty(num_repeats, default_cell_style, table: table)
               block.call(empty_cell)
             end
 

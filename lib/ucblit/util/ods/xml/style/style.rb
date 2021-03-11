@@ -7,6 +7,7 @@ module UCBLIT
       module XML
         module Style
           class Style < XML::ElementNode
+            include Comparable
 
             attr_reader :style_name, :family
 
@@ -17,6 +18,17 @@ module UCBLIT
               @family = Family.ensure_family(family)
 
               set_default_attributes!
+            end
+
+            def <=>(other)
+              return 0 if other.equal?(self)
+              return nil unless other.instance_of?(self.class)
+
+              s_index, o_index = [style_name, other.style_name].map { |n| family.index_part(n) }
+              order = s_index <=> o_index
+              return order if order && order != 0
+
+              style_name <=> other.style_name
             end
 
             private

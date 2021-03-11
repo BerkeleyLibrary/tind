@@ -9,11 +9,7 @@ module UCBLIT
             # ------------------------------------------------------------
             # Enum instances
 
-            new(:TABLE_CELL, 'table-cell') do
-              def prefix
-                'ce'
-              end
-            end
+            # NOTE: declaration order is as they appear in spreadsheets saved from LibreOffice
 
             new(:TABLE_COLUMN, 'table-column') do
               def prefix
@@ -30,6 +26,12 @@ module UCBLIT
             new(:TABLE, 'table') do
               def prefix
                 'ta'
+              end
+            end
+
+            new(:TABLE_CELL, 'table-cell') do
+              def prefix
+                'ce'
               end
             end
 
@@ -55,6 +57,20 @@ module UCBLIT
 
             def prefix
               @prefix ||= find_prefix
+            end
+
+            def split_name(style_name)
+              return [nil, style_name] unless style_name.start_with?(prefix)
+
+              [prefix, style_name[prefix.size..]]
+            end
+
+            def index_part(style_name)
+              prefix, suffix = split_name(style_name)
+              return unless prefix
+              return unless (suffix_i = suffix.to_i).to_s == suffix
+
+              suffix_i
             end
 
             # ------------------------------------------------------------

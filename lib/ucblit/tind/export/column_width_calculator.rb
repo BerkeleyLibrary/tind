@@ -4,6 +4,7 @@ module UCBLIT
       # Calculates approximate column widths for cell values, based on
       # Arial average character widths ()in units of 1/1000 point size) per
       # {https://www.math.utah.edu/~beebe/fonts/afm-widths.html this table}.
+      # (LibreOffice default is Liberation Sans, which should match Arial.)
       #
       # CJK and fullwidth characters will probably be mapped to another font,
       # but it's probably going to be roughly square.

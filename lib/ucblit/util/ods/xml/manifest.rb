@@ -1,18 +1,18 @@
 require 'nokogiri'
 require 'ucblit/util/ods/xml/document_node'
-require 'ucblit/util/ods/xml/office/document_content'
+require 'ucblit/util/ods/xml/manifest/manifest'
 
 module UCBLIT
   module Util
     module ODS
       module XML
-        class Content < DocumentNode
+        class Manifest < DocumentNode
           def root_element_node
-            document_content
+            manifest
           end
 
-          def document_content
-            @document_content ||= Office::DocumentContent.new(doc: doc)
+          def manifest
+            @manifest ||= Manifest::Manifest.new(doc: doc)
           end
         end
       end

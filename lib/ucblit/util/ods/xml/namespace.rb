@@ -13,6 +13,7 @@ module UCBLIT
           new :FO, 'urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0'
           new :FORM, 'urn:oasis:names:tc:opendocument:xmlns:form:1.0'
           new :LOEXT, 'urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0'
+          new :MANIFEST, 'urn:oasis:names:tc:opendocument:xmlns:manifest:1.0'
           new :META, 'urn:oasis:names:tc:opendocument:xmlns:meta:1.0'
           new :OF, 'urn:oasis:names:tc:opendocument:xmlns:of:1.2'
           new :OFFICE, 'urn:oasis:names:tc:opendocument:xmlns:office:1.0'
@@ -50,7 +51,7 @@ module UCBLIT
 
             def for_prefix(prefix)
               @by_prefix ||= Namespace.map { |ns| [ns.prefix, ns] }.to_h
-              @by_prefix[prefix]
+              @by_prefix[prefix.to_s]
             end
           end
         end

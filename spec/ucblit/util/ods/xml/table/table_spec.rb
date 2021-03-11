@@ -51,6 +51,10 @@ module UCBLIT
                 expect(col).to be_a(TableColumn)
               end
 
+              it 'sets the header' do
+                expect(table.get_value_at(0, 0)).to eq(header_str)
+              end
+
               it 'creates an associated style' do
                 styles = doc_content.automatic_styles
                 col_style = styles.find_column_style(width)

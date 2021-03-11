@@ -7,11 +7,13 @@ module UCBLIT
       module XML
         module Table
           class TableCell < Repeatable
+            attr_reader :value
             attr_reader :cell_style
 
             def initialize(value = nil, cell_style = nil, number_repeated = 1, table:)
               super('table-cell', 'number-columns-repeated', number_repeated, table: table)
 
+              @value = value
               @cell_style = cell_style
 
               set_attribute('style-name', cell_style.style_name) if cell_style

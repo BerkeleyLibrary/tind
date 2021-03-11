@@ -59,6 +59,10 @@ module UCBLIT
               @row_count ||= 0
             end
 
+            def get_value_at(row_index, column_index)
+              (row = rows[row_index]) && row.get_value_at(column_index)
+            end
+
             def add_column(header, width = nil, protected: false)
               column_style = styles.find_or_create_column_style(width)
               default_cell_style = styles.find_or_create_cell_style(protected)

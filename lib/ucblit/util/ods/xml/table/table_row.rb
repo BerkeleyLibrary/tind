@@ -10,7 +10,13 @@ module UCBLIT
         module Table
           class TableRow < Repeatable
 
+            # ------------------------------------------------------------
+            # Accessors
+
             attr_reader :row_style
+
+            # ------------------------------------------------------------
+            # Initializer
 
             # @param table [Table] the table
             def initialize(row_style, number_repeated = 1, table:)
@@ -20,8 +26,15 @@ module UCBLIT
               set_default_attributes!
             end
 
+            # ------------------------------------------------------------
+            # Public utility methods
+
             def set_value_at(column_index, value = nil, cell_style = nil)
               explicit_cells[column_index] = TableCell.new(value, cell_style, table: table)
+            end
+
+            def get_value_at(column_index)
+              (cell = explicit_cells[column_index]) && cell.value
             end
 
             # ------------------------------------------------------------

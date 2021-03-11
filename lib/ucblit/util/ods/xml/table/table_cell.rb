@@ -16,8 +16,8 @@ module UCBLIT
               @value = value
               @cell_style = cell_style
 
-              set_attribute('style-name', cell_style.style_name) if cell_style
-              @children = [XML::Text::P.new(value, doc: doc)] if value
+              set_default_attributes!
+              add_default_children!
             end
 
             class << self
@@ -25,6 +25,18 @@ module UCBLIT
                 TableCell.new(nil, nil, number_repeated, table: table)
               end
             end
+
+            private
+
+            def set_default_attributes!
+              set_attribute('style-name', cell_style.style_name) if cell_style
+              set_attribute(:office, 'value-type', 'string') if value
+            end
+
+            def add_default_children!
+              children << XML::Text::P.new(value, doc: doc) if value
+            end
+
           end
         end
       end

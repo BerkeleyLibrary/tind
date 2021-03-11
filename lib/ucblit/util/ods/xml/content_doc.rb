@@ -6,7 +6,7 @@ module UCBLIT
   module Util
     module ODS
       module XML
-        class Content < DocumentNode
+        class ContentDoc < DocumentNode
           def root_element_node
             document_content
           end

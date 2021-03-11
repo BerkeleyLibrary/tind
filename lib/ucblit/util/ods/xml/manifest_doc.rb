@@ -6,7 +6,7 @@ module UCBLIT
   module Util
     module ODS
       module XML
-        class Manifest < DocumentNode
+        class ManifestDoc < DocumentNode
           def root_element_node
             manifest
           end

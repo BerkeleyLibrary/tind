@@ -6,7 +6,7 @@ module UCBLIT
       module XML
         module Table
           describe Table do
-            let(:content) { Content.new }
+            let(:content) { ContentDoc.new }
             let(:doc_content) { content.document_content }
             let(:table_name) { "Table for #{File.basename(__FILE__, '.rb')}" }
 

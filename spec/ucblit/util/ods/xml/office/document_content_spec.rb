@@ -6,7 +6,7 @@ module UCBLIT
       module XML
         module Office
           describe DocumentContent do
-            let(:content) { Content.new }
+            let(:content) { ContentDoc.new }
             let(:doc_content) { content.document_content }
 
             # TODO: move to some kind of helper & share w/table_spec

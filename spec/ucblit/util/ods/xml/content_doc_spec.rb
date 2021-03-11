@@ -6,8 +6,8 @@ module UCBLIT
   module Util
     module ODS
       module XML
-        describe Content do
-          let(:content) { Content.new }
+        describe ContentDoc do
+          let(:content) { ContentDoc.new }
 
           describe :document_content do
             it 'returns a DocumentContent' do

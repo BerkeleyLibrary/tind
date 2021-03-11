@@ -6,7 +6,7 @@ module UCBLIT
   module Util
     module ODS
       module XML
-        class Styles < DocumentNode
+        class StylesDoc < DocumentNode
           def root_element_node
             document_styles
           end

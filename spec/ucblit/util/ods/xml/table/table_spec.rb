@@ -19,7 +19,7 @@ module UCBLIT
             # TODO: move to some kind of helper & share w/table_spec
             def doc_content_xml
               xml_str = content.to_xml
-              File.open("tmp/content-#{Time.now.to_i}.xml", 'wb') { |f| f.write(xml_str) }
+              # File.open("tmp/content-#{Time.now.to_i}.xml", 'wb') { |f| f.write(xml_str) }
               rexml_doc = REXML::Document.new(xml_str)
               rexml_doc.root
             end

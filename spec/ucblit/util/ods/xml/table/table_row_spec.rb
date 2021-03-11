@@ -21,7 +21,7 @@ module UCBLIT
             # TODO: move to some kind of helper & share w/table_spec
             def doc_content_xml
               xml_str = content.to_xml
-              File.open("tmp/content-#{Time.now.to_i}.xml", 'wb') { |f| f.write(xml_str) }
+              # File.open("tmp/content-#{Time.now.to_i}.xml", 'wb') { |f| f.write(xml_str) }
               rexml_doc = REXML::Document.new(xml_str)
               rexml_doc.root
             end
@@ -102,6 +102,42 @@ module UCBLIT
                     text = p_children[i]
                     expect(text).to be_a(REXML::Text)
                     expect(text.value).to eq(vf)
+                  end
+                end
+              end
+            end
+
+            describe :to_xml do
+              it 'collapses consecutive nils' do
+                (2..7).each { |col| table.add_column("Column #{col}") }
+
+                row.set_value_at(0, 'Value 0')
+                row.set_value_at(2, 'Value 2')
+                row.set_value_at(6, 'Value 6')
+
+                row_xml = find_row_xml
+                cells_xml = row_xml.elements.select { |e| e.name == 'table-cell' }
+                expect(cells_xml.size).to eq(6)
+
+                expected_values = ['Value 0', nil, 'Value 2', nil, 'Value 6', nil]
+                expected_repeats = [nil, nil, nil, 3, nil, Table::MIN_COLUMNS - 7]
+                cells_xml.each_with_index do |cell_xml, i|
+                  p = cell_xml.elements[1, 'p']
+                  if (expected_value = expected_values[i])
+                    expect(p).to be_a(REXML::Element)
+                    texts = p.texts
+                    expect(texts.size).to eq(1)
+                    expect(texts[0].value).to eq(expected_value)
+                  else
+                    expect(p).to be_nil
+                  end
+
+                  num_cols_repeated = cell_xml['table:number-columns-repeated']
+                  expected_repeat = expected_repeats[i]
+                  if expected_repeat
+                    expect(num_cols_repeated).to eq(expected_repeat.to_s)
+                  else
+                    expect(num_cols_repeated).to be_nil
                   end
                 end
               end

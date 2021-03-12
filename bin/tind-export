@@ -1,8 +1,14 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'bundler/setup'
-require 'dotenv/load'
-require 'ucblit/tind'
+begin
+  # This should work if (1) the gem is installed, or
+  # (2) we're in development and used `bundle exec`
+  require 'ucblit/tind'
+rescue LoadError
+  # If we're in development, `require 'bundler/setup'`
+  # is roughly equivalent to `bundle exec`
+  require 'bundler/setup'
+  require 'ucblit/tind'
+end
 
 UCBLIT::TIND::Export::ExportCommand.new(*ARGV).execute!

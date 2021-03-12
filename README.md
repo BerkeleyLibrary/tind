@@ -55,6 +55,10 @@ Examples:
    tind-export -f ODS -o lincoln-papers 'Abraham Lincoln Papers'
    ```
 
+   (Note that OpenOffice itself and many other tools get confused by the extra text
+   nodes in the pretty-printed files and won't read them properly; this feature
+   is mostly for debugging.)
+
 4. export a collection as CSV, to standard output
 
    ```sh

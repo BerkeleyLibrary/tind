@@ -14,6 +14,17 @@ module UCBLIT
           end
         end
 
+        describe :mime_type do
+          it 'returns the correct MIME type' do
+            {
+              ExportFormat::CSV => 'text/csv',
+              ExportFormat::ODS => 'application/vnd.oasis.opendocument.spreadsheet'
+            }.each do |fmt, mime_type|
+              expect(fmt.mime_type).to eq(mime_type)
+            end
+          end
+        end
+
         describe :ensure_format do
           it 'rejects unsupported formats' do
             expect { ExportFormat.ensure_format(:wks) }.to raise_error(ArgumentError)

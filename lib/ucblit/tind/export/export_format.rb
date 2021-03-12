@@ -23,6 +23,11 @@ module UCBLIT
           return 'LibreOffice/OpenOffice spreadsheet' if self == ExportFormat::ODS
         end
 
+        def mime_type
+          return 'text/csv' if self == ExportFormat::CSV
+          return 'application/vnd.oasis.opendocument.spreadsheet' if self == ExportFormat::ODS
+        end
+
         def to_s
           # noinspection RubyYardReturnMatch
           value

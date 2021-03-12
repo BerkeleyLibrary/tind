@@ -61,7 +61,8 @@ module UCBLIT
 
         def maybe_add_at(row, data_field)
           warn "Data field at row #{row} is not frozen: #{data_field}" unless data_field.subfields.frozen?
-          return unless can_add?(data_field)
+          # set nil explicitly so row_count etc. are correct
+          return (data_fields[row] = nil) unless can_add?(data_field)
 
           @subfield_codes = merge(subfield_codes, data_field.subfield_codes)
           data_fields[row] = data_field

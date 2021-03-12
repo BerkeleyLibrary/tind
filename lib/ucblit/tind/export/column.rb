@@ -4,8 +4,12 @@ module UCBLIT
   module TIND
     module Export
       class Column
-        attr_reader :col_in_group
+
+        # @return [ColumnGroup] the group containing this column
         attr_reader :column_group
+
+        # @return [Integer] the index of this column in the group
+        attr_reader :col_in_group
 
         # Initializes a new column
         #
@@ -42,9 +46,7 @@ module UCBLIT
           return to_enum(:each_value, include_header: include_header) unless block_given?
 
           yield header if include_header
-          (0...column_group.row_count).each do |row|
-            yield value_at(row)
-          end
+          column_group.row_count.times { |row| yield value_at(row) }
         end
       end
     end

@@ -1,6 +1,6 @@
 require 'ucblit/util/arrays'
 require 'ucblit/tind/export/exporter_base'
-require 'ucblit/tind/export/column_width_calculator'
+require 'ucblit/tind/export/table_metrics'
 require 'ucblit/util/ods/spreadsheet'
 
 module UCBLIT
@@ -11,8 +11,11 @@ module UCBLIT
 
         LOCKED_CELL_COLOR = '#c0362c'.freeze
 
-        # Round column widths up to nearest `WIDTH_ROUND_FACTOR` inches
-        WIDTH_ROUND_FACTOR = '1/8'.to_r
+        # Round column widths up to nearest quarter inch
+        EIGHTH = '1/8'.to_r
+
+        # Max column width before wrapping
+        MAX_COLUMN_WIDTH_INCHES = 3.0
 
         # Exports {ExportBase#collection} as an OpenOffice/LibreOffice spreadsheet
         # @overload export
@@ -45,13 +48,44 @@ module UCBLIT
           @spreadsheet ||= UCBLIT::Util::ODS::Spreadsheet.new
         end
 
+        def table
+          @table ||= spreadsheet.add_table(collection)
+        end
+
+        def table_metrics
+          @table_metrics ||= TableMetrics.new(export_table)
+        end
+
         # @return [UCBLIT::Util::ODS::XML::Office::AutomaticStyles] the styles
         def styles
           spreadsheet.auto_styles
         end
 
-        def protected_cell_style
-          @protected_cell_style ||= styles.find_or_create_cell_style(true, LOCKED_CELL_COLOR)
+        def header_cell_style_for(col_index)
+          @header_cell_styles ||= []
+          @header_cell_styles[col_index] ||= begin
+            protected = protected?(col_index)
+            find_or_create_cell_style(
+              protected,
+              color: (protected ? LOCKED_CELL_COLOR : nil),
+              font_weight: 'bold'
+            )
+          end
+        end
+
+        def find_or_create_cell_style(protected, color: nil, font_weight: nil, wrap: false)
+          # TODO: move lookup/caching behind AutomaticStyles#find_or_create_cell_style
+          color ||= LOCKED_CELL_COLOR if protected
+          cell_styles = (@cell_styles ||= {})
+          style_key = [protected, color, font_weight, wrap]
+          cell_styles[style_key] ||= styles.find_or_create_cell_style(protected, color, font_weight: font_weight, wrap: wrap)
+        end
+
+        def column_style_for(col_index)
+          column_width = table_metrics.formatted_width(col_index)
+          # TODO: move lookup/caching behind AutomaticStyles#find_or_create_column_style
+          @column_styles_by_width ||= {}
+          @column_styles_by_width[column_width] ||= styles.find_or_create_column_style(column_width)
         end
 
         # ------------------------------
@@ -59,53 +93,50 @@ module UCBLIT
 
         def populate_spreadsheet!
           logger.info("Populating spreadsheet for #{collection}")
-
-          table = spreadsheet.add_table(collection)
-          add_columns(table)
-          add_rows(table)
+          populate_columns!
+          populate_rows!
         end
 
-        # @param table [UCBLIT::Util::ODS::XML::Table::Table] the table
-        def add_columns(table)
-          export_table.columns.each do |export_column|
-            header = export_column.header
-            column_width = width_for(export_column)
-
-            if export_column.can_edit?
-              table.add_column(header, column_width)
-            else
-              table.add_column_with_styles(header, column_style: column_style_for(column_width), header_cell_style: protected_cell_style)
-            end
-          end
-        end
-
-        def add_rows(table)
-          export_table.rows.each do |export_row|
-            row = table.add_row
-            export_row.each_value.with_index do |v, column_index|
-              cell_style = protected?(column_index) ? protected_cell_style : nil
-              row.set_value_at(column_index, v, cell_style)
-            end
-          end
-        end
-
-        def width_for(export_column)
-          value_enum = export_column.each_value(include_header: true)
-          w_max = ColumnWidthCalculator.max_width_inches(value_enum)
-          w_rounded = (w_max / WIDTH_ROUND_FACTOR).ceil * WIDTH_ROUND_FACTOR
-          format('%0.3fin', w_rounded)
-        end
-
-        def column_style_for(width)
-          styles.find_or_create_column_style(width)
-        end
-
-        def protected?(column_index)
-          column = export_table.columns[column_index]
-          raise ArgumentError, "Invalid column index: #{column_index.inspect}" unless column
+        def protected?(col_index)
+          column = export_table.columns[col_index]
+          raise ArgumentError, "Invalid column index: #{col_index.inspect}" unless column
 
           !column.can_edit?
         end
+
+        # @param table [UCBLIT::Util::ODS::XML::Table::Table] the table
+        def populate_columns!
+          export_table.columns.each_with_index do |export_column, col_index|
+            table.add_column_with_styles(
+              export_column.header,
+              column_style: column_style_for(col_index),
+              header_cell_style: header_cell_style_for(col_index)
+            )
+          end
+        end
+
+        # @param table [UCBLIT::Util::ODS::XML::Table::Table] the table
+        def populate_rows!
+          export_table.row_count.times(&method(:populate_row))
+        end
+
+        def populate_row(row_index)
+          export_row = export_table.rows[row_index]
+          row_metrics = table_metrics.row_metrics_for(row_index)
+          row_height = row_metrics.formatted_row_height
+          row = table.add_row(row_height)
+          populate_values(export_row, row_metrics, row)
+        end
+
+        def populate_values(export_row, row_metrics, row)
+          export_row.each_value.with_index do |v, col_index|
+            protected = protected?(col_index)
+            wrap = row_metrics.wrap?(col_index)
+            cell_style = find_or_create_cell_style(protected, wrap: wrap)
+            row.set_value_at(col_index, v, cell_style)
+          end
+        end
+
       end
     end
   end

@@ -79,8 +79,12 @@ module UCBLIT
         # ------------------------------------------------------------
         # Row / MARC::Record accessors
 
+        # The rows
+        #
+        # @return [Array<Row>] the rows
         def rows
           # NOTE: this isn't ||= because we only cache on #freeze
+          # noinspection RubyYardReturnMatch
           @rows || each_row.to_a
         end
 

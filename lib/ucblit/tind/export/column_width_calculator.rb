@@ -21,9 +21,12 @@ module UCBLIT
 
         WIDTH_DIGIT = 556.0
 
+        # Measured empirically in LibreOffice 6.4.7.2
+        WIDTH_CJK = 970.0
+
         WIDTHS = {
-          /[\u4e00-\u9fff]/ => WIDTH_UNIT, # CJK (excluding half-width forms)
-          /[\uff01-\uff65\uffe0-\uffee]/ => WIDTH_UNIT, # Fullwidth forms
+          /[\u4e00-\u9fff]/ => WIDTH_CJK, # CJK (excluding half-width forms)
+          /[\uff01-\uff65\uffe0-\uffee]/ => WIDTH_CJK, # Fullwidth forms
           /[[:digit:]]/ => WIDTH_DIGIT,
           /[[:upper:]]/ => WIDTH_UPPER,
           /[[:lower:]]/ => WIDTH_LOWER,
@@ -31,7 +34,7 @@ module UCBLIT
         }.freeze
 
         # See {WIDTHS}
-        WIDTH_DEFAULT = WIDTH_LOWER # Fallback to lowercase width for other characters
+        WIDTH_DEFAULT = WIDTH_DIGIT # Fallback to digit width for other characters
 
         FONT_SIZE_DEFAULT = 10.0
 
@@ -50,13 +53,6 @@ module UCBLIT
           return 0 if str.nil? || str.empty?
 
           width_points(str, font_size_points) / 72.0
-        end
-
-        def max_width_inches(strings)
-          strings.inject(0) do |w_max, s|
-            w = ColumnWidthCalculator.width_inches(s)
-            [w, w_max].max
-          end
         end
 
         private

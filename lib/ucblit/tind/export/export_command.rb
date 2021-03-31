@@ -57,6 +57,7 @@ module UCBLIT
             l: ['--list-collections', 'List collection sizes and names'],
             u: ['--tind-base-url URL', "TIND base URL (default $#{UCBLIT::TIND::Config::ENV_TIND_BASE_URL})"],
             k: ['--api-key KEY', "TIND API key (default $#{UCBLIT::TIND::Config::ENV_TIND_API_KEY})"],
+            e: ['--env-file [ENV]', 'Read environment variables from <ENV> (default: ./.env)'],
             v: ['--verbose', 'Verbose error logging'],
             h: ['--help', 'Show help and exit']
           }.freeze
@@ -82,6 +83,7 @@ module UCBLIT
           end
 
           def configure!(opts)
+            configure_env(opts)
             UCBLIT::TIND::Config.base_uri = opts[:tind_base_url] if opts[:tind_base_url]
             UCBLIT::TIND::Config.api_key = opts[:api_key] if opts[:api_key]
             UCBLIT::TIND.logger = configure_logger(opts)
@@ -94,6 +96,15 @@ module UCBLIT
             UCBLIT::Logging::Loggers.new_readable_logger($stderr).tap { |logger| logger.level = Logger::DEBUG }
           end
 
+          def configure_env(opts)
+            return unless (env_file = opts[:env_file])
+
+            warn "Reading environment from #{env_file}" if opts[:verbose]
+
+            require 'dotenv'
+            Dotenv.load(env_file)
+          end
+
           def ensure_format(opts)
             fmt = opts[:format] || (File.extname(opts[:outfile]).sub(/^\./, '') if opts[:outfile])
             return DEFAULT_FORMAT unless fmt
@@ -101,7 +112,7 @@ module UCBLIT
             ExportFormat.ensure_format(fmt)
           end
 
-          # rubocop:disable Metrics/AbcSize
+          # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
           def option_parser(opts = {})
             OptionParser.new do |p|
               p.summary_indent = ' '
@@ -110,11 +121,16 @@ module UCBLIT
               p.on('-l', *OPTS[:l]) { opts[:list] = true }
               p.on('-u', *OPTS[:u]) { |url| opts[:tind_base_url] = url }
               p.on('-k', *OPTS[:k]) { |k| opts[:api_key] = k }
+              p.on('-e', *OPTS[:e]) { |e| opts[:env_file] = env_file_path(e) }
               p.on('-v', *OPTS[:v]) { opts[:verbose] = true }
               p.on('-h', *OPTS[:h]) { print_usage_and_exit! }
             end
           end
-          # rubocop:enable Metrics/AbcSize
+          # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
+
+          def env_file_path(env_file_opt)
+            File.realpath(env_file_opt || File.join(Dir.pwd, '.env'))
+          end
 
           def print_usage_and_exit!(out = $stdout, exit_code = EX_OK, msg = nil)
             out.puts("#{msg}\n\n") if msg

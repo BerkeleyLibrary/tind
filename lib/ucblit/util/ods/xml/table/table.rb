@@ -72,7 +72,8 @@ module UCBLIT
             end
 
             def add_column_with_styles(header, column_style:, default_cell_style: nil, header_cell_style: nil)
-              add_or_repeat_column(column_style, default_cell_style || styles.find_or_create_cell_style).tap do
+              cell_style = default_cell_style || styles.find_or_create_cell_style
+              add_or_repeat_column(column_style, cell_style).tap do
                 header_row = rows[0] || add_row
                 header_row.set_value_at(column_count, header, header_cell_style)
                 self.column_count += 1

@@ -106,7 +106,6 @@ module UCBLIT
                 it 'adds a protected cell style' do
                   col_style = pcol.column_style
 
-                  # TODO: do we need to also set cell styles individually for protection to work?
                   default_cell_style = pcol.default_cell_style
                   expect(default_cell_style.protected?).to eq(true)
 

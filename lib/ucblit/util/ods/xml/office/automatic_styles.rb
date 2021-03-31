@@ -62,7 +62,7 @@ module UCBLIT
             end
 
             # rubocop:disable Style/OptionalBooleanParameter
-            def find_cell_style(protected = false, color = nil, font_weight: nil, wrap: false)
+            def find_cell_style(protected = false, color: nil, font_weight: nil, wrap: false)
               styles_for_family(:table_cell).find { |s| [s.protected?, s.color, s.font_weight, s.wrap?] == [protected, color, font_weight, wrap] }
             end
             # rubocop:enable Style/OptionalBooleanParameter
@@ -78,8 +78,8 @@ module UCBLIT
             end
 
             # rubocop:disable Style/OptionalBooleanParameter
-            def find_or_create_cell_style(protected = false, color = nil, font_weight: nil, wrap: false)
-              existing_style = find_cell_style(protected, color, font_weight: font_weight, wrap: wrap)
+            def find_or_create_cell_style(protected = false, color: nil, font_weight: nil, wrap: false)
+              existing_style = find_cell_style(protected, color: color, font_weight: font_weight, wrap: wrap)
               return existing_style if existing_style
 
               add_cell_style(nil, protected, color, font_weight: font_weight, wrap: wrap)

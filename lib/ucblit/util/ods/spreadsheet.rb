@@ -17,9 +17,10 @@ module UCBLIT
         # Adds a table ('worksheet') to the spreadsheet.
         #
         # @param name [String] the table name
+        # @param protected [Boolean] whether to protect the table
         # @return [UCBLIT::Util::ODS::XML::Table::Table] a new table with the specified name
-        def add_table(name)
-          content.document_content.add_table(name)
+        def add_table(name, protected: true)
+          content.document_content.add_table(name, protected: protected)
         end
 
         # ------------------------------------------------------------

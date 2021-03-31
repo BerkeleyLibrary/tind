@@ -6,13 +6,13 @@ module UCBLIT
       describe ExportCommand do
         before(:each) do
           @base_uri_orig = UCBLIT::TIND::Config.base_uri
-          @api_key_orig = UCBLIT::TIND::API.api_key
+          @api_key_orig = UCBLIT::TIND::Config.api_key
           @logger_orig = UCBLIT::TIND.logger
         end
 
         after(:each) do
           UCBLIT::TIND.logger = @logger_orig
-          UCBLIT::TIND::API.api_key = @api_key_orig
+          UCBLIT::TIND::Config.api_key = @api_key_orig
           UCBLIT::TIND::Config.base_uri = @base_uri_orig
         end
 

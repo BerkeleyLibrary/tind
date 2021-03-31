@@ -21,7 +21,7 @@ module UCBLIT
 
                 style = Style::CellStyle.new('my-style', protected, color, styles: styles)
                 styles.add_child(style)
-                expect(styles.find_cell_style(protected, color)).to be(style)
+                expect(styles.find_cell_style(protected, color: color)).to be(style)
               end
 
               it 'adds a non-style' do

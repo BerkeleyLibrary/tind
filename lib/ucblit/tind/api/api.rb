@@ -9,28 +9,20 @@ require 'ucblit/tind/api/api_exception'
 module UCBLIT
   module TIND
     module API
-      # The environment variable from which to read the TIND API key.
-      ENV_TIND_API_KEY = 'LIT_TIND_API_KEY'.freeze
-
       class << self
         include UCBLIT::Util
-        include UCBLIT::TIND::Config
         include UCBLIT::Util::Logging
-
-        # Sets the TIND API key.
-        # @param value [String] the API key.
-        attr_writer :api_key
 
         # Gets the TIND API key.
         # @return [String, nil] the TIND API key, or `nil` if not set.
         def api_key
-          @api_key ||= ENV[API::ENV_TIND_API_KEY]
+          UCBLIT::TIND::Config.api_key
         end
 
         # Gets the API base URI.
         # @return [URI, nil] the API base URI, or `nil` if {UCBLIT::TIND::Config#base_uri} is not set
         def api_base_uri
-          return unless base_uri
+          return unless (base_uri = Config.base_uri)
 
           URIs.append(base_uri, '/api/v1')
         end
@@ -72,7 +64,7 @@ module UCBLIT
         #   @yieldparam body [IO] the response body, as an IO stream
         def get(endpoint, **params, &block)
           endpoint_url = uri_for(endpoint).to_s
-          raise ArgumentError, "No endpoint URL found for #{endpoint.inspect}" if endpoint_url.empty?
+          raise ArgumentError, "No endpoint URL found for #{endpoint.inspect}; #{Config::ENV_TIND_BASE_URL} not set?" if endpoint_url.empty?
 
           logger.debug("GET #{debug_uri(endpoint_url, params)}")
           # logger.debug("Headers", headers)

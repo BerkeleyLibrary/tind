@@ -56,7 +56,7 @@ module UCBLIT
             o: ['--output-file FILE', 'Output file or directory'],
             l: ['--list-collections', 'List collection sizes and names'],
             u: ['--tind-base-url URL', "TIND base URL (default $#{UCBLIT::TIND::Config::ENV_TIND_BASE_URL})"],
-            k: ['--api-key KEY', "TIND API key (default $#{UCBLIT::TIND::API::ENV_TIND_API_KEY})"],
+            k: ['--api-key KEY', "TIND API key (default $#{UCBLIT::TIND::Config::ENV_TIND_API_KEY})"],
             v: ['--verbose', 'Verbose error logging'],
             h: ['--help', 'Show help and exit']
           }.freeze
@@ -83,7 +83,7 @@ module UCBLIT
 
           def configure!(opts)
             UCBLIT::TIND::Config.base_uri = opts[:tind_base_url] if opts[:tind_base_url]
-            UCBLIT::TIND::API.api_key = opts[:api_key] if opts[:api_key]
+            UCBLIT::TIND::Config.api_key = opts[:api_key] if opts[:api_key]
             UCBLIT::TIND.logger = configure_logger(opts)
           end
 

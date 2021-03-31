@@ -12,13 +12,13 @@ module UCBLIT
           @base_uri_orig = UCBLIT::TIND::Config.instance_variable_get(:@base_uri)
           UCBLIT::TIND::Config.base_uri = base_uri
 
-          @api_key_orig = UCBLIT::TIND::API.instance_variable_get(:@api_key)
-          UCBLIT::TIND::API.api_key = api_key
+          @api_key_orig = UCBLIT::TIND::Config.instance_variable_get(:@api_key)
+          UCBLIT::TIND::Config.api_key = api_key
         end
 
         after(:each) do
           UCBLIT::TIND::Config.instance_variable_set(:@base_uri, @base_uri_orig)
-          UCBLIT::TIND::API.instance_variable_set(:@api_key, @api_key_orig)
+          UCBLIT::TIND::Config.instance_variable_set(:@api_key, @api_key_orig)
         end
 
         describe :all do

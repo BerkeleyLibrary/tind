@@ -4,28 +4,23 @@ Utility gem for working with the TIND DA digital archive.
 
 ## Configuration
 
-### TIND base URL
+To access the TIND API, you will need to set:
 
-To access the TIND API, you will need to set the base URL for your TIND 
-installation (e.g. `https://digicoll.lib.berkeley.edu/`).
+1. the base URL for your TIND installation (e.g. `https://digicoll.lib.berkeley.edu/`)
+2. the TIND API key (see the "[API Token Generator](https://docs.tind.io/article/2xaplzx9cn-api-token-generator)"
+   article on [`docs.tind.io`](https://docs.tind.io). TIND's code and
+   docs are inconsistent in their use of "token" and "key". The UI calls
+   it a "key", so that's the term we use here.)
 
-By default, `ucblit-tind` will look for an environment variable, 
-`$LIT_TIND_BASE_URL`. Alternatively, you can set it directly with a
-call to `UCBLIT::TIND::Config#base_uri=`, or indirectly, in a Rails
-application that uses this gem, by adding a `tind_base_uri` field to 
-your Rails configuration, e.g. in `config/application.rb`.
+These can be set directly, via accessors in the `UCBLIT::TIND::Config` module;
+if they are not set, a value will be read from the environment, and if no 
+value is present in the environment and Rails is loaded, from the Rails
+application configuration (`Rails.application.config`).
 
-### TIND API key
-
-To access restricted collections, you will need an API key -- see the 
-"[API Token Generator](https://docs.tind.io/article/2xaplzx9cn-api-token-generator)"
-article on [`docs.tind.io`](https://docs.tind.io). (TIND's code and docs are
-inconsistent in their use of "token" and "key". The UI calls it a "key", so
-that's the term we use here.)
-
-By default, `ucblit-tind` will look for an environment variable, 
-`$LIT_TIND_API_KEY`. Alternatively, you can set it directly with a call to
-`UCBLIT::TIND::API#api_key=`.
+| Value         | `Config`    | ENV                 | Rails            |
+| ---           | ---         | ---                 | ---              |
+| TIND base URI | `:base_uri` | `LIT_TIND_BASE_URL` | `:tind_base_uri` |
+| API key       | `:api_key`  | `LIT_TIND_API_KEY`  | `:tind_api_key`  |
 
 ## Command-line tool: `tind-export`
 
@@ -65,4 +60,6 @@ Examples:
    tind-export -f CSV 'Abraham Lincoln Papers'
    ```
 
-For the full list of options, type `tind-export --help`.
+For the full list of options, type `tind-export --help`. Note that you can set
+the TIND base URL and API key either via the environment, as above, or as options
+passed to the `tind-export` command.

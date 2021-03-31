@@ -17,10 +17,14 @@ if they are not set, a value will be read from the environment, and if no
 value is present in the environment and Rails is loaded, from the Rails
 application configuration (`Rails.application.config`).
 
-| Value         | `Config`    | ENV                 | Rails            |
+| Value         | Config    | ENV                 | Rails            |
 | ---           | ---         | ---                 | ---              |
 | TIND base URI | `:base_uri` | `LIT_TIND_BASE_URL` | `:tind_base_uri` |
 | API key       | `:api_key`  | `LIT_TIND_API_KEY`  | `:tind_api_key`  |
+
+**Note:** The TIND base URI can be set either as a string or as a `URI`
+object, but will always be returned as a `URI` object, and an invalid
+string setting will raise `URI::InvalidURIError`.
 
 ## Command-line tool: `tind-export`
 

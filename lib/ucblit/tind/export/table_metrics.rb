@@ -1,78 +1,24 @@
 require 'ucblit/util/logging'
 require 'ucblit/tind/export/row_metrics'
+require 'ucblit/tind/export/config'
 
 module UCBLIT
   module TIND
     module Export
       class TableMetrics
         include UCBLIT::Util::Logging
-
-        # Round column widths up to nearest eighth inch
-        WIDTH_INCREMENT_DEFAULT_INCHES = '1/8'.to_r
-
-        # Round row heights up to nearest 2 points
-        HEIGHT_INCREMENT_DEFAULT_POINTS = 2
-
-        # Max column width before wrapping
-        MAX_COLUMN_WIDTH_INCHES = 3.0
-
-        # Decimal places for formatting
-        FORMAT_DIGITS_DEFAULT = 3
-
-        # Line height as multipe of
-        LINE_HEIGHT_DEFAULT_EM = '4/3'.to_r
+        include Config
 
         # @return [Table] the table
         attr_reader :table
 
-        # @return [Numeric] the font size in points
-        attr_reader :font_size_pt
-
-        # @return [Numeric] the max column width in inches
-        attr_reader :max_col_width_in
-
-        # @return [Numeric] the width rounding increment in inches
-        attr_reader :w_incr_in
-
-        # @return [Numeric] the height rounding increment in points
-        attr_reader :h_incr_pt
-
-        # @return [Numeric] the line height in ems (multiples of the font point size)
-        attr_reader :line_height_em
-
-        # @return [Integer] the number of digits to use when formatting values
-        attr_reader :format_digits
-
         # Initializes a new set of metrics for the specified table.
         #
         # @param table [Table] the table
-        # @param font_size_pt [Numeric] the font size in points
-        # @param max_col_width_in [Numeric] the max column width in inches
-        # @param w_incr_in [Numeric] the width rounding increment in inches
-        # @param h_incr_pt [Numeric] the height rounding increment in points
-        # @param line_height_em [Numeric] the line height in ems (multiples of the font point size)
-        # @param format_digits [Integer] the number of digits to use when formatting values
-        # rubocop:disable Metrics/ParameterLists
-        def initialize(
-          table,
-          font_size_pt: ColumnWidthCalculator::FONT_SIZE_DEFAULT,
-          max_col_width_in: MAX_COLUMN_WIDTH_INCHES,
-          w_incr_in: WIDTH_INCREMENT_DEFAULT_INCHES,
-          h_incr_pt: HEIGHT_INCREMENT_DEFAULT_POINTS,
-          line_height_em: LINE_HEIGHT_DEFAULT_EM,
-          format_digits: FORMAT_DIGITS_DEFAULT
-        )
+        def initialize(table)
           @table = table
-          @font_size_pt = font_size_pt
-          @max_col_width_in = max_col_width_in
-          @w_incr_in = w_incr_in
-          @h_incr_pt = h_incr_pt
-          @line_height_em = line_height_em
-          @format_digits = format_digits
         end
 
-        # rubocop:enable Metrics/ParameterLists
-        #
         def formatted_width(col_index)
           inches_numeric = numeric_column_width(col_index)
           format_inches(inches_numeric)

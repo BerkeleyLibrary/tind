@@ -1,3 +1,5 @@
+require 'ucblit/tind/export/config'
+
 module UCBLIT
   module TIND
     module Export
@@ -12,6 +14,7 @@ module UCBLIT
       # Non-Western, non-CJK characters will *hopefully* not be much wider
       # than their Western counterparts.
       module ColumnWidthCalculator
+        include Config
 
         WIDTH_UNIT = 1000.0
 
@@ -36,8 +39,6 @@ module UCBLIT
         # See {WIDTHS}
         WIDTH_DEFAULT = WIDTH_DIGIT # Fallback to digit width for other characters
 
-        FONT_SIZE_DEFAULT = 10.0
-
         def width_ps_units(str)
           return 0 if str.nil? || str.empty?
 
@@ -45,11 +46,11 @@ module UCBLIT
           chars.inject(0) { |total, c| total + width_for_char(c) }
         end
 
-        def width_points(str, font_size_points = FONT_SIZE_DEFAULT)
+        def width_points(str, font_size_points = font_size_pt)
           width_per_point(str) * font_size_points
         end
 
-        def width_inches(str, font_size_points = FONT_SIZE_DEFAULT)
+        def width_inches(str, font_size_points = font_size_pt)
           return 0 if str.nil? || str.empty?
 
           width_points(str, font_size_points) / 72.0

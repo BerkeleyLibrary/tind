@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'fileutils'
 
 module UCBLIT
   module TIND
@@ -55,6 +56,54 @@ module UCBLIT
 
           before(:each) do
             @command = ExportCommand.new('-v', '-k', api_key, '-o', output_path, collection)
+          end
+
+          describe '-e' do
+            let(:basename) { File.basename(__FILE__, '.rb') }
+
+            before(:each) do
+              @wd = Dir.pwd
+
+              if defined?(Dotenv)
+                @dotenv_old = Dotenv
+                Object.send(:remove_const, :Dotenv)
+              end
+
+              allow_any_instance_of(Kernel).to receive(:require).with('dotenv').and_return(true)
+              Object.const_set(:Dotenv, double(Module))
+            end
+
+            after(:each) do
+              Dir.chdir(@wd)
+              next unless @dotenv_old
+
+              Object.send(:remove_const, :Dotenv)
+              Object.const_set(:Dotenv, @dotenv_old)
+            end
+
+            it 'reads the default .env file' do
+              Dir.mktmpdir(basename) do |tmpdir|
+                env_path = File.join(tmpdir, '.env')
+                FileUtils.touch(env_path)
+
+                env_path_abs = File.realpath(env_path)
+                expect(Dotenv).to receive(:load).with(env_path_abs)
+                Dir.chdir(tmpdir)
+                ExportCommand.new('-l', '-e')
+              end
+            end
+
+            it 'reads a specified .env file' do
+              Dir.mktmpdir(basename) do |tmpdir|
+                env_path = File.join(tmpdir, 'myenv')
+                FileUtils.touch(env_path)
+
+                env_path_abs = File.realpath(env_path)
+                expect(Dotenv).to receive(:load).with(env_path_abs)
+                Dir.chdir(tmpdir)
+                ExportCommand.new('-l', '-e', 'myenv')
+              end
+            end
           end
 
           describe '-v' do

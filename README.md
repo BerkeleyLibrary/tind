@@ -66,4 +66,5 @@ Examples:
 
 For the full list of options, type `tind-export --help`. Note that you can set
 the TIND base URL and API key either via the environment, as above, or as options
-passed to the `tind-export` command.
+passed to the `tind-export` command. If both an explicit option and an environment
+variable are set for either, the explicit option takes precedence.

@@ -9,7 +9,7 @@ module UCBLIT
   module Util
     module ODS
       class Spreadsheet
-        include UCBLIT::Util::Logging
+        include UCBLIT::Logging
 
         # ------------------------------------------------------------
         # Utility methods

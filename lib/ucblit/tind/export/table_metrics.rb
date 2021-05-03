@@ -6,7 +6,7 @@ module UCBLIT
   module TIND
     module Export
       class TableMetrics
-        include UCBLIT::Util::Logging
+        include UCBLIT::Logging
         include Config
 
         # @return [Table] the table

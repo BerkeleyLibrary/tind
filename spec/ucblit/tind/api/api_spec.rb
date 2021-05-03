@@ -9,12 +9,12 @@ module UCBLIT
       before(:each) do
         @base_uri_orig = UCBLIT::TIND::Config.instance_variable_get(:@base_uri)
         UCBLIT::TIND::Config.base_uri = base_uri
-        @logger_orig = UCBLIT::TIND.logger
+        @logger_orig = UCBLIT::Logging.logger
       end
 
       after(:each) do
         UCBLIT::TIND::Config.instance_variable_set(:@base_uri, @base_uri_orig)
-        UCBLIT::TIND.logger = @logger_orig
+        UCBLIT::Logging.logger = @logger_orig
       end
 
       describe :get do
@@ -39,7 +39,7 @@ module UCBLIT
           stub_request(:get, url_str).to_return(status: 200, body: body_text)
 
           logdev = StringIO.new
-          UCBLIT::TIND.logger = UCBLIT::Logging::Loggers.new_readable_logger(logdev)
+          UCBLIT::Logging.logger = UCBLIT::Logging::Loggers.new_readable_logger(logdev)
 
           msg = 'the error message'
           expect { API.get(endpoint) { |_| raise(StandardError, msg) } }.to raise_error(StandardError, msg)

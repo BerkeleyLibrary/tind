@@ -1,6 +1,7 @@
 require 'rest-client'
 require 'ucblit/util/uris/appender'
 require 'ucblit/util/uris/validator'
+require 'ucblit/logging'
 
 module UCBLIT
   module Util
@@ -49,7 +50,7 @@ module UCBLIT
           end
 
           def logger
-            UCBLIT::TIND.logger
+            UCBLIT::Logging.logger
           end
         end
       end

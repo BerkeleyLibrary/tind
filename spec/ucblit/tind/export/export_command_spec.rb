@@ -8,11 +8,11 @@ module UCBLIT
         before(:each) do
           @base_uri_orig = UCBLIT::TIND::Config.base_uri
           @api_key_orig = UCBLIT::TIND::Config.api_key
-          @logger_orig = UCBLIT::TIND.logger
+          @logger_orig = UCBLIT::Logging.logger
         end
 
         after(:each) do
-          UCBLIT::TIND.logger = @logger_orig
+          UCBLIT::Logging.logger = @logger_orig
           UCBLIT::TIND::Config.api_key = @api_key_orig
           UCBLIT::TIND::Config.base_uri = @base_uri_orig
         end
@@ -108,7 +108,7 @@ module UCBLIT
 
           describe '-v' do
             it 'configures a debug-level logger' do
-              expect(UCBLIT::TIND.logger.level).to eq(0)
+              expect(UCBLIT::Logging.logger.level).to eq(0)
             end
           end
 

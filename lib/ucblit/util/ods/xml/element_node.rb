@@ -7,7 +7,7 @@ module UCBLIT
     module ODS
       module XML
         class ElementNode
-          include UCBLIT::Util::Logging
+          include UCBLIT::Logging
 
           # @return [Nokogiri::XML::Document] the document containing this element
           attr_reader :doc

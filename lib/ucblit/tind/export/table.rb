@@ -9,7 +9,7 @@ module UCBLIT
   module TIND
     module Export
       class Table
-        include UCBLIT::Util::Logging
+        include UCBLIT::Logging
 
         # ------------------------------------------------------------
         # Accessors

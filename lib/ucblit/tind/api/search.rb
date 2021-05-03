@@ -7,7 +7,7 @@ module UCBLIT
   module TIND
     module API
       class Search
-        include UCBLIT::Util::Logging
+        include UCBLIT::Logging
 
         attr_reader :collection, :pattern, :index, :date_range, :format
 

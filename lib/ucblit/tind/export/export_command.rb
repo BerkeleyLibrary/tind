@@ -4,6 +4,7 @@ require 'ucblit/tind/api'
 require 'ucblit/tind/config'
 require 'ucblit/tind/export/export'
 require 'ucblit/tind/export/export_format'
+require 'ucblit/logging'
 require 'ucblit/util/sys_exits'
 
 module UCBLIT
@@ -86,7 +87,7 @@ module UCBLIT
             configure_env(opts)
             UCBLIT::TIND::Config.base_uri = opts[:tind_base_url] if opts[:tind_base_url]
             UCBLIT::TIND::Config.api_key = opts[:api_key] if opts[:api_key]
-            UCBLIT::TIND.logger = configure_logger(opts)
+            UCBLIT::Logging.logger = configure_logger(opts)
           end
 
           def configure_logger(opts)

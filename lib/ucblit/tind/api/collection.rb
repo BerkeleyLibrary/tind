@@ -29,7 +29,7 @@ module UCBLIT
         end
 
         class << self
-          include UCBLIT::Util::Logging
+          include UCBLIT::Logging
 
           ENDPOINT = 'collections'.freeze
 

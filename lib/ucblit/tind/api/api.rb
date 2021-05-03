@@ -11,7 +11,7 @@ module UCBLIT
     module API
       class << self
         include UCBLIT::Util
-        include UCBLIT::Util::Logging
+        include UCBLIT::Logging
 
         # Gets the TIND API key.
         # @return [String, nil] the TIND API key, or `nil` if not set.

@@ -8,7 +8,7 @@ module UCBLIT
 
       # Superclass of exporters for different formats
       class ExporterBase
-        include UCBLIT::Util::Logging
+        include UCBLIT::Logging
 
         # ------------------------------------------------------------
         # Accessors

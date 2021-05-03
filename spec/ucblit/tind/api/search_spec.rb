@@ -174,6 +174,32 @@ module UCBLIT
           end
         end
 
+        describe 'no results' do
+          let(:search) { Search.new(collection: 'Not a collection') }
+
+          before(:each) do
+            body = File.read('spec/data/search-bad-collection.json')
+            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Not%20a%20collection&format=xml')
+            stub_request(:get, query_uri)
+              .with(headers: { 'Authorization' => 'Token not-a-real-api-key' })
+              .to_return(status: 500, body: body, headers: { 'Content-Type' => 'applicaton/json' })
+          end
+
+          describe :results do
+            it 'returns an empty array' do
+              results = search.results
+              expect(results).to be_a(Array)
+              expect(results.size).to eq(0)
+            end
+          end
+
+          describe :each_result do
+            it 'yields nothing' do
+              expect { |b| search.each_result(&b) }.not_to yield_control
+            end
+          end
+        end
+
         it 'handles CJK' do
           query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Houcun%20ju%20shi%20ji&format=xml')
           headers = { 'Authorization' => 'Token not-a-real-api-key' }

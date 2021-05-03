@@ -67,14 +67,21 @@ module UCBLIT
 
         def perform_single_search(params, freeze, &block)
           API.get(:search, params) do |body|
-            xml_reader = UCBLIT::TIND::MARC::XMLReader.read(body, freeze: freeze)
-            xml_reader.each(&block)
-            logger.debug("yielded #{xml_reader.records_yielded} of #{xml_reader.total} records")
-            logger.debug("next search ID: #{xml_reader.search_id}")
-            xml_reader.search_id if xml_reader.records_yielded > 0
+            process_body(body, freeze, &block)
           ensure
             body.close
           end
+        rescue APIException => e
+          logger.warn(e)
+          nil
+        end
+
+        def process_body(body, freeze, &block)
+          xml_reader = UCBLIT::TIND::MARC::XMLReader.read(body, freeze: freeze)
+          xml_reader.each(&block)
+          logger.debug("yielded #{xml_reader.records_yielded} of #{xml_reader.total} records")
+          logger.debug("next search ID: #{xml_reader.search_id}")
+          xml_reader.search_id if xml_reader.records_yielded > 0
         end
       end
     end

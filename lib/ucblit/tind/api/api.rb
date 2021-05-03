@@ -67,13 +67,15 @@ module UCBLIT
           raise ArgumentError, "No endpoint URL found for #{endpoint.inspect}; #{Config::ENV_TIND_BASE_URL} not set?" if endpoint_url.empty?
 
           logger.debug("GET #{debug_uri(endpoint_url, params)}")
-          # logger.debug("Headers", headers)
-          body = URIs.get(endpoint_url, params, headers)
-          return body unless block_given?
 
-          stream_response_body(body, &block)
-        rescue RestClient::RequestFailed => e
-          raise APIException, e.message
+          begin
+            body = URIs.get(endpoint_url, params, headers)
+            return body unless block_given?
+
+            stream_response_body(body, &block)
+          rescue RestClient::RequestFailed => e
+            raise APIException, "GET #{debug_uri(endpoint_url, params)} returned #{e}"
+          end
         end
 
         private

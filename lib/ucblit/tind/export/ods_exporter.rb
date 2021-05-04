@@ -1,5 +1,5 @@
 require 'ucblit/util/arrays'
-require 'ucblit/tind/export/exporter_base'
+require 'ucblit/tind/export/exporter'
 require 'ucblit/tind/export/table_metrics'
 require 'ucblit/util/ods/spreadsheet'
 
@@ -7,7 +7,7 @@ module UCBLIT
   module TIND
     module Export
       # Exporter for OpenOffice/LibreOffice format
-      class ODSExporter < ExporterBase
+      class ODSExporter < Exporter
 
         LOCKED_CELL_COLOR = '#c0362c'.freeze
 

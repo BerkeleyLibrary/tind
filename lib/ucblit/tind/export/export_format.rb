@@ -11,11 +11,9 @@ module UCBLIT
 
         DEFAULT = ODS
 
-        def export(collection, out = $stdout, exportable_only: true)
-          exporter = exporter_for(collection, exportable_only)
-          raise ArgumentError, "Don't know how to export #{self}" unless exporter
-
-          exporter.export(out)
+        def exporter_for(collection, exportable_only: true)
+          return CSVExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::CSV
+          return ODSExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::ODS
         end
 
         def description
@@ -61,13 +59,6 @@ module UCBLIT
 
             raise ArgumentError, "Unknown #{ExportFormat}: #{format.inspect}"
           end
-        end
-
-        private
-
-        def exporter_for(collection, exportable_only)
-          return CSVExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::CSV
-          return ODSExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::ODS
         end
       end
 

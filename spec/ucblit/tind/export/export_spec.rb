@@ -10,6 +10,8 @@ module UCBLIT
       let(:basename) { File.basename(__FILE__, '.rb') }
 
       describe 'export' do
+        let(:collection) { 'Bancroft Library' }
+
         describe 'with results' do
 
           let(:records) do
@@ -19,7 +21,6 @@ module UCBLIT
               .flatten
           end
           let(:expected_table) { Export::Table.from_records(records, freeze: true, exportable_only: true) }
-          let(:collection) { 'Bancroft Library' }
 
           before(:each) do
             search = instance_double(UCBLIT::TIND::API::Search)
@@ -59,6 +60,18 @@ module UCBLIT
                 end
               end
             end
+          end
+        end
+
+        describe 'without results' do
+          before(:each) do
+            search = instance_double(UCBLIT::TIND::API::Search)
+            allow(search).to receive(:each_result).with(freeze: true).and_return([].each)
+            allow(UCBLIT::TIND::API::Search).to receive(:new).with(collection: collection).and_return(search)
+          end
+
+          it 'raises NoResultsError' do
+            expect { Export.export(collection) }.to raise_error(Export::NoResultsError)
           end
         end
 
@@ -125,7 +138,9 @@ module UCBLIT
         describe :export do
           it 'raises an error' do
             Export::ExportFormat.each do |fmt|
-              expect { Export.export(collection, fmt) }.to raise_error(ArgumentError)
+              out = instance_double(IO)
+              %i[reopen rewind << write].each { |m| expect(out).not_to receive(m) }
+              expect { Export.export(collection, fmt, out) }.to raise_error(Export::NoResultsError)
             end
           end
         end

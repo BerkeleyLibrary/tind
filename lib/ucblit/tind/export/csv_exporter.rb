@@ -1,11 +1,11 @@
 require 'csv'
-require 'ucblit/tind/export/exporter_base'
+require 'ucblit/tind/export/exporter'
 
 module UCBLIT
   module TIND
     module Export
       # Exporter for CSV (comma-separated value) text
-      class CSVExporter < ExporterBase
+      class CSVExporter < Exporter
         # Exports {ExportBase#collection} as CSV
         # @overload export
         #   Exports to a new string.

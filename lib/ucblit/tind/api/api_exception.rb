@@ -3,7 +3,14 @@ module UCBLIT
     module API
       # Wrapper for network-related exceptions.
       class APIException < StandardError
-        attr_reader :status_code, :status_message, :response
+        # @return
+        attr_reader :status_code
+
+        # @return [String, nil] the HTTP status message, if any
+        attr_reader :status_message
+
+        # @return [RestClient::Response, nil] the response, if any
+        attr_reader :response
 
         def initialize(msg, status_code: nil, status_message: nil, response: nil)
           super(msg)
@@ -24,14 +31,14 @@ module UCBLIT
             raise ArgumentError, "Can't wrap a nil error" unless ex
 
             params = {}.tap do |p|
-              next unless [:http_code, :message, :response].all? { |f| ex.respond_to?(f) }
+              next unless %i[http_code message response].all? { |f| ex.respond_to?(f) }
 
               p[:status_code] = ex.http_code
               p[:status_message] = ex.message
               p[:response] = ex.response
             end
 
-            return APIException.new(msg || ex.to_s, **params)
+            APIException.new(msg || ex.to_s, **params)
           end
         end
       end

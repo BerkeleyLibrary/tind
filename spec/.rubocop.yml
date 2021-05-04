@@ -8,6 +8,9 @@ AllCops:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Style/MultilineBlockChain:
+  Enabled: false
+
 Style/ParallelAssignment:
   Enabled: false
 

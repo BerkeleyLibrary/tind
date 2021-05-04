@@ -7,6 +7,7 @@ module UCBLIT
       describe Search do
         let(:base_uri) { 'https://tind.example.org/' }
         let(:api_key) { 'not-a-real-api-key' }
+        let(:query_uri) { UCBLIT::Util::URIs.append(base_uri, '/api/v1/search') }
 
         before(:each) do
           @base_uri_orig = UCBLIT::TIND::Config.instance_variable_get(:@base_uri)
@@ -22,14 +23,16 @@ module UCBLIT
         end
 
         describe 'single page' do
-          let(:search) { Search.new(collection: 'Bancroft Library') }
+          let(:collection) { 'Bancroft Library' }
+          let(:search) { Search.new(collection: collection) }
 
           before(:each) do
             body = File.read('spec/data/records-api-search.xml')
-            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Bancroft%20Library&format=xml')
             stub_request(:get, query_uri)
-              .with(headers: { 'Authorization' => 'Token not-a-real-api-key' })
-              .to_return(status: 200, body: body)
+              .with(
+                headers: { 'Authorization' => 'Token not-a-real-api-key' },
+                query: { 'c' => collection, 'format' => 'xml' }
+              ).to_return(status: 200, body: body)
           end
 
           describe :results do
@@ -98,15 +101,18 @@ module UCBLIT
           before(:each) do
             result_xml_pages = (1..7).map { |page| File.read("spec/data/records-api-search-p#{page}.xml") }
 
-            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Bancroft%20Library&format=xml')
             headers = { 'Authorization' => 'Token not-a-real-api-key' }
+            query = { 'c' => collection, 'format' => 'xml' }
 
             stub_request(:get, query_uri)
-              .with(headers: headers).to_return(status: 200, body: result_xml_pages[0])
+              .with(headers: headers, query: query)
+              .to_return(status: 200, body: result_xml_pages[0])
 
-            query_uri = UCBLIT::Util::URIs.append(query_uri, "&search_id=#{search_id}")
             stubs = result_xml_pages[1..].map { |b| { status: 200, body: b } }
-            stub_request(:get, query_uri).with(headers: headers).to_return(stubs)
+            stub_request(:get, query_uri).with(
+              headers: headers,
+              query: query.merge({ 'search_id' => search_id })
+            ).to_return(stubs)
           end
 
           describe :results do
@@ -174,45 +180,95 @@ module UCBLIT
           end
         end
 
-        describe 'no results' do
-          let(:search) { Search.new(collection: 'Not a collection') }
+        describe 'error handling' do
 
-          before(:each) do
-            body = File.read('spec/data/search-bad-collection.json')
-            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Not%20a%20collection&format=xml')
-            stub_request(:get, query_uri)
-              .with(headers: { 'Authorization' => 'Token not-a-real-api-key' })
-              .to_return(status: 500, body: body, headers: { 'Content-Type' => 'applicaton/json' })
-          end
+          describe '500 (no results)' do
+            let(:collection) { 'Not a collection' }
+            let(:search) { Search.new(collection: collection) }
 
-          describe :results do
-            it 'returns an empty array' do
-              results = search.results
-              expect(results).to be_a(Array)
-              expect(results.size).to eq(0)
+            before(:each) do
+              body = File.read('spec/data/search-bad-collection.json')
+
+              stub_request(:get, query_uri)
+                .with(
+                  headers: { 'Authorization' => 'Token not-a-real-api-key' },
+                  query: { 'c' => collection, 'format' => 'xml' }
+                ).to_return(status: 500, body: body, headers: { 'Content-Type' => 'applicaton/json' })
+            end
+
+            describe :results do
+              it 'returns an empty array' do
+                results = search.results
+                expect(results).to be_a(Array)
+                expect(results.size).to eq(0)
+              end
+            end
+
+            describe :each_result do
+              it 'yields nothing' do
+                expect { |b| search.each_result(&b) }.not_to yield_control
+              end
             end
           end
 
-          describe :each_result do
-            it 'yields nothing' do
-              expect { |b| search.each_result(&b) }.not_to yield_control
+          describe '500 (some other error)' do
+            let(:collection) { 'Bancroft Library' }
+            let(:search) { Search.new(collection: collection) }
+            let(:params) { { 'c' => collection, 'format' => 'xml' } }
+
+            before(:each) do
+              @query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search')
+
+              stub_request(:get, query_uri)
+                .with(
+                  headers: { 'Authorization' => 'Token not-a-real-api-key' },
+                  query: params
+                ).to_return(status: 500, body: 'oops')
+            end
+
+            describe :results do
+              it 'raises an APIException' do
+                expected_uri = UCBLIT::Util::URIs.append(query_uri, "?#{URI.encode_www_form(params)}")
+
+                expect { search.results }.to raise_error do |e|
+                  expect(e).to be_a(APIException)
+                  expect(e.message).to include('500 Internal Server Error')
+                  expect(e.message).to include(expected_uri.to_s)
+                  expect(e.status_code).to eq(500)
+                  expect(e.status_message).to eq('500 Internal Server Error')
+                end
+              end
+            end
+
+            describe :each_result do
+              it 'yields nothing' do
+                results = []
+                expect { search.each_result { |r| results << r } }.to raise_error do |e|
+                  expect(e).to be_a(APIException)
+                  expect(e.message).to include('500 Internal Server Error')
+                  expect(e.message).to include(query_uri.to_s)
+                  expect(e.status_code).to eq(500)
+                  expect(e.status_message).to eq('500 Internal Server Error')
+                end
+                expect(results).to be_empty
+              end
             end
           end
-        end
 
-        it 'handles CJK' do
-          query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Houcun%20ju%20shi%20ji&format=xml')
-          headers = { 'Authorization' => 'Token not-a-real-api-key' }
-          stub_request(:get, query_uri).with(headers: headers)
-            .to_return(status: 200, body: File.read('spec/data/records-api-search-cjk-p1.xml'))
-          query_uri = UCBLIT::Util::URIs.append(query_uri, '&search_id=DnF1ZXJ5VGhlbkZldGNoBQAAAAAA')
-          stub_request(:get, query_uri).with(headers: headers)
-            .to_return(status: 200, body: File.read('spec/data/records-api-search-cjk-p2.xml'))
+          it 'handles CJK' do
+            query_uri = UCBLIT::Util::URIs.append(base_uri, '/api/v1/search?c=Houcun%20ju%20shi%20ji&format=xml')
+            headers = { 'Authorization' => 'Token not-a-real-api-key' }
+            stub_request(:get, query_uri).with(headers: headers)
+              .to_return(status: 200, body: File.read('spec/data/records-api-search-cjk-p1.xml'))
+            query_uri = UCBLIT::Util::URIs.append(query_uri, '&search_id=DnF1ZXJ5VGhlbkZldGNoBQAAAAAA')
+            stub_request(:get, query_uri).with(headers: headers)
+              .to_return(status: 200, body: File.read('spec/data/records-api-search-cjk-p2.xml'))
 
-          search = Search.new(collection: 'Houcun ju shi ji')
-          results = search.results
-          expect(results).to be_a(Array)
-          expect(results.size).to eq(5)
+            search = Search.new(collection: 'Houcun ju shi ji')
+            results = search.results
+            expect(results).to be_a(Array)
+            expect(results.size).to eq(5)
+          end
         end
       end
     end

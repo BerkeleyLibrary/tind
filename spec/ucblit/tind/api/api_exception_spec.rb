@@ -18,11 +18,10 @@ module UCBLIT
 
               expected_msg = 'the wrapper message'
               expect do
-                begin
-                  RestClient.get(url)
-                rescue => e
-                  raise APIException.wrap(e, msg: expected_msg)
-                end
+
+                RestClient.get(url)
+              rescue StandardError => e
+                raise APIException.wrap(e, msg: expected_msg)
               end.to raise_error do |e|
                 expect(e).to be_a(APIException)
                 expect(e.cause).to be_a(RestClient::RequestFailed)
@@ -38,11 +37,10 @@ module UCBLIT
             it 'wraps an exception' do
               expected_msg = 'the message'
               expect do
-                begin
-                  raise expected_msg
-                rescue => e
-                  raise APIException.wrap(e)
-                end
+
+                raise expected_msg
+              rescue StandardError => e
+                raise APIException.wrap(e)
               end.to raise_error do |e|
                 expect(e).to be_a(APIException)
                 expect(e.message).to eq(expected_msg)
@@ -52,11 +50,10 @@ module UCBLIT
             it 'overrides the message' do
               expected_msg = 'the message'
               expect do
-                begin
-                  raise "not #{expected_msg}"
-                rescue => e
-                  raise APIException.wrap(e, msg: expected_msg)
-                end
+
+                raise "not #{expected_msg}"
+              rescue StandardError => e
+                raise APIException.wrap(e, msg: expected_msg)
               end.to raise_error do |e|
                 expect(e).to be_a(APIException)
                 expect(e.message).to eq(expected_msg)
@@ -68,4 +65,3 @@ module UCBLIT
     end
   end
 end
-

@@ -72,8 +72,9 @@ module UCBLIT
             body.close
           end
         rescue APIException => e
-          logger.warn(e)
-          nil
+          return nil if empty_result?(e)
+
+          raise
         end
 
         def process_body(body, freeze, &block)
@@ -82,6 +83,16 @@ module UCBLIT
           logger.debug("yielded #{xml_reader.records_yielded} of #{xml_reader.total} records")
           logger.debug("next search ID: #{xml_reader.search_id}")
           xml_reader.search_id if xml_reader.records_yielded > 0
+        end
+
+        def empty_result?(api_ex)
+          return false unless api_ex.status_code == 500
+          return false unless (body = api_ex.body)
+          return false unless (result = JSON.parse(body, symbolize_names: true))
+
+          result[:success] == false && result[:error].include?('0 values')
+        rescue JSON::ParserError
+          false
         end
       end
     end

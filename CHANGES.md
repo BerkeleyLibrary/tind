@@ -1,3 +1,8 @@
+# 0.2.2 (2021-05-03)
+
+- `UCBLIT::TIND::API::Search` now gracefully returns an empty result when it gets the 500 Internal
+  Server Error that TIND thinks is an acceptable empty search result, instead of raising an exception.
+
 # 0.2.1 (2021-04-02)
 
 - `bin/tind-export` script now supports passing an environment file on the command line with the

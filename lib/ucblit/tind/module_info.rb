@@ -7,7 +7,7 @@ module UCBLIT
       SUMMARY = 'TIND DA utilities'.freeze
       DESCRIPTION = 'UC Berkeley Library utility gem for working with the TIND DA digital archive.'.freeze
       LICENSE = 'MIT'.freeze
-      VERSION = '0.2.1'.freeze
+      VERSION = '0.2.2'.freeze
       HOMEPAGE = 'https://git.lib.berkeley.edu/lap/ucblit-tind'.freeze
     end
   end

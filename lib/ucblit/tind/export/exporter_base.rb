@@ -48,7 +48,9 @@ module UCBLIT
 
             logger.info('Creating export table')
             # noinspection RubyYardParamTypeMatch
-            Export::Table.from_records(results, freeze: true, exportable_only: exportable_only)
+            Export::Table.from_records(results, freeze: true, exportable_only: exportable_only).tap do |table|
+              raise ArgumentError, "No records returned for collection #{collection.inspect}" if table.empty?
+            end
           end
         end
 

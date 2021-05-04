@@ -29,14 +29,6 @@ module UCBLIT
           export_format.export(collection, out, exportable_only: exportable_only)
         end
 
-        def export_csv(collection, out = nil)
-          ExportFormat::CSV.export(collection, out)
-        end
-
-        def export_libreoffice(collection, out = nil)
-          ExportFormat::ODS.export(collection, out)
-        end
-
       end
     end
   end

@@ -109,6 +109,10 @@ module UCBLIT
           @marc_records ||= []
         end
 
+        def empty?
+          marc_records.empty?
+        end
+
         # ------------------------------------------------------------
         # Modifiers
 

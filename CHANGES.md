@@ -1,3 +1,13 @@
+# 0.2.3 (2021-05-04)
+
+- `UCBLIT::TIND::Export`:
+  - new method `#exporter_for` returns a `UCBLIT::TIND::Exporter` but doesn't
+    export immediately.
+  - `#export` now raises `NoResultsError` if no records are returned.
+
+- `UCBLIT::TIND::Exporter` exposes an `any_results?` method that returns false if
+  there are no results to export.
+
 # 0.2.2 (2021-05-03)
 
 - `UCBLIT::TIND::API::Search` now gracefully returns an empty result when it gets the 500 Internal

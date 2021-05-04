@@ -8,6 +8,7 @@ module UCBLIT
     module URIs
       module Requester
         class << self
+          include UCBLIT::Logging
 
           # Performs a GET request.
           #
@@ -40,17 +41,19 @@ module UCBLIT
           def get_or_raise(url_str, headers)
             resp = RestClient.get(url_str, headers)
             begin
-              return resp if resp.code == 200
+              return resp if (status = resp.code) == 200
 
-              msg = "GET #{url_str} failed; host returned #{resp.code}: #{resp.body || 'no response body'}"
-              raise(RestClient::RequestFailed.new(resp, resp.code).tap { |ex| ex.message = msg })
+              raise(exception_for(resp, status))
             ensure
-              logger.info("GET #{url_str} returned #{resp.code}")
+              logger.info("GET #{url_str} returned #{status}")
             end
           end
 
-          def logger
-            UCBLIT::Logging.logger
+          def exception_for(resp, status)
+            RestClient::RequestFailed.new(resp, status).tap do |ex|
+              status_message = RestClient::STATUSES[status] || '(Unknown)'
+              ex.message = "#{status} #{status_message}"
+            end
           end
         end
       end

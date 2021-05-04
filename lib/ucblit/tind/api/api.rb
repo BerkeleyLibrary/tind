@@ -74,7 +74,7 @@ module UCBLIT
 
             stream_response_body(body, &block)
           rescue RestClient::RequestFailed => e
-            raise APIException, "GET #{debug_uri(endpoint_url, params)} returned #{e}"
+            raise APIException.wrap(e, msg: "GET #{debug_uri(endpoint_url, params)} returned #{e}")
           end
         end
 

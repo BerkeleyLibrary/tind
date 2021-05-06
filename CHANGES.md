@@ -1,3 +1,8 @@
+# 0.2.4 (2021-05-06)
+
+- `API#get` now raises an `APIException` with a simulated '401 Unauthorized' status 
+  if `UCBLIT::TIND::Config.api_key` is not set.
+
 # 0.2.3 (2021-05-04)
 
 - `UCBLIT::TIND::Export`:

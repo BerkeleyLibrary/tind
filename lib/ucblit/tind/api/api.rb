@@ -19,6 +19,12 @@ module UCBLIT
           UCBLIT::TIND::Config.api_key
         end
 
+        # Checks whether the TIND API key is set and non-blank.
+        # @return [Boolean] true if set, false otherwise
+        def api_key?
+          !(api_key.nil? || api_key.to_s.strip.empty?)
+        end
+
         # Gets the API base URI.
         # @return [URI, nil] the API base URI, or `nil` if {UCBLIT::TIND::Config#base_uri} is not set
         def api_base_uri
@@ -66,28 +72,43 @@ module UCBLIT
           endpoint_url = uri_for(endpoint).to_s
           raise ArgumentError, "No endpoint URL found for #{endpoint.inspect}; #{Config::ENV_TIND_BASE_URL} not set?" if endpoint_url.empty?
 
-          logger.debug("GET #{debug_uri(endpoint_url, params)}")
+          logger.debug(format_request(endpoint_url, params))
 
-          begin
-            body = URIs.get(endpoint_url, params, headers)
-            return body unless block_given?
+          body = do_get(endpoint_url, params)
+          return body unless block_given?
 
-            stream_response_body(body, &block)
-          rescue RestClient::RequestFailed => e
-            raise APIException.wrap(e, msg: "GET #{debug_uri(endpoint_url, params)} returned #{e}")
+          stream_response_body(body, &block)
+        end
+
+        # Returns a formatted string version of the request, suitable for
+        # logging or error messages.
+        #
+        # @param url [String] the URL
+        # @param params [Hash, nil] the query parameters
+        # @param method [String] the request method
+        def format_request(url, params = nil, method = 'GET')
+          uri = URI.parse(url)
+
+          if params.respond_to?(:to_hash)
+            query_string = URI.encode_www_form(params.to_hash)
+            uri = URIs.append(uri, '?', query_string)
+          elsif !params.nil?
+            raise ArgumentError, "Argument #{params.inspect} does not appear to be a set of query parameters"
           end
+
+          "#{method} #{uri}"
         end
 
         private
 
-        def headers
-          {}.tap do |headers|
-            headers['Authorization'] = "Token #{api_key}" if api_key
-          end
-        end
+        def do_get(endpoint_url, params)
+          raise APIKeyNotSet.new(endpoint_url, params) unless api_key?
 
-        def debug_uri(url, params)
-          URIs.append(url, "?#{URI.encode_www_form(params)}")
+          begin
+            URIs.get(endpoint_url, params, { 'Authorization' => "Token #{api_key}" })
+          rescue RestClient::RequestFailed => e
+            raise APIException.wrap(e, url: endpoint_url, params: params)
+          end
         end
 
         # TODO: make real body streaming work

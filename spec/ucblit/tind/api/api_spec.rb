@@ -5,16 +5,11 @@ module UCBLIT
   module TIND
     describe API do
       let(:base_uri) { 'https://tind.example.org/' }
+      let(:api_key) { 'lorem-ipsum-dolor-sit-amet' }
 
       before(:each) do
-        @base_uri_orig = UCBLIT::TIND::Config.instance_variable_get(:@base_uri)
-        UCBLIT::TIND::Config.base_uri = base_uri
-        @logger_orig = UCBLIT::Logging.logger
-      end
-
-      after(:each) do
-        UCBLIT::TIND::Config.instance_variable_set(:@base_uri, @base_uri_orig)
-        UCBLIT::Logging.logger = @logger_orig
+        allow(UCBLIT::TIND::Config).to receive(:base_uri).and_return(base_uri)
+        allow(UCBLIT::TIND::Config).to receive(:api_key).and_return(api_key)
       end
 
       describe :get do
@@ -39,12 +34,31 @@ module UCBLIT
           stub_request(:get, url_str).to_return(status: 200, body: body_text)
 
           logdev = StringIO.new
-          UCBLIT::Logging.logger = UCBLIT::Logging::Loggers.new_readable_logger(logdev)
+          logger = UCBLIT::Logging::Loggers.new_readable_logger(logdev)
+          allow(UCBLIT::Logging).to receive(:logger).and_return(logger)
 
           msg = 'the error message'
           expect { API.get(endpoint) { |_| raise(StandardError, msg) } }.to raise_error(StandardError, msg)
-          puts logdev.string
           expect(logdev.string).to include(body_text)
+        end
+      end
+
+      describe :format_request do
+        it 'formats a request' do
+          url = 'https://example.org/frob'
+          params = { foo: 'bar', 'qux' => 'baz' }
+          expected_url = 'https://example.org/frob?foo=bar&qux=baz'
+          expect(API.format_request(url, params)).to eq("GET #{expected_url}")
+        end
+
+        it 'works without parameters' do
+          url = 'https://example.org/frob'
+          expect(API.format_request(url)).to eq("GET #{url}")
+        end
+
+        it 'rejects garbage parameters' do
+          # noinspection RubyYardParamTypeMatch
+          expect { API.format_request('https://example.org', Object.new) }.to raise_error(ArgumentError)
         end
       end
     end

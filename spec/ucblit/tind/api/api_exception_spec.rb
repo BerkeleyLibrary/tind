@@ -13,15 +13,15 @@ module UCBLIT
           describe 'RestClient::RequestFailed' do
             it 'extracts the status info and response' do
               url = 'https://example.org'
+              params = { 'foo' => 'bar' }
               expected_body = 'oops'
-              stub_request(:get, url).to_return(status: 500, body: expected_body)
+              stub_request(:get, url).with(query: params).to_return(status: 500, body: expected_body)
 
               expected_msg = 'the wrapper message'
               expect do
-
-                RestClient.get(url)
+                RestClient.get(url, params: params)
               rescue StandardError => e
-                raise APIException.wrap(e, msg: expected_msg)
+                raise APIException.wrap(e, url: url, params: params, detail: expected_msg)
               end.to raise_error do |e|
                 expect(e).to be_a(APIException)
                 expect(e.cause).to be_a(RestClient::RequestFailed)
@@ -29,6 +29,30 @@ module UCBLIT
                 expect(e.status_message).to eq('500 Internal Server Error')
                 expect(e.body).to eq(expected_body)
                 expect(e.response).to be(e.cause.response)
+                expect(e.url).to eq(url)
+                expect(e.params).to eq(params)
+              end
+            end
+
+            it 'works with or without parameters' do
+              url = 'https://example.org'
+              expected_body = 'oops'
+              stub_request(:get, url).to_return(status: 500, body: expected_body)
+
+              expected_msg = 'the wrapper message'
+              expect do
+                RestClient.get(url)
+              rescue StandardError => e
+                raise APIException.wrap(e, url: url, detail: expected_msg)
+              end.to raise_error do |e|
+                expect(e).to be_a(APIException)
+                expect(e.cause).to be_a(RestClient::RequestFailed)
+                expect(e.status_code).to eq(500)
+                expect(e.status_message).to eq('500 Internal Server Error')
+                expect(e.body).to eq(expected_body)
+                expect(e.response).to be(e.cause.response)
+                expect(e.url).to eq(url)
+                expect(e.params).to be_nil
               end
             end
           end

@@ -41,6 +41,12 @@ module UCBLIT::Util
         expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?grault=xyzzy#baz'))
       end
 
+      it 'allows the ? to be passed separately' do
+        original_uri = URI('https://example.org/foo/bar#baz')
+        new_uri = URIs.append(original_uri, '/qux', '/corge/', '//garply', '?', 'grault=xyzzy')
+        expect(new_uri).to eq(URI('https://example.org/foo/bar/qux/corge/garply?grault=xyzzy#baz'))
+      end
+
       it 'appends query parameters with &' do
         original_uri = URI('https://example.org/foo/bar#baz')
         new_uri = URIs.append(original_uri, '/qux', '/corge/', '//garply?grault=xyzzy', '&plugh=flob')

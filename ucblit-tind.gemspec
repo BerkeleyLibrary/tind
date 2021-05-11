@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rubyzip', '~> 2.3'
   spec.add_dependency 'typesafe_enum', '~> 0.3'
   spec.add_dependency 'ucblit-logging', '~> 0.1', '>= 0.1.1'
+  spec.add_dependency 'ucblit-marc', '~> 0.1'
 
   spec.add_development_dependency 'bundle-audit', '~> 0.1'
   spec.add_development_dependency 'ci_reporter_rspec', '~> 1.0'

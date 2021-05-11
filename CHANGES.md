@@ -1,3 +1,8 @@
+# 0.3.0 (2021-05-11)
+
+- Extracts `MARCExtensions` into a separate gem, 
+  [`ucblit-marc`](https://git.lib.berkeley.edu/lap/ucblit-marc/edit).
+
 # 0.2.4 (2021-05-06)
 
 - `API#get` now raises an `APIException` with a simulated '401 Unauthorized' status 

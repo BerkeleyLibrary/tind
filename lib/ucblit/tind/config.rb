@@ -45,6 +45,10 @@ module UCBLIT
           @timezone = value
         end
 
+        def blank?(v)
+          v.nil? || v.to_s.strip.empty?
+        end
+
         private
 
         def default_timezone

@@ -93,20 +93,37 @@ module UCBLIT
         end
       end
 
+      # Exception raised when the API key is nil or blank.
+      #
       # NOTE: TIND incorrectly returns 403 Forbidden in this case, but we don't even bother
       # to ask, we just simulate a 401.
       class APIKeyNotSet < APIException
-        def initialize(*args)
-          super(message_from(*args), status_code: 401)
+        # @param endpoint_uri [URI] the endpoint URI
+        # @param params [Hash, nil] the query parameters
+        def initialize(endpoint_uri, params)
+          request_str = API.format_request(endpoint_uri, params)
+          super("#{request_str} failed; API key not set", status_code: 401)
+        end
+      end
+
+      # Exception raised when the TIND base URI is nil or blank.
+      class BaseURINotSet < APIException
+        # @param endpoint [String, Symbol] the endpoint
+        # @param params [Hash, nil] the query parameters
+        def initialize(endpoint, params)
+          msg = BaseURINotSet.format_message(endpoint, params)
+          super(msg, status_code: 404)
         end
 
-        private
-
-        def message_from(*args)
-          return if args.nil? || args.empty?
-          return args[0] if args.size < 2
-
-          "#{API.format_request(*args)} failed; API key not set"
+        class << self
+          def format_message(endpoint, params)
+            "request to endpoint #{endpoint.inspect}".tap do |msg|
+              if (query_string = API.format_query(params))
+                msg << " with query #{query_string}"
+              end
+              msg << ' failed; base URI not set'
+            end
+          end
         end
       end
     end

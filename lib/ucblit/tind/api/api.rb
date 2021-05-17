@@ -19,25 +19,20 @@ module UCBLIT
           UCBLIT::TIND::Config.api_key
         end
 
-        # Checks whether the TIND API key is set and non-blank.
-        # @return [Boolean] true if set, false otherwise
-        def api_key?
-          !(api_key.nil? || api_key.to_s.strip.empty?)
-        end
-
         # Gets the API base URI.
-        # @return [URI, nil] the API base URI, or `nil` if {UCBLIT::TIND::Config#base_uri} is not set
+        # @return [URI] the API base URI
         def api_base_uri
-          return unless (base_uri = Config.base_uri)
+          return if Config.blank?((base_uri = Config.base_uri))
 
           URIs.append(base_uri, '/api/v1')
         end
 
         # Gets the URI for the specified API endpoint.
         # @param endpoint [Symbol, String] the endpoint (e.g. `:search` or `:collection`)
-        # @return [URI, nil] the URI for the specified endpoint, or `nil` if {UCBLIT::TIND::Config#base_uri} is not set
+        # @return [URI] the URI for the specified endpoint
+        # @raise [API::BaseURINotSet] if the TIND base URI is not set
         def uri_for(endpoint)
-          return unless api_base_uri
+          return if Config.blank?(api_base_uri)
 
           URIs.append(api_base_uri, endpoint)
         end
@@ -69,12 +64,12 @@ module UCBLIT
         #   @param **params [Hash] the query parameters
         #   @yieldparam body [IO] the response body, as an IO stream
         def get(endpoint, **params, &block)
-          endpoint_url = uri_for(endpoint).to_s
-          raise ArgumentError, "No endpoint URL found for #{endpoint.inspect}; #{Config::ENV_TIND_BASE_URL} not set?" if endpoint_url.empty?
+          endpoint_uri = uri_for(endpoint)
+          raise BaseURINotSet.new(endpoint, params) if Config.blank?(endpoint_uri)
 
-          logger.debug(format_request(endpoint_url, params))
+          logger.debug(format_request(endpoint_uri, params))
 
-          body = do_get(endpoint_url, params)
+          body = do_get(endpoint_uri, params)
           return body unless block_given?
 
           stream_response_body(body, &block)
@@ -83,31 +78,32 @@ module UCBLIT
         # Returns a formatted string version of the request, suitable for
         # logging or error messages.
         #
-        # @param url [String] the URL
+        # @param uri [URI] the URI
         # @param params [Hash, nil] the query parameters
         # @param method [String] the request method
-        def format_request(url, params = nil, method = 'GET')
-          uri = URI.parse(url)
-
-          if params.respond_to?(:to_hash)
-            query_string = URI.encode_www_form(params.to_hash)
-            uri = URIs.append(uri, '?', query_string)
-          elsif !params.nil?
-            raise ArgumentError, "Argument #{params.inspect} does not appear to be a set of query parameters"
-          end
+        def format_request(uri, params = nil, method = 'GET')
+          query_string = format_query(params)
+          uri = URIs.append(uri, '?', query_string) if query_string
 
           "#{method} #{uri}"
         end
 
+        def format_query(params)
+          return unless params
+          return URI.encode_www_form(params.to_hash) if params.respond_to?(:to_hash)
+
+          raise ArgumentError, "Argument #{params.inspect} does not appear to be a set of query parameters"
+        end
+
         private
 
-        def do_get(endpoint_url, params)
-          raise APIKeyNotSet.new(endpoint_url, params) unless api_key?
+        def do_get(endpoint_uri, params)
+          raise APIKeyNotSet.new(endpoint_uri, params) if Config.blank?(api_key)
 
           begin
-            URIs.get(endpoint_url, params, { 'Authorization' => "Token #{api_key}" })
+            URIs.get(endpoint_uri, params, { 'Authorization' => "Token #{api_key}" })
           rescue RestClient::RequestFailed => e
-            raise APIException.wrap(e, url: endpoint_url, params: params)
+            raise APIException.wrap(e, url: endpoint_uri, params: params)
           end
         end
 

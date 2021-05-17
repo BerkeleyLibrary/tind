@@ -1,3 +1,8 @@
+# 0.3.1 (2021-05-17)
+
+- `API#get` now raises an `APIException` with a simulated '404 Not Found'
+  status if `UCBLIT::TIND::Config.base_uri` is not set, or is blank.
+
 # 0.3.0 (2021-05-11)
 
 - Extracts `MARCExtensions` into a separate gem, 

@@ -1,3 +1,7 @@
+# 0.3.2 (2021-07-29)
+
+- Loosen `spec.required_ruby_version` to support Ruby 3.x
+
 # 0.3.1 (2021-05-17)
 
 - `API#get` now raises an `APIException` with a simulated '404 Not Found'

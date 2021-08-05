@@ -1,3 +1,7 @@
+# 0.3.3 (2021-08-05)
+
+- Send a custom `User-Agent` header to deal with new TIND firewall rules.
+
 # 0.3.2 (2021-07-29)
 
 - Loosen `spec.required_ruby_version` to support Ruby 3.x

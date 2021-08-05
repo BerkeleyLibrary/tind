@@ -1,4 +1,5 @@
 require 'ucblit/util/uris'
+require 'ucblit/tind/module_info'
 
 require 'tzinfo'
 
@@ -13,6 +14,7 @@ module UCBLIT
       ENV_TIND_BASE_URL = 'LIT_TIND_BASE_URL'.freeze
 
       DEFAULT_TZID = 'America/Los_Angeles'.freeze
+      DEFAULT_USER_AGENT = "#{ModuleInfo::NAME} #{ModuleInfo::VERSION} (#{ModuleInfo::HOMEPAGE})".freeze
 
       class << self
         include UCBLIT::Util::URIs
@@ -43,6 +45,16 @@ module UCBLIT
           raise ArgumentError, "Not a #{TZInfo::Timezone}" unless value.respond_to?(:utc_to_local)
 
           @timezone = value
+        end
+
+        def user_agent
+          @user_agent || DEFAULT_USER_AGENT
+        end
+
+        def user_agent=(value)
+          raise ArgumentError, 'TIND firewall rules require a user agent' if blank?(value)
+
+          @user_agent = value
         end
 
         def blank?(v)

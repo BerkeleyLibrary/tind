@@ -90,6 +90,33 @@ module UCBLIT
             expect { API.get(endpoint) { |_| raise(StandardError, msg) } }.to raise_error(StandardError, msg)
             expect(logdev.string).to include(body_text)
           end
+
+          it 'sends a default user agent' do
+            expected_ua = Config::DEFAULT_USER_AGENT
+
+            endpoint = 'test-endpoint'
+            url_str = API.uri_for(endpoint).to_s
+            body_text = 'the body'
+            stub_request(:get, url_str).with(headers: { 'User-Agent' => expected_ua })
+              .to_return(status: 200, body: body_text)
+
+            result = API.get(endpoint)
+            expect(result).to eq(body_text)
+          end
+
+          it 'sends a configured user ageint' do
+            expected_ua = 'Help I am trapped in an HTTP request'
+            Config.user_agent = expected_ua
+
+            endpoint = 'test-endpoint'
+            url_str = API.uri_for(endpoint).to_s
+            body_text = 'the body'
+            stub_request(:get, url_str).with(headers: { 'User-Agent' => expected_ua })
+              .to_return(status: 200, body: body_text)
+
+            result = API.get(endpoint)
+            expect(result).to eq(body_text)
+          end
         end
       end
 

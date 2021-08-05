@@ -19,6 +19,12 @@ module UCBLIT
           UCBLIT::TIND::Config.api_key
         end
 
+        # Gets the value to send in the User-Agent header
+        # @return [String] the user agent
+        def user_agent
+          UCBLIT::TIND::Config.user_agent
+        end
+
         # Gets the API base URI.
         # @return [URI] the API base URI
         def api_base_uri
@@ -50,6 +56,7 @@ module UCBLIT
         #
         #   @param endpoint [Symbol] the API endpoint, e.g. `:search` or `:collection`
         #   @param **params [Hash] the query parameters
+        #   @return [String] the response body
         # @overload get(endpoint, **params, &block)
         #   Makes a GET request to the specified endpoint with the specified parameters,
         #   and yields an `IO` that streams the response body. Example:
@@ -78,7 +85,7 @@ module UCBLIT
         # Returns a formatted string version of the request, suitable for
         # logging or error messages.
         #
-        # @param uri [URI] the URI
+        # @param uri [URI, String] the URI
         # @param params [Hash, nil] the query parameters
         # @param method [String] the request method
         def format_request(uri, params = nil, method = 'GET')
@@ -101,7 +108,10 @@ module UCBLIT
           raise APIKeyNotSet.new(endpoint_uri, params) if Config.blank?(api_key)
 
           begin
-            URIs.get(endpoint_uri, params, { 'Authorization' => "Token #{api_key}" })
+            URIs.get(endpoint_uri, params, {
+                       'Authorization' => "Token #{api_key}",
+                       'User-Agent' => user_agent
+                     })
           rescue RestClient::RequestFailed => e
             raise APIException.wrap(e, url: endpoint_uri, params: params)
           end

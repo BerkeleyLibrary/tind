@@ -1,3 +1,7 @@
+# 0.4.0 (2021-08-19)
+
+- Rename to `BerkeleyLibrary::TIND` in prep for move to GitHub
+
 # 0.3.3 (2021-08-05)
 
 - Send a custom `User-Agent` header to deal with new TIND firewall rules.
@@ -41,7 +45,7 @@
 - `bin/tind-export` script now supports passing an environment file on the command line with the
   `-e` option; `-e` with no arguments reads from `.env` in the current working directory.
 - Table metrics (font size, line height, max column width etc.) can now be customized
-  with environment variables (see [`UCBLIT::TIND::Export::Config`](lib/ucblit/tind/export/config.rb))
+  with environment variables (see [`UCBLIT::TIND::Export::Config`](lib/berkeley_library/tind/export/config.rb))
 
 # 0.2.0 (2021-03-31)
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ucblit-tind.iml" filepath="$PROJECT_DIR$/.idea/ucblit-tind.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tind.iml" filepath="$PROJECT_DIR$/.idea/tind.iml" />
     </modules>
   </component>
 </project>

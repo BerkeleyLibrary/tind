@@ -1,4 +1,4 @@
-# ucblit-tind
+# BerkeleyLibrary::TIND
 
 Utility gem for working with the TIND DA digital archive.
 
@@ -12,7 +12,7 @@ To access the TIND API, you will need to set:
    docs are inconsistent in their use of "token" and "key". The UI calls
    it a "key", so that's the term we use here.)
 
-These can be set directly, via accessors in the `UCBLIT::TIND::Config` module;
+These can be set directly, via accessors in the `BerkeleyLibrary::TIND::Config` module;
 if they are not set, a value will be read from the environment, and if no 
 value is present in the environment and Rails is loaded, from the Rails
 application configuration (`Rails.application.config`).

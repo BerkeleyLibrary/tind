@@ -6,8 +6,8 @@ ENV['BUNDLE_GEMFILE'] ||= File.join(project_root, 'Gemfile')
 require 'bundler/setup'
 require 'ruby-prof'
 require 'time'
-require 'ucblit/tind/marc/xml_reader'
-require 'ucblit/tind/export/table'
+require 'berkeley_library/tind/marc/xml_reader'
+require 'berkeley_library/tind/export/table'
 
 def timestamp
   Time.now.iso8601
@@ -20,13 +20,13 @@ end
 def records
   @records ||= begin
     input_file_path = File.join(project_root, 'spec/data/records-api-search-p1.xml')
-    UCBLIT::TIND::MARC::XMLReader.new(input_file_path, freeze: true).to_a
+    BerkeleyLibrary::TIND::MARC::XMLReader.new(input_file_path, freeze: true).to_a
   end
 end
 
 def do_profile
   RubyProf.start
-  UCBLIT::TIND::Export::Table.from_records(records)
+  BerkeleyLibrary::TIND::Export::Table.from_records(records)
   RubyProf.stop
 end
 

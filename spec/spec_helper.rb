@@ -24,7 +24,7 @@ end
 # ------------------------------------------------------------
 # Code under test
 
-require 'ucblit/tind'
+require 'berkeley_library/tind'
 
 FileUtils.mkdir_p('log')
-UCBLIT::Logging.logger = UCBLIT::Logging::Loggers.new_readable_logger('log/test.log')
+BerkeleyLibrary::Logging.logger = BerkeleyLibrary::Logging::Loggers.new_readable_logger('log/test.log')

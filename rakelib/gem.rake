@@ -1,7 +1,7 @@
 require 'rubygems/gem_runner'
-require 'ucblit/tind/module_info'
+require 'berkeley_library/tind/module_info'
 
-gem_root_module = UCBLIT::TIND
+gem_root_module = BerkeleyLibrary::TIND
 
 class << gem_root_module
   def project_root

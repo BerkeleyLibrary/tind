@@ -3,12 +3,12 @@
 begin
   # This should work if (1) the gem is installed, or
   # (2) we're in development and used `bundle exec`
-  require 'ucblit/tind'
+  require 'berkeley_library/tind'
 rescue LoadError
   # If we're in development, `require 'bundler/setup'`
   # is roughly equivalent to `bundle exec`
   require 'bundler/setup'
-  require 'ucblit/tind'
+  require 'berkeley_library/tind'
 end
 
-UCBLIT::TIND::Export::ExportCommand.new(*ARGV).execute!
+BerkeleyLibrary::TIND::Export::ExportCommand.new(*ARGV).execute!

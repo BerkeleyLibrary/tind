@@ -130,7 +130,9 @@ module BerkeleyLibrary
 
         before(:each) do
           search = instance_double(BerkeleyLibrary::TIND::API::Search)
-          empty_enumerator = Enumerator.new({})
+          # rubocop:disable Lint/EmptyBlock
+          empty_enumerator = Enumerator.new {}
+          # rubocop:enable Lint/EmptyBlock
           allow(search).to receive(:each_result).and_return(empty_enumerator)
           allow(BerkeleyLibrary::TIND::API::Search).to receive(:new).with(collection: collection).and_return(search)
         end

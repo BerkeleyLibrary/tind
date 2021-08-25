@@ -66,7 +66,7 @@ module BerkeleyLibrary
         end
 
         def perform_single_search(params, freeze, &block)
-          API.get(:search, params) do |body|
+          API.get(:search, **params) do |body|
             process_body(body, freeze, &block)
           ensure
             body.close

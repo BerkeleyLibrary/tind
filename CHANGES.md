@@ -1,3 +1,9 @@
+# 0.4.1 (2021-08-26)
+
+- Add explicit double splat to prevent
+  `BerkeleyLibrary::TIND::Search.perform_single_search` from raising
+  `ArgumentError` on Ruby 3+ due to positional / keyword ambiguity
+
 # 0.4.0 (2021-08-19)
 
 - Rename to `BerkeleyLibrary::TIND` in prep for move to GitHub

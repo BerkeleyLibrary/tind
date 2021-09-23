@@ -1,4 +1,4 @@
-require 'berkeley_library/util/logging'
+require 'berkeley_library/logging'
 require 'berkeley_library/tind/marc/xml_reader'
 require 'berkeley_library/tind/api/date_range'
 require 'berkeley_library/tind/api/format'

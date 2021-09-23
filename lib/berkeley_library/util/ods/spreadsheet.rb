@@ -1,6 +1,6 @@
 require 'fileutils'
 require 'zip'
-require 'berkeley_library/util/logging'
+require 'berkeley_library/logging'
 require 'berkeley_library/util/ods/xml/content_doc'
 require 'berkeley_library/util/ods/xml/styles_doc'
 require 'berkeley_library/util/ods/xml/manifest_doc'

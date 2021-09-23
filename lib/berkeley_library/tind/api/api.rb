@@ -2,7 +2,7 @@ require 'stringio'
 require 'open-uri'
 
 require 'berkeley_library/util/uris'
-require 'berkeley_library/util/logging'
+require 'berkeley_library/logging'
 require 'berkeley_library/tind/config'
 require 'berkeley_library/tind/api/api_exception'
 
@@ -105,16 +105,22 @@ module BerkeleyLibrary
         private
 
         def do_get(endpoint_uri, params)
-          raise APIKeyNotSet.new(endpoint_uri, params) if Config.blank?(api_key)
+          headers = auth_headers(endpoint_uri, params)
+          URIs.get(endpoint_uri, params: params, headers: headers)
+        rescue RestClient::RequestFailed => e
+          raise APIException.wrap(e, url: endpoint_uri, params: params)
+        end
 
-          begin
-            URIs.get(endpoint_uri, params, {
-                       'Authorization' => "Token #{api_key}",
-                       'User-Agent' => user_agent
-                     })
-          rescue RestClient::RequestFailed => e
-            raise APIException.wrap(e, url: endpoint_uri, params: params)
-          end
+        def auth_headers(endpoint_uri, params)
+          key = ensure_api_key(endpoint_uri, params)
+          {
+            'Authorization' => "Token #{key}",
+            'User-Agent' => user_agent
+          }
+        end
+
+        def ensure_api_key(endpoint_uri, params)
+          api_key.tap { |k| raise APIKeyNotSet.new(endpoint_uri, params) if Config.blank?(k) }
         end
 
         # TODO: make real body streaming work

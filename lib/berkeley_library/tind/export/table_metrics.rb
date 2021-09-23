@@ -1,4 +1,4 @@
-require 'berkeley_library/util/logging'
+require 'berkeley_library/logging'
 require 'berkeley_library/tind/export/row_metrics'
 require 'berkeley_library/tind/export/config'
 

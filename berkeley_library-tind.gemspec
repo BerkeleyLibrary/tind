@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'berkeley_library-logging', '~> 0.2'
   spec.add_dependency 'berkeley_library-marc', '~> 0.2'
+  spec.add_dependency 'berkeley_library-util', '~> 0.1'
   spec.add_dependency 'ice_nine', '~> 0.11'
   spec.add_dependency 'marc', '~> 1.0'
   spec.add_dependency 'rchardet', '~> 1.8'

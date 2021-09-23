@@ -1,4 +1,4 @@
-require 'berkeley_library/util/logging'
+require 'berkeley_library/logging'
 require 'berkeley_library/tind/api/search'
 require 'berkeley_library/tind/export/table'
 

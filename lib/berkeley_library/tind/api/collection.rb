@@ -1,5 +1,5 @@
 require 'json'
-require 'berkeley_library/util/logging'
+require 'berkeley_library/logging'
 require 'berkeley_library/tind/api/api_exception'
 
 module BerkeleyLibrary

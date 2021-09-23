@@ -2,7 +2,7 @@ require 'csv'
 require 'stringio'
 
 require 'marc_extensions'
-require 'berkeley_library/util/logging'
+require 'berkeley_library/logging'
 require 'berkeley_library/tind/export/column_group_list'
 
 module BerkeleyLibrary

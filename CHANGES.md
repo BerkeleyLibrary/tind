@@ -1,3 +1,7 @@
+# 0.4.2 (2021-09-23)
+
+- Extract `BerkeleyLibrary::Util` module to [separate gem](https://github.com/BerkeleyLibrary/util)
+
 # 0.4.1 (2021-08-26)
 
 - Add explicit double splat to prevent

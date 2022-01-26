@@ -16,6 +16,25 @@ module BerkeleyLibrary
           expect(record0['024']['a']).to eq('BANC PIC 1982.078:15--ALB')
         end
 
+        describe 'freeze: true' do
+          it 'freezes the records' do
+            reader = XMLReader.new('spec/data/records-api-search.xml', freeze: true)
+            records = reader.to_a
+            expect(records).not_to be_empty # just to be sure
+            records.each { |record| expect(record).to be_frozen }
+          end
+        end
+
+        describe :records_yielded do
+          it 'counts the records' do
+            reader = XMLReader.new('spec/data/records-api-search.xml')
+            reader.each_with_index do |_, i|
+              expect(reader.records_yielded).to eq(i)
+            end
+            expect(reader.records_yielded).to eq(5)
+          end
+        end
+
         describe :new do
           it 'accepts a string path' do
             path = 'spec/data/records-api-search.xml'
@@ -59,7 +78,7 @@ module BerkeleyLibrary
 
           it 'raises ArgumentError if passed something random' do
             non_xml = Object.new
-            # noinspection RubyYardParamTypeMatch
+            # noinspection RubyMismatchedArgumentType
             expect { XMLReader.new(non_xml) }.to raise_error(ArgumentError)
           end
         end

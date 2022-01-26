@@ -24,6 +24,8 @@ module BerkeleyLibrary
             tag = '245'
             ind_bad = '!'
 
+            records = MARC::XMLReader.read('spec/data/records-manual-search.xml', freeze: false).to_a
+
             record = records.first
             record[tag].indicator1 = ind_bad
             expect { table << record }.to raise_error(Export::ExportException) do |e|

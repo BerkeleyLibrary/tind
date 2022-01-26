@@ -9,6 +9,7 @@ module BerkeleyLibrary
       class XMLReader
         include Enumerable
         include ::MARC::NokogiriReader
+        prepend MARCExtensions::YieldFrozenRecord
 
         # ############################################################
         # Constant
@@ -43,10 +44,10 @@ module BerkeleyLibrary
         # ############################################################
         # Initializer
 
-        # Reads MARC records from an XML datasource given either as a file path,
+        # Reads MARC records from an XML datasource given either as an XML string, a file path,
         # or as an IO object.
         #
-        # @param source [String, Pathname, IO] the path to a file, or an IO to read from directly
+        # @param source [String, Pathname, IO] an XML string, the path to a file, or an IO to read from directly
         # @param freeze [Boolean] whether to freeze each record after reading
         def initialize(source, freeze: false)
           @handle = ensure_io(source)
@@ -55,14 +56,20 @@ module BerkeleyLibrary
         end
 
         class << self
-          include MARCExtensions::XMLReaderClassExtensions
+          # Reads MARC records from an XML datasource given either as an XML string, a file path,
+          # or as an IO object.
+          #
+          # @param source [String, Pathname, IO] an XML string, the path to a file, or an IO to read from directly
+          # @param freeze [Boolean] whether to freeze each record after reading
+          def read(source, freeze: false)
+            new(source, freeze: freeze)
+          end
         end
 
         # ############################################################
         # MARC::GenericPullParser overrides
 
         def yield_record
-          @record[:record].freeze if @freeze
           super
         ensure
           increment_records_yielded!

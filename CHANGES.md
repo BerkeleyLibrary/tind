@@ -1,3 +1,11 @@
+# 0.4.3 (2022-01-26)
+
+- Pins `berkeley_library-marc` to version 0.3.x (0.3.1 or higher).
+- `BerkeleyLibrary::TIND::XMLReader#new` and `#read`: Fix issue with options/kwargs
+  cross-compatibility between Ruby 2.7 and 3.x
+- Adjusts `BerkeleyLibrary::TIND::MARC::XMLReader` to take advantage of proper `freeze:`
+  option implementation in `berkeley_library-marc` 3.x.
+
 # 0.4.2 (2021-09-23)
 
 - Extract `BerkeleyLibrary::Util` module to [separate gem](https://github.com/BerkeleyLibrary/util)
@@ -28,7 +36,8 @@
 # 0.3.0 (2021-05-11)
 
 - Extracts `MARCExtensions` into a separate gem, 
-  [`ucblit-marc`](https://git.lib.berkeley.edu/lap/ucblit-marc/edit).
+  [`ucblit-marc`](https://git.lib.berkeley.edu/lap/ucblit-marc).
+  - *Note:* As of August 2021 this is now [berkeley_library-marc](https://rubygems.org/gems/berkeley_library-marc). 
 
 # 0.2.4 (2021-05-06)
 

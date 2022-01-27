@@ -5,6 +5,20 @@
 
 Utility gem for working with the TIND DA digital archive.
 
+## Installation
+
+In your Gemfile:
+
+```ruby
+gem 'berkeley_library-tind'
+```
+
+In your code:
+
+```ruby
+require 'berkeley_library/tind'
+```
+
 ## Configuration
 
 To access the TIND API, you will need to set:

@@ -1,7 +1,7 @@
 # BerkeleyLibrary::TIND
 
 [![Build Status](https://github.com/BerkeleyLibrary/tind/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/BerkeleyLibrary/tind/actions/workflows/build.yml)
-[![Gem Version](https://img.shields.io/gem/v/berkeley_library-tind.svg)](https://github.com/BerkeleyLibrary/tind/releases)
+[![Gem Version](https://img.shields.io/gem/v/berkeley_library-tind.svg)](https://rubygems.org/gems/berkeley_library-tind)
 
 Utility gem for working with the TIND DA digital archive.
 

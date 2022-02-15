@@ -37,6 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'ci_reporter_rspec', '~> 1.0'
   spec.add_development_dependency 'colorize', '~> 0.8'
   spec.add_development_dependency 'dotenv', '~> 2.7'
+  spec.add_development_dependency 'equivalent-xml', '~> 0.6'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'roo', '~> 2.8'
   spec.add_development_dependency 'rspec', '~> 3.10'

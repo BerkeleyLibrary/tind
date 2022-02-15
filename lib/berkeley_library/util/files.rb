@@ -24,6 +24,16 @@ module BerkeleyLibrary
       def reader_like?(obj)
         obj.respond_to?(:read) && obj.respond_to?(:close)
       end
+
+      # Returns true if `obj` is close enough to an IO object for Nokogiri
+      # to write to.
+      #
+      # @param obj [Object] the object that might be an IO
+      def writer_like?(obj)
+        # TODO: is it possible/desirable to loosen this? how strict is libxml2?
+        obj.is_a?(IO) || obj.is_a?(StringIO)
+      end
+
     end
   end
 end

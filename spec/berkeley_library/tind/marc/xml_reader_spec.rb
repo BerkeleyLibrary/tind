@@ -106,6 +106,28 @@ module BerkeleyLibrary
           end
         end
 
+        describe 'TIND peculiarities' do
+          attr_reader :record
+
+          before(:each) do
+            reader = XMLReader.new('spec/data/new-records.xml')
+            records = reader.to_a
+            expect(records.size).to eq(1) # just to be sure
+            @record = records.first
+          end
+
+          it 'converts backslashes in control fields to spaces' do
+            cf_008 = record['008']
+            expect(cf_008).to be_a(::MARC::ControlField)
+            expect(cf_008.value).to eq('190409s2015    xx                  eng  ')
+          end
+
+          it 'parses CF 000 as the leader' do
+            expect(record.leader).to eq('00287cam a2200313   4500')
+            expect(record['000']).to be_nil
+          end
+        end
+
       end
     end
   end

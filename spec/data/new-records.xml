@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+
+    <!-- The Leader is encoded in the `000` control field.
+	 If you want to edit the leader in software such as
+	 MarcEdit, you will need to change these fields to a
+	 leader tag. Then, before import into the repository
+	 you will need to change the fields back to controlfields
+	 with tag `000`.
+    -->
+    <controlfield tag="000">00287cam\a2200313\\\4500</controlfield>
+
+    <!-- All whitespace in control fields need to be replaced with
+	 backspaces.
+    -->
+    <controlfield tag="008">190409s2015\\\\xx\\\\\\\\\\\\\\\\\\eng\\</controlfield>
+
+    <!-- Regular fields are encoded in datafield elements. -->
+    <datafield tag="100" ind1="0" ind2=" ">
+      <subfield code="a">Aristotle</subfield>
+      <subfield code="0">580897</subfield>
+    </datafield>
+    
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Metaphysics</subfield>
+      <subfield code="c">Aristotle</subfield>
+    </datafield>
+    
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">Narnia</subfield>
+      <subfield code="b">Fictive Books</subfield>
+      <subfield code="c">2015</subfield>
+    </datafield>
+
+    <!-- Make sure to include a collection when uploading new
+	 records, so that the record will be searchable.
+    -->
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">BIB</subfield>
+    </datafield>
+  </record>
+</collection>

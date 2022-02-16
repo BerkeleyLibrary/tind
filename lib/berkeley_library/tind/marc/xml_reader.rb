@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'marc/xml_parsers'
 require 'marc_extensions'
+require 'berkeley_library/util/files'
 
 module BerkeleyLibrary
   module TIND
@@ -9,7 +10,7 @@ module BerkeleyLibrary
       class XMLReader
         include Enumerable
         include ::MARC::NokogiriReader
-        prepend MARCExtensions::YieldFrozenRecord
+        include BerkeleyLibrary::Util::Files
 
         # ############################################################
         # Constant
@@ -70,6 +71,12 @@ module BerkeleyLibrary
         # MARC::GenericPullParser overrides
 
         def yield_record
+          @record[:record].tap do |record|
+            clean_cf_values(record)
+            move_cf000_to_leader(record)
+            record.freeze if @freeze
+          end
+
           super
         ensure
           increment_records_yielded!
@@ -120,26 +127,25 @@ module BerkeleyLibrary
 
         private
 
+        # TIND uses <controlfield tag="000"/> instead of <leader/>
+        def move_cf000_to_leader(record)
+          return unless (cf_000 = record['000'])
+
+          record.leader = cf_000.value
+          record.fields.delete(cf_000)
+        end
+
+        # TIND uses \ (0x5c), not space (0x32), for unspecified values in positional fields
+        def clean_cf_values(record)
+          record.each_control_field { |cf| cf.value = cf.value&.gsub('\\', ' ') }
+        end
+
         def ensure_io(file)
-          return file if io_like?(file)
+          return file if reader_like?(file)
           return File.new(file) if file_exists?(file)
           return StringIO.new(file) if file =~ /^\s*</x
 
           raise ArgumentError, "Don't know how to read XML from #{file.inspect}: not an IO, file path, or XML text"
-        end
-
-        # Returns true if `obj` is close enough to an IO object for Nokogiri
-        # to parse as one.
-        #
-        # @param obj [Object] the object that might be an IO
-        # @see https://github.com/sparklemotion/nokogiri/blob/v1.11.1/lib/nokogiri/xml/sax/parser.rb#L81 Nokogiri::XML::SAX::Parser#parse
-        def io_like?(obj)
-          obj.respond_to?(:read) && obj.respond_to?(:close)
-        end
-
-        def file_exists?(path)
-          (path.respond_to?(:exist?) && path.exist?) ||
-            (path.respond_to?(:to_str) && File.exist?(path))
         end
 
         def increment_records_yielded!

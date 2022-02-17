@@ -131,6 +131,24 @@ module BerkeleyLibrary
               expect(stat.size).to eq(0)
             end
           end
+
+          it 'does not write a nil leader' do
+            record.leader = nil
+            marc_xml = StringIO.open do |out|
+              XMLWriter.open(out) { |w| w.write(record) }
+              out.string
+            end
+            expect(marc_xml).not_to include('leader')
+          end
+
+          it 'does not write a blank leader' do
+            record.leader = ''
+            marc_xml = StringIO.open do |out|
+              XMLWriter.open(out) { |w| w.write(record) }
+              out.string
+            end
+            expect(marc_xml).not_to include('leader')
+          end
         end
       end
     end

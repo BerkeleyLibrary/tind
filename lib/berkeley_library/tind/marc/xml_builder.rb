@@ -27,8 +27,11 @@ module BerkeleyLibrary
         end
 
         def add_leader(xml)
+          leader = marc_record.leader
+          return if leader.nil? || leader == ''
+
           # TIND uses <controlfield tag="000"/> instead of <leader/>
-          leader_as_cf = ::MARC::ControlField.new('000', clean_leader(marc_record.leader))
+          leader_as_cf = ::MARC::ControlField.new('000', clean_leader(leader))
           add_control_field(xml, leader_as_cf)
         end
 

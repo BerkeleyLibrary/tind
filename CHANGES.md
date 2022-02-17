@@ -1,3 +1,16 @@
+# 0.5.0 (2022-01-17)
+
+- Adds a class `BerkeleyLibrary::TIND::MARC::XMLWriter` to write MARCXML in the format expected by the TIND batch uploader:
+
+  - MARC leader is written to control field 000 as required by TIND
+  - control fields (including the leader) use `\` (0x5c), not space (0x32), for unspecified positional
+    values
+
+  In addition, a `nil` or empty MARC leader is not written at all.
+- Modifies `BerkeleyLibrary::TIND::MARC::XMLReader` to take into account the same peculiarities:
+  control field 000 is read into the leader of the MARC record, and slashes in control field values
+  (including the leader) are replaced with spaces.
+
 # 0.4.3 (2022-01-26)
 
 - Pins `berkeley_library-marc` to version 0.3.x (0.3.1 or higher).

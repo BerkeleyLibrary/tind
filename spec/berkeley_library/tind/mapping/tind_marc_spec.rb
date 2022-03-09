@@ -43,7 +43,7 @@ module BerkeleyLibrary
           expect(tind_marc.fields_880_subfield6(tind_marc.send(:tindfields_group_880))).to eq tindfield_880_normal_tags
         end
 
-        it 'save tind marc to file' do
+        xit 'save tind marc to file' do
           tind_marc.tind_external_datafields = fake_tindfields
           file = 'tmp/tind_marc_test.xml'
           File.delete(file) if File.exist?(file)

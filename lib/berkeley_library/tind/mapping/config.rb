@@ -72,13 +72,6 @@ module BerkeleyLibrary
             test_record.fields.each { |f| return f if f.tag.to_s == tag }
             nil
           end
-
-          def test_tags_or_subfield6(txt, new_fls)
-            puts "#{txt} -- #{new_fls.count}"
-            # puts "#{txt} -- #{new_fls.map(&:tag).inspect}"
-            puts "#{txt} -- #{fields_880_subfield6(new_fls).inspect}"
-          end
-
         end
       end
     end

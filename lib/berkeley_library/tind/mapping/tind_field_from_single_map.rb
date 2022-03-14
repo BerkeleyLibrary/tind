@@ -62,6 +62,8 @@ module BerkeleyLibrary
           @indicator =  @mapping_rule.indicator
           @single_mapping = @excluding_subfield ? @mapping_rule.single_rule_subfield_excluded_hash : @mapping_rule.single_rule_hash
 
+          # puts  @single_mapping.inspect  if @from_datafield.tag == '507'
+
           return false unless @map_to_tag && @indicator && !@single_mapping.empty?
 
           true

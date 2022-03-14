@@ -65,7 +65,7 @@ module BerkeleyLibrary
           def qualified_alma_record?(alma_record)
             f_245 = alma_datafield('245', alma_record)
             f_245_a = f_245['a'].downcase
-            puts f_245_a
+
             val = 'Host bibliographic record'.downcase
             !f_245_a.start_with? val
           end

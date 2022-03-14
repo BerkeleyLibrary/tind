@@ -79,6 +79,9 @@ module BerkeleyLibrary
           existed_tags.include? mapping_to_tag
         end
 
+        # field, fields be both regular fields
+        # or field, fields be both 880 fields
+        # since a field may mapped to another one in TIND, mapping_to_tag is not always the same as field.tag
         def field_pre_existed(mapping_to_tag, field, fields)
           if is_880_field?(field)
             field_880_on_subfield6_tag(mapping_to_tag,

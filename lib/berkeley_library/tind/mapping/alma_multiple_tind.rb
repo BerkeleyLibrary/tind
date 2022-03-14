@@ -25,11 +25,6 @@ module BerkeleyLibrary
           base_tind_record(@id, datafields, @marc_record)
         end
 
-        # This is mainly for testing purpose, each collection can have a function to save it's record
-        def save_tind_record_to_file(tind_record, file)
-          base_save(@id, tind_record, file)
-        end
-
       end
     end
   end

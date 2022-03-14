@@ -46,12 +46,12 @@ module BerkeleyLibrary
           record
         end
 
-        # Save a TIND record as an xml file
-        def save(file)
-          writer = ::MARC::XMLWriter.new(file)
-          writer.write(tind_record)
-          writer.close
-        end
+        # # Save a TIND record as an xml file
+        # def save(file)
+        #   writer = ::MARC::XMLWriter.new(file)
+        #   writer.write(tind_record)
+        #   writer.close
+        # end
 
         private
 

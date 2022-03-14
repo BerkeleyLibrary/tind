@@ -2,6 +2,7 @@ module BerkeleyLibrary
   module TIND
     module Mapping
       module AlmaBase
+        include BerkeleyLibrary::Logging
 
         @collection_parameter_hash = {}
         @is_barcode = false
@@ -20,7 +21,8 @@ module BerkeleyLibrary
         # When alma record is nil or un-qualified, it returns nil
         # Input datafields - an array of record specific datafields:  for example, fft datafields, datafield 035 etc.
         def base_tind_record(id, datafields, alma_record = nil)
-          marc_record = alma_record.nil? ? alma_record(id) : alma_record
+          marc_record = alma_record || alma_record(id)
+
           return nil unless marc_record?(marc_record, id)
 
           qualified?(marc_record, id) ? tind_record(id, marc_record, datafields) : nil
@@ -40,12 +42,10 @@ module BerkeleyLibrary
         private
 
         def marc_record?(alma_record, id)
-          if alma_record.nil?
-            logger.warn("#{id} has no Alma record.")
-            return false
-          end
+          return true if alma_record
 
-          true
+          logger.warn("#{id} has no Alma record.")
+          false
         end
 
         def qualified?(alma_record, id)
@@ -59,9 +59,29 @@ module BerkeleyLibrary
 
         def alma_record(id)
           BerkeleyLibrary::Alma::Config.default!
-          record_id = AlmaBase.is_barcode ? BerkeleyLibrary::Alma::BarCode.new(id) : BerkeleyLibrary::Alma::RecordId.parse(id)
+          record_id = get_record_id(id)
           record_id.get_marc_record
         end
+
+        def get_record_id(id)
+          AlmaBase.is_barcode ? BerkeleyLibrary::Alma::BarCode.new(id) : BerkeleyLibrary::Alma::RecordId.parse(id)
+        end
+
+        # def derived_tind_fields(mms_id, id)
+        #   tind_fields = []
+        #   tind_fields << TindField.f_902_d
+
+        #   hash = BerkeleyLibrary::TIND::Mapping::AlmaBase.collection_parameter_hash
+        #   tind_fields.concat BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_collection_information(hash)
+
+        #   return tind_fields unless mms_id
+
+        #   tind_fields.concat BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_alma_id(mms_id, id)
+        #   f_035 = add_f_035(mms_id, hash)
+        #   tind_fields << f_035 if f_035
+
+        #   tind_fields
+        # end
 
         def derived_tind_fields(mms_id, id)
           tind_fields = []
@@ -70,9 +90,8 @@ module BerkeleyLibrary
           hash = BerkeleyLibrary::TIND::Mapping::AlmaBase.collection_parameter_hash
           tind_fields.concat BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_collection_information(hash)
 
-          return tind_fields unless mms_id
-
           tind_fields.concat BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_alma_id(mms_id, id)
+
           f_035 = add_f_035(mms_id, hash)
           tind_fields << f_035 if f_035
 

@@ -114,18 +114,6 @@ module BerkeleyLibrary
           false
         end
 
-        def add_to_datafields_with_pre_existed_field(f, rule)
-          @data_fields_with_pre_existed_field << f if rule.pre_existed_tag
-        end
-
-        def add_to_datafields_with_pre_existed_subfield(f, rule)
-          @data_fields_with_pre_existed_subfield << f if rule.pre_existed_tag_subfield
-        end
-
-        def add_to_datafields_normal(f, rule)
-          @data_fields_normal << f if rule.pre_existed_tag_subfield.nil? && rule.pre_existed_tag.nil?
-        end
-
         # Is the origin_tag of a field has related from_tag in csv file?
         def found_in_mapper?(tag)
           from_tags.include? tag

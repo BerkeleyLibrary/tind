@@ -1,5 +1,6 @@
 require 'berkeley_library/tind/mapping/tind_subfield_util'
 require 'berkeley_library/tind/mapping/misc'
+require 'berkeley_library/tind/mapping/field_catalog_util'
 
 module BerkeleyLibrary
   module TIND
@@ -11,6 +12,7 @@ module BerkeleyLibrary
         include CsvMapper
         include Util
         include AdditionalDatafieldProcess
+        include FieldCatalogUtil
         include BerkeleyLibrary::Logging
 
         attr_reader :control_fields
@@ -35,9 +37,9 @@ module BerkeleyLibrary
 
         def init(record)
           prepare_catalog(record)
-          @mms_id = alma_mms_id
           @data_fields_group = prepare_group(@data_fields)
           @data_fields_880_group = prepare_group(@data_fields_880)
+          @mms_id = alma_mms_id
         end
 
         def prepare_catalog(record)
@@ -52,6 +54,16 @@ module BerkeleyLibrary
             @data_fields << f
             @alma_field_tags << f.tag
           end
+
+          clr_fields
+        end
+
+        def clr_fields
+          tags_fields = fields_no_subject_fast(@data_fields)
+          @data_fields = tags_fields[1]
+
+          tags_with_subject_fast = tags_fields[0]
+          @data_fields_880 = fields_880_no_subject_fast(tags_with_subject_fast, @data_fields_880)
         end
 
         def prepare_group(from_fields)

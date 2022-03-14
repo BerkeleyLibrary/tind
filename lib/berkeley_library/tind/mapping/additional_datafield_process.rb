@@ -123,7 +123,6 @@ module BerkeleyLibrary
           fields << identical_field(repeated_fields)
           fields
         end
-
       end
     end
   end

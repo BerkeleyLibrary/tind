@@ -10,11 +10,11 @@ module BerkeleyLibrary
         let(:datafields_catalog) { DataFieldsCatalog.new(Config.test_record) }
         let(:mms_id) { '991046494559706532' }
 
-        let(:alma_tags) { %w[255 245 246 260 300 300 490 630 650 650 700 710] }
+        let(:alma_tags) { %w[255 245 246 260 300 300 490 630 650 700 710] }
         let(:alma_tags_with_pre_existed_tag) { ['264'] }
         let(:alma_tags_with_pre_existed_tag_subfield) { ['507'] }
 
-        let(:f880_subfield6) { %w[880-245-01 880-246-02 880-260-03 880-490-04 880-650-05 880-700-06 880-710-07] }
+        let(:f880_subfield6) { %w[880-245-01 880-246-02 880-260-03 880-490-04 880-700-06 880-710-07] }
         let(:f880_subfield6_with_pre_existed_tag) { [] }
         let(:f880_subfield6_with_pre_existed_tag_subfield) { ['880-507-09'] }
 

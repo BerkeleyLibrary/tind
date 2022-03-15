@@ -110,7 +110,7 @@ module BerkeleyLibrary
           return [] if all_rules.empty?
 
           mapped_subfields = []
-          all_rules.map do |rules|
+          all_rules.each do |rules|
             subfield = subfield_on_same_tosubfieldname(rules)
             mapped_subfields.push(subfield) if subfield
           end
@@ -135,7 +135,7 @@ module BerkeleyLibrary
         # get a value concatenated with values mapped using different rules
         def subfield_value_on_rules(rules)
           val = ''
-          rules.map.each { |rule| val << subfield_value_on_rule(rule) }
+          rules.each { |rule| val << subfield_value_on_rule(rule) }
           val
         end
 
@@ -146,7 +146,7 @@ module BerkeleyLibrary
           subfield_names_from = rule[0].strip.split(',')
           symbol = Util.concatenation_symbol(rule[2])
           val = ''
-          subfield_names_from.map do |subfield_name|
+          subfield_names_from.each do |subfield_name|
             sub_val = combined_subfield_value(@from_datafield, subfield_name, symbol)
             val << sub_val
           end

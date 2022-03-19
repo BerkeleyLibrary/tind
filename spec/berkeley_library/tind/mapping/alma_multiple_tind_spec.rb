@@ -1,17 +1,20 @@
-# require 'spec_helper'
+require 'spec_helper'
 
-# module BerkeleyLibrary
-#   module TIND
-#     module Mapping
-#       describe 'AlmaMultipleTIND' do
+module BerkeleyLibrary
+  module TIND
+    module Mapping
+      describe 'AlmaMultipleTIND' do
+        let(:additona_245_field) { [Util.datafield('245', [' ', ' '], [Util.subfield('a', 'fake 245 a')])] }
+        let(:marc_obj) { (::MARC::Record.new).append(additona_245_field) }
 
-#         it ' # record' do
-#           alma_single_tind =  AlmaMultipleTIND.new('991085821143406532')
-#           allow(alma_single_tind).to receive(:alma_record).with('991085821143406532').and_return(::MARC::Record.new)
-#           allow(alma_single_tind).to receive(:record).with([]).and_return(::MARC::Record.new)
-#           expect(alma_single_tind.record([])).to be_instance_of ::MARC::Record
-#         end
-#       end
-#     end
-#   end
-# end
+        it ' get tind record' do
+          allow_any_instance_of(BerkeleyLibrary::TIND::Mapping::AlmaMultipleTIND).to receive(:alma_record_from).with('991085821143406532').and_return(marc_obj)
+          alma_multiple_tind = BerkeleyLibrary::TIND::Mapping::AlmaMultipleTIND.new('991085821143406532')
+
+          allow(alma_multiple_tind).to receive(:base_tind_record).with('991085821143406532', additona_245_field, marc_obj).and_return(marc_obj)
+          expect(alma_multiple_tind.record(additona_245_field)).to be marc_obj
+        end
+      end
+    end
+  end
+end

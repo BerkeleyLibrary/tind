@@ -125,10 +125,6 @@ module BerkeleyLibrary
           fields.select { |f| subfield6?(f) }
         end
 
-        def fields_without_subfield6(fields)
-          fields.reject { |f| subfield6?(f) }
-        end
-
         # return subfield 6 with the smallest sequence number
         def subfield_6_values(fields)
           fields_with_subfield6(fields).map(&:value)

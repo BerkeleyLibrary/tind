@@ -1,7 +1,7 @@
 module BerkeleyLibrary
   module TIND
     module Mapping
-      # TODO: ADD CSV VALIDATION, WHEN NEED ADD NEW MAPPING CSV FILE
+      # TODO: ADD CSV VALIDATION, WHEN NEED ADD A NEW MAPPING CSV FILE
       # 1. not empty row
       # 2. a subfield name can appear in either normal mapping or combine mapping, not both
       # 3. single map has the same amount of from names and to names

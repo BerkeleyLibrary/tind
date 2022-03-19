@@ -28,18 +28,18 @@ module BerkeleyLibrary
           it 'no input Alma record but having a qualified Alma record from id - return tind record' do
             allow(dummy_obj).to receive(:qualified?).with(alma_record, 'C084093187').and_return(true)
             allow(dummy_obj).to receive(:tind_record).with('C084093187', alma_record, []).and_return(::MARC::Record.new)
-            allow(dummy_obj).to receive(:alma_record).with('C084093187').and_return(::MARC::Record.new)
+            allow(dummy_obj).to receive(:alma_record_from).with('C084093187').and_return(::MARC::Record.new)
             expect(dummy_obj.base_tind_record('C084093187', [])).to be_a ::MARC::Record
           end
 
           it 'no input Alma record and having an unqualified Alma record from id - return nil' do
             allow(dummy_obj).to receive(:qualified?).with(alma_record, 'C084093187').and_return(false)
-            allow(dummy_obj).to receive(:alma_record).with('C084093187').and_return(::MARC::Record.new)
+            allow(dummy_obj).to receive(:alma_record_from).with('C084093187').and_return(::MARC::Record.new)
             expect(dummy_obj.base_tind_record('C084093187', [])).to eq nil
           end
 
           it 'no input Alma record with a nil (record) from id  - return nil' do
-            allow(dummy_obj).to receive(:alma_record).with('C084093187').and_return(nil)
+            allow(dummy_obj).to receive(:alma_record_from).with('C084093187').and_return(nil)
             expect(dummy_obj.base_tind_record('C084093187', [])).to eq nil
           end
         end
@@ -65,7 +65,7 @@ module BerkeleyLibrary
           it 'get Alma record' do
             allow(record_id).to receive(:get_marc_record).and_return(::MARC::Record.new)
             allow(dummy_obj).to receive(:get_record_id).with('C084093187').and_return(record_id)
-            expect(dummy_obj.send(:alma_record, 'C084093187')).to be_instance_of ::MARC::Record
+            expect(dummy_obj.send(:alma_record_from, 'C084093187')).to be_instance_of ::MARC::Record
           end
         end
 

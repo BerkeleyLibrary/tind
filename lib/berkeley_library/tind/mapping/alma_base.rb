@@ -21,7 +21,7 @@ module BerkeleyLibrary
         # When alma record is nil or un-qualified, it returns nil
         # Input datafields - an array of record specific datafields:  for example, fft datafields, datafield 035 etc.
         def base_tind_record(id, datafields, alma_record = nil)
-          marc_record = alma_record || alma_record(id)
+          marc_record = alma_record || alma_record_from(id)
 
           return nil unless marc_record?(marc_record, id)
 
@@ -57,7 +57,7 @@ module BerkeleyLibrary
           true
         end
 
-        def alma_record(id)
+        def alma_record_from(id)
           BerkeleyLibrary::Alma::Config.default!
           record_id = get_record_id(id)
           record_id.get_marc_record

@@ -16,7 +16,7 @@ module BerkeleyLibrary
         # 3) BarCode No
         def initialize(id)
           @id = id
-          @marc_record = alma_record(id)
+          @marc_record = alma_record_from(id)
         end
 
         # If alma record is nil or un-qualified, it returns nil

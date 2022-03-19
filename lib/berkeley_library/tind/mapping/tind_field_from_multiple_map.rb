@@ -45,7 +45,6 @@ module BerkeleyLibrary
 
         # get a datafield on a rule (row in csv file)
         def to_datafield(rule)
-          # puts pre_exsited_tag?(rule)
           return nil if pre_exsited_tag?(rule)
 
           to_value = extract_value(rule, @from_controlfield.value)

@@ -1,6 +1,5 @@
 # 1. Combine repeated fields
-# 2. Sort subfields
-# 3. Remove characters pre_defined
+# 2. Remove characters pre_defined
 module BerkeleyLibrary
   module TIND
     module Mapping

@@ -41,7 +41,6 @@ module BerkeleyLibrary
 
         describe '# field_pre_existed' do
           it 'find pre_existed 880 field' do
-            # def field_pre_existed(mapping_to_tag, field, fields)
             expect(tind_marc.send(:field_pre_existed, '245', field_880_245, fields_880_group)['6']).to eq '245-01/$1'
           end
 

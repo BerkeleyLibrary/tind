@@ -25,7 +25,7 @@ module BerkeleyLibrary
         end
 
         def check_abnormal_formated_subfield6(fields)
-          fields.each { |f| check_subfield6_format(f) }
+          fields.each { |f| check_subfield6_format(f) unless ::MARC::ControlField.control_tag?(f.tag) }
         end
 
         private

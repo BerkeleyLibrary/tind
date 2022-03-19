@@ -1,11 +1,11 @@
-# 1. Combine repeated fields
-# 2. Sort subfields
-# 3. Remove characters pre_defined
 module BerkeleyLibrary
   module TIND
     module Mapping
       module FieldCatalogUtil
 
+        # Excluding regular fields with subject = 'fast' (subfield2 = 'fast'), return:
+        # 1) a list of tags of those excluded fields
+        # 2) a list of fields after excluding those fields with subfield2 = 'fast'
         def fields_no_subject_fast(regular_fields)
           tags_with_subject_fast = []
           fields = []
@@ -15,8 +15,25 @@ module BerkeleyLibrary
           [tags_with_subject_fast, fields]
         end
 
+        # Excluding 880 fields with subfield6 has a tag, it's related regular field has been excluded
+        # due to subject = 'fast'
+        # Inupt: tags = tag list of those excluded regular fields, fields_880 = all the 880 fields
         def fields_880_no_subject_fast(tags, fields_880)
           fields_880.reject { |f| exclude_880_field?(f, tags) }
+        end
+
+        def prepare_group(from_fields)
+          datafields_hash = { normal: [], pre_tag: [], pre_tag_subfield: [] }
+          from_fields.each do |f|
+            # a regular field tag, or a tag value from 880 field captured from subfield6
+            tag = origin_mapping_tag(f)
+            next unless tag
+
+            rule = rules[Util.tag_symbol(tag)]
+            assing_field(rule, f, datafields_hash)
+          end
+
+          datafields_hash
         end
 
         private
@@ -45,6 +62,14 @@ module BerkeleyLibrary
 
           tag = referred_tag(f)
           tags.include? tag
+        end
+
+        # f is either from field whose tag having a match in csv mapping file - 'from tag' column
+        def assing_field(rule, f, datafields_hash)
+          if rule.pre_existed_tag then datafields_hash[:pre_tag] << f
+          elsif rule.pre_existed_tag_subfield then datafields_hash[:pre_tag_subfield] << f
+          else  datafields_hash[:normal] << f
+          end
         end
 
       end

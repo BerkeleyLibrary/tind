@@ -1,6 +1,7 @@
 require 'berkeley_library/tind/mapping/tind_subfield_util'
 require 'berkeley_library/tind/mapping/misc'
 require 'berkeley_library/tind/mapping/field_catalog_util'
+require 'berkeley_library/tind/mapping/match_tind_field'
 
 module BerkeleyLibrary
   module TIND
@@ -13,6 +14,7 @@ module BerkeleyLibrary
         include Util
         include AdditionalDatafieldProcess
         include FieldCatalogUtil
+        include MatchTindField
         include BerkeleyLibrary::Logging
 
         attr_reader :control_fields
@@ -44,7 +46,24 @@ module BerkeleyLibrary
 
         def prepare_catalog(record)
           clean_fields = clean_subfields(record.fields)
-          clean_fields.each do |f|
+          check_abnormal_formated_subfield6(clean_fields)
+          allocate_fields(clean_fields)
+          remove_fields_with_subject_fast
+        end
+
+        # remove fields with subfield2 = 'fast'
+        def remove_fields_with_subject_fast
+          tags_fields = fields_no_subject_fast(@data_fields)
+          @data_fields = tags_fields[1]
+
+          tags_with_subject_fast = tags_fields[0]
+          @data_fields_880 = fields_880_no_subject_fast(tags_with_subject_fast, @data_fields_880)
+        end
+
+        private
+
+        def allocate_fields(fields)
+          fields.each do |f|
             next if added_control_field?(f)
             next if added_880_field?(f)
 
@@ -53,40 +72,6 @@ module BerkeleyLibrary
 
             @data_fields << f
             @alma_field_tags << f.tag
-          end
-
-          clr_fields
-        end
-
-        def clr_fields
-          tags_fields = fields_no_subject_fast(@data_fields)
-          @data_fields = tags_fields[1]
-
-          tags_with_subject_fast = tags_fields[0]
-          @data_fields_880 = fields_880_no_subject_fast(tags_with_subject_fast, @data_fields_880)
-        end
-
-        def prepare_group(from_fields)
-          datafields_hash = { normal: [], pre_tag: [], pre_tag_subfield: [] }
-          from_fields.each do |f|
-            # a regular field tag, or a tag value from 880 field captured from subfield6
-            tag = origin_mapping_tag(f)
-            next unless tag
-
-            rule = rules[Util.tag_symbol(tag)]
-            assing_field(rule, f, datafields_hash)
-          end
-
-          datafields_hash
-        end
-
-        private
-
-        # f is either from field whose tag having a match in csv mapping file - 'from tag' column
-        def assing_field(rule, f, datafields_hash)
-          if rule.pre_existed_tag then datafields_hash[:pre_tag] << f
-          elsif rule.pre_existed_tag_subfield then datafields_hash[:pre_tag_subfield] << f
-          else  datafields_hash[:normal] << f
           end
         end
 

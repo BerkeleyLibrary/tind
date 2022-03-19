@@ -74,30 +74,6 @@ module BerkeleyLibrary
           expect(tind_marc.send(:tindfields_with_pre_existed_subfield, with_pre_existed_subfield_fields, current_with_pre_existed_subfield_fields)[1]['a']).to eq nil
         end
 
-        # xit 'get add tindfields' do
-        #   f = Config.test_datafield('507')
-        #   expect(tind_marc.send(:add_tindfield, [], f)[0]['a']).to eq 'fake_507_a'
-        #   # expect(tind_marc.send(:add_tindfield, [], f, excluding_subfield: true)[0]['a']).to eq nil
-        # end
-
-        # let(:add_control_fields) {
-        #   field_001 = Config.test_datafield('001')
-        #   # puts field_001.inspect
-        #   outfields = []
-        #   current_fields = [TindField.f('269', 'a', '2022')]
-        #   tind_marc.send(:add_tindcontrolfield, outfields, field_001, current_fields)
-        #   outfields
-        # }
-
-        # xit 'get adding control field' do
-        #   field_001 = Config.test_datafield('001')
-        #   outfields = []
-        #   # current_fields = [TindField.f('269', 'a', '2022')]
-        #   current_fields = []
-        #   expect { tind_marc.send(:add_tindcontrolfield, outfields, field_001, current_fields) }.to change(outfields, :count).from(0).to(1)
-
-        # end
-
       end
     end
   end

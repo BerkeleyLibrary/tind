@@ -31,7 +31,7 @@ module BerkeleyLibrary
             origin_tag = row[:tag_origin]
             rules << MultipleRule.new(row) if origin_tag == tag
           end
-          # puts "!!! #{rules.inspect}"
+
           rules
         end
 

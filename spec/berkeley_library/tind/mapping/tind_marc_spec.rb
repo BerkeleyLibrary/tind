@@ -36,42 +36,46 @@ module BerkeleyLibrary
              880-500-00 880-500-00 880-500-00 880-500-00]
         end
 
-        it 'get a TIND record' do
-          expect(tind_marc.tind_record).to be_a ::MARC::Record
+        context '# From public methods: ' do
+          it 'get a TIND record' do
+            expect(tind_marc.tind_record).to be_a ::MARC::Record
+          end
+
+          it 'get all tindfields' do
+            expect(tind_marc.tindfields.count).to eq 27 # 7 (normal tindfields) + 20 (880 tindfields)
+          end
         end
 
-        it 'get all tindfields' do
-          expect(tind_marc.tindfields.count).to eq 27 # 7 (normal tindfields) + 20 (880 tindfields)
-        end
+        context '# From private methods: ' do
 
-        it 'get normal tindfield tags' do
-          expect(tind_marc.send(:tindfields_group).map(&:tag)).to eq tindfield_tags
-          expect(tind_marc.send(:tindfields_group)[1]['a']).to eq 'Cang jie pian' # not "fake_255_a"
-        end
+          it 'get normal tindfield tags' do
+            expect(tind_marc.send(:tindfields_group).map(&:tag)).to eq tindfield_tags
+          end
 
-        it 'get 880 tindfield tags' do
-          expect(tind_marc.send(:tindfields_group_880).map { |f| tind_marc.origin_mapping_tag(f) }).to eq tind_880_subfield6_tags
-        end
+          it 'get 880 tindfield tags' do
+            expect(tind_marc.send(:tindfields_group_880).map { |f| tind_marc.origin_mapping_tag(f) }).to eq tind_880_subfield6_tags
+          end
 
-        it 'get 880 tindfield subfield6 values' do
-          expect(tind_marc.fields_880_subfield6(tind_marc.send(:tindfields_group_880))).to eq tindfield_880_normal_tags
-        end
+          it 'get 880 tindfield subfield6 values' do
+            expect(tind_marc.fields_880_subfield6(tind_marc.send(:tindfields_group_880))).to eq tindfield_880_normal_tags
+          end
 
-        it 'get normal tindfields' do
-          expect(tind_marc.send(:tindfields_from_normal, normal_fields).map(&:tag)).to eq normal_tindfield_tags
-        end
+          it 'get normal tindfields' do
+            expect(tind_marc.send(:tindfields_from_normal, normal_fields).map(&:tag)).to eq normal_tindfield_tags
+          end
 
-        it 'get control tindfields' do
-          expect(tind_marc.send(:tindfields_from_control, []).map(&:tag)).to eq ['041', '269']
-        end
+          it 'get control tindfields' do
+            expect(tind_marc.send(:tindfields_from_control, []).map(&:tag)).to eq ['041', '269']
+          end
 
-        it 'get tindfields with pre_existed field' do
-          expect(tind_marc.send(:tindfields_with_pre_existed_field, with_pre_existed_fields, current_fields).map(&:tag)).to eq with_pre_existed_tind_fields_tags
-        end
+          it 'get tindfields with pre_existed field' do
+            expect(tind_marc.send(:tindfields_with_pre_existed_field, with_pre_existed_fields, current_fields).map(&:tag)).to eq with_pre_existed_tind_fields_tags
+          end
 
-        it 'get tindfields with pre_existed_subfield' do
-          expect(tind_marc.send(:tindfields_with_pre_existed_subfield, with_pre_existed_subfield_fields, current_with_pre_existed_subfield_fields).map(&:tag)).to eq normal_tindfield_tags
-          expect(tind_marc.send(:tindfields_with_pre_existed_subfield, with_pre_existed_subfield_fields, current_with_pre_existed_subfield_fields)[1]['a']).to eq nil
+          it 'get tindfields with pre_existed_subfield' do
+            expect(tind_marc.send(:tindfields_with_pre_existed_subfield, with_pre_existed_subfield_fields, current_with_pre_existed_subfield_fields).map(&:tag)).to eq normal_tindfield_tags
+          end
+
         end
 
       end

@@ -19,14 +19,6 @@ module BerkeleyLibrary
           expect(tind_marc.origin_mapping_tag(regular_field_with_subfield6)).to eq '246'
         end
 
-        it 'get origin tag from field 880 with subfield6' do
-          expect(tind_marc.origin_mapping_tag(field_880_with_subfield6)).to eq '490'
-        end
-
-        it 'get origin tag from field 880 without subfield6' do
-          expect(tind_marc.origin_mapping_tag(field_880_without_subfield6)).to eq nil
-        end
-
         it 'get clean value' do
           str = 'to [test] removing : special characters :;/'
           expect(tind_marc.send(:clr_value, str)).to eq 'to  test  removing : special characters'
@@ -34,6 +26,16 @@ module BerkeleyLibrary
 
         it 'get the lowest seq no' do
           expect(tind_marc.send(:subfield6_value_with_lowest_seq_no, subfield6_values)).to eq '245-01/$1'
+        end
+
+        context 'get origin tag from a 880 field' do
+          it 'with subfield6' do
+            expect(tind_marc.origin_mapping_tag(field_880_with_subfield6)).to eq '490'
+          end
+
+          it 'without subfield6' do
+            expect(tind_marc.origin_mapping_tag(field_880_without_subfield6)).to eq nil
+          end
         end
 
       end

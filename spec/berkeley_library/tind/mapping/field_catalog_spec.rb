@@ -26,42 +26,47 @@ module BerkeleyLibrary
           expect(datafields_catalog.control_fields.count).to eq 3
         end
 
-        # One-occurence mapping: there are two 264 datafields in record, only the first one is added
-        it 'get regular datafield tags' do
-          expect(datafields_catalog.data_fields_group[:normal].map(&:tag)).to eq alma_tags
-        end
-
-        it 'get datafield tags with pre_existed datafield defined in csv' do
-          expect(datafields_catalog.data_fields_group[:pre_tag].map(&:tag)).to eq alma_tags_with_pre_existed_tag
-        end
-
-        it 'get datafield tags with pre_existed datafield and subfield defined in csv' do
-          expect(datafields_catalog.data_fields_group[:pre_tag_subfield].map(&:tag)).to eq alma_tags_with_pre_existed_tag_subfield
-        end
-
-        ### 880 datafields ####
-        it 'get 880 datafields -  subfield 6 number is 00 ' do
-          expect(datafields_catalog.fields_880_subfield6(datafields_catalog.data_fields_880_00)).to eq f880_sbufield6_with_00
-        end
-
-        it 'get 880 datafields -  subfield 6 number is 00 ' do
-          expect(datafields_catalog.fields_880_subfield6(datafields_catalog.data_fields_880_00)).not_to include not_f880_sbufield6_with_00
-        end
-
-        it 'get regular subfield 6' do
-          expect(datafields_catalog.fields_880_subfield6(datafields_catalog.data_fields_880_group[:normal])).to eq f880_subfield6
-        end
-
-        it 'get regular subfield 6: pre_exsisted datafield' do
-          expect(datafields_catalog.data_fields_880_group[:pre_tag]).to eq f880_subfield6_with_pre_existed_tag
-        end
-
-        it 'get regular subfield 6: pre_exsisted datafield and subfield' do
-          expect(datafields_catalog.fields_880_subfield6(datafields_catalog.data_fields_880_group[:pre_tag_subfield])).to eq f880_subfield6_with_pre_existed_tag_subfield
-        end
-
         it 'get mms_id' do
           expect(datafields_catalog.mms_id).to eq mms_id
+        end
+
+        context '# From regular fields' do
+
+          # One-occurence mapping: there are two 264 datafields in record, only the first one is added
+          it 'get regular datafield tags' do
+            expect(datafields_catalog.data_fields_group[:normal].map(&:tag)).to eq alma_tags
+          end
+
+          it 'get datafield tags with pre_existed datafield defined in csv' do
+            expect(datafields_catalog.data_fields_group[:pre_tag].map(&:tag)).to eq alma_tags_with_pre_existed_tag
+          end
+
+          it 'get datafield tags with pre_existed datafield and subfield defined in csv' do
+            expect(datafields_catalog.data_fields_group[:pre_tag_subfield].map(&:tag)).to eq alma_tags_with_pre_existed_tag_subfield
+          end
+
+        end
+
+        context '# From 880 fields' do
+          it 'get 880 datafields -  subfield 6 number is 00 ' do
+            expect(datafields_catalog.fields_880_subfield6(datafields_catalog.data_fields_880_00)).to eq f880_sbufield6_with_00
+          end
+
+          it 'get 880 datafields -  subfield 6 number is not 00 ' do
+            expect(datafields_catalog.fields_880_subfield6(datafields_catalog.data_fields_880_00)).not_to include not_f880_sbufield6_with_00
+          end
+
+          it 'get regular subfield 6' do
+            expect(datafields_catalog.fields_880_subfield6(datafields_catalog.data_fields_880_group[:normal])).to eq f880_subfield6
+          end
+
+          it 'get regular subfield 6: pre_exsisted datafield' do
+            expect(datafields_catalog.data_fields_880_group[:pre_tag]).to eq f880_subfield6_with_pre_existed_tag
+          end
+
+          it 'get regular subfield 6: pre_exsisted datafield and subfield from' do
+            expect(datafields_catalog.fields_880_subfield6(datafields_catalog.data_fields_880_group[:pre_tag_subfield])).to eq f880_subfield6_with_pre_existed_tag_subfield
+          end
         end
 
       end

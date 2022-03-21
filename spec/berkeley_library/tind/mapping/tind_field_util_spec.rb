@@ -14,8 +14,12 @@ module BerkeleyLibrary
         let(:fields_880_group) { tind_marc.field_catalog.data_fields_880_group[:normal] }
         let(:field_880_245) { Config.test_datafield_880('245-01/$1') }
 
+        # it 'get a rule on datafield' do
+        #   expect(tind_marc.rule(field_normal).class).to eq BerkeleyLibrary::TIND::Mapping::SingleRule
+        # end
+
         it 'get a rule on datafield' do
-          expect(tind_marc.rule(field_normal).class).to eq BerkeleyLibrary::TIND::Mapping::SingleRule
+          expect(tind_marc.rule(field_normal)).to be_an_instance_of BerkeleyLibrary::TIND::Mapping::SingleRule
         end
 
         it 'tindfield found existing list of tindfields' do

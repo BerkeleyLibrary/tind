@@ -25,7 +25,7 @@ module BerkeleyLibrary
         end
 
         def check_abnormal_formated_subfield6(fields)
-          fields.each { |f| check_subfield6_format(f) unless ::MARC::ControlField.control_tag?(f.tag) }
+          fields.each { |f| check_subfield6_format(f) if check_subfield6?(f) }
         end
 
         private
@@ -63,6 +63,12 @@ module BerkeleyLibrary
             logger.warn(msg)
           end
           warning_message_for_rspec
+        end
+
+        def check_subfield6?(f)
+          return false if ::MARC::ControlField.control_tag?(f.tag)
+
+          f['6'] ? true : false
         end
 
       end

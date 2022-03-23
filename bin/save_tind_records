@@ -1,0 +1,80 @@
+#!/usr/bin/env ruby
+
+begin
+  # This should work if (1) the gem is installed, or
+  # (2) we're in development and used `bundle exec`
+  require 'berkeley_library/tind'
+  require 'berkeley_library/alma'
+rescue LoadError
+  # If we're in development, `require 'bundler/setup'`
+  # is roughly equivalent to `bundle exec`
+  require 'bundler/setup'
+  require 'berkeley_library/tind'
+  require 'berkeley_library/alma'
+end
+
+def setup
+  BerkeleyLibrary::TIND::Mapping::AlmaBase.collection_parameter_hash = {
+    '336' => ['Image'],
+    '852' => ['Bioscience, Natural Resources & Public Health Library'],
+    '980' => ['Forestry'],
+    '982' => ['Forestry', 'Forestry'],
+    '991' => []
+  }
+
+  # BerkeleyLibrary::TIND::Mapping::AlmaBase.is_barcode = true
+end
+
+def fake_additional_tind_fields1
+  fields = []
+  txt = '001'
+  url = 'https://digitalassets.lib.berkeley.edu/forestry/ucb/images/b142086125_i180839998/b142086125_i180839998_001.jpg'
+  fft = BerkeleyLibrary::TIND::Mapping::TindField.f_fft(url, txt)
+  f_998 = ::MARC::DataField.new('998', ' ', ' ', ['a', 'fake-value'])
+  f_035 = BerkeleyLibrary::TIND::Mapping::TindField.f_035('b142086125')
+  fields << f_998
+  fields << f_035
+  fields << fft
+end
+
+def fake_additional_tind_fields2
+  fields = []
+  txt = '002'
+  url = 'https://digitalassets.lib.berkeley.edu/forestry/ucb/images/b142086125_i180839998/b142086125_i180839998_002.jpg'
+  fft = BerkeleyLibrary::TIND::Mapping::TindField.f_fft(url, txt)
+
+  f_998 = ::MARC::DataField.new('998', ' ', ' ', ['a', 'fake-value'])
+
+  f_035 = BerkeleyLibrary::TIND::Mapping::TindField.f_035('b142107827')
+  fields << f_998
+  fields << f_035
+  fields << fft
+end
+
+def tind_records
+  records = []
+  alma_tind = BerkeleyLibrary::TIND::Mapping::AlmaSingleTIND.new
+
+  record1 = alma_tind.record('b142086125', fake_additional_tind_fields1)
+  record2 = alma_tind.record('b142107827', fake_additional_tind_fields2)
+  records << record1
+  records << record2
+end
+
+def save_batch(file, with_tind_xmlwritter)
+  setup
+  writer = ::MARC::XMLWriter.new(file)
+  writer = BerkeleyLibrary::TIND::MARC::XMLWriter.new(file) if with_tind_xmlwritter
+
+  tind_records.each do |record|
+    record.leader = nil if with_tind_xmlwritter
+    writer.write(record)
+  end
+  writer.close
+end
+
+# save with tind xmlwritter
+save_batch('tmp/test_tind_xmlwritter.xml', true)
+
+# save with Marc xmlwritter
+save_batch('tmp/test_marc_xmlwritter.xml', false)

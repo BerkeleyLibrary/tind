@@ -4,7 +4,7 @@ module BerkeleyLibrary
   module TIND
     module Mapping
       module TindControlSubfield
-        # check this value with old data later
+
         def extract_value(rule, value)
           pos = rule.position_from_to
           return nil unless pos
@@ -19,7 +19,11 @@ module BerkeleyLibrary
           indicator = rule.indicator
           return nil unless subname && destiantion_tag && indicator
 
-          subfields = [Util.subfield(subname, sub_value)]
+          new_sub_value = clean_subfield_value(destiantion_tag, sub_value)
+          return nil unless new_sub_value
+
+          new_sub_value = clean_subfield_value(destiantion_tag, sub_value)
+          subfields = [Util.subfield(subname, new_sub_value)]
           Util.datafield(destiantion_tag, indicator, subfields)
         end
 
@@ -34,6 +38,19 @@ module BerkeleyLibrary
             new_fls << newfield if newfield
           end
           new_fls
+        end
+
+        private
+
+        def clean_subfield_value(tag, val)
+          return val if tag != '269'
+
+          new_val = val.downcase.sub(/u$/, '0')
+          qualified_269?(new_val) ? new_val : nil
+        end
+
+        def qualified_269?(val)
+          val =~ /^\d{4}$/
         end
 
       end

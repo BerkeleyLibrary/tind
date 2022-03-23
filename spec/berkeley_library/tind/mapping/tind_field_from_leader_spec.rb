@@ -12,6 +12,7 @@ module BerkeleyLibrary
         end
 
         it 'get_tindfields' do
+          puts @tindfield_from_leader.to_datafields.inspect
           expect(@tindfield_from_leader.to_datafields[0].tag).to eq '903'
         end
 

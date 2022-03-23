@@ -117,7 +117,7 @@ module BerkeleyLibrary
           dic
         end
 
-        # Has excluding subfield?
+        # Check excluding subfield
         def excluding_subfield?
           return false unless @pre_existed_tag_subfield
           return false unless @pre_existed_tag_subfield[1]

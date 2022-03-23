@@ -7,7 +7,7 @@ module BerkeleyLibrary
 
         # tag - regular alma field
         # referred tag - got tag from subfield6 value of a 880 field
-        # nil rule caused by nil referred tag - eg. 880 subfild6 pass in a value in wrong format
+        # nil rule caused by nil referred tag - eg. 880 subfild6 has a value in wrong format
         def rule(field)
           tag = origin_mapping_tag(field)
           return nil unless tag

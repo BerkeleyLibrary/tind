@@ -93,7 +93,7 @@ module BerkeleyLibrary
           new_fls
         end
 
-        # # Return TIND datafields if no pre_existed field
+        # Return TIND datafields if no pre_existed field
         def tindfields_with_pre_existed_field(alma_fields, currentfields)
           new_fls = []
           alma_fields.each do |f|
@@ -102,7 +102,7 @@ module BerkeleyLibrary
           new_fls
         end
 
-        # # Return TIND datafields considering excluding pre_existing subfields
+        # Return TIND datafields considering excluding pre_existing subfields
         def tindfields_with_pre_existed_subfield(alma_fields, currentfields)
           new_fls = []
           alma_fields.each do |f|

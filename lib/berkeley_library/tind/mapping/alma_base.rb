@@ -1,3 +1,5 @@
+# 902__$d derived from current date is added in this module
+
 module BerkeleyLibrary
   module TIND
     module Mapping
@@ -32,8 +34,8 @@ module BerkeleyLibrary
         def base_save(id, tind_record, file)
           return logger.warn("#{id} has no TIND record or not a qualified TIND record.") unless tind_record
 
-          # record.leader = nil
-          # writer = BerkeleyLibrary::TIND::XMLWriter.new(file)
+          # tind_record.leader = nil
+          # writer = BerkeleyLibrary::TIND::MARC::XMLWriter.new(file)
           writer = ::MARC::XMLWriter.new(file)
           writer.write(tind_record)
           writer.close
@@ -66,22 +68,6 @@ module BerkeleyLibrary
         def get_record_id(id)
           AlmaBase.is_barcode ? BerkeleyLibrary::Alma::BarCode.new(id) : BerkeleyLibrary::Alma::RecordId.parse(id)
         end
-
-        # def derived_tind_fields(mms_id, id)
-        #   tind_fields = []
-        #   tind_fields << TindField.f_902_d
-
-        #   hash = BerkeleyLibrary::TIND::Mapping::AlmaBase.collection_parameter_hash
-        #   tind_fields.concat BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_collection_information(hash)
-
-        #   return tind_fields unless mms_id
-
-        #   tind_fields.concat BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_alma_id(mms_id, id)
-        #   f_035 = add_f_035(mms_id, hash)
-        #   tind_fields << f_035 if f_035
-
-        #   tind_fields
-        # end
 
         def derived_tind_fields(mms_id, id)
           tind_fields = []

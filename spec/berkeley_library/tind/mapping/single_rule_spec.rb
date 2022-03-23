@@ -11,7 +11,7 @@ module BerkeleyLibrary
 
         before(:each) do
           rows = Util.csv_rows('spec/data/mapping/one_to_one_mapping.csv')
-          @single_rule = SingleRule.new(rows[3])
+          @single_rule = SingleRule.new(rows[4])
         end
 
         it 'get origin tag' do

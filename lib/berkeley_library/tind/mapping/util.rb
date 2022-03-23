@@ -80,7 +80,6 @@ module BerkeleyLibrary
 
           private
 
-          # row[:map_if_no_this_tag_subfield_existed] =
           def clr_row(row)
             row[:tag_origin] = format_tag(row[:tag_origin])
             row[:tag_destination] = format_tag(row[:tag_destination])

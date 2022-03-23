@@ -1,8 +1,14 @@
 require 'marc'
-# Three types of fields in this module
-# 1) fields derived from collection information
-# 2) fields derived from mms_id
-# 3) field derived from current date
+
+# Derived fields from this module
+# 1) From collection information:
+#  336__$a
+#  852__$c
+#  982__$a,b
+#  991__$a
+# 2) From mms_id
+# 901__$m
+# 85641$u,y
 
 module BerkeleyLibrary
   module TIND

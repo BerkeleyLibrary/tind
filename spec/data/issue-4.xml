@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <record>
+    <leader>      Z   22        4500</leader>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Caricatures of Paul Bunyan</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="c">19--.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="b">color</subfield>
+      <subfield code="c">10 1/2 x 12 1/2 inches.</subfield>
+      <subfield code="a">16 caricatures</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Title supplied by cataloger.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Published or produced by the Mead Sales Company. Identified artists include Hutton, S.W. Wilcox, and Henry C. Pitz.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2=" ">
+      <subfield code="a">Bunyan, Paul (Legendary character) Pictorial works. </subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2=" ">
+      <subfield code="2">gmgpc</subfield>
+      <subfield code="a">Caricatures Color. </subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Pitz, Henry C. 1895-1976. (Henry Clarence),</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="a">Mead Sales Company.</subfield>
+    </datafield>
+    <datafield tag="903" ind1=" " ind2=" ">
+      <subfield code="b">c</subfield>
+    </datafield>
+    <datafield tag="041" ind1=" " ind2=" ">
+      <subfield code="a">eng</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="d">2022-03-23</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">Image</subfield>
+    </datafield>
+    <datafield tag="852" ind1=" " ind2=" ">
+      <subfield code="c">Bioscience, Natural Resources &amp; Public Health Library</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Forestry</subfield>
+    </datafield>
+    <datafield tag="982" ind1=" " ind2=" ">
+      <subfield code="a">Forestry</subfield>
+      <subfield code="b">Forestry</subfield>
+    </datafield>
+    <datafield tag="901" ind1=" " ind2=" ">
+      <subfield code="m">991065640639706532</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="1">
+      <subfield code="u">https://search.library.berkeley.edu/discovery/fulldisplay?context=L&amp;vid=01UCS_BER:UCB&amp;docid=alma991065640639706532</subfield>
+      <subfield code="y">View library catalog record.</subfield>
+    </datafield>
+    <datafield tag="998" ind1=" " ind2=" ">
+      <subfield code="a">fake-value</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">b142086125</subfield>
+    </datafield>
+    <datafield tag="FFT" ind1=" " ind2=" ">
+      <subfield code="d">001</subfield>
+      <subfield code="a">https://digitalassets.lib.berkeley.edu/forestry/ucb/images/b142086125_i180839998/b142086125_i180839998_001.jpg</subfield>
+    </datafield>
+  </record>
+  <record>
+    <leader>      Z   22        4500</leader>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">Photographs from the University of California Forestry Club</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="c">1930-1939.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 album (photographic prints)</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Title supplied by cataloger.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Photographed and or compiled by the Forestry Club.</subfield>
+    </datafield>
+    <datafield tag="520" ind1=" " ind2=" ">
+      <subfield code="a">Album contains views of the University of California campus, Camp Califorest, and of the camp newspaper (Bull of the Woods).</subfield>
+    </datafield>
+    <datafield tag="610" ind1=" " ind2=" ">
+      <subfield code="a">University of California (1868-1952) Forestry Club Pictorial works. </subfield>
+    </datafield>
+    <datafield tag="610" ind1=" " ind2=" ">
+      <subfield code="a">University of California (1868-1952) Camp Califorest Pictorial works. </subfield>
+    </datafield>
+    <datafield tag="610" ind1=" " ind2=" ">
+      <subfield code="a">University of California (1868-1952) Pictorial works. </subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2=" ">
+      <subfield code="2">gmgpc</subfield>
+      <subfield code="a">Photographs.</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="a">University of California, Berkeley. Forestry students.</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="a">University of California (1868-1952) Forestry Club.</subfield>
+    </datafield>
+    <datafield tag="903" ind1=" " ind2=" ">
+      <subfield code="b">c</subfield>
+    </datafield>
+    <datafield tag="041" ind1=" " ind2=" ">
+      <subfield code="a">eng</subfield>
+    </datafield>
+    <datafield tag="269" ind1=" " ind2=" ">
+      <subfield code="a">1930</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="d">2022-03-23</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">Image</subfield>
+    </datafield>
+    <datafield tag="852" ind1=" " ind2=" ">
+      <subfield code="c">Bioscience, Natural Resources &amp; Public Health Library</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">Forestry</subfield>
+    </datafield>
+    <datafield tag="982" ind1=" " ind2=" ">
+      <subfield code="a">Forestry</subfield>
+      <subfield code="b">Forestry</subfield>
+    </datafield>
+    <datafield tag="901" ind1=" " ind2=" ">
+      <subfield code="m">991065707389706532</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="1">
+      <subfield code="u">https://search.library.berkeley.edu/discovery/fulldisplay?context=L&amp;vid=01UCS_BER:UCB&amp;docid=alma991065707389706532</subfield>
+      <subfield code="y">View library catalog record.</subfield>
+    </datafield>
+    <datafield tag="998" ind1=" " ind2=" ">
+      <subfield code="a">fake-value</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">b142107827</subfield>
+    </datafield>
+    <datafield tag="FFT" ind1=" " ind2=" ">
+      <subfield code="d">002</subfield>
+      <subfield code="a">https://digitalassets.lib.berkeley.edu/forestry/ucb/images/b142086125_i180839998/b142086125_i180839998_002.jpg</subfield>
+    </datafield>
+  </record>
+</collection>

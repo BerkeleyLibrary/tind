@@ -20,8 +20,7 @@ module BerkeleyLibrary
           Nokogiri::XML::Builder.new do |xml|
             xml.record do
               add_leader(xml)
-              marc_record.each_control_field { |cf| add_control_field(xml, cf) }
-              marc_record.each_data_field { |df| add_data_field(xml, df) }
+              marc_record.each { |f| add_field(xml, f) }
             end
           end
         end
@@ -47,6 +46,15 @@ module BerkeleyLibrary
           # TIND uses \ (0x5c), not space (0x32), for unspecified values in positional fields
           value = cf.value&.gsub(' ', '\\')
           xml.controlfield(value, tag: cf.tag)
+        end
+
+        def add_field(xml, f)
+          case f
+          when ::MARC::ControlField
+            add_control_field(xml, f)
+          when ::MARC::DataField
+            add_data_field(xml, f)
+          end
         end
 
         def clean_leader(leader)

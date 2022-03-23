@@ -149,6 +149,44 @@ module BerkeleyLibrary
             end
             expect(marc_xml).not_to include('leader')
           end
+
+          describe 'issue #4' do
+            let(:record_expected) { ::MARC::XMLReader.new('spec/data/issue-4.xml').first }
+            let(:record_actual) do
+              marc_xml = StringIO.open do |out|
+                XMLWriter.open(out) { |w| w.write(record_expected) }
+                out.string
+              end
+
+              ::MARC::XMLReader.new(StringIO.new(marc_xml)).first
+            end
+
+            it 'does not reorder fields' do
+              expected_tags = record_expected.fields.map(&:tag)
+              actual_tags = record_actual.fields.map(&:tag).reject { |t| t == '000' }
+
+              expect(actual_tags).to eq(expected_tags)
+            end
+
+            it 'supports FFT fields' do
+              df_expected = record_expected['FFT']
+              expect(df_expected).to be_a(::MARC::DataField) # just to be sure
+
+              df_actual = record_actual['FFT']
+              expect(df_actual).to be_a(::MARC::DataField)
+              %i[tag indicator1 indicator2].each do |attr|
+                v_actual = df_actual.send(attr)
+                v_expected = df_expected.send(attr)
+                expect(v_actual).to eq(v_expected)
+              end
+
+              df_expected.subfields.each_with_index do |sf_expected, i|
+                sf_actual = df_actual.subfields[i]
+                expect(sf_actual.code).to eq(sf_expected.code)
+                expect(sf_actual.value).to eq(sf_expected.value)
+              end
+            end
+          end
         end
       end
     end

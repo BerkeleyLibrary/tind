@@ -1,3 +1,8 @@
+# 0.5.1 (2023-03-23)
+
+- Fix an issue where `BerkeleyLibrary::TIND::MARC::XMLWriter` would drop fields with nonstandard tags (e.g. `FFT` fields)
+  and would group and sort fields by tag instead of preserving the original order.
+
 # 0.5.0 (2022-01-17)
 
 - Adds a class `BerkeleyLibrary::TIND::MARC::XMLWriter` to write MARCXML in the format expected by the TIND batch uploader:

@@ -97,9 +97,9 @@ variable are set for either, the explicit option takes precedence.
 
 ### Source of TIND fields
 
-1. Field mapped from an Alma record (automatically)
+1. Mapped from an Alma record (automatically)
 
-2. Field derived from collection information, mms_id, and date (automatically)
+2. Derived from collection information, mms_id, and date (automatically)
 
     - 336$a
     - 852$c
@@ -110,7 +110,7 @@ variable are set for either, the explicit option takes precedence.
     - 901$m
     - 85641$u,$y
 
-3. Specific field created at the time of transforming TIND record (fields of a collection or it's record)
+3. Added at the time of transforming TIND record (fields of a collection or it's record)
 
     - FFT
     - 035$a
@@ -139,25 +139,24 @@ def setup_collection
     '982' => ['Pre 1912 Chinese Materials - short name', 'Pre 1912 Chinese Materials - long name'],
     '991' => []
   }
-
-  # Including a derived 035, formated in "(collection's 980 value)mms_id"
+  
   # BerkeleyLibrary::TIND::Mapping::AlmaBase.is_035_from_mms_id = true  
 
-  # Getting Alma record using Barcode
+  # Flag on getting Alma record using Barcode
   BerkeleyLibrary::TIND::Mapping::AlmaBase.is_barcode = true           
 end
 ```
 
-2. Praparing additiona fields
+2. Praparing additional fields
 
-    Using methods below to create field:
-    -  Methods from module:  BerkeleyLibrary::TIND::Mapping::TindField
-    -  Or directly creating field from Ruby Marc when no method found in above module  
+    Adding field using:
+    -  field methods from module:  BerkeleyLibrary::TIND::Mapping::TindField
+    -  Or the original method from Ruby Marc when field method found in above module  
         ::MARC::DataField.new(tag, indicator1, indicator, [code1, value1], [code2, value2] ...)
 
 ```ruby
 
-def additional_tind_fields
+def additional_tind_fields_1
   txt = 'v001_0064'
   url = 'https://digitalassets.lib.berkeley.edu/pre1912ChineseMaterials/ucb/ready/991032333019706532/991032333019706532_v001_0064.jpg'
   fft = BerkeleyLibrary::TIND::Mapping::TindField.f_fft(url, txt)
@@ -183,7 +182,7 @@ setup_collection
 id = 'C084093187'
 
 alma_tind = BerkeleyLibrary::TIND::Mapping::AlmaSingleTIND.new
-tind_record = alma_tind.record(id, additional_tind_fields)
+tind_record = alma_tind.record(id, additional_tind_fields_1)
 
 ```
 

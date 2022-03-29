@@ -14,11 +14,6 @@ module BerkeleyLibrary
           expect(alma_single_tind.record('991085821143406532', additona_245_field)).to be marc_obj
         end
 
-        # it ' get tind record' do
-        #   alma_single_tind = instance_double('AlmaSingleTIND')
-        #   allow(alma_single_tind).to receive(:base_tind_record).with('991085821143406532', additona_245_field).and_return(marc_obj)
-        #   expect(alma_single_tind.record('991085821143406532', additona_245_field)).to be marc_obj
-        # end
       end
     end
   end

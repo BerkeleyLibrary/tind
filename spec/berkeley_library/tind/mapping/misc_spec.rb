@@ -5,11 +5,13 @@ module BerkeleyLibrary
   module TIND
     module Mapping
       describe 'Misc' do
+        let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
+        let(:qualified_alm_record) { qualified_alma_obj.record }
 
-        let(:tind_marc) { TindMarc.new(Config.test_record) }
-        let(:regular_field_with_subfield6) { Config.test_datafield('246') }
-        let(:field_880_with_subfield6) { Config.test_datafield_880('490-04/$1') }
-        let(:field_880_without_subfield6) { Config.test_datafield_880(nil) }
+        let(:tind_marc) { TindMarc.new(qualified_alm_record) }
+        let(:regular_field_with_subfield6) { qualified_alma_obj.field('246') }
+        let(:field_880_with_subfield6) { qualified_alma_obj.field_880('490-04/$1') }
+        let(:field_880_without_subfield6) { qualified_alma_obj.field_880(nil) }
 
         it 'get field tag' do
           expect(tind_marc.origin_mapping_tag(regular_field_with_subfield6)).to eq '246'

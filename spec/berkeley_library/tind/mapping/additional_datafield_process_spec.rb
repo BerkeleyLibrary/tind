@@ -5,7 +5,11 @@ module BerkeleyLibrary
   module TIND
     module Mapping
       describe 'AdditionalDatafieldProcess' do
-        let(:tind_marc) { TindMarc.new(Config.test_record) }
+
+        let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
+        let(:qualified_alm_record) { qualified_alma_obj.record }
+
+        let(:tind_marc) { TindMarc.new(qualified_alm_record) }
         let(:tindfields) { tind_marc.tindfields }
         let(:additona_245_field) { [Util.datafield('245', [' ', ' '], [Util.subfield('a', 'fake 245 a')])] }
         let(:with_repeated_fields) { tindfields.concat additona_245_field }

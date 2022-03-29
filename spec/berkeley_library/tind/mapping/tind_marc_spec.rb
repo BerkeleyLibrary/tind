@@ -5,17 +5,21 @@ module BerkeleyLibrary
   module TIND
     module Mapping
       describe 'TindMarc' do
-        let(:tind_marc) { TindMarc.new(Config.test_record) }
 
-        let(:normal_fields) { [Config.test_datafield('245'), Config.test_datafield('507')] }
+        let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
+        let(:qualified_alm_record) { qualified_alma_obj.record }
+
+        let(:tind_marc) { TindMarc.new(qualified_alm_record) }
+
+        let(:normal_fields) { [qualified_alma_obj.field('245'), qualified_alma_obj.field('507')] }
         let(:normal_tindfield_tags) { ['245', '255'] }
 
-        let(:with_pre_existed_fields) { [Config.test_datafield('245'), Config.test_datafield('264')] }
-        let(:current_fields) { [Config.test_datafield('245'), Config.test_datafield('260')] }
+        let(:with_pre_existed_fields) { [qualified_alma_obj.field('245'), qualified_alma_obj.field('264')] }
+        let(:current_fields) { [qualified_alma_obj.field('245'), qualified_alma_obj.field('260')] }
         let(:with_pre_existed_tind_fields_tags) { ['245'] }
 
-        let(:with_pre_existed_subfield_fields) { [Config.test_datafield('245'), Config.test_datafield('507')] }
-        let(:current_with_pre_existed_subfield_fields) { [Config.test_datafield('245'), Config.test_datafield('255')] }
+        let(:with_pre_existed_subfield_fields) { [qualified_alma_obj.field('245'), qualified_alma_obj.field('507')] }
+        let(:current_with_pre_existed_subfield_fields) { [qualified_alma_obj.field('245'), qualified_alma_obj.field('255')] }
         let(:with_pre_existed_tind_subfield_fields_tags) { ['245'] }
 
         # mapped on pre_existed_field rule: "260"

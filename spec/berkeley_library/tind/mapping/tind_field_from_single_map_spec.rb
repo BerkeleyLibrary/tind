@@ -7,7 +7,10 @@ module BerkeleyLibrary
       # 1. Subfield one to one mapping
       # 2. Subfield not listed in csv file is not mapped
       describe '1. TindFieldFromSingleMap: subfield one to one mapping' do
-        let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(Config.test_datafield('245'), false) }
+
+        let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
+        let(:qualified_alm_record) { qualified_alma_obj.record }
+        let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field('245'), false) }
 
         it 'get tindfield tag: 245 => 245 ' do
           expect(tindfield_from_single_map.to_datafield.tag).to eq '245'
@@ -30,7 +33,7 @@ module BerkeleyLibrary
         end
 
         describe '2. TindFieldFromSingleMap: mapping indicators' do
-          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(Config.test_datafield('710'), false) }
+          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field('710'), false) }
 
           it 'get indicator1' do
             expect(tindfield_from_single_map.to_datafield.indicator1).to eq '2'
@@ -45,7 +48,7 @@ module BerkeleyLibrary
         # 264 datafield mapping defined in csv has only one mapping occurrence
         # To test only the first occurrence is mapped
         describe '3. TindFieldFromSingleMap: multiple origin 264 fields => only mapping the first occurrence' do
-          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(Config.test_datafield('264'), false) }
+          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field('264'), false) }
 
           it 'get tindfield tag: 264 => 260' do
             expect(tindfield_from_single_map.to_datafield.tag).to eq '260'
@@ -68,7 +71,7 @@ module BerkeleyLibrary
         # 2. To test excluding subfield a mapping from  507
         # 3. TindFieldFromSingleMap.new(): input excluding_subfield = true
         describe '4. TindFieldFromSingleMap:  pre_existed subfield = true' do
-          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(Config.test_datafield('507'), true) }
+          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field('507'), true) }
 
           it 'get tindfield tag: 507 => 255 ' do
             expect(tindfield_from_single_map.to_datafield.tag).to eq '255'
@@ -81,7 +84,7 @@ module BerkeleyLibrary
 
         # To test rule: subfield value combined without concatenation symbol defined in csv
         describe '5. TindFieldFromSingleMap: subfields combined' do
-          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(Config.test_datafield('246'), false) }
+          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field('246'), false) }
 
           it 'get tindfield tag: 246 => 246' do
             expect(tindfield_from_single_map.to_datafield.tag).to eq '246'
@@ -95,7 +98,7 @@ module BerkeleyLibrary
 
         # To test multiple rules mapped to the same tinddatafield
         describe '6. TindFieldFromSingleMap: subfields combined with multiple rules' do
-          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(Config.test_datafield('630'), false) }
+          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field('630'), false) }
           let(:combined_value) { 'fake a *  fake b * fake c * fake d * fake f * fake j * fake k * fake l * fake m * fake n * fake o * fake p * fake q * fake r * fake s * fake t * fake x1  -- fake x2  ' }
 
           it 'get tindfield tag: 630 => 630' do
@@ -112,7 +115,7 @@ module BerkeleyLibrary
         # 2. 880 tag reversed
         # 3. subfields z,y, z combined with concatenation symbol defined in csv file
         describe '7. TindFieldFromSingleMap: 880 datafield mapping' do
-          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(Config.test_datafield_880('650-05/$1'), false) }
+          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field_880('650-05/$1'), false) }
 
           it 'get tindfield tag: 880 => 880' do
             expect(tindfield_from_single_map.to_datafield.tag).to eq '880'
@@ -129,7 +132,7 @@ module BerkeleyLibrary
         # 3. 880 datafield with 507 tag in subfield 6
         #   mapped from 507-09/$1 to 255-09/$1
         describe '8. TindFieldFromSingleMap: 880 subfield 6 value mapped to new destination tag' do
-          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(Config.test_datafield_880('507-09/$1'), false) }
+          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field_880('507-09/$1'), false) }
 
           it 'get tindfield tag: 880 => 880' do
             expect(tindfield_from_single_map.to_datafield.tag).to eq '880'

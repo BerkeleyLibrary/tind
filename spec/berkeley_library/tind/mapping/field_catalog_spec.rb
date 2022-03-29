@@ -7,7 +7,10 @@ module BerkeleyLibrary
       # 14 tags match origin tags defined in csv file
       # ["245", "246", "260", "300", "300", "490", "630", "650", "650", "700", "710", '264', '264','507']
       describe 'DataFieldsCatalog' do
-        let(:datafields_catalog) { DataFieldsCatalog.new(Config.test_record) }
+
+        let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
+        let(:qualified_alm_record) { qualified_alma_obj.record }
+        let(:datafields_catalog) { DataFieldsCatalog.new(qualified_alm_record) }
         let(:mms_id) { '991046494559706532' }
 
         let(:alma_tags) { %w[255 245 246 260 300 300 490 630 650 700 710] }

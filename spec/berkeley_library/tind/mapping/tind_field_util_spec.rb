@@ -5,18 +5,17 @@ module BerkeleyLibrary
   module TIND
     module Mapping
       describe 'TindFieldUtil' do
-        let(:tind_marc) { TindMarc.new(Config.test_record) }
+        let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
+        let(:qualified_alm_record) { qualified_alma_obj.record }
+
+        let(:tind_marc) { TindMarc.new(qualified_alm_record) }
 
         let(:normal_fields_group) { tind_marc.field_catalog.data_fields_group[:normal] }
-        let(:field_normal) { Config.test_datafield('245') }
-        let(:field_pre_existed_field) { Config.test_datafield('264') } # 264 has pre_existed field defined in csv file
-        let(:field_pre_existed_field_and_subfield) { Config.test_datafield('507') } # 507 has pre_existed_field_subfield defined in csv file
+        let(:field_normal) { qualified_alma_obj.field('245') }
+        let(:field_pre_existed_field) { qualified_alma_obj.field('264') } # 264 has pre_existed field defined in csv file
+        let(:field_pre_existed_field_and_subfield) { qualified_alma_obj.field('507') } # 507 has pre_existed_field_subfield defined in csv file
         let(:fields_880_group) { tind_marc.field_catalog.data_fields_880_group[:normal] }
-        let(:field_880_245) { Config.test_datafield_880('245-01/$1') }
-
-        # it 'get a rule on datafield' do
-        #   expect(tind_marc.rule(field_normal).class).to eq BerkeleyLibrary::TIND::Mapping::SingleRule
-        # end
+        let(:field_880_245) { qualified_alma_obj.field_880('245-01/$1') }
 
         it 'get a rule on datafield' do
           expect(tind_marc.rule(field_normal)).to be_an_instance_of BerkeleyLibrary::TIND::Mapping::SingleRule

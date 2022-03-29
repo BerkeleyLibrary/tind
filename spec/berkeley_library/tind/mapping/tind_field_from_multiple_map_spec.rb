@@ -11,19 +11,17 @@ module BerkeleyLibrary
 
       describe 'TindFieldFromMultipleMap' do
 
-        attr_reader :tindfield_from_multiple_map
-
-        before(:each) do
-          @tindfield_from_multiple_map = TindFieldFromMultipleMap.new(Config.test_control_field, [])
-        end
+        let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
+        let(:qualified_alm_record) { qualified_alma_obj.record }
+        let(:tindfield_from_multiple_map) { TindFieldFromMultipleMap.new(qualified_alma_obj.control_field, []) }
 
         it 'get tindfields without pre_existing tindfields' do
-          expect(@tindfield_from_multiple_map.to_datafields.count).to eq 2
+          expect(tindfield_from_multiple_map.to_datafields.count).to eq 2
         end
 
         it 'get tindfields with pre_existing tindfields' do
           current_fields = [] << ::MARC::DataField.new('041', ' ', ' ', ::MARC::Subfield.new('a', 'chi'))
-          multiple_map = TindFieldFromMultipleMap.new(Config.test_control_field, current_fields)
+          multiple_map = TindFieldFromMultipleMap.new(qualified_alma_obj.control_field, current_fields)
           expect(multiple_map.to_datafields.count).to eq 1
         end
 

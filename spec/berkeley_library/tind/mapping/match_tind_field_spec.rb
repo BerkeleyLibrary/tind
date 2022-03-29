@@ -5,7 +5,11 @@ module BerkeleyLibrary
   module TIND
     module Mapping
       describe 'MatchTindField' do
-        let(:tind_marc) { TindMarc.new(Config.test_record) }
+
+        let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
+        let(:qualified_alm_record) { qualified_alma_obj.record }
+
+        let(:tind_marc) { TindMarc.new(qualified_alm_record) }
 
         let(:data_fields) { tind_marc.field_catalog.data_fields_880_group[:normal].concat tind_marc.field_catalog.data_fields_group[:normal] }
         let(:no_880_matching_count) { 4 }

@@ -12,16 +12,21 @@ module BerkeleyLibrary
         let(:record_id) { Class.new { extend BerkeleyLibrary::Alma::RecordId } }
         let(:hash) { { '980' => ['pre_1912'] } }
 
+        let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
+        let(:qualified_alm_record) { qualified_alma_obj.record }
+
+        let(:un_qualified_alma_obj) { Alma.new('spec/data/mapping/record_not_qualified.xml') }
+        let(:un_qualified_alm_record) { un_qualified_alma_obj.record }
+
         describe '# base_tind_record' do
           it 'input a qualified Alma record - return a tind record' do
-            allow(dummy_obj).to receive(:qualified?).with(Config.test_record, 'C084093187').and_return(true)
-            allow(dummy_obj).to receive(:tind_record).with('C084093187', Config.test_record, []).and_return(::MARC::Record.new)
-            expect(dummy_obj.base_tind_record('C084093187', [], Config.test_record)).to be_a ::MARC::Record
+            allow(dummy_obj).to receive(:qualified?).with(qualified_alm_record, 'C084093187').and_return(true)
+            allow(dummy_obj).to receive(:tind_record).with('C084093187', qualified_alm_record, []).and_return(::MARC::Record.new)
+            expect(dummy_obj.base_tind_record('C084093187', [], qualified_alm_record)).to be_a ::MARC::Record
           end
 
           it 'input an unqualified Alma record - return nil' do
             allow(dummy_obj).to receive(:qualified?).with(alma_record, 'C084093187').and_return(false)
-            # allow(dummy_obj).to receive(:tind_record).with('C084093187',alma_record, []).and_return(::MARC::Record.new)
             expect(dummy_obj.base_tind_record('C084093187', [], alma_record)).to eq nil
           end
 
@@ -46,18 +51,18 @@ module BerkeleyLibrary
 
         describe '# base_save' do
           it 'save tind record' do
-            dummy_obj.base_save('C084093187', Config.test_record, save_to_file)
+            dummy_obj.base_save('C084093187', qualified_alm_record, save_to_file)
             expect(File.open(save_to_file.path).readlines[0]).to eq "<?xml version='1.0'?>\n"
           end
         end
 
         describe '# qualified?' do
           it 'qualified Alma record, return true' do
-            expect(dummy_obj.send(:qualified?, Config.test_record, 'C084093187')).to be true
+            expect(dummy_obj.send(:qualified?, qualified_alm_record, 'C084093187')).to be true
           end
 
           it 'unqualified Alma record, return false' do
-            expect(dummy_obj.send(:qualified?, Config.test_unqualified_record, 'C084093187')).to be false
+            expect(dummy_obj.send(:qualified?, un_qualified_alm_record, 'C084093187')).to be false
           end
         end
 
@@ -114,7 +119,7 @@ module BerkeleyLibrary
 
           it ' get tind_record' do
             datafields = []
-            marc_record = Config.test_record
+            marc_record = qualified_alm_record
             expect(dummy_obj.send(:tind_record, id, marc_record, datafields)).to be_instance_of ::MARC::Record
           end
 

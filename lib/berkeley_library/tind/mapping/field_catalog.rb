@@ -51,13 +51,9 @@ module BerkeleyLibrary
           remove_fields_with_subject_fast
         end
 
-        # remove fields with subfield2 = 'fast'
         def remove_fields_with_subject_fast
-          tags_fields = fields_no_subject_fast(@data_fields)
-          @data_fields = tags_fields[1]
-
-          tags_with_subject_fast = tags_fields[0]
-          @data_fields_880 = fields_880_no_subject_fast(tags_with_subject_fast, @data_fields_880)
+          @data_fields = exluding_fields_with_fast_subject(@data_fields)
+          @data_fields_880 = exluding_fields_with_fast_subject(@data_fields_880)
         end
 
         private

@@ -125,7 +125,7 @@ module BerkeleyLibrary
         def more_process(fields)
           remove_repeats(fields)
           clean_subfields(fields)
-          un_matched_fields_880(fields)
+          un_matched_fields_880(fields, @field_catalog.mms_id)
         end
 
       end

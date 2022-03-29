@@ -25,13 +25,13 @@ module BerkeleyLibrary
              700 710 903 041 269 255]
         end
 
-        let(:tind_880_subfield6_tags) { ['245', '246', '260', '490', '700', '710', '255', nil, '500', '500', '500', '500'] }
+        let(:tind_880_subfield6_tags) { ['245', '246', '260', '490', '650', '700', '710', '255', nil, '500', '500', '500', '500'] }
 
         # mapped on pre_existed_field rule  => ''
         # mapped on pre_existed_subfield rule:  "880-255-09"
         # 880 datafields with '00' in subfield 6 come from field_catalog - 4 tindfields
         let(:tindfield_880_normal_tags) do
-          %w[880-245-01 880-246-02 880-260-03 880-490-04
+          %w[880-245-01 880-246-02 880-260-03 880-490-04 880-650-05
              880-700-06 880-710-07 880-255-09
              880-500-00 880-500-00 880-500-00 880-500-00]
         end
@@ -42,7 +42,7 @@ module BerkeleyLibrary
           end
 
           it 'get all tindfields' do
-            expect(tind_marc.tindfields.count).to eq 27 # 7 (normal tindfields) + 20 (880 tindfields)
+            expect(tind_marc.tindfields.count).to eq 28 # 7 (normal tindfields) + 21 (880 tindfields)
           end
         end
 

@@ -7,7 +7,7 @@ module BerkeleyLibrary
 
         # return regular fields without matched 880 fields
         # return 880 fields without matched regular fields
-        def un_matched_fields_880(fields)
+        def un_matched_fields_880(fields, mms_id)
           unmached_fields = []
 
           str_arr_from_880 = subfield6_values_from_880_fields(fields)
@@ -21,7 +21,7 @@ module BerkeleyLibrary
           unmached_fields.concat un_matched_fields(fields_880_tobe_validated, str_arr_from_regular)
           unmached_fields.concat un_matched_fields(fields_regular_tobe_validated, str_arr_from_880)
 
-          log_warning(unmached_fields)
+          log_warning(unmached_fields, mms_id)
         end
 
         def check_abnormal_formated_subfield6(fields)
@@ -55,10 +55,10 @@ module BerkeleyLibrary
           fds
         end
 
-        def log_warning(fields)
+        def log_warning(fields, mms_id)
           warning_message_for_rspec = []
           fields.each do |f|
-            msg = "No matching: #{f.tag} $ #{f['6']} "
+            msg = "Please check 880 matching: mms_id: #{mms_id}, tag: #{f.tag}, value: #{f['6']} "
             warning_message_for_rspec << msg
             logger.warn(msg)
           end

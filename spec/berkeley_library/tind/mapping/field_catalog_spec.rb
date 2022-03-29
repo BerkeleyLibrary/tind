@@ -14,7 +14,7 @@ module BerkeleyLibrary
         let(:alma_tags_with_pre_existed_tag) { ['264'] }
         let(:alma_tags_with_pre_existed_tag_subfield) { ['507'] }
 
-        let(:f880_subfield6) { %w[880-245-01 880-246-02 880-260-03 880-490-04 880-700-06 880-710-07] }
+        let(:f880_subfield6) { %w[880-245-01 880-246-02 880-260-03 880-490-04 880-650-05 880-700-06 880-710-07] }
         let(:f880_subfield6_with_pre_existed_tag) { [] }
         let(:f880_subfield6_with_pre_existed_tag_subfield) { ['880-507-09'] }
 

@@ -30,12 +30,12 @@ module BerkeleyLibrary
 
           it 'get derived tind fields from alma id' do
             alma_id = '991085821143406532'
-            expect(ExternalTindField.tind_fields_from_alma_id(alma_id, alma_id).map(&:tag)).to eq output_alma_tags
+            expect(ExternalTindField.tind_mms_id_fields(alma_id).map(&:tag)).to eq output_alma_tags
           end
 
           it 'get empty tind fields from a nil alma id' do
             alma_id = nil
-            expect(ExternalTindField.tind_fields_from_alma_id(alma_id, alma_id).map(&:tag)).to eq []
+            expect(ExternalTindField.tind_mms_id_fields(alma_id).map(&:tag)).to eq []
 
           end
         end

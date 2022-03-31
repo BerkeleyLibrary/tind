@@ -68,14 +68,14 @@ module BerkeleyLibrary
           AlmaBase.is_barcode ? BerkeleyLibrary::Alma::BarCode.new(id) : BerkeleyLibrary::Alma::RecordId.parse(id)
         end
 
-        def derived_tind_fields(mms_id, id)
+        def derived_tind_fields(mms_id)
           tind_fields = []
           tind_fields << TindField.f_902_d
 
           hash = AlmaBase.collection_parameter_hash
           tind_fields.concat ExternalTindField.tind_fields_from_collection_information(hash)
 
-          tind_fields.concat ExternalTindField.tind_fields_from_alma_id(mms_id, id)
+          tind_fields.concat ExternalTindField.tind_mms_id_fields(mms_id)
 
           f_035 = add_f_035(mms_id, hash)
           tind_fields << f_035 if f_035
@@ -87,7 +87,9 @@ module BerkeleyLibrary
           tindmarc = TindMarc.new(marc_record)
           # get all derived tind_fields: 1) from collection information; 2) from id
           mms_id = tindmarc.field_catalog.mms_id
-          tind_fields = derived_tind_fields(mms_id, id)
+          logger.warn("#{id} has no Control Field 001") unless mms_id
+
+          tind_fields = derived_tind_fields(mms_id)
           # add inputted record specific datafields
           tind_fields.concat datafields
           tindmarc.tind_external_datafields = tind_fields

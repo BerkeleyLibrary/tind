@@ -124,12 +124,12 @@ module BerkeleyLibrary
           end
 
           it 'get derived fields without 035' do
-            expect(dummy_obj.send(:derived_tind_fields, id, id).map(&:tag)).to eq tags
+            expect(dummy_obj.send(:derived_tind_fields, id).map(&:tag)).to eq tags
           end
 
           it 'get derived fields with 035' do
             BerkeleyLibrary::TIND::Mapping::AlmaBase.is_035_from_mms_id = true
-            expect(dummy_obj.send(:derived_tind_fields, id, id).map(&:tag)).to eq tags_with_035
+            expect(dummy_obj.send(:derived_tind_fields, id).map(&:tag)).to eq tags_with_035
           end
 
         end

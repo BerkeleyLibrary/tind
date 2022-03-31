@@ -39,7 +39,7 @@ collection_tind_fields = BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_
 
 # 3. get other external tind fields
 other_external_tind_fields = []
-tind_fields_from_alma_id = BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_alma_id('991011084939706532')
+tind_fields_from_alma_id = BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_mms_id_fields('991011084939706532')
 
 other_external_tind_fields.concat tind_fields_from_alma_id
 

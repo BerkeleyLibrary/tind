@@ -24,11 +24,8 @@ module BerkeleyLibrary
             []
           end
 
-          def tind_fields_from_alma_id(mms_id, alma_id)
-            return mms_id_fields(mms_id) if mms_id
-
-            logger.warn("#{alma_id} has no Control Field 001")
-            []
+          def tind_mms_id_fields(mms_id)
+            mms_id ? mms_id_fields(mms_id) : []
           end
 
           private

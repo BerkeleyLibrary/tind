@@ -10,6 +10,14 @@
     <inspection_tool class="LanguageDetectionInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="Rubocop" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="RubyCaseWithoutElseBlockInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="RubyClassMethodNamingConvention" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="RubyClassModuleNamingConvention" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="RubyClassVariableNamingConvention" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="RubyConstantNamingConvention" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="RubyGlobalVariableNamingConvention" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="RubyInstanceMethodNamingConvention" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="RubyInstanceVariableNamingConvention" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="RubyLocalVariableNamingConvention" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="RubyMismatchedArgumentType" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myCheckNilability" value="false" />
     </inspection_tool>
@@ -28,6 +36,7 @@
     <inspection_tool class="RubyMismatchedVariableType" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myCheckNilability" value="false" />
     </inspection_tool>
+    <inspection_tool class="RubyParameterNamingConvention" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="RubyStringKeysInHashInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
     <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
       <option name="processCode" value="true" />

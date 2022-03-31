@@ -1,3 +1,7 @@
+# 0.6.0 (next)
+
+- Adds `BerkeleyLibrary::TIND::Mapping` module to map MARC records from Alma to TIND.
+
 # 0.5.1 (2023-03-23)
 
 - Fix an issue where `BerkeleyLibrary::TIND::MARC::XMLWriter` would drop fields with nonstandard tags (e.g. `FFT` fields)

@@ -4,7 +4,7 @@ require 'marc'
 module BerkeleyLibrary
   module TIND
     module Mapping
-      describe 'Misc' do
+      describe Misc do
         let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
         let(:qualified_alm_record) { qualified_alma_obj.record }
 
@@ -33,7 +33,7 @@ module BerkeleyLibrary
           expect(tind_marc.field_880_has_referred_tag?('490', field_880_without_subfield6)).to eq false
         end
 
-        it 'remove defined puctuations' do
+        it 'remove defined punctuations' do
           expect(tind_marc.send(:clr_value, ' [1785] Qing Qianlong 50 nian :,')).to eq '1785  Qing Qianlong 50 nian'
         end
 

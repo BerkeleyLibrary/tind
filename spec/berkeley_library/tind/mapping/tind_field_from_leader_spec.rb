@@ -4,7 +4,7 @@ require 'marc'
 module BerkeleyLibrary
   module TIND
     module Mapping
-      describe 'TindFieldFromLeader' do
+      describe TindFieldFromLeader do
 
         let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
         let(:qualified_alm_record) { qualified_alma_obj.record }

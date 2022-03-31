@@ -3,7 +3,7 @@ require 'spec_helper'
 module BerkeleyLibrary
   module TIND
     module Mapping
-      describe 'TindControlSubfield' do
+      describe TindControlSubfield do
         let(:dummy_obj) { Class.new { extend TindControlSubfield } }
         let(:dumy_obj_multiple_mapper) { Class.new { extend CsvMultipleMapper } }
         let(:leader_rules) { dumy_obj_multiple_mapper.rules[:tag_008] }

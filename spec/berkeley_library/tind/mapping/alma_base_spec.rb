@@ -4,7 +4,7 @@ require 'tempfile'
 module BerkeleyLibrary
   module TIND
     module Mapping
-      describe 'AlmaBase' do
+      describe AlmaBase do
         extend BerkeleyLibrary::Logging
         let(:dummy_obj) { Class.new { extend AlmaBase } }
         let(:alma_record) { ::MARC::Record.new }

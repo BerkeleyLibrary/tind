@@ -9,7 +9,7 @@ module BerkeleyLibrary
       # 008	      41             	41	                         a            _,_	          35	         37
       # 008	      269	                                         a	          _,_         	7	           10
 
-      describe 'TindFieldFromMultipleMap' do
+      describe TindFieldFromMultipleMap do
 
         let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
         let(:qualified_alm_record) { qualified_alma_obj.record }

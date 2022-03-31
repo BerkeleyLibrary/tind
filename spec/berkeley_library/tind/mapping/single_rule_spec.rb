@@ -5,7 +5,7 @@ module BerkeleyLibrary
   module TIND
     module Mapping
 
-      describe 'SingleRule' do
+      describe SingleRule do
 
         attr_reader :single_rule
 

@@ -4,7 +4,7 @@ require 'marc'
 module BerkeleyLibrary
   module TIND
     module Mapping
-      describe 'TindField' do
+      describe TindField do
         it 'Field 035' do
           f = TindField.f_035('Alibaba123')
           expect(f.tag).to eq '035'

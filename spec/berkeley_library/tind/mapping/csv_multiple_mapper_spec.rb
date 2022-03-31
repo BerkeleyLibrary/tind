@@ -4,7 +4,7 @@ require 'marc'
 module BerkeleyLibrary
   module TIND
     module Mapping
-      describe 'CsvMultipleMapper' do
+      describe CsvMultipleMapper do
         let(:dummy_class) { Class.new { extend CsvMultipleMapper } }
         let(:from_tag) { ['008', 'LDR'] }
         let(:rules_keys) { %i[tag_008 tag_LDR] }

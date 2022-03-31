@@ -4,7 +4,7 @@ require 'marc'
 module BerkeleyLibrary
   module TIND
     module Mapping
-      describe 'ExternalTindField' do
+      describe ExternalTindField do
         describe '# tind_fields_from_collection_information' do
           let(:good_hash) do
             {   '336' => ['Image'],

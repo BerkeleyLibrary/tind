@@ -3,7 +3,7 @@ require 'spec_helper'
 module BerkeleyLibrary
   module TIND
     module Mapping
-      describe 'AlmaSingleTIND' do
+      describe AlmaSingleTIND do
         let(:additona_245_field) { [Util.datafield('245', [' ', ' '], [Util.subfield('a', 'fake 245 a')])] }
         let(:marc_obj) { (::MARC::Record.new).append(additona_245_field) }
 

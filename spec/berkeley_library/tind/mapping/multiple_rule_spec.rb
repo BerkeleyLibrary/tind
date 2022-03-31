@@ -5,7 +5,7 @@ module BerkeleyLibrary
   module TIND
     module Mapping
 
-      describe 'MultipleRule' do
+      describe MultipleRule do
 
         attr_reader :multiple_rule
 

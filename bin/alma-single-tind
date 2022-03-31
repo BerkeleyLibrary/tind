@@ -33,15 +33,16 @@ def additional_tind_fields
   [fft] << f
 end
 
-############## Use this, when crate a TIND record from each Alma record ############
+############## Use this, when creating a TIND record from each Alma record ############
 # alma_id = '991085821143406532'
 # alma_id_bad = '99108582114340653' # a bad alma_id
-# alma_id_not_qualified = '991084606989706532' # Host histrical record
+# alma_id_not_qualified = '991084606989706532' # Host historical record
 barcode = 'C084093187'
 
 id = barcode
 setup
 
+BerkeleyLibrary::Alma::Config.default!
 alma_single_tind = BerkeleyLibrary::TIND::Mapping::AlmaSingleTIND.new
 tind_record = alma_single_tind.record(id, additional_tind_fields)
 alma_single_tind.save_tind_record_to_file(id, tind_record, 'tmp/test_single.xml')

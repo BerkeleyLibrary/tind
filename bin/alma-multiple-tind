@@ -44,6 +44,7 @@ alma_id = '991085821143406532'
 
 setup
 
+BerkeleyLibrary::Alma::Config.default!
 alma_multiple_tind = BerkeleyLibrary::TIND::Mapping::AlmaMultipleTIND.new(alma_id)
 tind_record = alma_multiple_tind.record(additional_tind_fields)
 alma_multiple_tind.save_tind_record_to_file(tind_record, 'tmp/multiple.xml')

@@ -43,6 +43,15 @@ application configuration (`Rails.application.config`).
 object, but will always be returned as a `URI` object, and an invalid
 string setting will raise `URI::InvalidURIError`.
 
+### Alma configuration
+
+When mapping Alma records to TIND (see below), this gem uses 
+[`berkeley_library-alma`](https://github.com/BerkeleyLibrary/alma) to load
+Alma records. The scripts in the `bin` directory use the default Alma
+configuration; see the `berkeley_library-alma` 
+[README](https://github.com/BerkeleyLibrary/alma#configuration) for
+details.
+
 ## Command-line tool: `tind-export`
 
 The `tind-export` command allows you to list TIND collections, or to
@@ -86,12 +95,10 @@ the TIND base URL and API key either via the environment, as above, or as option
 passed to the `tind-export` command. If both an explicit option and an environment
 variable are set for either, the explicit option takes precedence.
 
-
-
-
-## Transforming TIND Record
+## Mapping MARC records from Alma to TIND
 
 ### Transforming Class:
+
 1. BerkeleyLibrary::TIND::Mapping::AlmaSingleTIND    (Transforming one Alma record => One TIND record)
 2. BerkeleyLibrary::TIND::Mapping::AlmaMultipleTIND  (Transforming one Alma record => Multiple TIND records)
 
@@ -110,14 +117,12 @@ variable are set for either, the explicit option takes precedence.
     - 901$m
     - 85641$u,$y
 
-3. Added at the time of transforming TIND record (fields of a collection or it's record)
+3. Added at the time of transforming TIND record (fields of a collection or its record)
 
     - FFT
     - 035$a
     - 998$a
     - ...
-
-
 
 ### Example
 
@@ -183,20 +188,19 @@ id = 'C084093187'
 
 alma_tind = BerkeleyLibrary::TIND::Mapping::AlmaSingleTIND.new
 tind_record = alma_tind.record(id, additional_tind_fields_1)
-
 ```
 
 
 4. Or transforming one Alma record => Multiple TIND records
+
 ``` ruby
 setup_collection
 
-# id can be  1)mms_id;  2)Millennium no ; or 3)Barcode
+# id can be 1) mms_id; 2) Millennium bib number; or 3) Item barcode
 # id = '991085821143406532'
 id = 'C084093187'
 
 alma_tind = BerkeleyLibrary::TIND::Mapping::AlmaMultipleTIND.new(id)
 tind_record_1 = alma_tind.record(additional_tind_fields_1)
 tind_record_2 = alma_tind.record(additional_tind_fields_2)
-
 ```

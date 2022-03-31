@@ -60,7 +60,6 @@ module BerkeleyLibrary
         end
 
         def alma_record_from(id)
-          BerkeleyLibrary::Alma::Config.default!
           record_id = get_record_id(id)
           record_id.get_marc_record
         end

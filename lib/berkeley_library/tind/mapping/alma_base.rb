@@ -72,10 +72,10 @@ module BerkeleyLibrary
           tind_fields = []
           tind_fields << TindField.f_902_d
 
-          hash = BerkeleyLibrary::TIND::Mapping::AlmaBase.collection_parameter_hash
-          tind_fields.concat BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_collection_information(hash)
+          hash = AlmaBase.collection_parameter_hash
+          tind_fields.concat ExternalTindField.tind_fields_from_collection_information(hash)
 
-          tind_fields.concat BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_alma_id(mms_id, id)
+          tind_fields.concat ExternalTindField.tind_fields_from_alma_id(mms_id, id)
 
           f_035 = add_f_035(mms_id, hash)
           tind_fields << f_035 if f_035
@@ -84,7 +84,7 @@ module BerkeleyLibrary
         end
 
         def tind_record(id, marc_record, datafields)
-          tindmarc = BerkeleyLibrary::TIND::Mapping::TindMarc.new(marc_record)
+          tindmarc = TindMarc.new(marc_record)
           # get all derived tind_fields: 1) from collection information; 2) from id
           mms_id = tindmarc.field_catalog.mms_id
           tind_fields = derived_tind_fields(mms_id, id)

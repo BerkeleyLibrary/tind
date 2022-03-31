@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+
+begin
+  # This should work if (1) the gem is installed, or
+  # (2) we're in development and used `bundle exec`
+  require 'berkeley_library/tind'
+  require 'berkeley_library/alma'
+rescue LoadError
+  # If we're in development, `require 'bundler/setup'`
+  # is roughly equivalent to `bundle exec`
+  require 'bundler/setup'
+  require 'berkeley_library/tind'
+  require 'berkeley_library/alma'
+end
+
+# 1. get Alma record
+BerkeleyLibrary::Alma::Config.default!
+# oskicat_num = 'b11082434'
+# alma_num = '991011084939706532'
+# alma no 880 field
+alma_num = '991085821143406532'
+
+# alma no 880 field
+# alma_num =  '991039355849706532'
+record_id = BerkeleyLibrary::Alma::RecordId.parse(alma_num)
+oskicat_record = record_id.get_marc_record
+
+# 2. get collection information fields
+# This information from "collection name" table on share driver
+collection_parameters = {
+  '336' => ['Image'],
+  '852' => ['East Asian Library'],
+  '980' => ['pre_1912'],
+  '982' => ['Pre 1912 Chinese Materials', 'Pre 1912 Chinese Materials'],
+  '991' => []
+}
+
+collection_tind_fields = BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_collection_information(collection_parameters)
+
+# 3. get other external tind fields
+other_external_tind_fields = []
+tind_fields_from_alma_id = BerkeleyLibrary::TIND::Mapping::ExternalTindField.tind_fields_from_alma_id('991011084939706532')
+
+other_external_tind_fields.concat tind_fields_from_alma_id
+
+# 4. get fft fields
+
+new_subfield1 = BerkeleyLibrary::TIND::Mapping::Util.subfield('a', 'https://digitalassets.lib.berkeley.edu/pre1912ChineseMaterials/ucb/ready/991032333019706532/991032333019706532_v001_0064.jpg')
+new_subfield2 = BerkeleyLibrary::TIND::Mapping::Util.subfield('d', 'v001_0064')
+fft_datafield = BerkeleyLibrary::TIND::Mapping::Util.datafield('FFT', [' ',  ' '], [new_subfield1, new_subfield2])
+ffts = [fft_datafield]
+
+# 5. put all external tind fields together
+external_tind_fields = collection_tind_fields
+external_tind_fields.concat other_external_tind_fields
+external_tind_fields.concat ffts
+
+# 6. create tind-marc object,
+tindmarc = BerkeleyLibrary::TIND::Mapping::TindMarc.new(oskicat_record)
+
+# 7. add external tind fields(these tind fields will paticipate in "additional process")
+tindmarc.tind_external_datafields = external_tind_fields
+
+##### output ####
+# 8. Get tind fields mapped from alma
+# tindmarc.tindfields
+
+# 9. get a tind record which including external tind fields
+# tindmarc.tind_record
+
+# 10. save the tind record to an xml file
+
+tindmarc.save('tmp/test.xml')

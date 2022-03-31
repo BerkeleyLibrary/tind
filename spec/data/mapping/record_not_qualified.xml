@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+  <version>1.2</version>
+  <numberOfRecords>1</numberOfRecords>
+  <records>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <leader>02022nam a22004337a 4500</leader>
+          <controlfield tag="001">991046494559706532</controlfield>
+          <controlfield tag="005">20060905 TAPE EALR0905: 0018</controlfield>
+          <controlfield tag="008">000215s1785    cc            000 0 chi d</controlfield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(CUY)UCB-b113122639-01ucs_ber</subfield>
+          </datafield>
+          
+          <datafield ind1="0" ind2="0" tag="245">
+            <subfield code="6">880-99</subfield>
+            <subfield code="a">Host bibliographic record for boundwith item barcode C094698419</subfield>
+            <subfield code="b">[san juan] /</subfield>
+            <subfield code="c">Sun Xingyan xue.</subfield>
+          </datafield>
+
+           
+        </record>
+      </recordData>
+      <recordIdentifier>991046494559706532</recordIdentifier>
+      <recordPosition>1</recordPosition>
+    </record>
+  </records>
+  <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+    <xb:exact>true</xb:exact>
+    <xb:responseDate>2022-01-27T19:08:03-0800</xb:responseDate>
+  </extraResponseData>
+</searchRetrieveResponse>

@@ -30,7 +30,7 @@ To access the TIND API, you will need to set:
    it a "key", so that's the term we use here.)
 
 These can be set directly, via accessors in the `BerkeleyLibrary::TIND::Config` module;
-if they are not set, a value will be read from the environment, and if no 
+if they are not set, a value will be read from the environment, and if no
 value is present in the environment and Rails is loaded, from the Rails
 application configuration (`Rails.application.config`).
 
@@ -45,7 +45,7 @@ string setting will raise `URI::InvalidURIError`.
 
 ## Command-line tool: `tind-export`
 
-The `tind-export` command allows you to list TIND collections, or to 
+The `tind-export` command allows you to list TIND collections, or to
 export a TIND collection from the command line. (If the gem is installed,
 `tind-export` should be in your `$PATH`. If you've cloned the gem source,
 you can invoke it with `bin/tind-export` from the project root directory.)
@@ -85,3 +85,118 @@ For the full list of options, type `tind-export --help`. Note that you can set
 the TIND base URL and API key either via the environment, as above, or as options
 passed to the `tind-export` command. If both an explicit option and an environment
 variable are set for either, the explicit option takes precedence.
+
+
+
+
+## Transforming TIND Record
+
+### Transforming Class:
+1. BerkeleyLibrary::TIND::Mapping::AlmaSingleTIND    (Transforming one Alma record => One TIND record)
+2. BerkeleyLibrary::TIND::Mapping::AlmaMultipleTIND  (Transforming one Alma record => Multiple TIND records)
+
+### Source of TIND fields
+
+1. Mapped from an Alma record (automatically)
+
+2. Derived from collection information, mms_id, and date (automatically)
+
+    - 336$a
+    - 852$c
+    - 980$a
+    - 982$a,$b
+    - 991$a - (optional)
+    - 902$d
+    - 901$m
+    - 85641$u,$y
+
+3. Added at the time of transforming TIND record (fields of a collection or it's record)
+
+    - FFT
+    - 035$a
+    - 998$a
+    - ...
+
+
+
+### Example
+
+1. Setup collection information
+   
+   - 336:  type of resource
+   - 852:  collection's repository name
+   - 980:  collection's 980 value
+   - 982:  collection's short name and long name
+   - 991:  collection' restricted name (optional)
+
+``` ruby
+
+def setup_collection
+  BerkeleyLibrary::TIND::Mapping::AlmaBase.collection_parameter_hash = {
+    '336' => ['Image'],
+    '852' => ['East Asian Library'],
+    '980' => ['pre_1912'],
+    '982' => ['Pre 1912 Chinese Materials - short name', 'Pre 1912 Chinese Materials - long name'],
+    '991' => []
+  }
+  
+  # BerkeleyLibrary::TIND::Mapping::AlmaBase.is_035_from_mms_id = true  
+
+  # Flag on getting Alma record using Barcode
+  BerkeleyLibrary::TIND::Mapping::AlmaBase.is_barcode = true           
+end
+```
+
+2. Praparing additional fields
+
+    Adding field using:
+    -  field methods from module:  BerkeleyLibrary::TIND::Mapping::TindField
+    -  Or the original method from Ruby Marc when field method found in above module  
+        ::MARC::DataField.new(tag, indicator1, indicator, [code1, value1], [code2, value2] ...)
+
+```ruby
+
+def additional_tind_fields_1
+  txt = 'v001_0064'
+  url = 'https://digitalassets.lib.berkeley.edu/pre1912ChineseMaterials/ucb/ready/991032333019706532/991032333019706532_v001_0064.jpg'
+  fft = BerkeleyLibrary::TIND::Mapping::TindField.f_fft(url, txt)
+
+  f = ::MARC::DataField.new('998', ' ', ' ', ['a', 'fake-value'])
+  [fft] << f
+end
+
+def additional_tind_fields_2
+  txt = 'v001_0065'
+  url = 'https://digitalassets.lib.berkeley.edu/pre1912ChineseMaterials/ucb/ready/991032333019706532/991032333019706532_v001_0065.jpg'
+  fft = BerkeleyLibrary::TIND::Mapping::TindField.f_fft(url, txt)
+  [fft]
+end
+```
+
+3. Transforming one Alma record => One TIND record
+
+```ruby
+setup_collection
+
+# id can be  1)mms_id;  2)Millennium no ; or 3)Barcode
+id = 'C084093187'
+
+alma_tind = BerkeleyLibrary::TIND::Mapping::AlmaSingleTIND.new
+tind_record = alma_tind.record(id, additional_tind_fields_1)
+
+```
+
+
+4. Or transforming one Alma record => Multiple TIND records
+``` ruby
+setup_collection
+
+# id can be  1)mms_id;  2)Millennium no ; or 3)Barcode
+# id = '991085821143406532'
+id = 'C084093187'
+
+alma_tind = BerkeleyLibrary::TIND::Mapping::AlmaMultipleTIND.new(id)
+tind_record_1 = alma_tind.record(additional_tind_fields_1)
+tind_record_2 = alma_tind.record(additional_tind_fields_2)
+
+```

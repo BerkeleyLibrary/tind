@@ -1,0 +1,4 @@
+﻿ID,tag_origin,tag_destination,map_if_no_this_tag_existed,subfield_key,new_indecator,value_from,value_to
+1,8,41,41,a,"_,_",35,37
+5,8,269,,a,"_,_",7,10
+6,LDR,903,,b,"_,_",7,7

@@ -35,8 +35,8 @@ module BerkeleyLibrary
           return logger.warn("#{id} has no TIND record or not a qualified TIND record.") unless tind_record
 
           # tind_record.leader = nil
-          # writer = BerkeleyLibrary::TIND::MARC::XMLWriter.new(file)
-          writer = ::MARC::XMLWriter.new(file)
+          writer = BerkeleyLibrary::TIND::MARC::XMLWriter.new(file)
+          # writer = ::MARC::XMLWriter.new(file)
           writer.write(tind_record)
           writer.close
         end
@@ -99,7 +99,7 @@ module BerkeleyLibrary
         end
 
         def add_f_035(mms_id, hash)
-          return nil unless AlmaBase.is_035_from_mms_id
+          return nil unless mms_id && AlmaBase.is_035_from_mms_id
 
           val_980 = hash['980'][0].strip
           TindField.f_035_from_alma_id(mms_id, val_980)

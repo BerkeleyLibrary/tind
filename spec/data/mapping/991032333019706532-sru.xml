@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+  <version>1.2</version>
+  <numberOfRecords>1</numberOfRecords>
+  <records>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <leader>02731cam a2200421Ii 4500</leader>
+          <controlfield tag="001">991032333019706532</controlfield>
+          <controlfield tag="005">20211019014713.0</controlfield>
+          <controlfield tag="008">000110s1777    cc            000 0 chi d</controlfield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(CUY)UCB-b109259853-01ucs_ber</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(OCoLC)43247971</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(OCoLC)ocm43247971</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(EXLNZ-01UCS_NETWORK)9913298571106531</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="040">
+            <subfield code="a">CUY</subfield>
+            <subfield code="b">eng</subfield>
+            <subfield code="e">cgcrb</subfield>
+            <subfield code="c">CUY</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">OCLCF</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">OCLCO</subfield>
+            <subfield code="d">OCLCQ</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="049">
+            <subfield code="a">CUYM</subfield>
+          </datafield>
+          <datafield ind1="1" ind2=" " tag="100">
+            <subfield code="6">880-01</subfield>
+            <subfield code="a">Yue, Ke,</subfield>
+            <subfield code="d">1183-1234,</subfield>
+            <subfield code="e">author</subfield>
+          </datafield>
+          <datafield ind1="1" ind2=" " tag="880">
+            <subfield code="6">100-01</subfield>
+            <subfield code="a">岳珂,</subfield>
+            <subfield code="d">1183-1234,</subfield>
+            <subfield code="e">author</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="0" tag="245">
+            <subfield code="6">880-02</subfield>
+            <subfield code="a">Bao zhen zhai fa shu zan :</subfield>
+            <subfield code="b">28 juan /</subfield>
+            <subfield code="c">Yue Ke zhuan.</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="0" tag="880">
+            <subfield code="6">245-02</subfield>
+            <subfield code="a">寶真齋法書贊 :</subfield>
+            <subfield code="b">二十八卷 /</subfield>
+            <subfield code="c">岳珂撰.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="250">
+            <subfield code="6">880-03</subfield>
+            <subfield code="a">Wu ying dian ju zhen ban.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="880">
+            <subfield code="6">250-03</subfield>
+            <subfield code="a">武英殿聚珍版.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="1" tag="264">
+            <subfield code="6">880-04</subfield>
+            <subfield code="a">[Fujian :</subfield>
+            <subfield code="b">Fujian bu zheng si,</subfield>
+            <subfield code="c">Qing qian long 42 nian [1777]</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="1" tag="880">
+            <subfield code="6">264-04</subfield>
+            <subfield code="a">[福建 :</subfield>
+            <subfield code="b">福建佈政司,</subfield>
+            <subfield code="c">清乾隆42年[1777]</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="300">
+            <subfield code="a">8 volumes (double leaves) in case ;</subfield>
+            <subfield code="c">23 cm</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="336">
+            <subfield code="a">text</subfield>
+            <subfield code="b">txt</subfield>
+            <subfield code="2">rdacontent</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="337">
+            <subfield code="a">unmediated</subfield>
+            <subfield code="b">n</subfield>
+            <subfield code="2">rdamedia</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="338">
+            <subfield code="a">volume</subfield>
+            <subfield code="b">nc</subfield>
+            <subfield code="2">rdacarrier</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="6">880-05</subfield>
+            <subfield code="a">Engraved (early 19th cent.?) from Wu ying dian ju zhen ban ed.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="880">
+            <subfield code="6">500-05</subfield>
+            <subfield code="a">Engraved (early 19th cent.?) from 武英殿聚珍版 ed.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="0" tag="650">
+            <subfield code="6">880-06</subfield>
+            <subfield code="a">Calligraphy, Chinese.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="7" tag="880">
+            <subfield code="6">650-06</subfield>
+            <subfield code="a">子部</subfield>
+            <subfield code="x">藝術類</subfield>
+            <subfield code="x">書畫之属</subfield>
+            <subfield code="2">sk</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="7" tag="650">
+            <subfield code="a">Calligraphy, Chinese.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst00844390</subfield>
+          </datafield>
+          <datafield ind1="0" ind2="8" tag="776">
+            <subfield code="i">Online version:</subfield>
+            <subfield code="t">Bao zhen zhai fa shu zan.</subfield>
+            <subfield code="b">Wu ying dian ju zhen ban.</subfield>
+            <subfield code="d">[China : s.n., between 1774 and 1912]]</subfield>
+            <subfield code="w">(OCoLC)698022544</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="880">
+            <subfield code="6">500-00</subfield>
+            <subfield code="a">"玄","弘"字缺末笔(卷八葉八飯，葉九正; 卷七葉十二反),"琰","顒"字不避諱(卷七頁葉二十四正, 卷二十首葉反, 卷十葉十三反)</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="880">
+            <subfield code="6">500-00</subfield>
+            <subfield code="a">半葉框19.5x12.6 公分,9行21字小字雙行字數同,四周雙邊, 白口, 單黑魚尾,版心上鐫書名中鐫卷序及頁碼下鐫校者姓名.目录下鐫"武英殿聚珍版"</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="880">
+            <subfield code="6">500-00</subfield>
+            <subfield code="a">首有乾隆甲午仲夏 [1774]“御製題武英殿聚珍版十韻 有序”.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="880">
+            <subfield code="6">500-00</subfield>
+            <subfield code="a">是書特征與杨之峰作"《武英殿聚珍版丛书》零种的鉴定"一文中關於福建本的描述相符合, 出版年据马月华作"略论福建本'外聚珍'"中“福建省“ 外聚珍” 五次印本目录总表”.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="880">
+            <subfield code="6">561-00</subfield>
+            <subfield code="a">本書各冊封面有手題書名及卷序以及"陶孝邈瀏覽一次",首冊另有手題“戊辰仲春山農為紫藤舘主人題面”並鈐有“山子”朱文方印. 第八冊扉頁手題“此書為娛圍生舊藏貽其甥趙蘭士題簽者為孫子杉農瀏覽者為陶子紫畛 庚午熾暑無聊題卷画”. 鈐印：“今関天彭之印”</subfield>
+            <subfield code="5">CU-EAST</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="4" tag="880">
+            <subfield code="6">510-00</subfield>
+            <subfield code="a">图书馆学刊,</subfield>
+            <subfield code="c">2009(01) : 89-91.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="4" tag="880">
+            <subfield code="6">510-00</subfield>
+            <subfield code="a">中国典籍与文化,</subfield>
+            <subfield code="c">2010(02): 73-85.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="955">
+            <subfield code="a">eaek</subfield>
+            <subfield code="9">local</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="955">
+            <subfield code="a">20211019</subfield>
+            <subfield code="b">eahl</subfield>
+            <subfield code="9">local</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="955">
+            <subfield code="a">eaek</subfield>
+            <subfield code="9">local</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="996">
+            <subfield code="e">GLADN117908085</subfield>
+            <subfield code="9">local</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="996">
+            <subfield code="a">b109259853</subfield>
+            <subfield code="b">Updated: 12-21-20</subfield>
+            <subfield code="c">Created: 03-16-09</subfield>
+            <subfield code="d">CatDate: 08-25-11</subfield>
+            <subfield code="9">local</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">991032333019706532</subfield>
+            <subfield code="8">22670862550006532</subfield>
+            <subfield code="a">01UCS_BER</subfield>
+            <subfield code="b">NRLF</subfield>
+            <subfield code="c">NRLF (UCB)</subfield>
+            <subfield code="d">6138.7712</subfield>
+            <subfield code="e">available</subfield>
+            <subfield code="f">1</subfield>
+            <subfield code="g">0</subfield>
+            <subfield code="i">UCB_Campus</subfield>
+            <subfield code="j">nbea</subfield>
+            <subfield code="k">0</subfield>
+            <subfield code="p">1</subfield>
+            <subfield code="q">Northern Regional Library Facility</subfield>
+            <subfield code="t">v. 1-8</subfield>
+          </datafield>
+        </record>
+      </recordData>
+      <recordIdentifier>991032333019706532</recordIdentifier>
+      <recordPosition>1</recordPosition>
+    </record>
+  </records>
+  <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+    <xb:exact>true</xb:exact>
+    <xb:responseDate>2022-04-04T10:17:17-0700</xb:responseDate>
+  </extraResponseData>
+</searchRetrieveResponse>

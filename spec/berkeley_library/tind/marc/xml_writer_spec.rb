@@ -187,6 +187,30 @@ module BerkeleyLibrary
               end
             end
           end
+
+          it 'writes to a Tempfile object' do
+            Dir.mktmpdir(File.basename(__FILE__, '.rb')) do |dir|
+              out = Tempfile.new(File.join(dir, 'marc.xml'))
+              begin
+                # noinspection RubyMismatchedArgumentType
+                w = XMLWriter.new(out)
+                w.write(record)
+                w.close
+
+                expected = File.open(input_path) { |f| Nokogiri::XML(f) }
+                actual = File.open(out.path) { |f| Nokogiri::XML(f) }
+              ensure
+                out.close
+                out.unlink
+              end
+
+              aggregate_failures do
+                EquivalentXml.equivalent?(expected, actual) do |n1, n2, result|
+                  expect(n2.to_s).to eq(n1.to_s) unless result
+                end
+              end
+            end
+          end
         end
       end
     end

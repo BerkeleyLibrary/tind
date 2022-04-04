@@ -52,7 +52,7 @@ module BerkeleyLibrary
         describe '# base_save' do
           it 'save tind record' do
             dummy_obj.base_save('C084093187', qualified_alm_record, save_to_file)
-            expect(File.open(save_to_file.path).readlines[0]).to eq "<?xml version='1.0'?>\n"
+            expect(File.open(save_to_file.path).readlines[0]).to eq "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
           end
         end
 

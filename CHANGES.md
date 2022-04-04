@@ -1,6 +1,8 @@
 # 0.6.0 (next)
 
 - Adds `BerkeleyLibrary::TIND::Mapping` module to map MARC records from Alma to TIND.
+- `BerkeleyLibrary::TIND::MARC::XMLWriter` now assumes that any object that response to `:write`
+  and `:close` is suffiently `IO`-like to write to.
 
 # 0.5.1 (2023-03-23)
 

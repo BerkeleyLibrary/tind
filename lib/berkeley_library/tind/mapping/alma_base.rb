@@ -34,11 +34,9 @@ module BerkeleyLibrary
         def base_save(id, tind_record, file)
           return logger.warn("#{id} has no TIND record or not a qualified TIND record.") unless tind_record
 
-          # tind_record.leader = nil
-          writer = BerkeleyLibrary::TIND::MARC::XMLWriter.new(file)
-          # writer = ::MARC::XMLWriter.new(file)
-          writer.write(tind_record)
-          writer.close
+          BerkeleyLibrary::TIND::MARC::XMLWriter.open(file) do |writer|
+            writer.write(tind_record)
+          end
         end
 
         private

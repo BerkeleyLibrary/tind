@@ -9,7 +9,7 @@ module BerkeleyLibrary
         include FieldCatalogUtil
         include TindSubfieldUtil
         include CsvMapper
-        
+
         let(:qualified_alma_obj) { Alma.new('spec/data/mapping/record.xml') }
         let(:qualified_alm_record) { qualified_alma_obj.record }
         let(:regular_field_tags) do

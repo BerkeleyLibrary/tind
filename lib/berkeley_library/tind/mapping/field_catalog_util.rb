@@ -16,6 +16,7 @@ module BerkeleyLibrary
             next unless tag
 
             rule = rules[Util.tag_symbol(tag)]
+
             assing_field(rule, f, datafields_hash)
           end
 

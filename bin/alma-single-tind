@@ -22,7 +22,7 @@ def setup
     '991' => []
   }
   BerkeleyLibrary::TIND::Mapping::AlmaBase.is_035_from_mms_id = true
-  BerkeleyLibrary::TIND::Mapping::AlmaBase.is_barcode = true
+  BerkeleyLibrary::TIND::Mapping::AlmaBase.is_barcode = false
 end
 
 def additional_tind_fields

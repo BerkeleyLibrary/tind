@@ -20,19 +20,25 @@ module BerkeleyLibrary
         # 1) Alma mms id
         # 2) Oskicat No
         # 3) BarCode No
-        # When alma record is nil or un-qualified, it returns nil
+        # When alma record is nil or un-qualified, raise error
         # Input datafields - an array of record specific datafields:  for example, fft datafields, datafield 035 etc.
+
         def base_tind_record(id, datafields, alma_record = nil)
           marc_record = alma_record || alma_record_from(id)
 
-          return nil unless marc_record?(marc_record, id)
+          raise ArgumentError, "#{id} has no Alma record." unless marc_record
 
-          qualified?(marc_record, id) ? tind_record(id, marc_record, datafields) : nil
+          unless Util.qualified_alma_record?(marc_record)
+            raise ArgumentError,
+                  "#{id} belong to a host bibliographic record which should not be uploaded to TIND."
+          end
+
+          tind_record(id, marc_record, datafields)
         end
 
         # This is mainly for testing purpose, each collection can have a function to save it's record
         def base_save(id, tind_record, file)
-          return logger.warn("#{id} has no TIND record or not a qualified TIND record.") unless tind_record
+          raise ArgumentError, "#{id} has no TIND record or not a qualified TIND record." unless tind_record
 
           BerkeleyLibrary::TIND::MARC::XMLWriter.open(file) do |writer|
             writer.write(tind_record)
@@ -41,24 +47,10 @@ module BerkeleyLibrary
 
         private
 
-        def marc_record?(alma_record, id)
-          return true if alma_record
-
-          logger.warn("#{id} has no Alma record.")
-          false
-        end
-
-        def qualified?(alma_record, id)
-          unless Util.qualified_alma_record?(alma_record)
-            logger.warn("#{id} belong to a host bibliographic record which should not be uploaded to TIND.")
-            return false
-          end
-
-          true
-        end
-
         def alma_record_from(id)
           record_id = get_record_id(id)
+          raise ArgumentError, "#{id} gets no BarCode or RecordId from Alma module." unless record_id
+
           record_id.get_marc_record
         end
 

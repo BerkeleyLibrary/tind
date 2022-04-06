@@ -129,7 +129,7 @@ module BerkeleyLibrary
           # no one-occurrence defined in csv
           return true unless one_occurrence_tags.include? tag
 
-           # Checking the exsisting regular fields include the one-occurrence field defined in the csv
+          # Checking the exsisting regular fields include the one-occurrence field defined in the csv
           !(@alma_field_tags.compact.include? tag)
         end
 

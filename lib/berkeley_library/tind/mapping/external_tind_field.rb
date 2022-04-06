@@ -18,14 +18,15 @@ module BerkeleyLibrary
           include BerkeleyLibrary::Logging
 
           def tind_fields_from_collection_information(hash)
-            return collection_fields(hash) if valid_collection_hash?(hash)
+            raise ArgumentError, 'Collection parameters are incorrect.' unless valid_collection_hash?(hash)
 
-            logger.warn('Collection parameters are incorrect, please check.')
-            []
+            collection_fields(hash)
           end
 
           def tind_mms_id_fields(mms_id)
-            mms_id ? mms_id_fields(mms_id) : []
+            raise ArgumentError, 'mms_id is nil' unless mms_id
+
+            mms_id_fields(mms_id)
           end
 
           private

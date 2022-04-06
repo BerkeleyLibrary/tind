@@ -78,21 +78,7 @@ module BerkeleyLibrary
             mapper = BerkeleyLibrary::TIND::Mapping::AlmaSingleTIND.new
             url = "https://digitalassets.lib.berkeley.edu/pre1912ChineseMaterials/ucb/ready/#{id}/#{id}_v001_0064.jpg"
             fft = BerkeleyLibrary::TIND::Mapping::TindField.f_fft(url, 'v001_0064')
-            tind_record = mapper.record(id, [fft])
-
-            expect(tind_record).to be_a(::MARC::Record)
-            expect(tind_record['FFT']).to eq(fft)
-
-            expect(tind_record['901']).to be_nil
-            expect(tind_record['035']).to be_nil
-
-            alma_record = ::MARC::XMLReader.read(StringIO.new(marc_xml)).first
-            sf_245a_expected = alma_record.spec('245$a{$6=\880-02}').first
-            sf_245_value_expected = sf_245a_expected.value.sub(/[^[:alnum:]]+$/, '')
-
-            sf_245a_actual = tind_record.spec('245$a{$6=\880-02}').first
-            sf_245a_value_actual = sf_245a_actual.value
-            expect(sf_245a_value_actual).to eq(sf_245_value_expected)
+            expect { mapper.record(id, [fft]) }.to raise_error(ArgumentError)
           end
         end
       end

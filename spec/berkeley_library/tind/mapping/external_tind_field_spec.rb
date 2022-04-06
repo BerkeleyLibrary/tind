@@ -21,7 +21,7 @@ module BerkeleyLibrary
           end
 
           it 'get [] derived from empty collection information' do
-            expect(ExternalTindField.tind_fields_from_collection_information(bad_hash).map(&:tag)).to eq []
+            expect { ExternalTindField.tind_fields_from_collection_information(bad_hash).map(&:tag) }.to raise_error(ArgumentError)
           end
         end
 
@@ -35,8 +35,7 @@ module BerkeleyLibrary
 
           it 'get empty tind fields from a nil alma id' do
             alma_id = nil
-            expect(ExternalTindField.tind_mms_id_fields(alma_id).map(&:tag)).to eq []
-
+            expect { ExternalTindField.tind_mms_id_fields(alma_id).map(&:tag) }.to raise_error(ArgumentError)
           end
         end
 

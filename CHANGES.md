@@ -1,3 +1,7 @@
+# 0.6.1 (next)
+
+- Removes `BerkeleyLibrary::Util::Files` class, which is now part of `berkeley_library-util`.
+
 # 0.6.0 (2023-04-06)
 
 - Adds `BerkeleyLibrary::TIND::Mapping` module to map MARC records from Alma to TIND.

@@ -5,6 +5,7 @@ require 'json'
 module BerkeleyLibrary
   module TIND
     module API
+
       class FileUpload
         include BerkeleyLibrary::Logging
 
@@ -17,7 +18,7 @@ module BerkeleyLibrary
           hash = pre_assigned_hash
           hash ? upload(file, hash) : nil
         rescue StandardError => e
-          raise "'#{file}' uploading failed - #{e.message} "
+          raise " uploading '#{file}' failed: #{e.message} "
         ensure
           nil
         end
@@ -30,7 +31,8 @@ module BerkeleyLibrary
             url: @url,
             headers: @headers
           )
-          success?(response) ? JSON.parse(response) : nil
+          puts JSON.parse(response)
+          success?(response, 200) ? JSON.parse(response) : nil
         end
 
         def upload(file, hash)
@@ -46,23 +48,35 @@ module BerkeleyLibrary
           fft_params(response, hash)
         end
 
-        def success?(response)
-          return true if response.status.success? # 3XX
+        def success?(response, expected_code)
+          code = response.code
 
-          raise 'Client side error' if response.status.client_error? # 4XX
-          raise 'Server side error' if response.status.server_error? # 5XX
+          return true if  code == expected_code
+
+          raise_error(code)
 
           false
         end
 
-        def fft_params(response, hash)
-          return nil unless success?(response)
+        def raise_error(code)
+          val = code.to_s
+          first_chr = val[0]
+          case first_chr
+          when first_chr == '4' then  raise 'Client side error'
+          when first_chr == '5' then  raise 'Server side error'
+          else
+            raise "Error: RestClient code = #{val}"
+          end
+        end
 
-          { object_id: obj_key(hash), etag: response.headers[:etag] }
+        def fft_params(response, hash)
+          return nil unless success?(response, 204) # success but no content
+
+          { object_id: obj_key(hash), etag: obj_etag(response) }
         end
 
         def pre_assigned_headers(token)
-          str = "'Token #{token}'"
+          str = "Token #{token}"
           { 'Authorization' => str }
         end
 
@@ -74,16 +88,21 @@ module BerkeleyLibrary
           fields(hash)['key']
         end
 
+        def obj_etag(response)
+          response.headers[:etag].delete('\"')
+        end
+
         def upload_url(hash)
           hash['data']['url']
         end
 
         def upload_headers(hash)
           val = fields(hash)['acl']
-          { 'x-amz-acl' => "'#{val}'" }
+          { 'x-amz-acl' => val }
         end
 
       end
+
     end
   end
 end

@@ -27,7 +27,7 @@ module BerkeleyLibrary
           hash = pre_assigned_hash(pre_response)
 
           upload_response = upload(file, hash)
-          fft_params(upload_response, hash)
+          fft_params(upload_response, hash, file)
         end
 
         private
@@ -101,7 +101,7 @@ module BerkeleyLibrary
           when first_chr == '5' then  raise 'Server side error'
           else
             raise " Error: RestClient response code = #{val}" unless file
-            
+
             txt = " Failed in uploading '#{file}': RestClient response code = #{val}"
             logger.error(txt)
           end

@@ -31,6 +31,7 @@ module BerkeleyLibrary
         end
 
         private
+
         # def pre_assigned_hash
         #   response = RestClient::Request.execute(
         #     method: :get,

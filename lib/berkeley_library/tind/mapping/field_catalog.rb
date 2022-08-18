@@ -47,7 +47,8 @@ module BerkeleyLibrary
         def prepare_catalog(record)
           clean_fields = clean_subfields(record.fields)
           check_abnormal_formated_subfield6(clean_fields)
-          allocate_fields(clean_fields)
+          final_fields_to_map = fields_to_map(clean_fields)
+          allocate_fields(final_fields_to_map)
           remove_fields_with_subject_fast
         end
 
@@ -115,16 +116,6 @@ module BerkeleyLibrary
         # If tag is listed in csv_mapper.one_occurrence_tags
         # Check pre_existed field of this tag
         # make sure to keep the first datafield for an one_occurrence_tag defined in csv mapping file
-        # def no_pre_existed_field?(tag)
-        #   # no one-occurrence defined in csv
-        #   return true unless one_occurrence_tags.include? tag
-
-        #   # Checking the exsisting regular fields include the one-occurrence field defined in the csv
-        #   return false if @alma_field_tags.compact.include? tag
-
-        #   true
-        # end
-
         def no_pre_existed_field?(tag)
           # no one-occurrence defined in csv
           return true unless one_occurrence_tags.include? tag

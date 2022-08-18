@@ -127,7 +127,8 @@ variable are set for either, the explicit option takes precedence.
 ### Example
 
 1. Setup collection information
-   
+
+   Include below collection level fields:
    - 336:  type of resource
    - 852:  collection's repository name
    - 980:  collection's 980 value
@@ -137,6 +138,7 @@ variable are set for either, the explicit option takes precedence.
 ``` ruby
 
 def setup_collection
+  # 1. Define collection level field information 
   BerkeleyLibrary::TIND::Mapping::AlmaBase.collection_parameter_hash = {
     '336' => ['Image'],
     '852' => ['East Asian Library'],
@@ -145,10 +147,26 @@ def setup_collection
     '991' => []
   }
   
+  # 2. A flag to include a pre-defined 035 formated in "(980__$a)mms_id",
+  #    the default value is 'false'
   # BerkeleyLibrary::TIND::Mapping::AlmaBase.is_035_from_mms_id = true  
 
-  # Flag on getting Alma record using Barcode
-  BerkeleyLibrary::TIND::Mapping::AlmaBase.is_barcode = true           
+  # 3. A flag on getting Alma record using Barcode, the defalut value is 'false'
+  # BerkeleyLibrary::TIND::Mapping::AlmaBase.is_barcode = true    
+  
+  # 4. Define a list of origin tags from an Alma record.
+  #    Only those related fields (including 880 fields) will be mapped to a TIND record.
+  #    The default value is []. '001', '008' will be included by default, no need to be listed here.
+  # BerkeleyLibrary::TIND::Mapping::AlmaBase.excluding_origin_tags = %w[256]
+
+  # 5. Define a list of origin tags from an Alma record which will be excluded during mapping. 
+  #    The default value is []
+  #       1) When the list includes an 880 tag, all 880 fields will be excluded
+  #       2) When the list has no 880 tag, only related 880 fields will be excludded 
+  # BerkeleyLibrary::TIND::Mapping::AlmaBase.including_origin_tags = %w[245 700]
+
+  # 6. Not allow to define both #5 and #6. Returning empty fields when defining both #5 and #6
+    
 end
 ```
 
@@ -203,4 +221,21 @@ id = 'C084093187'
 alma_tind = BerkeleyLibrary::TIND::Mapping::AlmaMultipleTIND.new(id)
 tind_record_1 = alma_tind.record(additional_tind_fields_1)
 tind_record_2 = alma_tind.record(additional_tind_fields_2)
+```
+
+5. Chnage TIND record using TindRecordUtil to : 1) add/update subfields to one-occurrenced field; 2) remove fields.
+
+``` ruby
+# 5.1 An example hash for updating/adding subfields.  For example, if 245__$b existed, it will be replaced with 'subtitle', otherwise, add a 245__$b subfield with the value 'subtile'; '246' => {a: nil}  will not add/update 246__$a
+
+tag_subfield_hash = { '245' => { b: 'subtitle', a: 'title' }, '336' => { a: 'Audio' }, '246' => {a: nil}}
+
+# 5.2 An example array of removing fields. An item includes field information: [tag, indicator1, indictor2].  When indicator is empty, using '_'
+fields_removal_list = [%w[856 4 1] %w[260 _ _]]
+
+new_record = BerkeleyLibrary::TIND::Mapping::TindRecordUtil.update_record(record, tag_subfield_hash, fields_removal_list )
+
+
+
+
 ```

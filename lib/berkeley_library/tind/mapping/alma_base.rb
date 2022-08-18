@@ -9,11 +9,16 @@ module BerkeleyLibrary
         @collection_parameter_hash = {}
         @is_barcode = false
         @is_035_from_mms_id = false
+        @including_origin_tags = []
+        @excluding_origin_tags = []
 
         class << self
           attr_accessor :collection_parameter_hash
           attr_accessor :is_barcode
           attr_accessor :is_035_from_mms_id
+          attr_accessor :including_origin_tags
+          attr_accessor :excluding_origin_tags
+
         end
 
         # id can be:
@@ -74,6 +79,8 @@ module BerkeleyLibrary
         end
 
         def tind_record(id, marc_record, datafields)
+          return nil unless Util.collection_config_correct?
+
           tindmarc = TindMarc.new(marc_record)
           # get all derived tind_fields: 1) from collection information; 2) from id
           mms_id = tindmarc.field_catalog.mms_id

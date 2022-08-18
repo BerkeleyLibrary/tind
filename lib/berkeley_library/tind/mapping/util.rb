@@ -1,10 +1,12 @@
 require 'csv'
 require 'marc'
+require 'berkeley_library/tind/mapping/alma_base'
 
 module BerkeleyLibrary
   module TIND
     module Mapping
       module Util
+        include AlmaBase
 
         class << self
 
@@ -76,6 +78,12 @@ module BerkeleyLibrary
           def from_xml(xml)
             # noinspection RubyYardReturnMatch,RubyMismatchedReturnType
             all_from_xml(xml).first
+          end
+
+          def collection_config_correct?
+            no_including = BerkeleyLibrary::TIND::Mapping::AlmaBase.including_origin_tags.empty?
+            no_excluding = BerkeleyLibrary::TIND::Mapping::AlmaBase.excluding_origin_tags.empty?
+            no_including || no_excluding
           end
 
           private

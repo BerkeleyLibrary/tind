@@ -15,7 +15,6 @@ module BerkeleyLibrary
         let(:no_880_matching_count) { 4 }
 
         it 'get 880 un-matched fields' do
-          # puts tind_marc.send(:un_matched_fields_880, data_fields, '991032577079706532').inspect
           expect(tind_marc.send(:un_matched_fields_880, data_fields, '991032577079706532').length).to eq no_880_matching_count
         end
 

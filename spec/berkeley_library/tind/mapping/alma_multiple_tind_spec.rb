@@ -5,7 +5,7 @@ module BerkeleyLibrary
     module Mapping
       describe AlmaMultipleTIND do
         let(:additona_245_field) { [Util.datafield('245', [' ', ' '], [Util.subfield('a', 'fake 245 a')])] }
-        let(:marc_obj) { (::MARC::Record.new).append(additona_245_field) }
+        let(:marc_obj) { ::MARC::Record.new.append(additona_245_field) }
 
         it ' get tind record' do
           allow_any_instance_of(BerkeleyLibrary::TIND::Mapping::AlmaMultipleTIND).to receive(:alma_record_from).with('991085821143406532').and_return(marc_obj)

@@ -94,7 +94,8 @@ module BerkeleyLibrary
         def assign_field(rule, f, datafields_hash)
           if rule.pre_existed_tag then datafields_hash[:pre_tag] << f
           elsif rule.pre_existed_tag_subfield then datafields_hash[:pre_tag_subfield] << f
-          else  datafields_hash[:normal] << f
+          else
+            datafields_hash[:normal] << f
           end
         end
 

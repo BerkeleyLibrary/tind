@@ -14,33 +14,45 @@ module BerkeleyLibrary
         let(:pre_assign_heders) { { 'Authorization' => 'Token aabbccdd1234' } }
         let(:pre_assign_response_body) { File.open('./spec/data/api/pre_assigned_response.json') }
 
-        describe '#preassign_response' do
+        xdescribe '#preassign_response' do
           it 'request to get a pre-assigned url and ACL' do
-            stub_request(:get, tind_s3_api)
-              .with(
-                headers: {
-                  'Accept' => '*/*',
-                  'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                  'Authorization' => 'Token aabbccdd1234',
-                  'Host' => 'berkeley-test.tind.io',
-                  'User-Agent' => 'rest-client/2.1.0 (darwin19 x86_64) ruby/2.7.5p203'
-                }
-              )
+            stub_request(:get, /berkeley-test.tind.io/)
+              .with(headers: pre_assign_heders)
               .to_return(status: 200, body: pre_assign_response_body, headers: {})
-
-            # registered request stubs:
-            stub_request(:get, tind_s3_api)
-              .with(
-                headers: {
-                  'Authorization' => 'Token aabbccdd1234'
-                }
-              )
-
-            resp = UploadFile.presign_response
+    
+            resp = uploader.presign_response
             expect(resp['data']['url']).to eq('https://test_bucket.s3.amazonaws.com/')
             expect(resp['data']['fields']['acl']).to eq('private')
           end
         end
+
+        # describe '#preassign_response' do
+        #   it 'request to get a pre-assigned url and ACL' do
+        #     stub_request(:get, tind_s3_api)
+        #       .with(
+        #         headers: {
+        #           'Accept' => '*/*',
+        #           'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        #           'Authorization' => 'Token aabbccdd1234',
+        #           'Host' => 'berkeley-test.tind.io',
+        #           'User-Agent' => 'rest-client/2.1.0 (darwin19 x86_64) ruby/2.7.5p203'
+        #         }
+        #       )
+        #       .to_return(status: 200, body: pre_assign_response_body, headers: {})
+
+        #     # registered request stubs:
+        #     stub_request(:get, tind_s3_api)
+        #       .with(
+        #         headers: {
+        #           'Authorization' => 'Token aabbccdd1234'
+        #         }
+        #       )
+
+        #     resp = UploadFile.presign_response
+        #     expect(resp['data']['url']).to eq('https://test_bucket.s3.amazonaws.com/')
+        #     expect(resp['data']['fields']['acl']).to eq('private')
+        #   end
+        # end
 
         describe '#excute' do
           it 'post to upload a file to S3, and get etag from responsed header' do

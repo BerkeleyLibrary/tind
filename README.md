@@ -45,10 +45,10 @@ string setting will raise `URI::InvalidURIError`.
 
 ### Alma configuration
 
-When mapping Alma records to TIND (see below), this gem uses 
+When mapping Alma records to TIND (see below), this gem uses
 [`berkeley_library-alma`](https://github.com/BerkeleyLibrary/alma) to load
 Alma records. The scripts in the `bin` directory use the default Alma
-configuration; see the `berkeley_library-alma` 
+configuration; see the `berkeley_library-alma`
 [README](https://github.com/BerkeleyLibrary/alma#configuration) for
 details.
 
@@ -138,7 +138,7 @@ variable are set for either, the explicit option takes precedence.
 ``` ruby
 
 def setup_collection
-  # 1. Define collection level field information 
+  # 1. Define collection level field information
   BerkeleyLibrary::TIND::Mapping::AlmaBase.collection_parameter_hash = {
     '336' => ['Image'],
     '852' => ['East Asian Library'],
@@ -146,27 +146,27 @@ def setup_collection
     '982' => ['Pre 1912 Chinese Materials - short name', 'Pre 1912 Chinese Materials - long name'],
     '991' => []
   }
-  
+
   # 2. A flag to include a pre-defined 035 formated in "(980__$a)mms_id",
   #    the default value is 'false'
   # BerkeleyLibrary::TIND::Mapping::AlmaBase.is_035_from_mms_id = true  
 
   # 3. A flag on getting Alma record using Barcode, the defalut value is 'false'
   # BerkeleyLibrary::TIND::Mapping::AlmaBase.is_barcode = true    
-  
+
   # 4. Define a list of origin tags from an Alma record.
   #    Only those related fields (including 880 fields) will be mapped to a TIND record.
   #    The default value is []. '001', '008' will be included by default, no need to be listed here.
   # BerkeleyLibrary::TIND::Mapping::AlmaBase.excluding_origin_tags = %w[256]
 
-  # 5. Define a list of origin tags from an Alma record which will be excluded during mapping. 
+  # 5. Define a list of origin tags from an Alma record which will be excluded during mapping.
   #    The default value is []
   #       1) When the list includes an 880 tag, all 880 fields will be excluded
-  #       2) When the list has no 880 tag, only related 880 fields will be excludded 
+  #       2) When the list has no 880 tag, only related 880 fields will be excludded
   # BerkeleyLibrary::TIND::Mapping::AlmaBase.including_origin_tags = %w[245 700]
 
   # 6. Not allow to define both #5 and #6. Returning empty fields when defining both #5 and #6
-    
+
 end
 ```
 
@@ -226,21 +226,23 @@ tind_record_2 = alma_tind.record(additional_tind_fields_2)
 5. Chnage TIND record using TindRecordUtil to : 1) add/update subfields to one-occurrenced field; 2) remove fields.
 
 ``` ruby
-# 5.1 An example hash for updating/adding subfields.  For example, 
-# if 245__$b existed, it will be replaced with 'subtitle';
-# otherwise, add a 245__$b subfield with the value 'subtile'; 
-# '246' => {'a' => nil}  will not add/update 246__$a
-
+# 5.1 This is an example hash for updating/adding subfields.  
 tag_subfield_hash = { '245' => { 'b' => 'subtitle', 'a' => 'title' }, '336' => { 'a' => 'Audio' }, '246' => {'a' => nil}}
 
-# 5.2 An example array of removing fields. An item includes field information: [tag, indicator1, indictor2]. 
-# if indicator is empty, using '_'
+# if 245__$b existed, it will be replaced it with 'subtitle';
+# otherwise, adding a new 245__$b subfield with value 'subtile';
+# '246' => {'a' => nil}, since value is nil, it won't add/update 246__$a
+
+# 5.2 This is an example array of removing fields.
 fields_removal_list = [%w[856 4 1] %w[260 _ _]]
 
+# Each item includes field information: [tag, indicator1, indictor2].
+# if indicator is empty, using '_'
+
 # How to use it:
-    #   a.  add/update subfields of existed fields in a TIND Marc record: 
+    #   a.  add/update subfields of existed fields in a TIND Marc record:
             new_record = BerkeleyLibrary::TIND::Mapping::TindRecordUtil.update_record(record, tag_subfield_hash)
-    #   b.  remove a list of fields in a TIND Marct record: 
+    #   b.  remove a list of fields in a TIND Marc record:
             new_record = BerkeleyLibrary::TIND::Mapping::TindRecordUtil.update_record(record, nil, fields_removal_list)
     #   c.  both a. and b. :
             new_record = BerkeleyLibrary::TIND::Mapping::TindRecordUtil.update_record(record, tag_subfield_hash, fields_removal_list)

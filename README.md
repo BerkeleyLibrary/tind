@@ -226,16 +226,23 @@ tind_record_2 = alma_tind.record(additional_tind_fields_2)
 5. Chnage TIND record using TindRecordUtil to : 1) add/update subfields to one-occurrenced field; 2) remove fields.
 
 ``` ruby
-# 5.1 An example hash for updating/adding subfields.  For example, if 245__$b existed, it will be replaced with 'subtitle', otherwise, add a 245__$b subfield with the value 'subtile'; '246' => {a: nil}  will not add/update 246__$a
+# 5.1 An example hash for updating/adding subfields.  For example, 
+# if 245__$b existed, it will be replaced with 'subtitle';
+# otherwise, add a 245__$b subfield with the value 'subtile'; 
+# '246' => {'a' => nil}  will not add/update 246__$a
 
-tag_subfield_hash = { '245' => { b: 'subtitle', a: 'title' }, '336' => { a: 'Audio' }, '246' => {a: nil}}
+tag_subfield_hash = { '245' => { 'b' => 'subtitle', 'a' => 'title' }, '336' => { 'a' => 'Audio' }, '246' => {'a' => nil}}
 
-# 5.2 An example array of removing fields. An item includes field information: [tag, indicator1, indictor2].  When indicator is empty, using '_'
+# 5.2 An example array of removing fields. An item includes field information: [tag, indicator1, indictor2]. 
+# if indicator is empty, using '_'
 fields_removal_list = [%w[856 4 1] %w[260 _ _]]
 
-new_record = BerkeleyLibrary::TIND::Mapping::TindRecordUtil.update_record(record, tag_subfield_hash, fields_removal_list )
-
-
-
+# How to use it:
+    #   a.  add/update subfields of existed fields in a TIND Marc record: 
+            new_record = BerkeleyLibrary::TIND::Mapping::TindRecordUtil.update_record(record, tag_subfield_hash)
+    #   b.  remove a list of fields in a TIND Marct record: 
+            new_record = BerkeleyLibrary::TIND::Mapping::TindRecordUtil.update_record(record, nil, fields_removal_list)
+    #   c.  both a. and b. :
+            new_record = BerkeleyLibrary::TIND::Mapping::TindRecordUtil.update_record(record, tag_subfield_hash, fields_removal_list)
 
 ```

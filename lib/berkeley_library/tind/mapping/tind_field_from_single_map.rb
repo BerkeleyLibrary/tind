@@ -39,6 +39,7 @@ module BerkeleyLibrary
           @single_mapping = nil
           @ready_to_mapping = ready_to_mapping?
 
+          @codes = subfield_codes(@from_datafield)
           @to_subfields = all_subfields
         end
 
@@ -82,7 +83,18 @@ module BerkeleyLibrary
         end
 
         def all_subfields
-          @ready_to_mapping ? (subfields_from_single_map + subfields_from_combined_map) : []
+          return [] unless @ready_to_mapping
+
+          subfields = subfields_from_single_map + subfields_from_combined_map
+          codes = @mapping_rule.subfields_order || @codes
+
+          return subfields unless subfields.length > 1
+
+          Util.order_subfields(subfields, codes)
+        end
+
+        def subfield_codes(f)
+          f.subfields.map(&:code).uniq
         end
 
         # 1.subfields mapped with single rule, mapping one subfield to another subfield

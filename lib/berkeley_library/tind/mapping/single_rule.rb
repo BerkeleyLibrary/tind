@@ -26,6 +26,7 @@ module BerkeleyLibrary
         attr_reader :single_rule_hash
         attr_reader :single_rule_subfield_excluded_hash
         attr_reader :combined_rules
+        attr_reader :subfields_order
 
         def initialize(row)
           @tag_origin = row[:tag_origin]
@@ -36,6 +37,7 @@ module BerkeleyLibrary
           @single_rule_hash = single_map_dic(row[:subfield_single_from], row[:subfield_single_to])
           @single_rule_subfield_excluded_hash = single_map_subfield_excluded_dic
           @combined_rules = rules_with_same_subfield_name(row)
+          @subfields_order = order(row[:order])
         end
 
         # 1. Return an array of combined rules, an item in the array
@@ -50,6 +52,11 @@ module BerkeleyLibrary
         end
 
         private
+
+        def order(str)
+          str.nil? ? nil : str.split(',')
+        end
+
 
         # return an array of tag and subfield name, example '255__a' => ['255','a']
         def existed_tag_subfield(str)

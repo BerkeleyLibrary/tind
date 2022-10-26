@@ -223,7 +223,7 @@ tind_record_1 = alma_tind.record(additional_tind_fields_1)
 tind_record_2 = alma_tind.record(additional_tind_fields_2)
 ```
 
-5. Chnage TIND record using TindRecordUtil to : 1) add/update subfields to one-occurrenced field; 2) remove fields.
+5. Updating TIND record with TindRecordUtil : 1) add/update subfields to one-occurrenced field; 2) remove fields.
 
 ``` ruby
 # 5.1 This is an example hash for updating/adding subfields.  

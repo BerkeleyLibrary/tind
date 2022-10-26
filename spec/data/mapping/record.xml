@@ -50,6 +50,9 @@
           </datafield> -->
           <datafield ind1=" " ind2=" " tag="255">
              <subfield code="a">fake_255_a</subfield>
+              <subfield code="c">fake_255_c</subfield>
+               <subfield code="b">fake_255_b</subfield>
+                <subfield code="6">fake_255_6</subfield>
           </datafield>
 
           <datafield ind1=" " ind2=" " tag="507">
@@ -165,14 +168,14 @@
             <subfield code="e">xue.</subfield>
             <subfield code="a">Sun, Xingyan,</subfield>
             <subfield code="d">1753-1818,</subfield>
-           
+
           </datafield>
           <datafield ind1="1" ind2=" " tag="880">
             <subfield code="6">700-06/$1</subfield>
             <subfield code="e">學.</subfield>
             <subfield code="a">孫星衍,</subfield>
             <subfield code="d">1753-1818,</subfield>
-            
+
           </datafield>
           <datafield ind1="9" ind2=" " tag="710">
             <subfield code="6">880-07</subfield>

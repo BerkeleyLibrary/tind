@@ -1,0 +1,15 @@
+{
+    "data": {
+      "url": "https://test_bucket.s3.amazonaws.com/",
+      "fields": {
+        "x-amz-algorithm": "AWS4-HMAC-SHA256",
+        "key": "711aca11-0de1-4110-ac73-8989",
+        "acl": "private",
+        "x-amz-signature": "ac8a1f0ed10e24a694fcaf266beca03687a20b46",
+        "x-amz-date": "20220729T204134Z",
+        "policy": "eyJjb25kaXRpbbs5r69kIjogInByaXZhdGUir5y1w9XQiOiAidGluZC10ZXN0YnVja2V0LWJl",
+        "x-amz-credential": "AKIA5NL2DYQQ3DIWY6Pe960bes66"
+      }
+    },
+    "bucket": "testbucket"
+  }

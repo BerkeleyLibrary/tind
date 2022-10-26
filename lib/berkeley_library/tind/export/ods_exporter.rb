@@ -67,12 +67,10 @@ module BerkeleyLibrary
 
         def header_cell_style_for(col_index)
           @header_cell_styles ||= []
-          @header_cell_styles[col_index] ||= begin
-            find_or_create_cell_style(
-              color: color_for(col_index),
-              font_weight: 'bold'
-            )
-          end
+          @header_cell_styles[col_index] ||= find_or_create_cell_style(
+            color: color_for(col_index),
+            font_weight: 'bold'
+          )
         end
 
         def find_or_create_cell_style(color:, font_weight: nil, wrap: false)

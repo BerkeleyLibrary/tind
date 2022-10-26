@@ -1,0 +1,13 @@
+
+{
+  "code": 204,
+  "headers": {
+    "x_amz_id_2": "R8141+vOxVvEY7i8RuRTlLJE9DePeQ0hpZv0NYvSIvcO/e8OhrnO+Z3Yw=",
+    "x_amz_request_id": "H2EDK70DW0Y2D",
+    "date": "Fri, 29 Jul 2022 22:22:08 GMT",
+    "etag": "\"99914b932bd37a50b983c5e7c90ae93b\"",
+    "location": "https://testbucket.s3.amazonaws.com/b59a3d00-950e-45d2-af1c-746b8fde5977",
+    "server": "AmazonS3"
+  },
+  "body":""
+}

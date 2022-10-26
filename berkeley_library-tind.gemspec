@@ -17,7 +17,6 @@ Gem::Specification.new do |spec|
   spec.homepage = BerkeleyLibrary::TIND::ModuleInfo::HOMEPAGE
 
   spec.files = `git ls-files -z`.split("\x0")
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
   spec.executables << 'tind-export'
 

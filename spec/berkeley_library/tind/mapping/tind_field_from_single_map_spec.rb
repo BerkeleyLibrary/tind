@@ -143,6 +143,23 @@ module BerkeleyLibrary
           end
         end
 
+        describe '9.1 - 710: subfields ordered on mapping file order' do
+          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field('710'), false) }
+          it 'get subfield code ordered' do
+            codes = tindfield_from_single_map.to_datafield.subfields.map(&:code)
+            expect(codes).to eq %w[6 a e]
+          end
+        end
+
+        describe '9.2 subfield order - 255: subfields ordered on original subfields' do
+          let(:tindfield_from_single_map) { TindFieldFromSingleMap.new(qualified_alma_obj.field('255'), false) }
+
+          it 'get subfield code ordered' do
+            codes = tindfield_from_single_map.to_datafield.subfields.map(&:code)
+            expect(codes).to eq %w[a c b 6]
+          end
+        end
+
       end
 
     end

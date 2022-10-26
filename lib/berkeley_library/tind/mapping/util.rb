@@ -86,8 +86,8 @@ module BerkeleyLibrary
             no_including || no_excluding
           end
 
-           # subfield util
-           def order_subfields(subfields, codes)
+          # subfield util
+          def order_subfields(subfields, codes)
             found_subfields = []
             codes.each do |code|
               sfs = subfields.select { |subfield| subfield.code == code }
@@ -128,8 +128,6 @@ module BerkeleyLibrary
             input = StringIO.new(xml.scrub)
             MARC::XMLReader.new(input)
           end
-
-         
 
         end
       end

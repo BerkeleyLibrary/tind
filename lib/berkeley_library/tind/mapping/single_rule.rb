@@ -57,7 +57,6 @@ module BerkeleyLibrary
           str.nil? ? nil : str.split(',')
         end
 
-
         # return an array of tag and subfield name, example '255__a' => ['255','a']
         def existed_tag_subfield(str)
           str.nil? ? nil : str.split('__')

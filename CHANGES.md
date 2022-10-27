@@ -1,14 +1,18 @@
-# 0.6.1 (next)
+# 0.7.0 (2022-10-26)
 
+- Preserves subfield order insofar as possible when mapping Alma records to TIND.
+- Adds collection-specific configuration for mapping Alma records to TIND.
+- Adds `BerkeleyLibrary::TIND::Mapping::TindRecordUtil` class for manipulating
+  subfields in TIND MARC records.
 - Removes `BerkeleyLibrary::Util::Files` class, which is now part of `berkeley_library-util`.
 
-# 0.6.0 (2023-04-06)
+# 0.6.0 (2022-04-06)
 
 - Adds `BerkeleyLibrary::TIND::Mapping` module to map MARC records from Alma to TIND.
 - `BerkeleyLibrary::TIND::MARC::XMLWriter` now assumes that any object that response to `:write`
   and `:close` is suffiently `IO`-like to write to.
 
-# 0.5.1 (2023-03-23)
+# 0.5.1 (2022-03-23)
 
 - Fix an issue where `BerkeleyLibrary::TIND::MARC::XMLWriter` would drop fields with nonstandard tags (e.g. `FFT` fields)
   and would group and sort fields by tag instead of preserving the original order.

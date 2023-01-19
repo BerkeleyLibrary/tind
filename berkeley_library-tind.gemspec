@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'marc', '~> 1.0'
   spec.add_dependency 'rchardet', '~> 1.8'
   spec.add_dependency 'rest-client', '~> 2.1'
-  spec.add_dependency 'rubyzip', '~> 2.3'
+  spec.add_dependency 'rubyzip', '~> 2.3', '< 3.0'
   spec.add_dependency 'typesafe_enum', '~> 0.3'
 
   spec.add_development_dependency 'bundle-audit', '~> 0.1'

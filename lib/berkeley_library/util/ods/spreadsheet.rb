@@ -144,6 +144,9 @@ module BerkeleyLibrary
 
         def write_zipfile(out)
           io = Zip::OutputStream.write_buffer(out) do |zip|
+            # Workaround for https://github.com/sparklemotion/nokogiri/issues/2773
+            class << zip; def external_encoding; end; end
+
             each_document { |doc| write_zip_entry(doc, zip) }
           end
           # NOTE: Zip::OutputStream plays games with the stream and

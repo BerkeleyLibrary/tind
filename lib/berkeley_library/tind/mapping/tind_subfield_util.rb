@@ -25,7 +25,7 @@ module BerkeleyLibrary
           # subfield6_with_small_no(values)
 
           # new implementation: keep the first subfield 6 value
-          logger.warn("#{f[0].tag} have multiple datafields with multiple subfield 6, the first subfield 6 is kept") if values.length > 1
+          logger.warn("#{fields[0].tag} have multiple datafields with multiple subfield 6, the first subfield 6 is kept") if values.length > 1
           Util.subfield('6', values[0])
         end
 

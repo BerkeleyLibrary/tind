@@ -2,7 +2,7 @@ File.expand_path('lib', __dir__).tap do |lib|
   $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 end
 
-ruby_version = '>= 2.7'
+ruby_version = '>= 3.1'
 
 require 'berkeley_library/tind/module_info'
 

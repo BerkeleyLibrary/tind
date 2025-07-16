@@ -8,8 +8,8 @@ require 'berkeley_library/tind/module_info'
 
 Gem::Specification.new do |spec|
   spec.name = BerkeleyLibrary::TIND::ModuleInfo::NAME
-  spec.author = BerkeleyLibrary::TIND::ModuleInfo::AUTHOR
-  spec.email = BerkeleyLibrary::TIND::ModuleInfo::AUTHOR_EMAIL
+  spec.authors = BerkeleyLibrary::TIND::ModuleInfo::AUTHORS
+  spec.email = BerkeleyLibrary::TIND::ModuleInfo::AUTHOR_EMAILS
   spec.summary = BerkeleyLibrary::TIND::ModuleInfo::SUMMARY
   spec.description = BerkeleyLibrary::TIND::ModuleInfo::DESCRIPTION
   spec.license = BerkeleyLibrary::TIND::ModuleInfo::LICENSE
@@ -44,7 +44,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '= 1.11'
   spec.add_development_dependency 'rubocop-rake', '~> 0.5'
   spec.add_development_dependency 'rubocop-rspec', '~> 2.2'
-  spec.add_development_dependency 'ruby-prof', '~> 0.17.0'
+  spec.add_development_dependency 'ruby-prof', '~> 1.7'
   spec.add_development_dependency 'simplecov', '~> 0.21'
   spec.add_development_dependency 'simplecov-rcov', '~> 0.2'
   spec.add_development_dependency 'webmock', '~> 3.12'

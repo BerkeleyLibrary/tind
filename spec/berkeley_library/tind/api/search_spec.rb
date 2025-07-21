@@ -45,7 +45,7 @@ module BerkeleyLibrary
               results = []
               enum = search.each_result
               expect(enum).to be_a(Enumerable)
-              enum.each { |r| results << r }
+              enum.map { |r| results << r }
               expect(results.size).to eq(5)
             end
 
@@ -131,7 +131,8 @@ module BerkeleyLibrary
               results = []
               enum = search.each_result
               expect(enum).to be_a(Enumerable)
-              enum.each { |r| results << r }
+              # enum.each { |r| results << r }
+              enum.map { |r| results << r }
               expect(results.size).to eq(expected_count)
             end
 

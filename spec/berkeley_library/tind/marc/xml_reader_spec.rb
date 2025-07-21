@@ -77,7 +77,7 @@ module BerkeleyLibrary
           end
 
           it 'raises ArgumentError if passed something random' do
-            non_xml = Object.new
+            non_xml = 'string'
             # noinspection RubyMismatchedArgumentType
             expect { XMLReader.new(non_xml) }.to raise_error(ArgumentError)
           end

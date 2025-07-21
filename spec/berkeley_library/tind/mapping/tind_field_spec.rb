@@ -14,7 +14,7 @@ module BerkeleyLibrary
         it 'Field 035 derived from mms_id' do
           f = TindField.f_035_from_alma_id('991085821143406532', 'cu_news')
           expect(f.tag).to eq '035'
-          expect(f['a']).to eq  '(cu_news)991085821143406532'
+          expect(f['a']).to eq '(cu_news)991085821143406532'
         end
 
         it 'Field 245$p' do
@@ -26,8 +26,8 @@ module BerkeleyLibrary
         it 'Field FFT' do
           f = TindField.f_fft('http://host/image.tif', 'news')
           expect(f.tag).to eq 'FFT'
-          expect(f['a']).to eq  'http://host/image.tif'
-          expect(f['d']).to eq  'news'
+          expect(f['a']).to eq 'http://host/image.tif'
+          expect(f['d']).to eq 'news'
         end
 
         it 'Field 902$d' do
@@ -40,7 +40,7 @@ module BerkeleyLibrary
         it 'Field 902$n' do
           f = TindField.f_902_n('YZ')
           expect(f.tag).to eq '902'
-          expect(f['n']).to eq  'YZ'
+          expect(f['n']).to eq 'YZ'
         end
 
         it 'Field 982$p' do

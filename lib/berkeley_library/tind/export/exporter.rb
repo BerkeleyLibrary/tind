@@ -58,12 +58,13 @@ module BerkeleyLibrary
 
         # ------------------------------------------------------------
         # Object overrides
-
+        # rubocop:disable Style/RedundantParentheses
         def respond_to?(*args)
           return false if instance_of?(Exporter) && (args && args.first.to_s == 'export')
 
           super
         end
+        # rubocop:enable Style/RedundantParentheses
 
         # ------------------------------------------------------------
         # Protected methods

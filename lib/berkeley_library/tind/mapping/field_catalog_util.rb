@@ -36,7 +36,8 @@ module BerkeleyLibrary
           return [] if including_defined && excluding_defined # not allow to define both including and excluding tags
           return fields unless including_defined || excluding_defined # Neither including nor excluding tags are defined
           return fields_included(fields) if including_defined # including tags defined
-          return fields_exclued(fields) if excluding_defined  # excluding tags defined
+
+          fields_exclued(fields) if excluding_defined # excluding tags defined
         end
 
         private
@@ -72,7 +73,7 @@ module BerkeleyLibrary
 
         def excluding_field?(f)
           return false unless field_6xx?(f)
-          return false unless subfield2_fast(f)
+          return false unless subfield2_fast?(f)
 
           true
         end
@@ -83,7 +84,7 @@ module BerkeleyLibrary
           tag =~ /^6\d{2}$/
         end
 
-        def subfield2_fast(f)
+        def subfield2_fast?(f)
           subject = f['2']
           return false unless subject
 

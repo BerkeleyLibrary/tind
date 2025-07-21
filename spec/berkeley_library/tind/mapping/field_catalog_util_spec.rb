@@ -78,7 +78,7 @@ module BerkeleyLibrary
             selected_field_tags << '001'
             fields = qualified_alm_record.fields.select { |f| selected_field_tags.include? f.tag }
             BerkeleyLibrary::TIND::Mapping::AlmaBase.including_origin_tags = %w[255 650]
-            expect(fields_to_map(fields).map(&:tag)).to eq %w[001 255 650 650 880]  # return: Two 650 fields, one 880 field with subfield6 = '650'
+            expect(fields_to_map(fields).map(&:tag)).to eq %w[001 255 650 650 880] # return: Two 650 fields, one 880 field with subfield6 = '650'
           end
 
           context 'only excluding origin tags are defined ' do

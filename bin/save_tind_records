@@ -30,7 +30,7 @@ def fake_additional_tind_fields1
   txt = '001'
   url = 'https://digitalassets.lib.berkeley.edu/forestry/ucb/images/b142086125_i180839998/b142086125_i180839998_001.jpg'
   fft = BerkeleyLibrary::TIND::Mapping::TindField.f_fft(url, txt)
-  f_998 = ::MARC::DataField.new('998', ' ', ' ', ['a', 'fake-value'])
+  f_998 = MARC::DataField.new('998', ' ', ' ', ['a', 'fake-value'])
   f_035 = BerkeleyLibrary::TIND::Mapping::TindField.f_035('b142086125')
   fields << f_998
   fields << f_035
@@ -43,7 +43,7 @@ def fake_additional_tind_fields2
   url = 'https://digitalassets.lib.berkeley.edu/forestry/ucb/images/b142086125_i180839998/b142086125_i180839998_002.jpg'
   fft = BerkeleyLibrary::TIND::Mapping::TindField.f_fft(url, txt)
 
-  f_998 = ::MARC::DataField.new('998', ' ', ' ', ['a', 'fake-value'])
+  f_998 = MARC::DataField.new('998', ' ', ' ', ['a', 'fake-value'])
 
   f_035 = BerkeleyLibrary::TIND::Mapping::TindField.f_035('b142107827')
   fields << f_998
@@ -63,7 +63,7 @@ end
 
 def save_batch(file, with_tind_xmlwritter)
   setup
-  writer = ::MARC::XMLWriter.new(file)
+  writer = MARC::XMLWriter.new(file)
   writer = BerkeleyLibrary::TIND::MARC::XMLWriter.new(file) if with_tind_xmlwritter
 
   tind_records.each do |record|

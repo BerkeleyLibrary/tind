@@ -145,7 +145,8 @@ module BerkeleyLibrary
               return add_cell_style if f == Style::Family::TABLE_CELL
               return add_column_style if f == Style::Family::TABLE_COLUMN
               return add_row_style if f == Style::Family::TABLE_ROW
-              return add_table_style if f == Style::Family::TABLE
+
+              add_table_style if f == Style::Family::TABLE
             end
 
             def next_name_for(family)

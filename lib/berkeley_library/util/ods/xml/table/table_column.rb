@@ -23,11 +23,11 @@ module BerkeleyLibrary
               set_default_attributes!
             end
 
-            # rubocop:disable Naming/PredicateName
+            # rubocop:disable Naming/PredicatePrefix
             def has_styles?(column_style, default_cell_style)
               self.column_style == column_style && self.default_cell_style == default_cell_style
             end
-            # rubocop:enable Naming/PredicateName
+            # rubocop:enable Naming/PredicatePrefix
 
             private
 

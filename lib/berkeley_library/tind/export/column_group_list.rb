@@ -42,7 +42,7 @@ module BerkeleyLibrary
         def add_data_fields(marc_record, row)
           # TODO: what about control fields?
           marc_record.data_fields_by_tag.each do |tag, data_fields|
-            next unless can_export_tag(tag)
+            next unless can_export_tag?(tag)
             next if data_fields.empty?
 
             add_fields_at(data_fields, row)
@@ -87,7 +87,7 @@ module BerkeleyLibrary
           tag_column_groups = (column_groups_by_tag[tag] ||= [])
 
           data_fields.inject(0) do |offset, df|
-            next offset unless can_export_df(df)
+            next offset unless can_export_df?(df)
 
             1 + add_data_field(df, row, tag_column_groups, at_or_after: offset)
           end
@@ -108,13 +108,13 @@ module BerkeleyLibrary
           BerkeleyLibrary::Util::Arrays.find_index(in_array: tag_column_groups, start_index: at_or_after) { |cg| cg.maybe_add_at(row, df) }
         end
 
-        def can_export_tag(tag)
+        def can_export_tag?(tag)
           return true unless exportable_only?
 
           Filter.can_export_tag?(tag)
         end
 
-        def can_export_df(df)
+        def can_export_df?(df)
           return true unless exportable_only?
 
           Filter.can_export_data_field?(df)

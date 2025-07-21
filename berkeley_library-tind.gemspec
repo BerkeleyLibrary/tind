@@ -2,14 +2,16 @@ File.expand_path('lib', __dir__).tap do |lib|
   $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 end
 
-ruby_version = '>= 2.7'
+ruby_version = '>= 3.3'
 
 require 'berkeley_library/tind/module_info'
 
 Gem::Specification.new do |spec|
+  spec.metadata['rubygems_mfa_required'] = 'true'
+
   spec.name = BerkeleyLibrary::TIND::ModuleInfo::NAME
-  spec.author = BerkeleyLibrary::TIND::ModuleInfo::AUTHOR
-  spec.email = BerkeleyLibrary::TIND::ModuleInfo::AUTHOR_EMAIL
+  spec.authors = BerkeleyLibrary::TIND::ModuleInfo::AUTHORS
+  spec.email = BerkeleyLibrary::TIND::ModuleInfo::AUTHOR_EMAILS
   spec.summary = BerkeleyLibrary::TIND::ModuleInfo::SUMMARY
   spec.description = BerkeleyLibrary::TIND::ModuleInfo::DESCRIPTION
   spec.license = BerkeleyLibrary::TIND::ModuleInfo::LICENSE
@@ -33,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rubyzip', '~> 2.3', '< 3.0'
   spec.add_dependency 'typesafe_enum', '~> 0.3'
 
+  # rubocop:disable Gemspec/DevelopmentDependencies
   spec.add_development_dependency 'bundle-audit', '~> 0.1'
   spec.add_development_dependency 'ci_reporter_rspec', '~> 1.0'
   spec.add_development_dependency 'colorize', '~> 0.8'
@@ -41,11 +44,12 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'roo', '~> 2.8'
   spec.add_development_dependency 'rspec', '~> 3.10'
-  spec.add_development_dependency 'rubocop', '= 1.11'
+  spec.add_development_dependency 'rubocop', '= 1.77'
   spec.add_development_dependency 'rubocop-rake', '~> 0.5'
   spec.add_development_dependency 'rubocop-rspec', '~> 2.2'
-  spec.add_development_dependency 'ruby-prof', '~> 0.17.0'
+  spec.add_development_dependency 'ruby-prof', '~> 1.7'
   spec.add_development_dependency 'simplecov', '~> 0.21'
   spec.add_development_dependency 'simplecov-rcov', '~> 0.2'
   spec.add_development_dependency 'webmock', '~> 3.12'
+  # rubocop:enable Gemspec/DevelopmentDependencies
 end

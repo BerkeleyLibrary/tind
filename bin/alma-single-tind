@@ -29,7 +29,7 @@ def additional_tind_fields
   txt = 'v001_0064'
   url = 'https://digitalassets.lib.berkeley.edu/pre1912ChineseMaterials/ucb/ready/991032333019706532/991032333019706532_v001_0064.jpg'
   fft = BerkeleyLibrary::TIND::Mapping::TindField.f_fft(url, txt)
-  f = ::MARC::DataField.new('998', ' ', ' ', ['a', 'fake-value'])
+  f = MARC::DataField.new('998', ' ', ' ', ['a', 'fake-value'])
   [fft] << f
 end
 

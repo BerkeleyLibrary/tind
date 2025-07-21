@@ -81,7 +81,7 @@ module BerkeleyLibrary
 
           def valid_collection_hash?(hash)
             return false unless valid_item?(hash, '336', 1) &&
-            valid_item?(hash, '852', 1) && valid_item?(hash, '980', 1) && valid_item?(hash, '982', 2) && valid_991(hash)
+            valid_item?(hash, '852', 1) && valid_item?(hash, '980', 1) && valid_item?(hash, '982', 2) && valid_991?(hash)
 
             true
           end
@@ -90,7 +90,7 @@ module BerkeleyLibrary
             (hash.key? key) && (hash[key].length == num)
           end
 
-          def valid_991(hash)
+          def valid_991?(hash)
             cout = hash['991'].length
             [0, 1].include?(cout)
           end

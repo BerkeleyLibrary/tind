@@ -28,7 +28,7 @@ module BerkeleyLibrary
         # Gets the API base URI.
         # @return [URI] the API base URI
         def api_base_uri
-          return if Config.blank?((base_uri = Config.base_uri))
+          return if Config.blank?(base_uri = Config.base_uri)
 
           URIs.append(base_uri, '/api/v1')
         end

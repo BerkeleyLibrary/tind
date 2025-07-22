@@ -8,7 +8,7 @@ module BerkeleyLibrary
           class TextProperties < ElementNode
 
             FONT_WEIGHT_ATTRS = %w[font-weight font-weight-asian font-weight-complex].freeze
-            COLOR_RE = /^#[[:xdigit:]]{6}$/.freeze
+            COLOR_RE = /^#[[:xdigit:]]{6}$/
 
             attr_reader :color, :font_name, :language, :country, :font_weight
 

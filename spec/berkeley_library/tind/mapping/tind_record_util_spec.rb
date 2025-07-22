@@ -10,7 +10,7 @@ module BerkeleyLibrary
         let(:tind_marc) { TindMarc.new(qualified_alm_record).tind_record }
 
         it 'Remove fields from record' do
-          fields_removal_list = [%w[245 _ _], %w[700 1 _], %w[880 _ _]]  # '_' means empty indicator
+          fields_removal_list = [%w[245 _ _], %w[700 1 _], %w[880 _ _]] # '_' means empty indicator
           results = %w[255 246 260 300 300 490 630 650 710 903 041 269 255 880 880 880] # some 880's inicator is not empty
           new_record = TindRecordUtil.update_record(tind_marc, nil, fields_removal_list)
           expect(new_record.fields.map(&:tag)).to eq results

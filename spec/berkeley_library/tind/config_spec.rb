@@ -10,13 +10,13 @@ module BerkeleyLibrary
         @base_uri_orig = Config.instance_variable_get(:@base_uri)
         Config.instance_variable_set(:@base_uri, nil)
 
-        @base_url_orig = ENV['LIT_TIND_BASE_URL']
+        @base_url_orig = ENV.fetch('LIT_TIND_BASE_URL', nil)
         ENV['LIT_TIND_BASE_URL'] = env_base_url
 
         @api_key_orig = Config.instance_variable_get(:@api_key)
         Config.instance_variable_set(:@api_key, nil)
 
-        @api_key_env_orig = ENV['LIT_TIND_API_KEY']
+        @api_key_env_orig = ENV.fetch('LIT_TIND_API_KEY', nil)
         ENV['LIT_TIND_API_KEY'] = env_api_key
       end
 
@@ -41,11 +41,13 @@ module BerkeleyLibrary
         it 'returns a URI from Rails config if present' do
           expect(defined?(Rails)).to be_nil
 
-          Object.send(:const_set, 'Rails', OpenStruct.new)
-          Rails.application = OpenStruct.new
+          Object.send(:const_set, 'Rails', Struct.new(:application).new)
+          Rails.application = Struct.new(:config).new
 
           url = 'tind-test.example.edu'
-          config = OpenStruct.new(tind_base_uri: url)
+          Conf = Struct.new(:tind_base_uri)
+          config = Conf.new(url)
+
           Rails.application.config = config
 
           ENV['LIT_TIND_BASE_URL'] = nil
@@ -68,11 +70,12 @@ module BerkeleyLibrary
         it 'returns an API key from the Rails config if present' do
           expect(defined?(Rails)).to be_nil
 
-          Object.send(:const_set, 'Rails', OpenStruct.new)
-          Rails.application = OpenStruct.new
+          Object.send(:const_set, 'Rails', Struct.new(:application).new)
+          Rails.application = Struct.new(:config).new
 
           api_key = 'test-api-key'
-          config = OpenStruct.new(tind_api_key: api_key)
+          Conf = Struct.new(:tind_api_key)
+          config = Conf.new(api_key)
           Rails.application.config = config
 
           ENV['LIT_TIND_API_KEY'] = nil

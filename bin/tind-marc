@@ -47,7 +47,7 @@ other_external_tind_fields.concat tind_fields_from_alma_id
 
 new_subfield1 = BerkeleyLibrary::TIND::Mapping::Util.subfield('a', 'https://digitalassets.lib.berkeley.edu/pre1912ChineseMaterials/ucb/ready/991032333019706532/991032333019706532_v001_0064.jpg')
 new_subfield2 = BerkeleyLibrary::TIND::Mapping::Util.subfield('d', 'v001_0064')
-fft_datafield = BerkeleyLibrary::TIND::Mapping::Util.datafield('FFT', [' ',  ' '], [new_subfield1, new_subfield2])
+fft_datafield = BerkeleyLibrary::TIND::Mapping::Util.datafield('FFT', [' ', ' '], [new_subfield1, new_subfield2])
 ffts = [fft_datafield]
 
 # 5. put all external tind fields together

@@ -161,7 +161,7 @@ module BerkeleyLibrary
         private
 
         def log_record_added(marc_record)
-          return logger.debug("Added record no. #{marc_record.record_id}: #{row_count} records total") if marc_record
+          logger.debug("Added record no. #{marc_record.record_id}: #{row_count} records total") if marc_record
         end
 
         def write_csv(out)

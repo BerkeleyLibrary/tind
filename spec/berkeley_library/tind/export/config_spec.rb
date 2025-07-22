@@ -31,7 +31,7 @@ module BerkeleyLibrary
         before(:each) do
           @env_orig = {}
           env_vars.each do |v|
-            @env_orig[v] = ENV[v]
+            @env_orig[v] = ENV.fetch(v, nil)
             ENV[v] = nil
           end
           @inst_orig = {}
@@ -79,11 +79,11 @@ module BerkeleyLibrary
               format_digits: 'ODS_FORMAT_DIGITS_DEFAULT'
             }
 
-            expected = env_vars_by_attr.map do |attr, var|
+            expected = env_vars_by_attr.to_h do |attr, var|
               value = 2 * Config.send(attr)
               ENV[var] = value.to_s
               [attr, value]
-            end.to_h
+            end
 
             inst_vars.each do |v|
               Config.remove_instance_variable(v) if Config.instance_variable_defined?(v)

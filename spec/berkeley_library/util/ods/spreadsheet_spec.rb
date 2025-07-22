@@ -64,7 +64,8 @@ module BerkeleyLibrary
             Dir.mktmpdir(basename) do |dir|
               output_path = File.join(dir, "#{basename}.ods")
               result = StringIO.new.tap { |out| spreadsheet.write_to(out) }.string
-              File.open(output_path, 'wb') { |f| f.write(result) }
+              # File.open(output_path, 'wb') { |f| f.write(result) }
+              File.binwrite(output_path, result)
 
               ss = Roo::Spreadsheet.open(output_path, file_warning: :warning)
               check_cell_values(ss)
@@ -75,7 +76,8 @@ module BerkeleyLibrary
             Dir.mktmpdir(basename) do |dir|
               output_path = File.join(dir, "#{basename}.ods")
               result = spreadsheet.write_to
-              File.open(output_path, 'wb') { |f| f.write(result) }
+              # File.open(output_path, 'wb') { |f| f.write(result) }
+              File.binwrite(output_path, result)
 
               ss = Roo::Spreadsheet.open(output_path, file_warning: :warning)
               check_cell_values(ss)

@@ -1,0 +1,339 @@
+Inspecting 98 files
+WWC.C..C.WCC....C..CC..C..C.W.....................C...W.C.CCCC.C.CC.CCCCCCCCCCC.CCCCCCCCCCCC.CCCCC
+
+Offenses:
+
+tind.rb:3:50: W: [Correctable] Lint/RedundantDirGlobSort: Remove redundant sort.
+Dir.glob(File.expand_path('tind/*.rb', __dir__)).sort.each(&method(:require))
+                                                 ^^^^
+tind/api.rb:1:49: W: [Correctable] Lint/RedundantDirGlobSort: Remove redundant sort.
+Dir.glob(File.expand_path('api/*.rb', __dir__)).sort.each(&method(:require))
+                                                ^^^^
+tind/api/api.rb:109:42: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          URIs.get(endpoint_uri, params: params, headers: headers)
+                                         ^^^^^^
+tind/api/api.rb:109:59: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          URIs.get(endpoint_uri, params: params, headers: headers)
+                                                          ^^^^^^^
+tind/api/api.rb:111:65: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          raise APIException.wrap(e, url: endpoint_uri, params: params)
+                                                                ^^^^^^
+tind/api/collection.rb:28:63: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          children.each { |c| c.each_descendant(include_self: include_self, &block) }
+                                                              ^^^^^^^^^^^^
+tind/api/search.rb:53:48: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          return to_enum(:each_result, freeze: freeze) unless block_given?
+                                               ^^^^^^
+tind/api/search.rb:55:34: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          perform_search(freeze: freeze, &block)
+                                 ^^^^^^
+tind/api/search.rb:63:61: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          params = search_id ? self.params.merge(search_id: search_id) : self.params
+                                                            ^^^^^^^^^
+tind/api/search.rb:65:61: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          perform_search(search_id: next_search_id, freeze: freeze, &block) if next_search_id
+                                                            ^^^^^^
+tind/api/search.rb:81:82: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          xml_reader = BerkeleyLibrary::TIND::MARC::XMLReader.read(body, freeze: freeze)
+                                                                                 ^^^^^^
+tind/export.rb:1:52: W: [Correctable] Lint/RedundantDirGlobSort: Remove redundant sort.
+Dir.glob(File.expand_path('export/*.rb', __dir__)).sort.each(&method(:require))
+                                                   ^^^^
+tind/export/column.rb:46:55: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          return to_enum(:each_value, include_header: include_header) unless block_given?
+                                                      ^^^^^^^^^^^^^^
+tind/export/column_group.rb:19:24: C: [Correctable] Style/RedundantFreeze: Do not freeze immutable objects, as freezing them has no effect.
+        INDICATOR_RE = /^[0-9a-z ]$/i.freeze
+                       ^^^^^^^^^^^^^^^^^^^^^
+tind/export/column_group.rb:21:28: C: [Correctable] Style/RedundantFreeze: Do not freeze immutable objects, as freezing them has no effect.
+        SUBFIELD_CODE_RE = /^[0-9a-z]$/.freeze
+                           ^^^^^^^^^^^^^^^^^^^
+tind/export/export.rb:29:72: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          exporter = exporter_for(collection, format, exportable_only: exportable_only)
+                                                                       ^^^^^^^^^^^^^^^
+tind/export/export.rb:41:67: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          export_format.exporter_for(collection, exportable_only: exportable_only)
+                                                                  ^^^^^^^^^^^^^^^
+tind/export/export_format.rb:15:63: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          return CSVExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::CSV
+                                                              ^^^^^^^^^^^^^^^
+tind/export/export_format.rb:16:63: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          return ODSExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::ODS
+                                                              ^^^^^^^^^^^^^^^
+tind/export/exporter.rb:94:51: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            results = API::Search.new(collection: collection).each_result(freeze: true)
+                                                  ^^^^^^^^^^
+tind/export/exporter.rb:98:80: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            Export::Table.from_records(results, freeze: true, exportable_only: exportable_only)
+                                                                               ^^^^^^^^^^^^^^^
+tind/export/ods_exporter.rb:77:51: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          styles.find_or_create_cell_style(color: color, font_weight: font_weight, wrap: wrap)
+                                                  ^^^^^
+tind/export/ods_exporter.rb:77:71: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          styles.find_or_create_cell_style(color: color, font_weight: font_weight, wrap: wrap)
+                                                                      ^^^^^^^^^^^
+tind/export/ods_exporter.rb:77:90: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          styles.find_or_create_cell_style(color: color, font_weight: font_weight, wrap: wrap)
+                                                                                         ^^^^
+tind/export/ods_exporter.rb:128:87: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            cell_style = find_or_create_cell_style(color: color_for(col_index), wrap: wrap)
+                                                                                      ^^^^
+tind/export/table.rb:27:65: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          @column_groups = ColumnGroupList.new(exportable_only: exportable_only)
+                                                                ^^^^^^^^^^^^^^^
+tind/export/table.rb:41:40: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            Table.new(exportable_only: exportable_only).tap do |table|
+                                       ^^^^^^^^^^^^^^^
+tind/mapping.rb:1:53: W: [Correctable] Lint/RedundantDirGlobSort: Remove redundant sort.
+Dir.glob(File.expand_path('mapping/*.rb', __dir__)).sort.each(&method(:require))
+                                                    ^^^^
+tind/mapping/tind_marc.rb:110:59: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            add_tindfield(new_fls, f, excluding_subfield: excluding_subfield)
+                                                          ^^^^^^^^^^^^^^^^^^
+tind/marc.rb:1:50: W: [Correctable] Lint/RedundantDirGlobSort: Remove redundant sort.
+Dir.glob(File.expand_path('marc/*.rb', __dir__)).sort.each(&method(:require))
+                                                 ^^^^
+tind/marc/xml_reader.rb:18:28: C: [Correctable] Style/RedundantFreeze: Do not freeze immutable objects, as freezing them has no effect.
+        COMMENT_TOTAL_RE = /Search-Engine-Total-Number-Of-Results: ([0-9]+)/.freeze
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tind/marc/xml_reader.rb:66:33: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            new(source, freeze: freeze)
+                                ^^^^^^
+tind/module_info.rb:5:17: C: [Correctable] Style/MutableConstant: Freeze mutable objects assigned to constants.
+      AUTHORS = ['David Moles'.freeze, 'Yucha Zhou'.freeze, 'David Zuckerman'.freeze]
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tind/module_info.rb:6:23: C: [Correctable] Style/MutableConstant: Freeze mutable objects assigned to constants.
+      AUTHOR_EMAILS = ['dmoles@berkeley.edu'.freeze, 'zhouyu@berkeley.edu'.freeze, 'dzuckerm@berkeley.edu'.freeze]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+util/ods/spreadsheet.rb:23:63: C: [Correctable] Style/HashSyntax: Omit the hash value.
+          content.document_content.add_table(name, protected: protected)
+                                                              ^^^^^^^^^
+util/ods/xml/content_doc.rb:20:68: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            @document_content ||= Office::DocumentContent.new(doc: doc)
+                                                                   ^^^
+util/ods/xml/document_node.rb:20:49: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            return write_xml_to_string(compact: compact) unless out
+                                                ^^^^^^^
+util/ods/xml/document_node.rb:21:54: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            return write_xml_to_stream(out, compact: compact) if out.respond_to?(:write)
+                                                     ^^^^^^^
+util/ods/xml/document_node.rb:23:45: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            write_xml_to_file(out, compact: compact)
+                                            ^^^^^^^
+util/ods/xml/document_node.rb:46:49: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              write_xml_to_stream(out, compact: compact)
+                                                ^^^^^^^
+util/ods/xml/document_node.rb:51:73: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            File.open(path, 'wb') { |f| write_xml_to_stream(f, compact: compact) }
+                                                                        ^^^^^^^
+util/ods/xml/loext/table_protection.rb:10:54: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:loext, 'table-protection', doc: doc)
+                                                     ^^^
+util/ods/xml/manifest/manifest.rb:14:49: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:manifest, 'manifest', doc: doc)
+                                                ^^^
+util/ods/xml/manifest_doc.rb:20:55: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            @manifest ||= Manifest::Manifest.new(doc: doc)
+                                                      ^^^
+util/ods/xml/office/automatic_styles.rb:18:55: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:office, 'automatic-styles', doc: doc)
+                                                      ^^^
+util/ods/xml/office/automatic_styles.rb:39:83: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              add_style(Style::CellStyle.new(name, protected, color, font_weight: font_weight, wrap: wrap, styles: self))
+                                                                                  ^^^^^^^^^^^
+util/ods/xml/office/automatic_styles.rb:39:102: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              add_style(Style::CellStyle.new(name, protected, color, font_weight: font_weight, wrap: wrap, styles: self))
+                                                                                                     ^^^^
+util/ods/xml/office/automatic_styles.rb:82:66: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              existing_style = find_cell_style(protected, color: color, font_weight: font_weight, wrap: wrap)
+                                                                 ^^^^^
+util/ods/xml/office/automatic_styles.rb:82:86: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              existing_style = find_cell_style(protected, color: color, font_weight: font_weight, wrap: wrap)
+                                                                                     ^^^^^^^^^^^
+util/ods/xml/office/automatic_styles.rb:82:105: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              existing_style = find_cell_style(protected, color: color, font_weight: font_weight, wrap: wrap)
+                                                                                                        ^^^^
+util/ods/xml/office/automatic_styles.rb:85:66: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              add_cell_style(nil, protected, color, font_weight: font_weight, wrap: wrap)
+                                                                 ^^^^^^^^^^^
+util/ods/xml/office/automatic_styles.rb:85:85: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              add_cell_style(nil, protected, color, font_weight: font_weight, wrap: wrap)
+                                                                                    ^^^^
+util/ods/xml/office/body.rb:10:43: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:office, 'body', doc: doc)
+                                          ^^^
+util/ods/xml/office/document_content.rb:27:55: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:office, 'document-content', doc: doc)
+                                                      ^^^
+util/ods/xml/office/document_content.rb:37:45: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              @scripts ||= Scripts.new(doc: doc)
+                                            ^^^
+util/ods/xml/office/document_content.rb:41:67: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              @font_face_decls ||= Office::FontFaceDecls.new(doc: doc)
+                                                                  ^^^
+util/ods/xml/office/document_content.rb:45:70: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              @automatic_styles ||= Office::AutomaticStyles.new(doc: doc)
+                                                                     ^^^
+util/ods/xml/office/document_content.rb:49:105: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              new_table = XML::Table::Table.new(name, table_style, styles: automatic_styles, protected: protected)
+                                                                                                        ^^^^^^^^^
+util/ods/xml/office/document_content.rb:54:61: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              @spreadsheet ||= Office::Spreadsheet.new(doc: doc)
+                                                            ^^^
+util/ods/xml/office/document_content.rb:58:39: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              @body ||= Body.new(doc: doc).tap { |body| body.add_child(spreadsheet) }
+                                      ^^^
+util/ods/xml/office/document_styles.rb:14:54: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:office, 'document-styles', doc: doc)
+                                                     ^^^
+util/ods/xml/office/document_styles.rb:31:48: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              add_child(FontFaceDecls.new(doc: doc))
+                                               ^^^
+util/ods/xml/office/document_styles.rb:32:41: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              add_child(Styles.new(doc: doc))
+                                        ^^^
+util/ods/xml/office/font_face_decls.rb:11:54: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:office, 'font-face-decls', doc: doc)
+                                                     ^^^
+util/ods/xml/office/font_face_decls.rb:23:49: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              Style::FontFace.default_face(doc: doc)
+                                                ^^^
+util/ods/xml/office/scripts.rb:10:46: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:office, 'scripts', doc: doc)
+                                             ^^^
+util/ods/xml/office/spreadsheet.rb:11:50: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:office, 'spreadsheet', doc: doc)
+                                                 ^^^
+util/ods/xml/office/spreadsheet.rb:15:71: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              @named_expressions ||= Table::NamedExpressions.new(doc: doc)
+                                                                      ^^^
+util/ods/xml/office/styles.rb:13:45: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:office, 'styles', doc: doc)
+                                            ^^^
+util/ods/xml/office/styles.rb:22:72: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              add_child(Style::Style.new('Default', 'table-cell', doc: doc))
+                                                                       ^^^
+util/ods/xml/office/styles.rb:27:53: C: [Correctable] Style/HashSyntax: Omit the hash value.
+                Style::ParagraphProperties.new(doc: doc),
+                                                    ^^^
+util/ods/xml/office/styles.rb:28:95: C: [Correctable] Style/HashSyntax: Omit the hash value.
+                Style::TextProperties.new(font_name: Style::FontFace::DEFAULT_FONT_FACE, doc: doc)
+                                                                                              ^^^
+util/ods/xml/office/styles.rb:30:58: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              Style::DefaultStyle.new('table-cell', doc: doc).tap do |ds|
+                                                         ^^^
+util/ods/xml/style/cell_style.rb:50:81: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              children << TableCellProperties.new(protected?, wrap: wrap?, doc: doc)
+                                                                                ^^^
+util/ods/xml/style/cell_style.rb:51:53: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              children << TextProperties.new(color: color, font_weight: font_weight, doc: doc) if custom_text_properties?
+                                                    ^^^^^
+util/ods/xml/style/cell_style.rb:51:73: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              children << TextProperties.new(color: color, font_weight: font_weight, doc: doc) if custom_text_properties?
+                                                                        ^^^^^^^^^^^
+util/ods/xml/style/cell_style.rb:51:91: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              children << TextProperties.new(color: color, font_weight: font_weight, doc: doc) if custom_text_properties?
+                                                                                          ^^^
+util/ods/xml/style/column_style.rb:29:65: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              children << TableColumnProperties.new(width, doc: doc)
+                                                                ^^^
+util/ods/xml/style/default_style.rb:14:51: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:style, 'default-style', doc: doc)
+                                                  ^^^
+util/ods/xml/style/font_face.rb:14:47: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:style, 'font-face', doc: doc)
+                                              ^^^
+util/ods/xml/style/font_face.rb:24:113: C: [Correctable] Style/HashSyntax: Omit the hash value.
+                FontFace.new(FontFace::DEFAULT_FONT_FACE, family_generic: 'swiss', font_pitch: 'variable', doc: doc)
+                                                                                                                ^^^
+util/ods/xml/style/paragraph_properties.rb:15:58: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:style, 'paragraph-properties', doc: doc)
+                                                         ^^^
+util/ods/xml/style/row_style.rb:30:63: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              children << TableRowProperties.new(height, doc: doc)
+                                                              ^^^
+util/ods/xml/style/style.rb:15:43: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:style, 'style', doc: doc)
+                                          ^^^
+util/ods/xml/style/table_cell_properties.rb:12:59: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:style, 'table-cell-properties', doc: doc)
+                                                          ^^^
+util/ods/xml/style/table_column_properties.rb:12:58: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:style, 'table-row-properties', doc: doc)
+                                                         ^^^
+util/ods/xml/style/table_properties.rb:10:54: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:style, 'table-properties', doc: doc)
+                                                     ^^^
+util/ods/xml/style/table_row_properties.rb:12:61: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:style, 'table-column-properties', doc: doc)
+                                                            ^^^
+util/ods/xml/style/table_style.rb:20:52: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              children << TableProperties.new(doc: doc)
+                                                   ^^^
+util/ods/xml/style/text_properties.rb:11:24: C: [Correctable] Style/RedundantFreeze: Do not freeze immutable objects, as freezing them has no effect.
+            COLOR_RE = /^#[[:xdigit:]]{6}$/.freeze
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+util/ods/xml/style/text_properties.rb:17:53: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:style, 'text-properties', doc: doc)
+                                                    ^^^
+util/ods/xml/styles_doc.rb:20:66: C: [Correctable] Style/HashSyntax: Omit the hash value.
+            @document_styles ||= Office::DocumentStyles.new(doc: doc)
+                                                                 ^^^
+util/ods/xml/table/named_expressions.rb:10:55: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:table, 'named-expressions', doc: doc)
+                                                      ^^^
+util/ods/xml/table/table.rb:166:57: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              add_child(LOExt::TableProtection.new(doc: doc))
+                                                        ^^^
+util/ods/xml/table/table_cell.rb:14:86: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super('table-cell', 'number-columns-repeated', number_repeated, table: table)
+                                                                                     ^^^^^
+util/ods/xml/table/table_cell.rb:25:72: C: [Correctable] Style/HashSyntax: Omit the hash value.
+                TableCell.new(nil, cell_style, number_repeated, table: table)
+                                                                       ^^^^^
+util/ods/xml/table/table_cell.rb:38:56: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              children << XML::Text::P.new(value, doc: doc) if value
+                                                       ^^^
+util/ods/xml/table/table_column.rb:19:88: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super('table-column', 'number-columns-repeated', number_repeated, table: table)
+                                                                                       ^^^^^
+util/ods/xml/table/table_row.rb:25:82: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super('table-row', 'number-rows-repeated', number_repeated, table: table)
+                                                                                 ^^^^^
+util/ods/xml/table/table_row.rb:36:108: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              explicit_cells[column_index] = TableCell.new(value, cell_style || default_cell_style, table: table)
+                                                                                                           ^^^^^
+util/ods/xml/table/table_row.rb:127:91: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              empty_cell = TableCell.repeat_empty(num_repeats, default_cell_style, table: table)
+                                                                                          ^^^^^
+util/ods/xml/text/p.rb:24:38: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:text, 'p', doc: doc)
+                                     ^^^
+util/ods/xml/text/p.rb:88:33: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              return S.new(doc: doc) if c == ' '
+                                ^^^
+util/ods/xml/text/p.rb:89:35: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              return Tab.new(doc: doc) if c == "\t"
+                                  ^^^
+util/ods/xml/text/p.rb:90:41: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              return LineBreak.new(doc: doc) if c == "\n"
+                                        ^^^
+util/ods/xml/text/p.rb:99:38: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:text, 's', doc: doc)
+                                     ^^^
+util/ods/xml/text/p.rb:105:40: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:text, 'tab', doc: doc)
+                                       ^^^
+util/ods/xml/text/p.rb:111:47: C: [Correctable] Style/HashSyntax: Omit the hash value.
+              super(:text, 'line-break', doc: doc)
+                                              ^^^
+
+98 files inspected, 108 offenses detected, 108 offenses autocorrectable
+
+The following RuboCop extension libraries are installed but not loaded in config:
+  * rubocop-rake
+  * rubocop-rspec
+
+You can opt out of this message by adding the following to your config (see https://docs.rubocop.org/rubocop/extensions.html#extension-suggestions for more options):
+  AllCops:
+    SuggestExtensions: false

@@ -64,7 +64,7 @@ module BerkeleyLibrary
               .with(headers: { 'Authorization' => 'Token not-a-real-api-key' })
               .to_return(status: 200, body: collections_json)
 
-            actual_names = Collection.each_collection.each_with_object([]) { |c, arr| arr << c.name }
+            actual_names = Collection.each_collection.with_object([]) { |c, arr| arr << c.name }
             expect(actual_names).to contain_exactly(*expected_names)
           end
         end

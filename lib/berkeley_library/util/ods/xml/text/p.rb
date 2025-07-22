@@ -87,7 +87,8 @@ module BerkeleyLibrary
 
               return S.new(doc: doc) if c == ' '
               return Tab.new(doc: doc) if c == "\t"
-              return LineBreak.new(doc: doc) if c == "\n"
+
+              LineBreak.new(doc: doc) if c == "\n"
             end
           end
 

@@ -13,17 +13,20 @@ module BerkeleyLibrary
 
         def exporter_for(collection, exportable_only: true)
           return CSVExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::CSV
-          return ODSExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::ODS
+
+          ODSExporter.new(collection, exportable_only: exportable_only) if self == ExportFormat::ODS
         end
 
         def description
           return 'CSV (comma-separated text)' if self == ExportFormat::CSV
-          return 'LibreOffice/OpenOffice spreadsheet' if self == ExportFormat::ODS
+
+          'LibreOffice/OpenOffice spreadsheet' if self == ExportFormat::ODS
         end
 
         def mime_type
           return 'text/csv' if self == ExportFormat::CSV
-          return 'application/vnd.oasis.opendocument.spreadsheet' if self == ExportFormat::ODS
+
+          'application/vnd.oasis.opendocument.spreadsheet' if self == ExportFormat::ODS
         end
 
         def to_s

@@ -15,7 +15,7 @@ module BerkeleyLibrary
         # ############################################################
         # Constant
 
-        COMMENT_TOTAL_RE = /Search-Engine-Total-Number-Of-Results: ([0-9]+)/.freeze
+        COMMENT_TOTAL_RE = /Search-Engine-Total-Number-Of-Results: ([0-9]+)/
 
         # ############################################################
         # Attributes

@@ -16,9 +16,9 @@ module BerkeleyLibrary
 
         # Indicators SHOULD NOT be capital letters, but TIND internal fields
         # don't respect that. Thus the /i flag.
-        INDICATOR_RE = /^[0-9a-z ]$/i.freeze
+        INDICATOR_RE = /^[0-9a-z ]$/i
 
-        SUBFIELD_CODE_RE = /^[0-9a-z]$/.freeze
+        SUBFIELD_CODE_RE = /^[0-9a-z]$/
 
         # ------------------------------------------------------------
         # Accessors

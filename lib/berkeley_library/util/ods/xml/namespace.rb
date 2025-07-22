@@ -34,7 +34,8 @@ module BerkeleyLibrary
 
           class << self
             def for_prefix(prefix)
-              @by_prefix ||= Namespace.map { |ns| [ns.prefix, ns] }.to_h
+              # @by_prefix ||= Namespace.map { |ns| [ns.prefix, ns] }.to_h
+              @by_prefix ||= Namespace.to_h { |ns| [ns.prefix, ns] }
               @by_prefix[prefix.to_s]
             end
           end

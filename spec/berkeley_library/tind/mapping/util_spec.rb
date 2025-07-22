@@ -38,6 +38,10 @@ module BerkeleyLibrary
           expect(Util.qualified_alma_record?(qualified_alm_record)).to eq true
         end
 
+        it 'expects nil' do
+          expect(Util.alma_datafield('9281', qualified_alm_record)).to be nil
+        end
+
         it 'get unqualified alma record' do
           expect(Util.qualified_alma_record?(un_qualified_alm_record)).to eq false
         end

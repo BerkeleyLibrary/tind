@@ -7,7 +7,7 @@ module BerkeleyLibrary
       SUMMARY = 'TIND DA utilities for the UC Berkeley Library'.freeze
       DESCRIPTION = 'UC Berkeley Library utility gem for working with the TIND DA digital archive.'.freeze
       LICENSE = 'MIT'.freeze
-      VERSION = '0.7.3'.freeze
+      VERSION = '0.8.0'.freeze
       HOMEPAGE = 'https://github.com/BerkeleyLibrary/tind'.freeze
     end
   end

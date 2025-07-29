@@ -1,3 +1,20 @@
+# 0.8.0 (2025-07-28)
+
+- Upgrade to latest version of berkeley_library-alma.
+
+# 0.7.3 (2025-07-22)
+
+- Using ruby 3.3, build tests 3.4 as well. Additional mapping for Alma 561 to Tind 561 (no translation needed).
+
+# 0.7.2 (2023-10-23)
+
+- Updates the logger
+
+# 0.7.1 (2023-01-19)
+
+- Pin rubyzip to < 3.0 to avoid incompatibilities
+- add workaround for sparklemotion/nokogiri#2773 (#10)
+
 # 0.7.0 (2022-10-26)
 
 - Preserves subfield order insofar as possible when mapping Alma records to TIND.

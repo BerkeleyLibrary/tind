@@ -1,6 +1,6 @@
 # 0.8.0 (2025-07-28)
 
-- Upgrade to latest version of berkeley_library-tind
+- Upgrade to latest version of berkeley_library-alma.
 
 # 0.7.3 (2025-07-22)
 
